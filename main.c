@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:14 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/05/27 15:53:49 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/27 16:28:01 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		cmd = readline("minishell > ");
 		if(!cmd)
-			exit(0);
+			return(exit(0),write(1,"exit\n",6));
 	}
 }
