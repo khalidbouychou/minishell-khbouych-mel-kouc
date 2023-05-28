@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 11:34:21 by mel-kouc          #+#    #+#              #
-#    Updated: 2023/05/27 16:04:08 by khbouych         ###   ########.fr        #
+#    Updated: 2023/05/28 15:38:27 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ CFLAGS =   -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME) : $(OSRC)
-	@$(CC) -lreadline $(CFLAGS) $(OSRC) -o $(NAME)
+	make ulits/libft/Makefile
+	@$(CC) -lreadline $(CFLAGS)  $(OSRC) -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 
 %.o: %.c ../incld/minishell.h
