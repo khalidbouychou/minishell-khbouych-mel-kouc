@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:14 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/05/27 16:28:01 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:03:53 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	head = env_list(envp);
-	ft_print_env(head);
+	// ft_print_env(head);
 	while (1)
 	{
 		cmd = readline("minishell > ");
