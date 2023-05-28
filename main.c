@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/28 15:35:07 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/28 16:28:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	head = env_list(envp);
 	ft_print_env(head);
-	// ft_print_env(head);
 	while (1)
 	{
 		cmd = readline("minishell > ");
-		if (!cmd)
-			exit(0);
-			return (exit(0),printf("exit\n"));
+		if(!cmd)
+			return(exit(0),write(1,"exit\n",6));
+		add_history(cmd);
+		
 	}
 }
