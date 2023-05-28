@@ -6,14 +6,14 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/05/28 16:03:30 by khbouych         ###   ########.fr        #
+#    Updated: 2023/05/28 21:28:07 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = minishell
 
-SRC = ./main.c ./utils/util.c ./utils/util_list.c  ./lexer/lexer.c ./parsing/parsing.c ./tokens/token.c
+SRC = ./main.c ./utils/util.c utils/ft_split.c ./utils/util_list.c  ./lexer/lexer.c ./parsing/parsing.c ./tokens/token.c
 
 OSRC = $(SRC:.c=.o)
 CC = cc
@@ -22,7 +22,6 @@ CFLAGS =   -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME) : $(OSRC)
-	make ulits/libft/Makefile
 	@$(CC) -lreadline $(CFLAGS)  $(OSRC) -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 
