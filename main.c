@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/28 15:08:29 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/28 15:35:07 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_env	*env_list(char **env)
 	return (head);
 }
 
-void ft_print_env(t_env *env)
+void	ft_print_env(t_env *env)
 {
 	while (env)
 	{
@@ -35,6 +35,7 @@ void ft_print_env(t_env *env)
 		env = env->next;
 	}
 }
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
@@ -48,8 +49,8 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		cmd = readline("minishell > ");
-		if(!cmd)
+		if (!cmd)
 			exit(0);
-			return(exit(0),write(1,"exit\n",6));
+			return (exit(0),printf("exit\n"));
 	}
 }
