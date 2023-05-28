@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:14 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/05/26 12:37:42 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:34:30 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,9 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		command = readline("minishell > ");
+		if (ft_strlen(command) > 0)
+			add_history(command);
+		lexer(command);
+		free(command);
 	}
 }

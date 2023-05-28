@@ -6,13 +6,13 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 11:34:21 by mel-kouc          #+#    #+#              #
-#    Updated: 2023/05/26 11:42:20 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/05/27 18:24:23 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = main.c util.c util_list.c
+SRC = main.c util.c util_list.c lexer.c
 
 OSRC = $(SRC:.c=.o)
 
