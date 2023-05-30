@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:37:03 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/05/27 15:27:15 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/28 20:47:30 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,19 @@ void	ft_lst_addback(t_env **head, t_env *new)
 		last->next = new;
 		new->prev = last;
 	}
+}
+
+t_env	*env_list(char **env)
+{
+	int		i;
+	t_env	*head;
+
+	i = 0;
+	head = NULL;
+	while (env[i])
+	{
+		ft_lst_addback(&head, ft_lstnew(env[i]));
+		i++;
+	}
+	return (head);
 }
