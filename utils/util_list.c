@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   util_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:37:03 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/05/26 11:44:07 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:27:15 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "minishell.h"
+#include "../incld/minishell.h"
 
 t_env	*ft_lstnew(char *env)
 {

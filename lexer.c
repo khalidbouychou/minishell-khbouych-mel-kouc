@@ -6,12 +6,13 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:04:13 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/05/27 19:07:04 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:12:22 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "minishell.h"
 
+// check if pipe is in the last of commande
 int	check_spases(char *commande, int index)
 {
 	int	j;

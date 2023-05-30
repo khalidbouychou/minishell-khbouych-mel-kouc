@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/05/27 18:24:45 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/28 16:34:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <readline/readline.h>
-# include <readline/history.h>
+# include "../incld/lexer.h"
+# include "../incld/parsing.h"
+# include "../incld/token.h"
 
 //----------------------* struct env *----------------------//
 typedef struct s_env
