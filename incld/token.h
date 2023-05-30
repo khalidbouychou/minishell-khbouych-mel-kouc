@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/30 18:28:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/30 21:34:45 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ typedef struct s_token
 /************************************************************/
 int		ft_strncmp(const char *str1, const char *str2, int n);
 void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok);
-t_token	**divide(char *cmd);
+t_token	*divide(char *cmd);
 t_token	*ft_listlast(t_token *lst);
 #endif
