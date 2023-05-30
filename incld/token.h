@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/30 12:40:17 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:28:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,33 @@ typedef struct s_env
 	struct s_env	*prev;
 }	t_env;
 
-enum  token_enum
+enum	e_token_enum
 {
-    WORD,
-    PIPE,
-    DQ,
-    SQ,
-    APPND,
-    HERDOC,
-    LRED,
-    OUTPUT,
-    INPUT,
-    SPACE,
-    VAR
+	WORD,
+	PIPE,
+	DQ,
+	SQ,
+	APPND,
+	HERDOC,
+	LRED,
+	OUTPUT,
+	INPUT,
+	SPACE,
+	VAR
 };
 /******************************************************************/
 typedef struct s_token
 {
-    char *content;
-    enum token_enum type;
-    char *path;
-    int operator;
-   struct s_token *next;
+	char				*content;
+	enum e_token_enum	type;
+	char				*path;
+	int					operator;
+	struct s_token		*next;
 }t_token;
 
 /************************************************************/
-int	ft_strncmp(const char *str1, const char *str2, int n);
-void ft_add_to_list_tokens(t_token **lst_tok , t_token *newtok);
-
+int		ft_strncmp(const char *str1, const char *str2, int n);
+void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok);
+t_token	**divide(char *cmd);
+t_token	*ft_listlast(t_token *lst);
 #endif
