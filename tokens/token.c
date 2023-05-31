@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/31 13:18:07 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/31 13:52:37 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,30 +134,30 @@ t_token	*divide(char *cmd)
 	return (lst);
 }
 
-t_token *ft_new_token(char *cmd , t_env *env)
-{
-    t_token	*tok;
-    tok = ft_init_token(cmd,env);
-    if (!ft_strncmp("|", cmd, 255))
-    	tok->type = PIPE;
-	else if (!ft_strncmp(">>", cmd, 255))
-		tok->type = APPND;
-	else if (!ft_strncmp(">", cmd, 255))
-		tok->type = OUTPUT;
-	else if (!ft_strncmp("<", cmd, 255))
-		tok->type = INPUT;
-	else if (!ft_strncmp("<<", cmd, 255))
-		tok->type = HERDOC;
-    else if (!ft_strncmp("$", cmd, 255))
-		tok->type = VAR;
-    if (tok->type != WORD)
-        tok->path = NULL;
-    if(tok->type != WORD && tok->type != VAR)
-        tok->operator = 1;
-    else
-        tok->operator = 0;
-	return (tok);
-}
+// t_token *ft_new_token(char *cmd , t_env *env)
+// {
+    // t_token	*tok;
+    // tok = ft_init_token(cmd,env);
+    // if (!ft_strncmp("|", cmd, 255))
+    	// tok->type = PIPE;
+	// else if (!ft_strncmp(">>", cmd, 255))
+		// tok->type = APPND;
+	// else if (!ft_strncmp(">", cmd, 255))
+		// tok->type = OUTPUT;
+	// else if (!ft_strncmp("<", cmd, 255))
+		// tok->type = INPUT;
+	// else if (!ft_strncmp("<<", cmd, 255))
+		// tok->type = HERDOC;
+    // else if (!ft_strncmp("$", cmd, 255))
+		// tok->type = VAR;
+    // if (tok->type != WORD)
+        // tok->path = NULL;
+    // if(tok->type != WORD && tok->type != VAR)
+        // tok->operator = 1;
+    // else
+        // tok->operator = 0;
+	// return (tok);
+// }
 
 t_token	*ft_listlast(t_token *lst)
 {
