@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/30 21:36:59 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:09:47 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void print(t_token *lst)
 	tmp = lst;
 	while (tmp)
 	{
-		printf("cmd == > %s\n",tmp->content);
-		printf("\n-----------\n");
+		printf("tokens == > %s\n", tmp->content);
 		tmp = tmp->next;
 	}
 }
@@ -39,17 +38,17 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	char	*cmd;
-	t_env	*env=NULL;
-	t_token *list_tokens =NULL;
+	t_env	*env = NULL;
+	t_token	*list_tokens = NULL;
 	env = env_list(envp);
 	while (1)
 	{
 		cmd = readline("minishell > ");
-		if(!cmd)
+		if (!cmd)
 			return(exit(0),write(1,"exit\n",6));
 		add_history(cmd);
 		list_tokens = divide(cmd);
 		// ft_add_to_list_tokens(list_tokens,ft_new_token(cmd ,env));
-		// print(divide(cmd));
+		print(list_tokens);
 	}
 }

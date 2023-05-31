@@ -6,38 +6,38 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/30 21:52:00 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:09:32 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-char *ft_get_relativepath(char *path , char *cmd)
-{
-	char **sp;
-	sp = ft_split(path,':');
-	path = ft_substr(sp[1],4,4);
-	path = ft_strjoin(path,"/");
-	path = ft_strjoin(path,cmd);
-	return path;
-}
-char *ft_get_path(t_env *env ,char *cmd)
-{
-	char *path = NULL;
-	t_env *tmp;
-	tmp = env;
-	while (tmp)
-	{
-		if(ft_strncmp(tmp->key,"PATH",4) == 0)
-		{
-			path = tmp->value;
-			break;
-		}
-		tmp = tmp->next;
-	}
-	path = ft_get_relativepath(path,cmd);
-	return path;
-}
+// char *ft_get_relativepath(char *path , char *cmd)
+// {
+// 	char **sp;
+// 	sp = ft_split(path,':');
+// 	path = ft_substr(sp[1],4,4);
+// 	path = ft_strjoin(path,"/");
+// 	path = ft_strjoin(path,cmd);
+// 	return path;
+// }
+// char *ft_get_path(t_env *env ,char *cmd)
+// {
+// 	char *path = NULL;
+// 	t_env *tmp;
+// 	tmp = env;
+// 	while (tmp)
+// 	{
+// 		if(ft_strncmp(tmp->key,"PATH",4) == 0)
+// 		{
+// 			path = tmp->value;
+// 			break;
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// 	path = ft_get_relativepath(path,cmd);
+// 	return path;
+// }
 // static t_token *ft_init_token(char *cmd , t_env *env)
 // {
 // 	t_token *tok;
@@ -52,17 +52,12 @@ char *ft_get_path(t_env *env ,char *cmd)
 t_token	*ft_init_token(char *cmd, int i, int count)
 {
 	t_token	*tok;
+	char	*str;
+
+	tok = NULL;
+	str = NULL;
 	tok = malloc(sizeof(t_token));
-	printf("i %d\n",i);
-	printf("count %d\n",count);
-	// while(i <= count)
-	// {
-		// printf("%c",cmd[i]);
-		// i++;
-	// }
-	// puts("");
-	tok->content = ft_substr(cmd,i,count);
-	printf("%s\n",tok->content);
+	tok->content = ft_substr(cmd, i, count);
 	tok->type = WORD;
 	tok->path = NULL;
 	tok->operator = 0;
@@ -74,9 +69,7 @@ void ft_add_to_list_tokens(t_token **lst_tok , t_token *newtok)
 {
 	t_token	*last;
 
-	if (!lst_tok || !newtok)
-		return ;
-	else if (*lst_tok == 0)
+	if (*lst_tok == NULL)
 		*lst_tok = newtok;
 	else
 	{
@@ -94,23 +87,22 @@ int	ft_count_alloc(char *cmd, int i, t_token **list)
 	if ((cmd [i] == '>' && cmd[i + 1] == '>') || (cmd [i] == '<' && cmd [i + 1] == '<'))
 	{
 		count = 2;
-		
-		ft_add_to_list_tokens(list, ft_init_token(cmd, i,(i + count) - 1));
+		ft_add_to_list_tokens(list, ft_init_token(cmd, i, count));
 		i = i + count;
 	}
 	else if (cmd [i] == '|' || cmd[i] == ' ' || cmd[i] == '>' || cmd[i] == '<')
 	{
 		count = 1;
-		ft_add_to_list_tokens(list, ft_init_token(cmd, i,(i + count - 1)));
+		ft_add_to_list_tokens(list, ft_init_token(cmd, i, count));
 		i = i + count;
 	}
 	else
 	{
 		init = i;
-		while (cmd[i] && (cmd [i] != '|' && cmd[i] != 32 && cmd[i] != '>' && cmd[i]!= '<'))
-			i++;
-		count = (i - init);
-		ft_add_to_list_tokens(list, ft_init_token(cmd,init,init + count - 1));
+		while (cmd[i] && (cmd[i] != '|' && cmd[i] != ' ' && cmd[i] != '>' && cmd[i] != '<'))
+			i = i + 1;
+		count = i - init;
+		ft_add_to_list_tokens(list, ft_init_token(cmd, init, count));
 	}
 	return (i);
 }
@@ -127,15 +119,15 @@ t_token	*divide(char *cmd)
 	while (cmd[i])
 	{
 		if (cmd[i] == '|')
-			i = ft_count_alloc(cmd, i,&lst);
+			i = ft_count_alloc(cmd, i, &lst);
 		else if (cmd[i] == ' ')
-			i = ft_count_alloc(cmd, i,&lst);
+			i = ft_count_alloc(cmd, i, &lst);
 		else if (cmd[i] == '>')
-			i = ft_count_alloc(cmd, i,&lst);
+			i = ft_count_alloc(cmd, i, &lst);
 		else if (cmd[i] == '<')
-			i = ft_count_alloc(cmd, i,&lst);
+			i = ft_count_alloc(cmd, i, &lst);
 		else
-			i = ft_count_alloc(cmd, i,&lst);
+			i = ft_count_alloc(cmd, i, &lst);
 	}
 	return (lst);
 }
