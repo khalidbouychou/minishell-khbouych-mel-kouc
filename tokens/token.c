@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/31 12:43:06 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/31 13:13:00 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	ft_count_alloc(char *cmd, int i, t_token **list)
 	count = 0;
 	init = i;
 
-	printf("mel-kouc");
 	if ((cmd[i] == '>' && cmd[i + 1] == '>') || (cmd[i] == '<'
 			&& cmd[i + 1] == '<'))
 	{
