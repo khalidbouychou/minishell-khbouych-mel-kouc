@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/31 10:09:32 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:26:18 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@
 t_token	*ft_init_token(char *cmd, int i, int count)
 {
 	t_token	*tok;
-	char	*str;
 
-	tok = NULL;
-	str = NULL;
 	tok = malloc(sizeof(t_token));
 	tok->content = ft_substr(cmd, i, count);
 	tok->type = WORD;
@@ -65,7 +62,7 @@ t_token	*ft_init_token(char *cmd, int i, int count)
 	return (tok);
 }
 
-void ft_add_to_list_tokens(t_token **lst_tok , t_token *newtok)
+void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok)
 {
 	t_token	*last;
 
@@ -83,27 +80,28 @@ int	ft_count_alloc(char *cmd, int i, t_token **list)
 	int	count;
 	int	init;
 	count = 0;
-	init = 0;
-	if ((cmd [i] == '>' && cmd[i + 1] == '>') || (cmd [i] == '<' && cmd [i + 1] == '<'))
+	init = i;
+	if ((cmd[i] == '>' && cmd[i + 1] == '>') || (cmd[i] == '<'
+			&& cmd[i + 1] == '<'))
 	{
 		count = 2;
-		ft_add_to_list_tokens(list, ft_init_token(cmd, i, count));
 		i = i + count;
+		ft_add_to_list_tokens(list, ft_init_token(cmd, init , count));
 	}
-	else if (cmd [i] == '|' || cmd[i] == ' ' || cmd[i] == '>' || cmd[i] == '<')
+	else if (cmd [i] == '|' || cmd[i] == 32 || cmd[i] == '>' || cmd[i] == '<')
 	{
 		count = 1;
-		ft_add_to_list_tokens(list, ft_init_token(cmd, i, count));
 		i = i + count;
+		ft_add_to_list_tokens(list, ft_init_token(cmd, init , count));
 	}
 	else
 	{
-		init = i;
-		while (cmd[i] && (cmd[i] != '|' && cmd[i] != ' ' && cmd[i] != '>' && cmd[i] != '<'))
-			i = i + 1;
+		while (cmd[i] && (cmd[i] != '|' && cmd[i] != 32 && cmd[i] != '>' && cmd[i] != '<'))
+				i = i + 1;
 		count = i - init;
-		ft_add_to_list_tokens(list, ft_init_token(cmd, init, count));
+		ft_add_to_list_tokens(list, ft_init_token(cmd, init , count));
 	}
+	// ft_add_to_list_tokens(list, ft_init_token(cmd, init , count));
 	return (i);
 }
 

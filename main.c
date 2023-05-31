@@ -6,14 +6,14 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/31 10:09:47 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:13:03 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "incld/minishell.h"
 
 
-void ft_print_env(t_env *env)
+void	ft_print_env(t_env *env)
 {
 	while (env)
 	{
@@ -22,33 +22,38 @@ void ft_print_env(t_env *env)
 	}
 }
 
-void print(t_token *lst)
+void	print(t_token *lst)
 {
-	t_token *tmp;
+	t_token	*tmp;
+
 	tmp = lst;
 	while (tmp)
 	{
-		printf("tokens == > %s\n", tmp->content);
+		printf("[cmd]=%s\n", tmp->content);
 		tmp = tmp->next;
 	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {
+	char	*cmd;
+	t_env	*env;
+	t_token	*list_tokens;
+
 	(void)argc;
 	(void)argv;
-	char	*cmd;
-	t_env	*env = NULL;
-	t_token	*list_tokens = NULL;
+	env = NULL;
+	list_tokens = NULL;
 	env = env_list(envp);
 	while (1)
 	{
 		cmd = readline("minishell > ");
 		if (!cmd)
-			return(exit(0),write(1,"exit\n",6));
+			return (printf("exit\n"));
 		add_history(cmd);
 		list_tokens = divide(cmd);
 		// ft_add_to_list_tokens(list_tokens,ft_new_token(cmd ,env));
+		free (cmd);
 		print(list_tokens);
 	}
 }
