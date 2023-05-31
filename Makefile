@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
+#    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/05/28 16:36:38 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/05/31 14:58:47 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = minishell
 
-SRC = ./main.c ./utils/util.c ./utils/util_list.c  ./lexer/lexer.c ./parsing/parsing.c ./tokens/token.c
+SRC = ./main.c ./utils/util.c utils/ft_split.c ./utils/util_list.c  ./lexer/lexer.c ./parsing/parsing.c ./tokens/token.c
 
 OSRC = $(SRC:.c=.o)
 CC = cc
