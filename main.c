@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/31 12:34:06 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/31 12:51:02 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print(t_token *lst)
 	tmp = lst;
 	while (tmp)
 	{
-		printf("[cmd]=%s\n", tmp->content);
+		printf("token == > %s\n", tmp->content);
 		tmp = tmp->next;
 	}
 }
