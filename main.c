@@ -6,18 +6,18 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/31 14:58:07 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/31 14:55:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "incld/minishell.h"
 
 
-void	ft_print_env(t_env *env)
+void ft_print_env(t_env *env)
 {
 	while (env)
 	{
-		printf("%s = %s\n", env->key, env->value);
+		printf("%s = %s\n",env->key,env->value);
 		env = env->next;
 	}
 }
@@ -81,16 +81,10 @@ int	main(int argc, char **argv, char **envp)
 	while (1)   
 	{
 		cmd = readline("minishell > ");
-		if (!cmd)
-			return (printf("exit\n"));
-			// return(exit(0),write(1,"exit\n",6));
+		if(!cmd)
+			return(exit(0),write(1,"exit\n",6));
 		add_history(cmd);
-<<<<<<< HEAD
-		
-		free(cmd);
-=======
 		ft_add_to_list_tokens(&list_tokens,ft_new_token(cmd ,env));
 		print(list_tokens);
->>>>>>> fdaf2a1658950bc0693eacb7b5def944b6df69f8
 	}
 }
