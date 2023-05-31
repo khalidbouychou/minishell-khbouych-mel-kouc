@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/31 13:52:37 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/31 14:43:52 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,28 @@
 
 // char *ft_get_relativepath(char *path , char *cmd)
 // {
-// 	char **sp;
-// 	sp = ft_split(path,':');
-// 	path = ft_substr(sp[1],4,4);
-// 	path = ft_strjoin(path,"/");
-// 	path = ft_strjoin(path,cmd);
-// 	return path;
+	// char **sp;
+	// sp = ft_split(path,':');
+	// path = ft_strjoin(path,"/");
+	// path = ft_strjoin(path,cmd);
+	// return path;
 // }
 // char *ft_get_path(t_env *env ,char *cmd)
 // {
-// 	char *path = NULL;
-// 	t_env *tmp;
-// 	tmp = env;
-// 	while (tmp)
-// 	{
-// 		if(ft_strncmp(tmp->key,"PATH",4) == 0)
-// 		{
-// 			path = tmp->value;
-// 			break;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// 	path = ft_get_relativepath(path,cmd);
-// 	return path;
-// }
-// static t_token *ft_init_token(char *cmd , t_env *env)
-// {
-// 	t_token *tok;
-// 	tok = malloc(sizeof(t_token));
-// 	tok->content = cmd;
-// 	tok->type = WORD;
-// 	tok->path = ft_get_path(env,cmd);
-// 	tok->next = NULL;
-// 	return tok;
+	// char *path = NULL;
+	// t_env *tmp;
+	// tmp = env;
+	// while (tmp)
+	// {
+		// if(ft_strncmp(tmp->key,"PATH",4) == 0)
+		// {
+			// path = tmp->value;
+			// break;
+		// }
+		// tmp = tmp->next;
+	// }
+	// path = ft_get_relativepath(path,cmd);
+	// return path;
 // }
 
 t_token	*ft_init_token(char *cmd, int i, int count)
@@ -98,12 +87,24 @@ int	ft_count_alloc(char *cmd, int i, t_token **list)
 		count = 1;
 		i = i + count;
 	}
+
 	else
 	{
-		while (cmd[i] && (cmd[i] != '|' && cmd[i] != ' '
+		if(cmd[i] == '\"' || cmd[i] == '\'')
+		{
+			while ((cmd[i] != '\"' || cmd[i] != '\'') && cmd[i])
+			{
+				i++;
+				count = i - init;
+			}
+		}
+		else
+		{
+			while (cmd[i] && (cmd[i] != '|' && cmd[i] != ' '
 				&& cmd[i] != '>' && cmd[i] != '<'))
 			i = i + 1;
-		count = i - init;
+			count = i - init;
+		}
 	}
 	ft_add_to_list_tokens(list, ft_init_token(cmd, init, count));
 	return (i);

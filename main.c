@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/31 14:09:26 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/31 14:32:31 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print(t_token *lst)
 	tmp = lst;
 	while (tmp)
 	{
-		printf("token == > %s\n", tmp->content);
+		printf(".%s\n", tmp->content);
 		tmp = tmp->next;
 	}
 }
@@ -52,8 +52,7 @@ int	main(int argc, char **argv, char **envp)
 			return (printf("exit\n"));
 		add_history(cmd);
 		list_tokens = divide(cmd);
-		// ft_add_to_list_tokens(list_tokens,ft_new_token(cmd ,env));
-		free (cmd);
 		print(list_tokens);
+		// free (cmd);
 	}
 }
