@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/31 10:28:57 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:52:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok)
 	{
 		last = ft_listlast(*lst_tok);
 		last->next = newtok;
-		// newtok->prev = last;
 	}
 }
 
@@ -92,7 +91,7 @@ int	ft_count_alloc(char *cmd, int i, t_token **list)
 		count = 2;
 		i = i + count;
 	}
-	else if (cmd[i] == '|' || cmd[i] == ' ' || cmd[i] == '>' || cmd[i] == '<')
+	else if (cmd [i] == '|' || cmd[i] == ' ' || cmd[i] == '>' || cmd[i] == '<')
 	{
 		count = 1;
 		i = i + count;

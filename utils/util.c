@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:40:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/05/28 21:00:28 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/05/30 21:33:59 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	i;
-
 	i = 0;
 	if (s == NULL)
 		return (NULL);
@@ -80,7 +79,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
-	while (i < len)
+	while (i <= len)
 	{
 		str[i] = s[start];
 		i++;
