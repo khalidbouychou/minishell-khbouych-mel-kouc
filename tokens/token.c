@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/30 22:34:25 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:28:57 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ t_token	*ft_init_token(char *cmd, int i, int count)
 	tok = NULL;
 	str = NULL;
 	tok = malloc(sizeof(t_token));
-	printf("i = %d\n count = %d\n", i, count);
-	// str = ft_substr(cmd, i, count);
-	// printf("%s\n", str);
 	tok->content = ft_substr(cmd, i, count);
 	tok->type = WORD;
 	tok->path = NULL;
@@ -68,12 +65,10 @@ t_token	*ft_init_token(char *cmd, int i, int count)
 	return (tok);
 }
 
-void ft_add_to_list_tokens(t_token **lst_tok , t_token *newtok)
+void ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok)
 {
 	t_token	*last;
 
-	// if (!lst_tok || !newtok)
-	// 	return ;
 	if (*lst_tok == NULL)
 		*lst_tok = newtok;
 	else
@@ -90,28 +85,26 @@ int	ft_count_alloc(char *cmd, int i, t_token **list)
 	int	init;
 
 	count = 0;
-	init = 0;
-	if ((cmd[i] == '>' && cmd[i + 1] == '>') || (cmd[i] == '<' && cmd[i + 1] == '<'))
+	init = i;
+	if ((cmd[i] == '>' && cmd[i + 1] == '>') || (cmd[i] == '<'
+			&& cmd[i + 1] == '<'))
 	{
 		count = 2;
-		ft_add_to_list_tokens(list, ft_init_token(cmd, i, count));
 		i = i + count;
 	}
 	else if (cmd[i] == '|' || cmd[i] == ' ' || cmd[i] == '>' || cmd[i] == '<')
 	{
 		count = 1;
-		ft_add_to_list_tokens(list, ft_init_token(cmd, i, count));
 		i = i + count;
 	}
 	else
 	{
-		init = i;
-		while (cmd[i] && (cmd[i] != '|' && cmd[i] != ' ' && cmd[i] != '>' && cmd[i] != '<'))
+		while (cmd[i] && (cmd[i] != '|' && cmd[i] != ' '
+				&& cmd[i] != '>' && cmd[i] != '<'))
 			i = i + 1;
 		count = i - init;
-		ft_add_to_list_tokens(list, ft_init_token(cmd, init, count));
 	}
-	// printf("%d\n", i);
+	ft_add_to_list_tokens(list, ft_init_token(cmd, init, count));
 	return (i);
 }
 
@@ -121,7 +114,6 @@ t_token	*divide(char *cmd)
 	int		i;
 
 	lst = NULL;
-	// lst = malloc(sizeof (t_token ));
 	i = 0;
 	while (cmd[i] && cmd[i] == 32)
 		i++;
@@ -137,9 +129,7 @@ t_token	*divide(char *cmd)
 			i = ft_count_alloc(cmd, i, &lst);
 		else
 			i = ft_count_alloc(cmd, i, &lst);
-		// printf("%d\n", i);
 	}
-	// printf("tokens == > %s\n", (*lst)->content);
 	return (lst);
 }
 
