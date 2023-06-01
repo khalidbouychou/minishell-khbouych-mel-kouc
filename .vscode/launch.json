@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/khbouych/Desktop/khbouych/parsing",
-      "program": "/Users/khbouych/Desktop/khbouych/parsing/build/Debug/outDebug"
+      "cwd": "/Users/khbouych/Desktop/minishell/tokens",
+      "program": "/Users/khbouych/Desktop/minishell/tokens/build/Debug/outDebug"
     }
   ]
 }
