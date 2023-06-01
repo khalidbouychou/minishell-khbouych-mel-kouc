@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/31 14:43:52 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:37:40 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,23 @@ int	ft_count_alloc(char *cmd, int i, t_token **list)
 
 	else
 	{
-		if(cmd[i] == '\"' || cmd[i] == '\'')
+		if (cmd[i] == '\"' || cmd[i] == '\'')
 		{
-			while ((cmd[i] != '\"' || cmd[i] != '\'') && cmd[i])
-			{
+			i++;
+			while ((cmd[i] != '\"' && cmd[i] != '\'') && cmd[i])
 				i++;
-				count = i - init;
-			}
+			i++;
+				// printf("\nchar->%c\n", cmd[i]);
+			count = i - init;
+			// printf("\n%d\n", count);
 		}
 		else
 		{
 			while (cmd[i] && (cmd[i] != '|' && cmd[i] != ' '
-				&& cmd[i] != '>' && cmd[i] != '<'))
-			i = i + 1;
+					&& cmd[i] != '>' && cmd[i] != '<'))
+				i++;
 			count = i - init;
+			// printf("\ntest\n");
 		}
 	}
 	ft_add_to_list_tokens(list, ft_init_token(cmd, init, count));
@@ -125,7 +128,7 @@ t_token	*divide(char *cmd)
 			i = ft_count_alloc(cmd, i, &lst);
 		else if (cmd[i] == ' ')
 			i = ft_count_alloc(cmd, i, &lst);
-		else if (cmd[i] == '>')
+		else if (cmd[i] == '
 			i = ft_count_alloc(cmd, i, &lst);
 		else if (cmd[i] == '<')
 			i = ft_count_alloc(cmd, i, &lst);
