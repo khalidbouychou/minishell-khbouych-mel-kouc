@@ -6,14 +6,14 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/01 18:24:37 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:19:11 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 // int ft_check_if_cmd_valid(char **path,char *cmd)
 // {
-	// 
+// 
 // }
 void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok)
 {
