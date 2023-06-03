@@ -6,11 +6,20 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/03 16:59:03 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:59:39 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "incld/minishell.h"
+
+void	ft_print_env(t_env *env)
+{
+	while (env)
+	{
+		printf("%s = %s \n", env->key, env->value);
+		env = env->next;
+	}
+}
 
 void	print(t_token *lst)
 {
