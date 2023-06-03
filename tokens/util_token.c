@@ -6,18 +6,17 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/01 18:27:33 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:00:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-int	ft_Qoutes(char *cmd, int *i, int init)
+int	ft_qoutes(char *cmd, int *i, int init)
 {
 	int	count;
 
 	count = 0;
-
 	if (cmd[*i] == '\"' )
 	{
 		*i = *i + 1;
@@ -37,7 +36,7 @@ int	ft_Qoutes(char *cmd, int *i, int init)
 	return (count);
 }
 
-int	ft_Word(char *cmd, int *i, int init)
+int	ft_word(char *cmd, int *i, int init)
 {
 	int	count;
 
@@ -49,7 +48,7 @@ int	ft_Word(char *cmd, int *i, int init)
 	return (count);
 }
 
-char	**ft_get_path(t_env *env)
+char	*ft_get_path(t_env *env, char *cmd)
 {
 	char	*p;
 	t_env	*tmp;
@@ -65,11 +64,12 @@ char	**ft_get_path(t_env *env)
 		}
 		tmp = tmp->next;
 	}
-	return (ft_split(p, ':'));
+	return (ft_check_if_cmd_valid(ft_split(p, ':'), cmd));
 }
 
 void	ft_get_type(t_token *tok)
 {
+	tok->type = WORD;
 	if (!ft_strncmp("|", tok->content, 255))
 		tok->type = PIPE;
 	else if (!ft_strncmp(">>", tok->content, 255))
@@ -100,8 +100,7 @@ t_token	*ft_init_token(char *cmd, int i, int count, t_env *env)
 	tok = malloc(sizeof(t_token));
 	tok->content = ft_substr(cmd, i, count);
 	ft_get_type(tok);
-	tok->path = ft_get_path(env);
+	tok->path = ft_get_path(env, cmd);
 	tok->next = NULL;
 	return (tok);
 }
-
