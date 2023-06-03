@@ -6,13 +6,13 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/03 17:59:16 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:42:55 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-char	*ft_check_if_cmd_valid(char **path, char *cmd)
+char	*ft_check_if_cmd_valid(char **path, t_token *tok)
 {
 	int		i;
 	char	*p;
@@ -22,7 +22,7 @@ char	*ft_check_if_cmd_valid(char **path, char *cmd)
 	while (path[i])
 	{
 		p = ft_strjoin(path[i], "/");
-		p = ft_strjoin(p, cmd);
+		p = ft_strjoin(p, tok->content);
 		if (access(p, X_OK | F_OK) == 0)
 			return (p);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/03 17:59:20 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:44:14 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_word(char *cmd, int *i, int init)
 	return (count);
 }
 
-char	*ft_get_path(t_env *env, char *cmd)
+char	*ft_get_path(t_env *env, t_token *tok)
 {
 	char	*p;
 	t_env	*tmp;
@@ -64,7 +64,7 @@ char	*ft_get_path(t_env *env, char *cmd)
 		}
 		tmp = tmp->next;
 	}
-	return (ft_check_if_cmd_valid(ft_split(p, ':'), cmd));
+	return (ft_check_if_cmd_valid(ft_split(p, ':'), tok));
 }
 
 void	ft_get_type(t_token *tok)
@@ -100,7 +100,7 @@ t_token	*ft_init_token(char *cmd, int i, int count, t_env *env)
 	tok = malloc(sizeof(t_token));
 	tok->content = ft_substr(cmd, i, count);
 	ft_get_type(tok);
-	tok->path = ft_get_path(env, cmd);
+	tok->path = ft_get_path(env, tok);
 	tok->next = NULL;
 	return (tok);
 }
