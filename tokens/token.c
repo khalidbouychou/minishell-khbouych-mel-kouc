@@ -6,15 +6,30 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/01 18:53:27 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:27:53 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-// int ft_check_if_cmd_valid(char **path,char *cmd)
-// {
-	// 
-// }
+
+char	*ft_check_if_cmd_valid(char **path, char *cmd)
+{
+	int		i;
+	char	*p;
+
+	p = NULL;
+	i = 0;
+	while (path[i])
+	{
+		p = ft_strjoin(path[i], "/");
+		p = ft_strjoin(p, cmd);
+		if (access(p, X_OK | F_OK) == 0)
+			return (p);
+		i++;
+	}
+	return (NULL);
+}
+
 void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok)
 {
 	t_token	*last;
@@ -35,7 +50,6 @@ int	ft_count_alloc(char *cmd, int i, t_token **list, t_env *env)
 
 	count = 0;
 	init = i;
-
 	if ((cmd[i] == '>' && cmd[i + 1] == '>') || (cmd[i] == '<'
 			&& cmd[i + 1] == '<'))
 	{
@@ -48,9 +62,9 @@ int	ft_count_alloc(char *cmd, int i, t_token **list, t_env *env)
 		i = i + count;
 	}
 	else if ((cmd[i] == '\"' || cmd[i] == '\''))
-		count = ft_Qoutes(cmd, &i, init);
+		count = ft_qoutes(cmd, &i, init);
 	else
-		count = ft_Word(cmd, &i, init);
+		count = ft_word(cmd, &i, init);
 	ft_add_to_list_tokens(list, ft_init_token(cmd, init, count, env));
 	return (i);
 }
@@ -67,16 +81,15 @@ t_token	*divide(char *cmd, t_env *env)
 	while (cmd[i])
 	{
 		if (cmd[i] == '|')
-			i = ft_count_alloc(cmd, i, &lst,env);
+			i = ft_count_alloc(cmd, i, &lst, env);
 		else if (cmd[i] == ' ')
-			i = ft_count_alloc(cmd, i, &lst,env);
+			i = ft_count_alloc(cmd, i, &lst, env);
 		else if (cmd[i] == '>')
-			i = ft_count_alloc(cmd, i, &lst,env);
+			i = ft_count_alloc(cmd, i, &lst, env);
 		else if (cmd[i] == '<')
-			i = ft_count_alloc(cmd, i, &lst,env);
+			i = ft_count_alloc(cmd, i, &lst, env);
 		else
-			i = ft_count_alloc(cmd, i, &lst,env);
+			i = ft_count_alloc(cmd, i, &lst, env);
 	}
 	return (lst);
 }
-

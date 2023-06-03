@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/01 21:01:07 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:30:04 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_print_env(t_env *env)
 {
 	while (env)
 	{
-		printf("%s = %s\n",env->key, env->value);
+		printf("%s = %s \n", env->key, env->value);
 		env = env->next;
 	}
 }
@@ -28,15 +28,22 @@ void	print(t_token *lst)
 
 	i = 0;
 	tmp = lst;
+	i = 0;
 	while (tmp)
 	{
 		printf("[cmd]  : %s\n", tmp->content);
 		printf("[type] : %u\n", tmp->type);
 		printf("[is_op] : %d\n", tmp->operator);
+		printf("[path] : %s\n", tmp->path);
 		printf("------------------\n");
 		tmp = tmp->next;
 		i++;
 	}
+}
+
+void	l(void)
+{
+	system("leaks minishell");
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -45,6 +52,7 @@ int	main(int argc, char **argv, char **envp)
 	t_env	*env;
 	t_token	*list_tokens;
 
+	// atexit(l);
 	(void)argc;
 	(void)argv;
 	env = NULL;
