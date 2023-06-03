@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/03 17:54:11 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/03 19:16:54 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	main(int argc, char **argv, char **envp)
 			return (printf("exit\n"));
 		add_history(cmd);
 		list_tokens = divide(cmd, env);
-		print(list_tokens);
+		ft_get_key_from_var(list_tokens);
+		// print(list_tokens);
 	}
 }
