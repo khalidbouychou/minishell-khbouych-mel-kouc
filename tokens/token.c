@@ -6,30 +6,15 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/03 16:26:08 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:47:18 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-
-char	*ft_check_if_cmd_valid(char **path, char *cmd)
-{
-	int		i;
-	char	*p;
-
-	p = NULL;
-	i = 0;
-	while (path[i])
-	{
-		p = ft_strjoin(path[i], "/");
-		p = ft_strjoin(p, cmd);
-		if (access(p, X_OK | F_OK) == 0)
-			return (p);
-		i++;
-	}
-	return (NULL);
-}
-
+// int ft_check_if_cmd_valid(char **path,char *cmd)
+// {
+// 
+// }
 void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok)
 {
 	t_token	*last;
