@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/04 21:50:01 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/05 21:38:51 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,38 @@ int	check_pipe(t_token	*list_tokens)
 	return (1);
 }
 
-void	check_quotes(t_token *list_tokens)
+int	check_quotes(t_token *list_tokens)
 {
 	t_token	*tmp;
 	int		i;
-	int		countdb;
-	int		countsg;
+	char	c;
+	int		flag;
 
-	countdb = 0;
-	countsg = 0;
 	tmp = list_tokens;
 	while (tmp)
 	{
+		flag = 0;
 		i = 0;
 		while (tmp->content[i])
 		{
-			if (tmp->content[i] == '"')
-				countdb++;
-			if (tmp->content[i] == '\'')
-				countsg++;
+			if (!flag)
+			{
+				if (tmp->content[i] == '"' || tmp->content[i] == '\'')
+				{
+					c = tmp->content[i];
+					flag = 1;
+				}
+			}
+			else
+				if (tmp->content[i] == c)
+					flag += 1;
 			i++;
 		}
+		if (flag == 1)
+			return (0);
 		tmp = tmp->next;
 	}
+	return (1);
 }
 
 int	check_operator(t_token	*list_tokens)

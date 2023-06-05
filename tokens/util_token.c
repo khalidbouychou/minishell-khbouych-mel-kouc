@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/03 20:28:00 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/05 21:42:37 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ int	ft_word(char *cmd, int *i, int init)
 	int	count;
 
 	count = 0;
+	// while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
+	// 	&& cmd[*i] != '>' && cmd[*i] != '<'))
 	while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
-		&& cmd[*i] != '>' && cmd[*i] != '<'))
+		&& cmd[*i] != '>' && cmd[*i] != '<' && cmd[*i] != '\''
+			&& cmd[*i] != '"'))
 		*i = *i + 1;
 	count = *i - init;
 	return (count);

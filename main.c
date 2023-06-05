@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/03 20:30:04 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/05 06:35:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	print(t_token *lst)
 	}
 }
 
-void	l(void)
-{
-	system("leaks minishell");
-}
+// void	l(void)
+// {
+// 	system("leaks minishell");
+// }
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -60,7 +60,8 @@ int	main(int argc, char **argv, char **envp)
 	env = env_list(envp);
 	while (1)
 	{
-		cmd = readline("minishell > ");
+		// cmd = readline("minishell > ");
+		cmd = readline("\033[1;33mminishell >\033[34m$ \033[0m");
 		if (!cmd)
 			return (printf("exit\n"));
 		add_history(cmd);
