@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/03 20:29:00 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/07 18:17:25 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_token
 	char				*path;
 	int					operator;
 	struct s_token		*next;
+	char				**split;
 }t_token;
 
 /************************************************************/
