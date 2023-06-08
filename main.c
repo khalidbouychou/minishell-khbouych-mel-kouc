@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/03 17:59:39 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:18:47 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,13 @@ int	main(int argc, char **argv, char **envp)
 	env = env_list(envp);
 	while (1)
 	{
-		cmd = readline("minishell----> ");
+		cmd = readline("shell>>");
 		if (!cmd)
-			return (printf("exit\n"));
+			return (printf("error in readline\n"));
 		add_history(cmd);
-		list_tokens = divide(cmd, env);
-		print(list_tokens);
+		system(cmd);
+		// list_tokens = divide(cmd, env);
+		// ft_expander(list_tokens,env);
+		// print (list_tokens);
 	}
 }

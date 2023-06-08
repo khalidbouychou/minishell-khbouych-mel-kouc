@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/03 20:44:14 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/06 13:43:21 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	ft_word(char *cmd, int *i, int init)
 
 	count = 0;
 	while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
-		&& cmd[*i] != '>' && cmd[*i] != '<'))
+		&& cmd[*i] != '>' && cmd[*i] != '<'
+			&& cmd[*i] != '\'' && cmd[*i] != '"'))
 		*i = *i + 1;
 	count = *i - init;
 	return (count);
