@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/03 17:56:08 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/06 13:43:21 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_qoutes(char *cmd, int *i, int init)
 	int	count;
 
 	count = 0;
-
 	if (cmd[*i] == '\"' )
 	{
 		*i = *i + 1;
@@ -43,13 +42,14 @@ int	ft_word(char *cmd, int *i, int init)
 
 	count = 0;
 	while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
-		&& cmd[*i] != '>' && cmd[*i] != '<'))
+		&& cmd[*i] != '>' && cmd[*i] != '<'
+			&& cmd[*i] != '\'' && cmd[*i] != '"'))
 		*i = *i + 1;
 	count = *i - init;
 	return (count);
 }
 
-char	*ft_get_path(t_env *env, char *cmd)
+char	*ft_get_path(t_env *env, t_token *tok)
 {
 	char	*p;
 	t_env	*tmp;
@@ -65,11 +65,12 @@ char	*ft_get_path(t_env *env, char *cmd)
 		}
 		tmp = tmp->next;
 	}
-	return (ft_check_if_cmd_valid(ft_split(p, ':'), cmd));
+	return (ft_check_if_cmd_valid(ft_split(p, ':'), tok));
 }
 
 void	ft_get_type(t_token *tok)
 {
+	tok->type = WORD;
 	if (!ft_strncmp("|", tok->content, 255))
 		tok->type = PIPE;
 	else if (!ft_strncmp(">>", tok->content, 255))
@@ -100,8 +101,7 @@ t_token	*ft_init_token(char *cmd, int i, int count, t_env *env)
 	tok = malloc(sizeof(t_token));
 	tok->content = ft_substr(cmd, i, count);
 	ft_get_type(tok);
-	tok->path = ft_get_path(env, cmd);
+	tok->path = ft_get_path(env, tok);
 	tok->next = NULL;
 	return (tok);
 }
-

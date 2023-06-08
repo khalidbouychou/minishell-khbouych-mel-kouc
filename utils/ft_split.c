@@ -6,11 +6,12 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 19:01:48 by khbouych          #+#    #+#             */
-/*   Updated: 2023/05/30 19:03:29 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:59:49 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
+
 static size_t	ft_count_words(char const *str, char c)
 {
 	size_t	i;
