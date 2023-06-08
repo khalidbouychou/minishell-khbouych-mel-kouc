@@ -6,11 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/06/03 19:16:23 by khbouych         ###   ########.fr       */
-=======
 /*   Updated: 2023/06/04 16:51:35 by khbouych         ###   ########.fr       */
->>>>>>> ad9309bd7152bce8757237e5e8f564dc5cd7c480
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +54,5 @@ int		ft_qoutes(char *cmd, int *i, int init);
 int		ft_word(char *cmd, int *i, int init);
 char	*ft_check_if_cmd_valid(char **path, t_token *tok);
 t_token	*ft_init_token(char *cmd, int i, int count, t_env *env);
-char	*ft_get_key_from_var(t_token *tok);
+
 #endif

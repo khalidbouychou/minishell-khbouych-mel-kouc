@@ -6,11 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/06/03 19:37:13 by khbouych         ###   ########.fr       */
-=======
 /*   Updated: 2023/06/03 20:48:42 by khbouych         ###   ########.fr       */
->>>>>>> ad9309bd7152bce8757237e5e8f564dc5cd7c480
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,65 +93,3 @@ t_token	*divide(char *cmd, t_env *env)
 	}
 	return (lst);
 }
-
-char	*ft_get_key_from_var(t_token *tok)
-{
-	char	*key;
-	int		i;
-	int		s;
-	int		e;
-	t_token *cur;
-
-	cur = tok;
-	i = 0;
-	s = 0;
-	e = 0;
-	while (cur)
-	{
-		while (cur->content[i] && cur->content[i] != '$')
-			i++;
-		i = i + 1;
-		s = i;
-		while (cur->content[i] != '$' && cur->content[i])
-			i++;
-		e = i - 1;
-		cur = cur->next;
-	}
-	i = 0;
-		puts("out\n");
-	key = malloc(sizeof(char) * ((e - s) + 1));
-	while (s <= e)
-	{
-		printf("s %d\n",s);
-		printf("e %d\n",e);
-		puts("inside\n");
-		printf("i %d\n",i);
-		key[i] = cur->content[s];
-		i++;
-		s++;
-	}
-	key[i] = '\0';
-	// strncpy(key,cur->content,e - s);
-	// printf("%s\n",strncpy(key, cur->content, e - s));
-	return (key);
-}
-
-// void	ft_expand(char *cmd, t_env *env, t_token *tok)
-// {
-	// int 	i;
-	// t_env	*tmp;
-// 
-	// tmp = env;
-	// i = 0;
-	// while (cmd[i])
-	// {
-// 
-	// }
-	// 
-	// while (tmp)
-	// {
-		// 
-		// tmp = tmp->next;
-	// }
-	// 
-// }
