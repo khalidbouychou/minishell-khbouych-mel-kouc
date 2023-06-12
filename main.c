@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/12 18:46:47 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:19:55 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ft_expander(t_token *tok, t_env *env)
 	char			*str;
 
 	tmp = tok;
+	str = NULL;
 	(void)env;
 	while (tmp)
 	{
@@ -73,7 +74,11 @@ void	ft_expander(t_token *tok, t_env *env)
 		s = 0;
 		e = 0;
 		vkey = NULL;
-		str = ft_strdup(str);
+		if (!str)
+			str = ft_strdup("");
+		// str = ft_strdup(str);
+		// i = ft_strchr(tmp->content, '$');
+		// if (i != -1)
 		if (ft_strchr(tmp->content, '$') != -1)
 		{
 			i = i + 1;
@@ -95,7 +100,8 @@ void	ft_expander(t_token *tok, t_env *env)
 		}
 		tmp = tmp->next;
 	}
-		printf("key = %s\n", ft_strjoin(str,vkey));
+	printf("key = %s\n", str);
+		// printf("key = %s\n", ft_strjoin(str,vkey));
 }
 
 int	main(int argc, char **argv, char **envp)
