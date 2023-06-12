@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/07 20:31:22 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/12 13:48:55 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,14 @@
 
 # include "../incld/token.h"
 
-void	parser(t_token	*list_tokens);
+typedef struct s_parse
+{
+	char			*content;
+	struct s_parse	*next;
+	char			**arg;
+}	t_parse;
+
+void	parser(t_token	*list_tokens, char *cmd);
 int		check_operator(t_token	*list_tokens);
 int		check_pipe(t_token	*list_tokens);
 int		check_spases(t_token *tmp);
