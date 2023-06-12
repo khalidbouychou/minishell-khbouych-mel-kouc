@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/12 16:09:51 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:15:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_syntax(t_token *list_tokens)
 	// 	printf ("\n succese\n");
 	// split_operator(list_tokens);
 }
-t_parse	*ft_listlast(t_parse *lst)
+t_parse	*ft_last_parser(t_parse *lst)
 {
 	if (!lst)
 		return (0);
@@ -30,7 +30,7 @@ t_parse	*ft_listlast(t_parse *lst)
 		lst = lst->next;
 	return (lst);
 }
-t_parse	*ft_init_token(char *str)
+t_parse	*ft_init_parser(char *str)
 {
 	t_parse	*tok;
 
@@ -42,7 +42,7 @@ t_parse	*ft_init_token(char *str)
 	tok->next = NULL;
 	return (tok);
 }
-void	ft_add_to_list_tokens(t_parse **lst_tok, t_token *newtok)
+void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok)
 {
 	t_parse	*last;
 
@@ -50,7 +50,7 @@ void	ft_add_to_list_tokens(t_parse **lst_tok, t_token *newtok)
 		*lst_tok = newtok;
 	else
 	{
-		last = ft_listlast(*lst_tok);
+		last = ft_last_parser(*lst_tok);
 		last->next = newtok;
 	}
 }
@@ -68,18 +68,7 @@ int	is_opr(char *str)
 		return (0);
 	return (1);
 }
-void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok)
-{
-	t_parse	*last;
 
-	if (*lst_tok == NULL)
-		*lst_tok = newtok;
-	else
-	{
-		last = ft_listlast(*lst_tok);
-		last->next = newtok;
-	}
-}
 void	check_list_or_arg(t_parse **list, char *str, int *flag)
 {
 	t_parse	*tmp;
@@ -96,7 +85,7 @@ void	check_list_or_arg(t_parse **list, char *str, int *flag)
 	}
 	if (*flag == 0)
 	{
-		add_to_list_parser(list, ft_init_token(str));
+		add_to_list_parser(list, ft_init_parser(str));
 		*flag = 1;
 	}
 }
