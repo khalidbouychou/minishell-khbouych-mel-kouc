@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/12 16:15:48 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:35:52 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	check_list_or_arg(t_parse **list, char *str, int *flag)
 	{
 		while (tmp->next)
 			tmp = tmp->next;
+		// allocation of arg
 		*(tmp->arg) = str;
 		*(tmp->arg) = *(tmp->arg) + 1;
 	}
