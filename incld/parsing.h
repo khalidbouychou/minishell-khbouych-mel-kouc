@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/12 16:20:56 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:13:31 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_parse
 	char			*content;
 	struct s_parse	*next;
 	char			**arg;
+	t_token			*ptr;
 }	t_parse;
 
 void	parser(t_token	*list_tokens, char *cmd);

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/12 13:13:52 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:39:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 // 		if (node == NULL)
 // 			return (NULL);
 // 	}
-// 	return (NULL);
+// 	return (NULL); 
 // }
 
 // int	ft_count_word(t_token *list_tokens)
