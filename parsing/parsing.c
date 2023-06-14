@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/13 22:12:22 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/14 20:37:25 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,10 +147,41 @@ void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok)
 		last->next = newtok;
 	}
 }
+int	alloc_arg(t_token *tmp)
+{
+	int	size;
+	int	flag;
+
+	size = 0;
+	flag = 0;
+	while (tmp)
+	{
+		while (tmp && tmp->type == SPACE)
+		{
+			if (!tmp->next)
+			{
+				flag = 1;
+				break ;
+			}
+			else if (tmp->next && tmp->next->type == SPACE)
+				tmp = tmp->next;
+			else
+				break ;
+		}
+		if (flag == 1 || (tmp->operator == 1 && tmp->type != SPACE))
+			break ;
+		size++;
+		tmp = tmp->next;
+	}
+	return (size);
+}
 void	check_list_or_arg(t_token *tmp, t_parse **list, int *flag)
 {
 	t_parse	*pars;
+	int		is_alloc;
 
+	printf ("hello\n");
+	is_alloc = 0;
 	pars = *list;
 	if (tmp->operator == 1 && tmp->type != SPACE)
 		*flag = 0;
@@ -158,18 +189,21 @@ void	check_list_or_arg(t_token *tmp, t_parse **list, int *flag)
 	{
 		while (pars->next)
 			pars = pars->next;
-		alloc_arg();
-		*(pars->arg) = str;
+		printf ("world\n");
+		*(pars->arg) = tmp->content;
+		printf ("test\n");
 		*(pars->arg) = *(pars->arg) + 1;
 	}
 	if (*flag == 0)
 	{
 		add_to_list_parser(list, ft_init_parser(tmp));
+		if (tmp->operator == 0)
+			alloc_arg(tmp);
 		*flag = 1;
 	}
 }
 
-void	*parser_list(t_token *list_tokens)
+t_parse	*parser_list(t_token *list_tokens)
 {
 	t_parse	*lst;
 	t_token	*tmp;
@@ -182,18 +216,20 @@ void	*parser_list(t_token *list_tokens)
 	flag = 0;
 	while (tmp)
 	{
-		// WORD -> flag = 1 and tmp-> next = " "
-		// 
-		while ((tmp && i == 1 && flag == 1 && !ft_strncmp(" ", tmp->content, 255))
-			|| (tmp && tmp->next && flag == 0 && tmp->next->operator == 1))
+		// echo   "hello" 
+		// |    ls
+		while ((tmp && i == 1 && flag == 1 && tmp->type == SPACE)
+			|| (tmp && tmp->next && flag == 0 && tmp->type == SPACE))
 			tmp = tmp->next;
-		check_list_or_arg(tmp, &list, &flag);
+		check_list_or_arg(tmp, &lst, &flag);
 		tmp = tmp->next;
-		i++;
+		if (i == 0)
+			i++;
 	}
+	return (lst);
 }
-void	parser(t_token	*list_tokens, char *cmd)
+void	parser(t_token	*list_tokens)
 {
 	check_syntax(list_tokens);
-	// parser_list(cmd, list_tokens);
+	parser_list(list_tokens);
 }
