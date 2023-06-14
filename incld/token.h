@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/04 16:51:35 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/13 22:49:08 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ typedef struct s_env
 
 enum	e_token_enum
 {
-	WORD,
-	PIPE,
-	DQ,
-	SQ,
-	APPND,
-	HERDOC,
-	LRED,
-	OUTPUT,
-	INPUT,
-	SPACE,
-	VAR
+	VAR,//0
+	WORD,//1
+	PIPE,//2
+	DQ,//3
+	SQ,//4
+	APPND,//5
+	HERDOC,//6
+	LRED,//7
+	OUTPUT,//8
+	INPUT,//9
+	SPACE,//10
 };
 /******************************************************************/
 typedef struct s_token

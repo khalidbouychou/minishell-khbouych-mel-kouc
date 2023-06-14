@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/06 13:43:21 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/13 22:57:01 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,19 @@ char	*ft_get_path(t_env *env, t_token *tok)
 void	ft_get_type(t_token *tok)
 {
 	tok->type = WORD;
-	if (!ft_strncmp("|", tok->content, 255))
-		tok->type = PIPE;
-	else if (!ft_strncmp(">>", tok->content, 255))
-		tok->type = APPND;
-	else if (!ft_strncmp(">", tok->content, 255))
-		tok->type = OUTPUT;
-	else if (!ft_strncmp("<", tok->content, 255))
-		tok->type = INPUT;
-	else if (!ft_strncmp("<<", tok->content, 255))
-		tok->type = HERDOC;
-	else if (!ft_strncmp("$", tok->content, 255))
+	if ('$' == tok->content[0])
 		tok->type = VAR;
-	else if (!ft_strncmp(" ", tok->content, 255))
+	else if ('>' == tok->content[0] && '>' == tok->content[1])
+		tok->type = APPND;
+	else if ('<' == tok->content[0] && '<' == tok->content[1])
+		tok->type = HERDOC;
+	else if ('>' == tok->content[0])
+		tok->type = OUTPUT;
+	else if ('<' == tok->content[0])
+		tok->type = INPUT;
+	else if ('|' == tok->content[0])
+		tok->type = PIPE;
+	else if (32 == tok->content[0])
 		tok->type = SPACE;
 	if (tok->type != WORD)
 		tok->path = NULL;
@@ -97,7 +97,6 @@ t_token	*ft_init_token(char *cmd, int i, int count, t_env *env)
 {
 	t_token	*tok;
 
-	tok = NULL;
 	tok = malloc(sizeof(t_token));
 	tok->content = ft_substr(cmd, i, count);
 	ft_get_type(tok);
