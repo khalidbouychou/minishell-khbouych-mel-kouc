@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/04 14:49:11 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:43:13 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@
 int		ft_strchr(char *s, char c);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s1);
+char	*ft_strdup(char *s1);
 t_env	*ft_lstnew(char *env);
 void	ft_lst_addback(t_env **head, t_env *new);
 t_env	*env_list(char **env);
 /*******************************/
 char	**ft_split(char const *s, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 /****************/
 
 #endif

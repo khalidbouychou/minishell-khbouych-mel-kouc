@@ -1,5 +1,6 @@
 {
   "[c]": {
+<<<<<<< HEAD
     "editor.defaultFormatter": "keyhr.42-c-format"
 },
 
@@ -40,4 +41,8 @@
   "C_Cpp_Runner.useAddressSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp.errorSquiggles": "disabled"
+=======
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+>>>>>>> af902ca1371a87a997075c94a2c9896353af0cc9
 }

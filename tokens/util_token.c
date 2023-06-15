@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/05 21:42:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:44:53 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int	ft_word(char *cmd, int *i, int init)
 	// while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
 	// 	&& cmd[*i] != '>' && cmd[*i] != '<'))
 	while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
-		&& cmd[*i] != '>' && cmd[*i] != '<' && cmd[*i] != '\''
-			&& cmd[*i] != '"'))
+		&& cmd[*i] != '>' && cmd[*i] != '<'
+			&& cmd[*i] != '\'' && cmd[*i] != '"'))
 		*i = *i + 1;
 	count = *i - init;
 	return (count);
 }
 
-char	*ft_get_path(t_env *env, char *cmd)
+char	*ft_get_path(t_env *env, t_token *tok)
 {
 	char	*p;
 	t_env	*tmp;
@@ -67,25 +67,25 @@ char	*ft_get_path(t_env *env, char *cmd)
 		}
 		tmp = tmp->next;
 	}
-	return (ft_check_if_cmd_valid(ft_split(p, ':'), cmd));
+	return (ft_check_if_cmd_valid(ft_split(p, ':'), tok));
 }
 
 void	ft_get_type(t_token *tok)
 {
 	tok->type = WORD;
-	if (!ft_strncmp("|", tok->content, 255))
-		tok->type = PIPE;
-	else if (!ft_strncmp(">>", tok->content, 255))
-		tok->type = APPND;
-	else if (!ft_strncmp(">", tok->content, 255))
-		tok->type = OUTPUT;
-	else if (!ft_strncmp("<", tok->content, 255))
-		tok->type = INPUT;
-	else if (!ft_strncmp("<<", tok->content, 255))
-		tok->type = HERDOC;
-	else if (!ft_strncmp("$", tok->content, 255))
+	if ('$' == tok->content[0])
 		tok->type = VAR;
-	else if (!ft_strncmp(" ", tok->content, 255))
+	else if ('>' == tok->content[0] && '>' == tok->content[1])
+		tok->type = APPND;
+	else if ('<' == tok->content[0] && '<' == tok->content[1])
+		tok->type = HERDOC;
+	else if ('>' == tok->content[0])
+		tok->type = OUTPUT;
+	else if ('<' == tok->content[0])
+		tok->type = INPUT;
+	else if ('|' == tok->content[0])
+		tok->type = PIPE;
+	else if (32 == tok->content[0])
 		tok->type = SPACE;
 	if (tok->type != WORD)
 		tok->path = NULL;
@@ -99,11 +99,10 @@ t_token	*ft_init_token(char *cmd, int i, int count, t_env *env)
 {
 	t_token	*tok;
 
-	tok = NULL;
 	tok = malloc(sizeof(t_token));
 	tok->content = ft_substr(cmd, i, count);
 	ft_get_type(tok);
-	tok->path = ft_get_path(env, cmd);
+	tok->path = ft_get_path(env, tok);
 	tok->next = NULL;
 	return (tok);
 }

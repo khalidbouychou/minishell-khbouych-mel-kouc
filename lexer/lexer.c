@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 18:04:13 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/01 18:52:24 by mel-kouc         ###   ########.fr       */
+/*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
+/*   Updated: 2023/06/15 19:43:30 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,32 @@
 // {
 // 	int	j;
 
-// 	j = index + 1;
-// 	while (commande[j])
-// 	{
-// 		if (commande[j] != ' ')
-// 			return (1);
-// 		j++;
-// 	}
-// 	return (0);
-// }
+char    *ft_strncpy(char *dest, char *src, int len)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] && i < len)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+char    *ft_strcpy(char *dest, char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
 
 // int	error_pipe(char *commande)
 // {

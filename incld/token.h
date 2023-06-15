@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/13 18:14:25 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:42:37 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ typedef struct s_env
 
 enum	e_token_enum
 {
-	WORD,
-	PIPE,
-	DQ,
-	SQ,
-	APPND,
-	HERDOC,
-	LRED,
-	OUTPUT,
-	INPUT,
-	SPACE,
-	VAR
+	VAR,//0
+	WORD,//1
+	PIPE,//2
+	DQ,//3
+	SQ,//4
+	APPND,//5
+	HERDOC,//6
+	LRED,//7
+	OUTPUT,//8
+	INPUT,//9
+	SPACE,//10
 };
 /******************************************************************/
 typedef struct s_token
@@ -52,7 +52,7 @@ t_token	*divide(char *cmd, t_env *env);
 t_token	*ft_listlast(t_token *lst);
 int		ft_qoutes(char *cmd, int *i, int init);
 int		ft_word(char *cmd, int *i, int init);
-char	*ft_check_if_cmd_valid(char **path, char *cmd);
+char	*ft_check_if_cmd_valid(char **path, t_token *tok);
 t_token	*ft_init_token(char *cmd, int i, int count, t_env *env);
 
 #endif
