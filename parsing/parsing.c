@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/14 20:37:25 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/15 18:25:25 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ int	alloc_arg(t_token *tmp)
 	flag = 0;
 	while (tmp)
 	{
+		printf("content = %s\n", tmp->content);
 		while (tmp && tmp->type == SPACE)
 		{
 			if (!tmp->next)
@@ -171,6 +172,7 @@ int	alloc_arg(t_token *tmp)
 		if (flag == 1 || (tmp->operator == 1 && tmp->type != SPACE))
 			break ;
 		size++;
+		printf("alloc\n");
 		tmp = tmp->next;
 	}
 	return (size);
@@ -183,6 +185,8 @@ void	check_list_or_arg(t_token *tmp, t_parse **list, int *flag)
 	printf ("hello\n");
 	is_alloc = 0;
 	pars = *list;
+	// if (pars)
+	// 	printf("pars = %s\n", pars->content);
 	if (tmp->operator == 1 && tmp->type != SPACE)
 		*flag = 0;
 	if (*flag == 1)
@@ -198,7 +202,9 @@ void	check_list_or_arg(t_token *tmp, t_parse **list, int *flag)
 	{
 		add_to_list_parser(list, ft_init_parser(tmp));
 		if (tmp->operator == 0)
-			alloc_arg(tmp);
+			alloc_arg(tmp->next);
+		int count = alloc_arg(tmp->next);
+		printf ("count = %d\n", count);
 		*flag = 1;
 	}
 }
