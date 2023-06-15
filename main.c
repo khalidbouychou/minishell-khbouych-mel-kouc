@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/15 19:42:22 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:09:29 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		// cmd = readline("minishell > ");
 		cmd = readline("\033[1;33mminishell >\033[34m$ \033[0m");
-		cmd = readline("shell>>");
+		// cmd = readline("shell>>");
 		if (!cmd)
 			return (printf("error in readline\n"));
 		add_history(cmd);

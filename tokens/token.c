@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/15 19:42:30 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/15 22:53:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,21 @@ int	ft_count_alloc(char *cmd, int i, t_token **list, t_env *env)
 	ft_add_to_list_tokens(list, ft_init_token(cmd, init, count, env));
 	return (i);
 }
+void	lixer_list(t_token **list)
+{
+	t_token	*tmp;
+
+	tmp = *lst;
+	while (tmp)
+	{
+		if (!tmp->operator && tmp->type != SPACE
+			&& !tmp->next->operator && tmp->next->type != SPACE)
+			
+		tmp = tmp->next;
+	}
+	// tmp->prev->next = tmp ->next
+	// free tmp
+}
 
 t_token	*divide(char *cmd, t_env *env)
 {
@@ -91,5 +106,6 @@ t_token	*divide(char *cmd, t_env *env)
 		else
 			i = ft_count_alloc(cmd, i, &lst, env);
 	}
+	lixer_list(&lst);
 	return (lst);
 }
