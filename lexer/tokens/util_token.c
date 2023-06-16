@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/16 11:53:39 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:19:11 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	ft_word(char *cmd, int *i, int init)
 	int	count;
 
 	count = 0;
+	// while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
+	// 	&& cmd[*i] != '>' && cmd[*i] != '<'))
 	while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
 		&& cmd[*i] != '>' && cmd[*i] != '<'
 			&& cmd[*i] != '\'' && cmd[*i] != '"'))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/16 02:06:23 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:20:26 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	print(t_token *lst)
 	t_token	*tmp;
 	int		i;
 
+	i = 0;
 	tmp = lst;
 	i = 0;
 	while (tmp)
@@ -40,10 +41,10 @@ void	print(t_token *lst)
 	}
 }
 
-void	l(void)
-{
-	system("leaks minishell");
-}
+// void	l(void)
+// {
+// 	system("leaks minishell");
+// }
 
 char	*ft_get_value_of_key(char *key, t_env *env)
 {
@@ -115,11 +116,17 @@ int	main(int argc, char **argv, char **envp)
 	env = env_list(envp);
 	while (1)
 	{
-		cmd = readline("shell>>");
+		// cmd = readline("minishell > ");
+		cmd = readline("\033[1;33mminishell >\033[34m$ \033[0m");
+		// cmd = readline("shell>>");
 		if (!cmd)
 			return (printf("error in readline\n"));
 		add_history(cmd);
+		// system(cmd);
 		list_tokens = divide(cmd, env);
+		print(list_tokens);
+		// parser(list_tokens);
+		free (cmd);
 		ft_expander(list_tokens,env);
 		printf("\n*********************\n");
 		// print(list_tokens);
