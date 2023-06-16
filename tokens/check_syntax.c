@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/08 14:07:52 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:26:41 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ int	check_close_q(t_token *tmp)
 	return (-1);
 }
 
-int	check_quotes(t_token *list_tokens)
+int	check_quotes(t_token **list_tokens)
 {
 	t_token	*tmp;
 
-	tmp = list_tokens;
+	tmp = *list_tokens;
 	while (tmp)
 	{
 		if (check_close_q(tmp) == 0)
@@ -84,14 +84,14 @@ int	check_quotes(t_token *list_tokens)
 	return (1);
 }
 
-int	check_operator(t_token	*list_tokens)
+int	check_operator(t_token	**list_tokens)
 {
 	t_token	*tmp;
 
-	tmp = list_tokens;
+	tmp = *list_tokens;
 	if (!tmp)
 		return (1);
-	if (!check_pipe(list_tokens))
+	if (!check_pipe(*list_tokens))
 		return (0);
 	while (tmp)
 	{

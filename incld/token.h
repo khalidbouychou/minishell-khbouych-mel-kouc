@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/15 19:42:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:46:14 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_token
 	char				*path;
 	int					operator;
 	struct s_token		*next;
+	struct s_token		*prev;
 }t_token;
 
 /************************************************************/
@@ -54,5 +55,7 @@ int		ft_qoutes(char *cmd, int *i, int init);
 int		ft_word(char *cmd, int *i, int init);
 char	*ft_check_if_cmd_valid(char **path, t_token *tok);
 t_token	*ft_init_token(char *cmd, int i, int count, t_env *env);
+int		check_operator(t_token	**list_tokens);
+int		check_quotes(t_token **list_tokens);
 
 #endif
