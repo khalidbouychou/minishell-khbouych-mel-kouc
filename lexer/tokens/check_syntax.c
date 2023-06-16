@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/16 15:25:59 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/17 00:29:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,11 @@ int	check_quotes(t_token **list_tokens)
 	}
 	return (1);
 }
-
-int	check_operator(t_token	**list_tokens)
+int	oper_in_end(t_token	*list_tokens)
 {
 	t_token	*tmp;
 
-	tmp = *list_tokens;
-	if (!tmp)
-		return (1);
-	if (!check_pipe(*list_tokens))
-		return (0);
+	tmp = list_tokens;
 	while (tmp)
 	{
 		if (tmp->operator == 1 && tmp->type != SPACE)
@@ -107,5 +102,41 @@ int	check_operator(t_token	**list_tokens)
 		}
 		tmp = tmp->next;
 	}
+	return (1);
+}
+// void	successive_oper(t_token *list_tokens)
+// {
+// 	t_token	*tmp;
+
+// 	tmp = *list_tokens;
+// 	while (tmp)
+// 	{
+// 		while (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE)
+// 		{
+// 			if (!ft_strncmp(tmp->next->content, " ", 1))
+// 			{
+// 				tmp = tmp->next;
+// 				if (!check_spases(tmp->next))
+// 					return (0);
+// 			}
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// 	return (1);
+// }
+
+int	check_operator(t_token **list_tokens)
+{
+	t_token	*tmp;
+
+	tmp = *list_tokens;
+	if (!tmp)
+		return (1);
+	if (!check_pipe(*list_tokens))
+		return (0);
+	if (!oper_in_end(*list_tokens))
+		return (0);
+	// if (!successive_oper(*list_tokens))
+	// 	return (0);
 	return (1);
 }
