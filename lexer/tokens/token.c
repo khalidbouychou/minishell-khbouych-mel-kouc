@@ -6,11 +6,11 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/12 14:13:26 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:53:28 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incld/minishell.h"
+#include "../../incld/minishell.h"
 
 char	*ft_check_if_cmd_valid(char **path, t_token *tok)
 {

@@ -1,0 +1,11 @@
+Makefile
+builtins
+incld
+lexer
+main.c
+main.o
+minishell
+out
+parsing
+tokens
+utils

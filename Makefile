@@ -6,14 +6,14 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/06/01 18:31:39 by khbouych         ###   ########.fr        #
+#    Updated: 2023/06/16 11:53:12 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = minishell
 
-SRC = ./main.c ./utils/util.c ./utils/util_list.c  ./lexer/lexer.c ./parsing/parsing.c ./tokens/token.c  utils/ft_split.c tokens/util_token.c utils/util_.c
+SRC = ./main.c ./utils/util.c ./utils/util_list.c  ./lexer/lexer.c ./parsing/parsing.c lexer/tokens/token.c  utils/ft_split.c lexer/tokens/util_token.c utils/util_.c
 
 OSRC = $(SRC:.c=.o)
 CC = cc
