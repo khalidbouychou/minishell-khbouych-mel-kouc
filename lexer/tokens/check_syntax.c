@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/17 11:15:30 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/17 23:29:15 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_spases(t_token *tmp)
 {
-	while (!ft_strncmp(tmp->content, " ", 1))
+	while (!ft_strncmp(tmp->content, " ", 2))
 	{
 		tmp = tmp->next;
 		if (tmp == NULL)
@@ -28,18 +28,18 @@ int	check_pipe(t_token	*list_tokens)
 	t_token	*tmp;
 
 	tmp = list_tokens;
-	if (!ft_strncmp((*tmp).content, "|", 1))
+	if (!ft_strncmp((*tmp).content, "|", 2))
 		return (0);
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->content, "|", 1))
+		if (!ft_strncmp(tmp->content, "|", 2))
 		{
 			if (tmp->next == NULL || !ft_strncmp(tmp->next->content, "|", 1))
 				return (0);
-			while (!ft_strncmp(tmp->next->content, " ", 1))
+			while (!ft_strncmp(tmp->next->content, " ", 2))
 			{
 				tmp = tmp->next;
-				if (!ft_strncmp(tmp->next->content, "|", 1))
+				if (!ft_strncmp(tmp->next->content, "|", 2))
 					return (0);
 			}
 		}
@@ -87,7 +87,7 @@ int	oper_in_end(t_token	*list_tokens)
 		{
 			if (tmp->next == NULL)
 				return (0);
-			else if (!ft_strncmp(tmp->next->content, " ", 1))
+			else if (!ft_strncmp(tmp->next->content, " ", 2))
 			{
 				if (!check_spases(tmp->next))
 					return (0);
@@ -107,7 +107,7 @@ int	successive_oper(t_token *list_tokens)
 	{
 		if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE)
 		{
-			while (!ft_strncmp(tmp->next->content, " ", 1))
+			while (!ft_strncmp(tmp->next->content, " ", 2))
 			{
 				tmp = tmp->next;
 				if (tmp->next->operator == 1 && tmp->next->type != SPACE)

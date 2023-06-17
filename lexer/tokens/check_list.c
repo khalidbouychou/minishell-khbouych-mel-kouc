@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/17 18:38:38 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/17 23:17:26 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void	remove_space(t_token **lst)
 	{
 		while (ptr)
 		{
-			if (!ft_strncmp(ptr->content, " ", 1))
+			if (!ft_strncmp(ptr->content, " ", 2))
 			{
 				tmp->next = ptr->next;
 				free(ptr);
