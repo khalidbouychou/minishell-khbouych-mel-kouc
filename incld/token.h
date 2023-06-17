@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/16 11:46:14 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/17 11:22:00 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,13 @@ int		ft_qoutes(char *cmd, int *i, int init);
 int		ft_word(char *cmd, int *i, int init);
 char	*ft_check_if_cmd_valid(char **path, t_token *tok);
 t_token	*ft_init_token(char *cmd, int i, int count, t_env *env);
-int		check_operator(t_token	**list_tokens);
-int		check_quotes(t_token **list_tokens);
+void	check_list(t_token **lst);
+int		successive_oper(t_token *list_tokens);
+int		oper_in_end(t_token	*list_tokens);
+int		check_close_q(t_token *tmp);
+int		check_pipe(t_token	*list_tokens);
+int		check_spases(t_token *tmp);
+char	*ft_strtrim(char *s1, char *set);
+char	*ft_strsearch(const char *s, int c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/16 21:30:26 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/17 09:02:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void	ft_expander(t_token *tok, t_env *env)
 
 	res = NULL;
 	tmp = tok;
-
 	while (tmp)
 	{
 		if (tmp->type == VAR)

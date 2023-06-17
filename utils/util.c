@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:40:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/15 19:44:34 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/17 11:21:09 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,31 @@ int	ft_strncmp(const char *str1, const char *str2, int n)
 	return ((unsigned char)*str1 - (unsigned char)*str2);
 }
 
-// char	*ft_strtrim(char const *s1, char const *set)
-// {
-// 	size_t	i;
+char	*ft_strsearch(const char *s, int c)
+{
+	while (*s != (char)c)
+	{
+		if (*s == '\0')
+			return (0);
+		s++;
+	}
+	return ((char *)s);
+}
 
-// 	if (s1 == NULL || set == NULL)
-// 		return (NULL);
-// 	while (*s1 && ft_strchr(*s1, set))
-// 		s1++;
-// 	i = ft_strlen(s1);
-// 	while (i && ft_strchr(*(s1 + i),set))
-// 		i--;
-// 	return (ft_substr(s1, 0, i + 1));
-// }
+char	*ft_strtrim(char *s1, char *set)
+{
+	int		lens2;
+	size_t	i;
+
+	i = 0;
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
+	while (s1[i] && ft_strsearch(set, s1[i]))
+		i++;
+	lens2 = ft_strlen(s1);
+	while (lens2 && ft_strsearch(set, s1[lens2]))
+		lens2--;
+	return (ft_substr(s1, i, lens2 + 1 - i));
+}
