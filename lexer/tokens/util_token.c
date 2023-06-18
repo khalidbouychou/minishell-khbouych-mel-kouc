@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/16 15:19:11 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/18 18:43:16 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ t_token	*ft_init_token(char *cmd, int i, int count, t_env *env)
 	ft_get_type(tok);
 	tok->path = ft_get_path(env, tok);
 	tok->next = NULL;
+	tok->prev = NULL;
 	return (tok);
 }

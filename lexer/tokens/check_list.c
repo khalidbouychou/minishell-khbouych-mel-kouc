@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/17 23:17:26 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/18 21:08:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,18 @@ void	trim_list(t_token **list)
 		tmp = tmp->next;
 	}
 }
-void	between_oper(t_token *tmp)
+void	between_oper(t_token **lst)
 {
 	t_token	*left_op;
 	t_token	*right_op;
+	t_token	*tmp;
 
+	left_op = NULL;
+	right_op = NULL;
+	tmp = *lst;
 	while (tmp)
 	{
+		// printf ("hello\n");
 		if (tmp->operator && tmp->type != SPACE)
 		{
 			left_op = tmp->prev;
@@ -107,6 +112,7 @@ void	between_oper(t_token *tmp)
 			while (!ft_strncmp(right_op->content, " ", 2))
 			{
 				tmp->next = right_op->next;
+				right_op->next->prev = tmp;
 				free(right_op);
 				right_op = tmp->next;
 			}
@@ -114,29 +120,42 @@ void	between_oper(t_token *tmp)
 		tmp = tmp->next;
 	}
 }
-// void	between_word_var(t_token *tmp)
-// {
-// 	t_token	*tmp;
-// 	t_token	*ptr;
 
-// 	tmp = *lst;
-// 	ptr = tmp->next;
-// 	if (ptr)
-// 	{
-// 		while (ptr)
-// 		{
-// 			if (!ft_strncmp(ptr->content, " ", 1))
-// 			{
-// 				tmp->next = ptr->next;
-// 				free(ptr);
-// 				ptr = tmp->next;
-// 			}
-// 			else
-// 				break ;
-// 		}
-// 	}
-// }
-void	remove_space(t_token **lst)
+void	between_word_var(t_token **lst)
+{
+	t_token	*tmp;
+	t_token	*ptr;
+
+	tmp = *lst;
+	tmp = tmp->next;
+	while (tmp)
+	{
+		ptr = tmp->next;
+		if (ptr)
+		{
+			while (ptr)
+			{
+				// if (ptr->next)
+				// {
+					if (ptr->next && !ft_strncmp(ptr->content, " ", 2)
+						&& !ft_strncmp(ptr->next->content, " ", 2))
+					{
+						tmp->next = ptr->next;
+						ptr->next->prev = tmp;
+						free(ptr);
+						// ptr = tmp->next;
+					}
+					else
+						break ;
+				// }
+				ptr = tmp->next;
+			}
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	remove_white_space(t_token **lst)
 {
 	t_token	*tmp;
 	t_token	*ptr;
@@ -150,6 +169,7 @@ void	remove_space(t_token **lst)
 			if (!ft_strncmp(ptr->content, " ", 2))
 			{
 				tmp->next = ptr->next;
+				ptr->next->prev = tmp;
 				free(ptr);
 				ptr = tmp->next;
 			}
@@ -157,8 +177,9 @@ void	remove_space(t_token **lst)
 				break ;
 		}
 	}
-	// between_word_var(tmp);
-	between_oper(tmp);
+	// printf ("hello\n");
+	between_oper(lst);
+	between_word_var(lst);
 }
 
 void	check_list(t_token **lst)
@@ -167,5 +188,5 @@ void	check_list(t_token **lst)
 		printf("\nsyntax error near unexpected token \n");
 	trim_list(lst);
 	lixer_list(lst);
-	remove_space(lst);
+	remove_white_space(lst);
 }
