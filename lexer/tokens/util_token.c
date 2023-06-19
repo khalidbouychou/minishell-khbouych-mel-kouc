@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/18 18:43:16 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/19 22:11:51 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@ int	ft_word(char *cmd, int *i, int init)
 	int	count;
 
 	count = 0;
-	// while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
-	// 	&& cmd[*i] != '>' && cmd[*i] != '<'))
 	while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
 		&& cmd[*i] != '>' && cmd[*i] != '<'
-			&& cmd[*i] != '\'' && cmd[*i] != '"'))
+			&& cmd[*i] != '\'' && cmd[*i] != '"'
+			&& cmd[*i] != '	'))
 		*i = *i + 1;
 	count = *i - init;
 	return (count);
@@ -87,6 +86,8 @@ void	ft_get_type(t_token *tok)
 		tok->type = PIPE;
 	else if (32 == tok->content[0])
 		tok->type = SPACE;
+	else if ('	' == tok->content[0])
+		tok->type = TAB;
 	if (tok->type != WORD)
 		tok->path = NULL;
 	if (tok->type != WORD && tok->type != VAR)

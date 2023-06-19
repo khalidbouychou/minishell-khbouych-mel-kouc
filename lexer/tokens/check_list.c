@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/19 14:10:31 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/19 23:40:28 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,13 @@ void	between_oper(t_token **lst)
 	tmp = *lst;
 	while (tmp)
 	{
-		if (tmp->operator && tmp->type != SPACE)
+		if (tmp->operator && tmp->type != SPACE && tmp->type != TAB)
 		{
 			left_op = tmp->prev;
 			if (left_op)
 			{
-				while (!ft_strncmp(left_op->content, " ", 2))
+				while (!ft_strncmp(left_op->content, " ", 2)
+					|| !ft_strncmp(left_op->content, "	", 2))
 				{
 					left_op->prev->next = tmp;
 					tmp->prev = left_op->prev;
@@ -108,7 +109,8 @@ void	between_oper(t_token **lst)
 				}
 			}
 			right_op = tmp->next;
-			while (!ft_strncmp(right_op->content, " ", 2))
+			while (!ft_strncmp(right_op->content, " ", 2)
+				|| !ft_strncmp(left_op->content, "	", 2))
 			{
 				tmp->next = right_op->next;
 				right_op->next->prev = tmp;
@@ -134,25 +136,26 @@ void	between_word_var(t_token **lst)
 		{
 			while (ptr)
 			{
-				// if (ptr->next)
-				// {
 					if (ptr->next && !ft_strncmp(ptr->content, " ", 2)
 						&& !ft_strncmp(ptr->next->content, " ", 2))
 					{
 						tmp->next = ptr->next;
 						ptr->next->prev = tmp;
 						free(ptr);
-						// ptr = tmp->next;
 					}
 					else
 						break ;
-				// }
 				ptr = tmp->next;
 			}
 		}
 		tmp = tmp->next;
 	}
 }
+// if ((ptr->next && !ft_strncmp(ptr->content, " ", 2)
+// 						&& !ft_strncmp(ptr->next->content, " ", 2))
+// 					|| (ptr->next && !ft_strncmp(ptr->content, "	", 2)
+// 						&& !ft_strncmp(ptr->next->content, "	", 2))
+// 						)
 
 void	rm_node_white_space(t_token **lst)
 {
@@ -165,7 +168,8 @@ void	rm_node_white_space(t_token **lst)
 	{
 		while (ptr)
 		{
-			if (!ft_strncmp(ptr->content, " ", 2) || !ft_strncmp(ptr->content, "	", 2))
+			if (!ft_strncmp(ptr->content, " ", 2)
+				|| !ft_strncmp(ptr->content, "	", 2))
 			{
 				tmp->next = ptr->next;
 				ptr->next->prev = tmp;
@@ -177,7 +181,7 @@ void	rm_node_white_space(t_token **lst)
 		}
 	}
 	between_oper(lst);
-	between_word_var(lst);
+	// between_word_var(lst);
 }
 
 void	check_list(t_token **lst)
