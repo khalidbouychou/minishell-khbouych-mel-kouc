@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/17 11:23:39 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:36:18 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int	ft_count_alloc(char *cmd, int i, t_token **list, t_env *env)
 		count = 2;
 		i = i + count;
 	}
-	else if (cmd[i] == '|' || cmd[i] == ' ' || cmd[i] == '>' || cmd[i] == '<')
+	else if (cmd[i] == '|' || cmd[i] == ' ' || cmd[i] == '>' || cmd[i] == '<'
+		|| cmd[i] == '	')
 	{
 		count = 1;
 		i = i + count;
@@ -88,6 +89,8 @@ t_token	*divide(char *cmd, t_env *env)
 		else if (cmd[i] == '>')
 			i = ft_count_alloc(cmd, i, &lst, env);
 		else if (cmd[i] == '<')
+			i = ft_count_alloc(cmd, i, &lst, env);
+		else if (cmd[i] == '	')
 			i = ft_count_alloc(cmd, i, &lst, env);
 		else
 			i = ft_count_alloc(cmd, i, &lst, env);

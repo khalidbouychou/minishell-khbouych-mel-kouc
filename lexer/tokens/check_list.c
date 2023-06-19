@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/18 21:08:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:10:31 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	between_oper(t_token **lst)
 	tmp = *lst;
 	while (tmp)
 	{
-		// printf ("hello\n");
 		if (tmp->operator && tmp->type != SPACE)
 		{
 			left_op = tmp->prev;
@@ -155,7 +154,7 @@ void	between_word_var(t_token **lst)
 	}
 }
 
-void	remove_white_space(t_token **lst)
+void	rm_node_white_space(t_token **lst)
 {
 	t_token	*tmp;
 	t_token	*ptr;
@@ -166,7 +165,7 @@ void	remove_white_space(t_token **lst)
 	{
 		while (ptr)
 		{
-			if (!ft_strncmp(ptr->content, " ", 2))
+			if (!ft_strncmp(ptr->content, " ", 2) || !ft_strncmp(ptr->content, "	", 2))
 			{
 				tmp->next = ptr->next;
 				ptr->next->prev = tmp;
@@ -177,7 +176,6 @@ void	remove_white_space(t_token **lst)
 				break ;
 		}
 	}
-	// printf ("hello\n");
 	between_oper(lst);
 	between_word_var(lst);
 }
@@ -188,5 +186,5 @@ void	check_list(t_token **lst)
 		printf("\nsyntax error near unexpected token \n");
 	trim_list(lst);
 	lixer_list(lst);
-	remove_white_space(lst);
+	rm_node_white_space(lst);
 }
