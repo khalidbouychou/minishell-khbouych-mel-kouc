@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/19 23:59:14 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:09:45 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ int	successive_oper(t_token *list_tokens)
 	tmp = list_tokens;
 	while (tmp)
 	{
-		if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE)
+		if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
+			&& tmp->type != TAB)
 		{
 			while (!ft_strncmp(tmp->next->content, " ", 2)
 				|| !ft_strncmp(tmp->next->content, "	", 2))
@@ -118,12 +119,11 @@ int	successive_oper(t_token *list_tokens)
 					&& tmp->next->type != TAB)
 					return (0);
 			}
-			if (tmp->next->operator == 1 && tmp->next->type != SPACE
-				&& tmp->next->type != TAB)
-				return (0);
-			printf("hhh\n");
+			// if (tmp->next->operator == 1 && tmp->next->type != SPACE
+			// 	&& tmp->next->type != TAB)
+			// if (tmp->next->operator == 1 && tmp->next->type != SPACE)
+			// 	return (0);
 		}
-		printf("zzz\n");
 		tmp = tmp->next;
 	}
 	return (1);

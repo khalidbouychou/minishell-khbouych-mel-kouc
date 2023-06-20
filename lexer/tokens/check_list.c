@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/19 23:40:28 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/20 23:56:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	between_oper(t_token **lst)
 			}
 			right_op = tmp->next;
 			while (!ft_strncmp(right_op->content, " ", 2)
-				|| !ft_strncmp(left_op->content, "	", 2))
+				|| !ft_strncmp(right_op->content, "	", 2))
 			{
 				tmp->next = right_op->next;
 				right_op->next->prev = tmp;
@@ -136,26 +136,27 @@ void	between_word_var(t_token **lst)
 		{
 			while (ptr)
 			{
-					if (ptr->next && !ft_strncmp(ptr->content, " ", 2)
+				if ((ptr->next && !ft_strncmp(ptr->content, " ", 2)
 						&& !ft_strncmp(ptr->next->content, " ", 2))
-					{
-						tmp->next = ptr->next;
-						ptr->next->prev = tmp;
-						free(ptr);
-					}
-					else
-						break ;
+					|| (ptr->next && !ft_strncmp(ptr->content, "	", 2)
+						&& !ft_strncmp(ptr->next->content, "	", 2))
+						)
+				{
+					tmp->next = ptr->next;
+					ptr->next->prev = tmp;
+					free(ptr);
+				}
+				else
+				{
+					break ;
+				}
 				ptr = tmp->next;
 			}
 		}
+		// tmp->content = ft_strdup(" ");
 		tmp = tmp->next;
 	}
 }
-// if ((ptr->next && !ft_strncmp(ptr->content, " ", 2)
-// 						&& !ft_strncmp(ptr->next->content, " ", 2))
-// 					|| (ptr->next && !ft_strncmp(ptr->content, "	", 2)
-// 						&& !ft_strncmp(ptr->next->content, "	", 2))
-// 						)
 
 void	rm_node_white_space(t_token **lst)
 {
@@ -163,6 +164,8 @@ void	rm_node_white_space(t_token **lst)
 	t_token	*ptr;
 
 	tmp = *lst;
+	if (!tmp)
+		return ;
 	ptr = tmp->next;
 	if (ptr)
 	{
@@ -172,8 +175,11 @@ void	rm_node_white_space(t_token **lst)
 				|| !ft_strncmp(ptr->content, "	", 2))
 			{
 				tmp->next = ptr->next;
-				ptr->next->prev = tmp;
-				free(ptr);
+				if (ptr->next)
+				{
+					ptr->next->prev = tmp;
+					free(ptr);
+				}
 				ptr = tmp->next;
 			}
 			else
@@ -181,7 +187,7 @@ void	rm_node_white_space(t_token **lst)
 		}
 	}
 	between_oper(lst);
-	// between_word_var(lst);
+	between_word_var(lst);
 }
 
 void	check_list(t_token **lst)
