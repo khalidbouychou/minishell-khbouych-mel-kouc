@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/21 09:46:12 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:48:55 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ t_token	*divide(char *cmd, t_env *env)
 		else
 			i = ft_count_alloc(cmd, i, &lst, env);
 	}
-	check_list(&lst);
+	check_list(&lst, env);
 	return (lst);
 }

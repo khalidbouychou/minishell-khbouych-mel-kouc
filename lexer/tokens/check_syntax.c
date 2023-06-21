@@ -6,23 +6,11 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/20 17:09:45 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:50:28 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incld/minishell.h"
-
-int	check_spases(t_token *tmp)
-{
-	while (!ft_strncmp(tmp->content, " ", 2)
-		|| !ft_strncmp(tmp->content, "	", 2))
-	{
-		tmp = tmp->next;
-		if (tmp == NULL)
-			return (0);
-	}
-	return (1);
-}
 
 int	check_pipe(t_token	*list_tokens)
 {
@@ -101,6 +89,32 @@ int	oper_in_end(t_token	*list_tokens)
 	return (1);
 }
 
+int	util_successive_oper(t_token *tmp)
+{
+	int		flag;
+
+	if (tmp->next && tmp->type == OUTPUT && tmp->next->type == PIPE)
+		flag = 1;
+	else if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
+		&& tmp->type != TAB && tmp->next->operator == 1
+		&& tmp->next->type != SPACE && tmp->next->type != PIPE
+		&& tmp->next->type != TAB)
+		return (0);
+	else if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
+		&& tmp->type != TAB)
+	{
+		while (!ft_strncmp(tmp->next->content, " ", 2)
+			|| !ft_strncmp(tmp->next->content, "	", 2))
+		{
+			tmp = tmp->next;
+			if (tmp->next->operator == 1 && tmp->next->type != SPACE
+				&& tmp->next->type != TAB)
+				return (0);
+		}
+	}
+	return (1);
+}
+
 int	successive_oper(t_token *list_tokens)
 {
 	t_token	*tmp;
@@ -108,22 +122,8 @@ int	successive_oper(t_token *list_tokens)
 	tmp = list_tokens;
 	while (tmp)
 	{
-		if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
-			&& tmp->type != TAB)
-		{
-			while (!ft_strncmp(tmp->next->content, " ", 2)
-				|| !ft_strncmp(tmp->next->content, "	", 2))
-			{
-				tmp = tmp->next;
-				if (tmp->next->operator == 1 && tmp->next->type != SPACE
-					&& tmp->next->type != TAB)
-					return (0);
-			}
-			// if (tmp->next->operator == 1 && tmp->next->type != SPACE
-			// 	&& tmp->next->type != TAB)
-			// if (tmp->next->operator == 1 && tmp->next->type != SPACE)
-			// 	return (0);
-		}
+		if (!util_successive_oper(tmp))
+			return (0);
 		tmp = tmp->next;
 	}
 	return (1);

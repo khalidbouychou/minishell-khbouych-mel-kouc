@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/19 21:51:11 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:28:27 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	print(t_token *lst)
 	}
 }
 
-// void	l(void)
-// {
-// 	system("leaks minishell");
-// }
+void	l(void)
+{
+	system("leaks minishell");
+}
 
 char	*ft_get_value_of_key(char *key, t_env *env)
 {
@@ -107,7 +107,7 @@ int	main(int argc, char **argv, char **envp)
 	t_env	*env;
 	t_token	*list_tokens;
 
-	// atexit(l);
+	atexit(l);
 	(void)argc;
 	(void)argv;
 	env = NULL;
