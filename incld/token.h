@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/19 22:10:32 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/21 09:14:23 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ int		check_pipe(t_token	*list_tokens);
 int		check_spases(t_token *tmp);
 char	*ft_strtrim(char *s1, char *set);
 char	*ft_strsearch(const char *s, int c);
+void	rm_node_white_space(t_token **lst);
+
 
 #endif
