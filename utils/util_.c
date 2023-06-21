@@ -6,12 +6,25 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/15 16:49:33 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/20 23:52:56 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
+void	ft_help_join(char **s1, char **s2)
+{
+	if (*(s1) == NULL)
+	{
+		*(s1) = ft_strdup("");
+		*(s1)[0] = '\0';
+	}
+	if (*(s2) == NULL)
+	{
+		*(s2) = ft_strdup("");
+		*(s2)[0] = '\0';
+	}
+}
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*res_joined;
@@ -21,16 +34,17 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	j = 0;
 
-	if (s1 == NULL)
-	{
-		s1 = ft_strdup("");
-		s1[0]='\0';
-	}
-	if (s2 == NULL)
-	{
-		s2 = ft_strdup("");
-		s2[0]='\0';
-	}
+	// if (s1 == NULL)
+	// {
+	// 	s1 = ft_strdup("");
+	// 	s1[0] = '\0';
+	// }
+	// if (s2 == NULL)
+	// {
+	// 	s2 = ft_strdup("");
+	// 	s2[0] = '\0';
+	// }
+	ft_help_join(&s1, &s2);
 	res_joined = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (res_joined == NULL)
 		return (NULL);
@@ -87,4 +101,15 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	}
 	str[i] = '\0';
 	return (str);
+}
+
+int	ft_strncmp(const char *str1, const char *str2, int n)
+{
+	while (*str1 && *str1 == *str2 && n)
+	{
+		str1++;
+		str2++;
+		n--;
+	}
+	return ((unsigned char)*str1 - (unsigned char)*str2);
 }

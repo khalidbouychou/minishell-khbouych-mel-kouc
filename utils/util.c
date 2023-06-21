@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:40:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/15 19:44:34 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:13:59 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,23 @@ int	ft_strchr(char *s, char c)
 	return (-1);
 }
 
-int	ft_strncmp(const char *str1, const char *str2, int n)
+int	ft_isdigit(int c)
 {
-	while (*str1 && *str1 == *str2 && n)
-	{
-		str1++;
-		str2++;
-		n--;
-	}
-	return ((unsigned char)*str1 - (unsigned char)*str2);
+	return (c >= '0' && c <= '9');
+}
+
+int	ft_isalpha(int c)
+{
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
+}
+
+int	ft_isalnum(int c)
+{
+	if (ft_isdigit(c) || ft_isalpha(c))
+		return (1);
+	return (0);
 }
 
 // char	*ft_strtrim(char const *s1, char const *set)

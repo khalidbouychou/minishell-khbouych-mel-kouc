@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:09:11 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/04 13:06:27 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:25:05 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 # define LEXER_H
 # include "../incld/minishell.h"
 # include "../incld/token.h"
-/*******************/
-void    ft_expander(t_token *tok, t_env *env);
 
+typedef struct s_variable
+{
+	int		i;
+	int		s;
+	int		e;
+	char	*r;
+}t_exp;
+
+void	ft_expander(t_token *tok, t_env *env);
+int		ft_isalnum(int c);
 #endif
