@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/21 21:57:01 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:03:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	trim_list(t_token **list)
 	tmp = *list;
 	while (tmp)
 	{
-		if (tmp->content[i] == '\'')
-			tmp->content = ft_strtrim(tmp->content, "'");
+		// if (tmp->content[i] == '\'')
+		// 	tmp->content = ft_strtrim(tmp->content, "'");
 		if (tmp->content[i] == '"')
 			tmp->content = ft_strtrim(tmp->content, "\"");
 		tmp = tmp->next;
@@ -89,10 +89,10 @@ void	check_list(t_token **lst, t_env *env)
 	if (!check_operator(lst) || !check_quotes(lst))
 	{
 		printf("\nsyntax error near unexpected token \n");
-		// free_token_list(lst);
-		// free_env_list(env);
+		free_token_list(lst);
 		(void)env;
-		exit(1);
+		return ;
+		// free_env_list(env);
 	}
 	trim_list(lst);
 	lixer_list(lst);

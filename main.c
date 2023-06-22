@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/21 22:18:12 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:00:28 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	print(t_token *lst)
 		printf("[cmd]  : |%s|\n", tmp->content);
 		printf("[type] : %u\n", tmp->type);
 		printf("[is_op] : %d\n", tmp->operator);
-		printf("[path] : %s\n", tmp->path);
+		// printf("[path] : %s\n", tmp->path);
 		printf("------------------\n");
 		tmp = tmp->next;
 		i++;
@@ -54,13 +54,18 @@ void	ft_handel_proccess()
 		printf("%d pid parent\n", (int)getpid());
 }
 
+void	l()
+{
+	system("leaks minishell");
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
 	t_env	*env;
 	t_token	*list_tokens;
 
-	// atexit(l);
+	atexit(l);
 	(void)argc;
 	(void)argv;
 	env = NULL;
@@ -73,9 +78,12 @@ int	main(int argc, char **argv, char **envp)
 			return (printf("error in readline\n"));
 		add_history(cmd);
 		list_tokens = divide(cmd, env);
-		ft_expander(list_tokens, env);
-		// print(list_tokens);
-		// parser(list_tokens);
+		if (list_tokens)
+		{
+			ft_expander(list_tokens, env);
+			// parser(list_tokens);
+		}
+		print(list_tokens);
 		free (cmd);
 		printf("\n*********************\n");
 	}
