@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/21 22:21:22 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:34:49 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 		v.r = ft_strjoin(v.r, ft_v_k(ft_substr(cnt, v.s, (v.e - v.s)), env));
 		v.s = v.i;
 		while (cnt[v.i] != '$' && cnt[v.i] && !ft_isalnum(cnt[v.i]))
+			v.i++;
+		v.e = v.i;
+		v.r = ft_strjoin(v.r, ft_substr(cnt, v.s, (v.e - v.s)));
+
+		v.s = v.i;
+		while (cnt[v.i] != '$' && cnt[v.i])
 			v.i++;
 		v.e = v.i;
 		v.r = ft_strjoin(v.r, ft_substr(cnt, v.s, (v.e - v.s)));
