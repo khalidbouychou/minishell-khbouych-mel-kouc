@@ -6,18 +6,13 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/15 19:43:30 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/17 11:25:55 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "../incld/minishell.h"
 
-// check if pipe is in the last of commande
-// int	check_spases(char *commande, int index)
-// {
-// 	int	j;
-
-char    *ft_strncpy(char *dest, char *src, int len)
+char	*ft_strncpy(char *dest, char *src, int len)
 {
 	int	i;
 
@@ -30,7 +25,8 @@ char    *ft_strncpy(char *dest, char *src, int len)
 	dest[i] = '\0';
 	return (dest);
 }
-char    *ft_strcpy(char *dest, char *src)
+
+char	*ft_strcpy(char *dest, char *src)
 {
 	int	i;
 

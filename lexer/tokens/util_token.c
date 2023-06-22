@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/16 15:19:11 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:56:53 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,34 +41,33 @@ int	ft_word(char *cmd, int *i, int init)
 	int	count;
 
 	count = 0;
-	// while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
-	// 	&& cmd[*i] != '>' && cmd[*i] != '<'))
 	while (cmd[*i] && (cmd[*i] != '|' && cmd[*i] != ' ' \
 		&& cmd[*i] != '>' && cmd[*i] != '<'
-			&& cmd[*i] != '\'' && cmd[*i] != '"'))
+			&& cmd[*i] != '\'' && cmd[*i] != '"'
+			&& cmd[*i] != '	'))
 		*i = *i + 1;
 	count = *i - init;
 	return (count);
 }
 
-char	*ft_get_path(t_env *env, t_token *tok)
-{
-	char	*p;
-	t_env	*tmp;
+// char	*ft_get_path(t_env *env, t_token *tok)
+// {
+// 	char	*p;
+// 	t_env	*tmp;
 
-	p = NULL;
-	tmp = env;
-	while (tmp)
-	{
-		if (ft_strncmp(tmp->key, "PATH", 4) == 0)
-		{
-			p = tmp->value;
-			break ;
-		}
-		tmp = tmp->next;
-	}
-	return (ft_check_if_cmd_valid(ft_split(p, ':'), tok));
-}
+// 	p = NULL;
+// 	tmp = env;
+// 	while (tmp)
+// 	{
+// 		if (ft_strncmp(tmp->key, "PATH", 4) == 0)
+// 		{
+// 			p = tmp->value;
+// 			break ;
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// 	return (ft_check_if_cmd_valid(ft_split(p, ':'), tok));
+// }
 
 void	ft_get_type(t_token *tok)
 {
@@ -87,6 +86,8 @@ void	ft_get_type(t_token *tok)
 		tok->type = PIPE;
 	else if (32 == tok->content[0])
 		tok->type = SPACE;
+	else if ('	' == tok->content[0])
+		tok->type = TAB;
 	if (tok->type != WORD)
 		tok->path = NULL;
 	if (tok->type != WORD && tok->type != VAR)
@@ -102,7 +103,9 @@ t_token	*ft_init_token(char *cmd, int i, int count, t_env *env)
 	tok = malloc(sizeof(t_token));
 	tok->content = ft_substr(cmd, i, count);
 	ft_get_type(tok);
-	tok->path = ft_get_path(env, tok);
+	(void)env;
+	// tok->path = ft_get_path(env, tok);
 	tok->next = NULL;
+	tok->prev = NULL;
 	return (tok);
 }

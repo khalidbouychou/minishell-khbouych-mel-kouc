@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/20 18:51:18 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:20:26 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print(t_token *lst)
 	i = 0;
 	while (tmp)
 	{
-		printf("[cmd]  : %s\n", tmp->content);
+		printf("[cmd]  : |%s|\n", tmp->content);
 		printf("[type] : %u\n", tmp->type);
 		printf("[is_op] : %d\n", tmp->operator);
 		printf("[path] : %s\n", tmp->path);
@@ -42,17 +42,27 @@ void	print(t_token *lst)
 	}
 }
 
-void	ft_handel_proccess()
-{
-	pid_t ps;
-	ps = fork();
-	if(ps < 0)
-		puts("error creation\n");
-	if(ps == 0)
-		printf("%d pid fils procce\n", (int)getpid());
-	else
-		printf("%d pid parent\n", (int)getpid());
-}
+// void	ft_handel_signal(int signal)
+// {
+// 	if (signal == SIGQUIT)
+// 	{
+// 		ft_putchar_fd('\r', 1);
+// 		rl_on_new_line();
+// 	}
+// 	else if (signal == SIGINT)
+// 	{
+// 		ft_putchar_fd('\n', 1);
+// 		rl_replace_line("", 0);
+// 		rl_on_new_line();
+// 		rl_redisplay();
+// 	}
+// }
+
+// void 	ft_menu_bultins(char *cmd)
+// {
+// 	if(ft_strncmp(cmd, "echo",ft_strlen(cmd)) == 0)
+// 		env();
+// }
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -79,5 +89,4 @@ int	main(int argc, char **argv, char **envp)
 		free (cmd);
 		printf("\n*********************\n");
 	}
-	// ft_handel_proccess();
 }

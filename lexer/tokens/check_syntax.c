@@ -6,36 +6,32 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/19 13:42:48 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:16:20 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incld/minishell.h"
-
-int	check_spases(t_token *tmp)
-{
-	while (!ft_strncmp(tmp->content, " ", 1))
-	{
-		tmp = tmp->next;
-		if (tmp == NULL)
-			return (0);
-	}
-	return (1);
-}
 
 int	check_pipe(t_token	*list_tokens)
 {
 	t_token	*tmp;
 
 	tmp = list_tokens;
-	if (!ft_strncmp((*tmp).content, "|", 1))
+	if (!ft_strncmp((*tmp).content, "|", 2))
 		return (0);
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->content, "|", 1))
+		if (!ft_strncmp(tmp->content, "|", 2))
 		{
 			if (tmp->next == NULL || !ft_strncmp(tmp->next->content, "|", 1))
 				return (0);
+			while (!ft_strncmp(tmp->next->content, " ", 2)
+				|| !ft_strncmp(tmp->next->content, "	", 2))
+			{
+				tmp = tmp->next;
+				if (!ft_strncmp(tmp->next->content, "|", 2))
+					return (0);
+			}
 		}
 		tmp = tmp->next;
 	}
@@ -70,36 +66,19 @@ int	check_close_q(t_token *tmp)
 	return (-1);
 }
 
-int	check_quotes(t_token **list_tokens)
+int	oper_in_end(t_token	*list_tokens)
 {
 	t_token	*tmp;
 
-	tmp = *list_tokens;
+	tmp = list_tokens;
 	while (tmp)
 	{
-		if (check_close_q(tmp) == 0)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
-int	check_operator(t_token	**list_tokens)
-{
-	t_token	*tmp;
-
-	tmp = *list_tokens;
-	if (!tmp)
-		return (1);
-	if (!check_pipe(*list_tokens))
-		return (0);
-	while (tmp)
-	{
-		if (tmp->operator == 1 && tmp->type != SPACE)
+		if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != TAB)
 		{
 			if (tmp->next == NULL)
 				return (0);
-			else if (!ft_strncmp(tmp->next->content, " ", 1))
+			else if (!ft_strncmp(tmp->next->content, " ", 2)
+				|| !ft_strncmp(tmp->next->content, "	", 2))
 			{
 				if (!check_spases(tmp->next))
 					return (0);
@@ -109,3 +88,44 @@ int	check_operator(t_token	**list_tokens)
 	}
 	return (1);
 }
+
+int	util_successive_oper(t_token *tmp)
+{
+	int		flag;
+
+	if (tmp->next && tmp->type == OUTPUT && tmp->next->type == PIPE)
+		flag = 1;
+	else if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
+		&& tmp->type != TAB && tmp->next->operator == 1
+		&& tmp->next->type != SPACE && tmp->next->type != PIPE
+		&& tmp->next->type != TAB)
+		return (0);
+	else if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
+		&& tmp->type != TAB)
+	{
+		while (!ft_strncmp(tmp->next->content, " ", 2)
+			|| !ft_strncmp(tmp->next->content, "	", 2))
+		{
+			tmp = tmp->next;
+			if (tmp->next->operator == 1 && tmp->next->type != SPACE
+				&& tmp->next->type != TAB)
+				return (0);
+		}
+	}
+	return (1);
+}
+
+int	successive_oper(t_token *list_tokens)
+{
+	t_token	*tmp;
+
+	tmp = list_tokens;
+	while (tmp)
+	{
+		if (!util_successive_oper(tmp))
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+

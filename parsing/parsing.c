@@ -6,22 +6,22 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/16 11:25:51 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:58:13 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	check_syntax(t_token *list_tokens)
-{
-	if (!check_operator(list_tokens) || !check_quotes(list_tokens))
-	{
-		printf("\nsyntax error near unexpected token \n");
-	}
-	// else
-	// 	printf ("\n succese\n");
-	// split_operator(list_tokens);
-}
+// void	check_syntax(t_token *list_tokens)
+// {
+// 	if (!check_operator(list_tokens) || !check_quotes(list_tokens))
+// 	{
+// 		printf("\nsyntax error near unexpected token \n");
+// 	}
+// 	// else
+// 	// 	printf ("\n succese\n");
+// 	// split_operator(list_tokens);
+// }
 
 /////////////////////// this code is to maintene parser
 // t_parse	*ft_last_parser(t_parse *lst)
