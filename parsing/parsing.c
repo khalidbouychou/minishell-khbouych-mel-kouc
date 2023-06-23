@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/20 16:58:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:33:31 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 // 	{
 // 		printf("\nsyntax error near unexpected token \n");
 // 	}
-// 	// else
-// 	// 	printf ("\n succese\n");
-// 	// split_operator(list_tokens);
+	// else
+	// 	printf ("\n succese\n");
+	// split_operator(list_tokens);
 // }
 
-/////////////////////// this code is to maintene parser
+///////////////////// this code is to maintene parser
 // t_parse	*ft_last_parser(t_parse *lst)
 // {
 // 	if (!lst)
@@ -144,8 +144,9 @@
 // 	return (lst);
 // }
 
-// void	parser(t_token	*list_tokens)
-// {
-// 	check_syntax(list_tokens);
-// 	// parser_list(list_tokens);
-// }
+void	parser(t_token	*list_tokens)
+{
+	// check_syntax(list_tokens);
+	split_operator(list_tokens);
+	// parser_list(list_tokens);
+}
