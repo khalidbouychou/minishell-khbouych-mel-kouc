@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/23 18:32:35 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/26 01:05:44 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	print(t_token *lst)
 	i = 0;
 	tmp = lst;
 	i = 0;
+	printf("\n------------------\n");
 	while (tmp)
 	{
 		printf("[cmd]  : |%s|\n", tmp->content);

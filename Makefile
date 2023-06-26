@@ -6,7 +6,7 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/06/23 15:35:57 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/06/25 23:29:10 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 # 		lexer/expand.c
 # ./parsing/parsing.c
 OSRC = $(SRC:.c=.o)
-CC = cc
+CC = cc  -g
 CFLAGS =   -Wall -Wextra -Werror
 
 all: $(NAME)
