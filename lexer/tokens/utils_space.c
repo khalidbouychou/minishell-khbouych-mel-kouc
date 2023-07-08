@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/23 18:16:38 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/08 23:29:18 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,48 @@ void	space_after_cmd(t_token **lst)
 			}
 		}
 		tmp = tmp->next;
+	}
+}
+
+void	cmd_not_echo(t_token **lst)
+{
+	t_token	*tmp;
+	t_token	*ptr;
+	t_token	*space;
+
+	tmp = *lst;
+	while (tmp)
+	{
+		ptr = tmp->next;
+		if (!ft_strncmp(tmp->content, "echo", 5))
+		{
+			while (ptr && ptr->operator == 0 && ptr->type != SPACE)
+				ptr = ptr->next;
+			printf("ptr 1 : |%s|\n", ptr->content);
+			
+		}
+		else
+		{
+			printf("ptr : |%s|\n", ptr->content);
+			while (ptr && ptr->operator == 0 && ptr->type != SPACE)
+			{
+				printf("qqq\n");
+				// if (ptr && ptr->operator == 0 && ptr->type != SPACE)
+				// {
+					space = ptr->next;
+					if (space && space->type == SPACE && space->next)
+					{
+						ptr->next = space->next;
+						space->next->prev = ptr;
+						free (space);
+					}
+				// }
+				ptr = ptr->next;
+			}
+		}
+		if (!ptr)
+			break ;
+		tmp = ptr->next;
+		// tmp = tmp->next;
 	}
 }
