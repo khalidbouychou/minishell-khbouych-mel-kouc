@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:02:36 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/23 17:15:14 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/08 11:13:43 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	switch_sp_free(t_token **lst)
 {
 	t_token	*tmp;
 	t_token	*ptr;
-
 
 	tmp = *lst;
 	while (tmp)

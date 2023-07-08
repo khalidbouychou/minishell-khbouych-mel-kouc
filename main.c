@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/26 01:05:44 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/08 11:12:14 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ void	ft_handel_proccess()
 		printf("%d pid parent\n", (int)getpid());
 }
 
-void	l()
-{
-	system("leaks minishell");
-}
+// void	l()
+// {
+// 	system("leaks minishell");
+// }
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -66,7 +66,7 @@ int	main(int argc, char **argv, char **envp)
 	t_env	*env;
 	t_token	*list_tokens;
 
-	atexit(l);
+	// atexit(l);
 	(void)argc;
 	(void)argv;
 	env = NULL;
@@ -74,7 +74,8 @@ int	main(int argc, char **argv, char **envp)
 	env = env_list(envp);
 	while (1)
 	{
-		cmd = readline("\033[1;33mminishell >\033[34m$ \033[0m");
+		// cmd = readline("\033[1;33mminishell >\033[34m$ \033[0m");
+		cmd = readline("mminishell >");
 		if (!cmd)
 			return (printf("error in readline\n"));
 		add_history(cmd);
