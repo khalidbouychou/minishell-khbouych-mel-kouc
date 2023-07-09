@@ -6,32 +6,17 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/08 23:29:18 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/09 16:25:40 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incld/minishell.h"
 
-int	check_spases(t_token *tmp)
-{
-	while (!ft_strncmp(tmp->content, " ", 2)
-		|| !ft_strncmp(tmp->content, "	", 2))
-	{
-		tmp = tmp->next;
-		if (tmp == NULL)
-			return (0);
-	}
-	return (1);
-}
-
 void	util_between_word_var(t_token *ptr, t_token	*tmp)
 {
 	while (ptr)
 	{
-		if ((ptr->next && ptr->type == SPACE && ptr->next->type == SPACE)
-			|| (ptr->next && ptr->type == SPACE && ptr->next->type == TAB)
-			|| (ptr->next && ptr->type == TAB && ptr->next->type == SPACE)
-			|| (ptr->next && ptr->type == TAB && ptr->next->type == TAB))
+		if ((ptr->next && ptr->type == SPACE && ptr->next->type == SPACE))
 		{
 			tmp->next = ptr->next;
 			ptr->next->prev = tmp;
@@ -40,6 +25,14 @@ void	util_between_word_var(t_token *ptr, t_token	*tmp)
 		else
 			break ;
 		ptr = tmp->next;
+	}
+	if (!ptr->next)
+	{
+		if (ptr->type == SPACE)
+		{
+			ptr->prev->next = NULL;
+			free(ptr);
+		}	
 	}
 }
 
@@ -85,11 +78,12 @@ void	space_after_cmd(t_token **lst)
 		{
 			cmd = tmp->next;
 			space = cmd->next;
-			if (space && space->type == SPACE)
+			while (space && space->type == SPACE)
 			{
 				cmd->next = space->next;
 				space->next->prev = cmd;
 				free(space);
+				space = cmd->next;
 			}
 		}
 		tmp = tmp->next;
@@ -108,33 +102,28 @@ void	cmd_not_echo(t_token **lst)
 		ptr = tmp->next;
 		if (!ft_strncmp(tmp->content, "echo", 5))
 		{
-			while (ptr && ptr->operator == 0 && ptr->type != SPACE)
+			while ((ptr && ptr->operator == 0)
+				|| (ptr && ptr->operator == 1 && ptr->type == SPACE))
+			{
 				ptr = ptr->next;
-			printf("ptr 1 : |%s|\n", ptr->content);
-			
+			}
 		}
 		else
 		{
-			printf("ptr : |%s|\n", ptr->content);
 			while (ptr && ptr->operator == 0 && ptr->type != SPACE)
 			{
-				printf("qqq\n");
-				// if (ptr && ptr->operator == 0 && ptr->type != SPACE)
-				// {
-					space = ptr->next;
-					if (space && space->type == SPACE && space->next)
-					{
-						ptr->next = space->next;
-						space->next->prev = ptr;
-						free (space);
-					}
-				// }
+				space = ptr->next;
+				if (space && space->type == SPACE)
+				{
+					ptr->next = space->next;
+					space->next->prev = ptr;
+					free (space);
+				}
 				ptr = ptr->next;
 			}
 		}
 		if (!ptr)
 			break ;
 		tmp = ptr->next;
-		// tmp = tmp->next;
 	}
 }

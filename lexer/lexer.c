@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/17 11:25:55 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/09 16:25:59 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ char	*ft_strcpy(char *dest, char *src)
 	}
 	dest[i] = '\0';
 	return (dest);
+}
+
+int	check_spases(t_token *tmp)
+{
+	while (!ft_strncmp(tmp->content, " ", 2)
+		|| !ft_strncmp(tmp->content, "	", 2))
+	{
+		tmp = tmp->next;
+		if (tmp == NULL)
+			return (0);
+	}
+	return (1);
 }
 
 // int	error_pipe(char *commande)
