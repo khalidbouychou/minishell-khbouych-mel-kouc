@@ -3,30 +3,24 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
+#    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/06/22 16:23:39 by khbouych         ###   ########.fr        #
+#    Updated: 2023/07/10 14:30:26 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = minishell
 
-SRC = ./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
-	  ./lexer/lexer.c  ./lexer/tokens/token.c  ./lexer/tokens/white_space.c \
-	  ./lexer/tokens/utils_space.c utils/ft_split.c ./lexer/tokens/util_token.c \
-	  ./lexer/tokens/check_list.c utils/util_.c ./lexer/tokens/free.c ./lexer/tokens/check_syntax.c \
-	   parsing/list_word.c utils/util__.c
-# SRC = ./main.c ./utils/util.c ./utils/util_list.c  ./lexer/lexer.c ./parsing/parsing.c lexer/tokens/token.c  utils/ft_split.c lexer/tokens/util_token.c utils/util_.c
+SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
+		./lexer/lexer.c  ./lexer/tokens/token.c  ./lexer/tokens/white_space.c \
+		./lexer/tokens/utils_space.c utils/ft_split.c ./lexer/tokens/util_token.c \
+		./lexer/tokens/check_list.c utils/util_.c utils/util__.c ./lexer/tokens/free.c ./lexer/tokens/check_syntax.c \
+		./parsing/parsing.c ./parsing/list_word.c
 
-# SRC = ./main.c ./utils/util.c ./utils/util_list.c  ./lexer/lexer.c \
-# 		./lexer/tokens/token.c  utils/ft_split.c ./lexer/tokens/util_token.c \
-# 		utils/util_.c ./lexer/tokens/check_syntax.c parsing/list_word.c \
-# 		lexer/expand.c
-# ./parsing/parsing.c
 OSRC = $(SRC:.c=.o)
-CC = cc
+CC = cc  -g
 CFLAGS =   -Wall -Wextra -Werror
 
 all: $(NAME)

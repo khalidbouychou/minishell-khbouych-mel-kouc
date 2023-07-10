@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:02:36 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/21 19:52:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:05:38 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ void	between_word_var(t_token **lst)
 			util_between_word_var(ptr, tmp);
 		tmp = tmp->next;
 	}
+	check_cmd(lst);
 }
 
-void	after_f_cmd(t_token **lst)
+void	after_first_cmd(t_token **lst)
 {
 	t_token	*tmp;
 	t_token	*ptr;
@@ -77,7 +78,6 @@ void	switch_sp_free(t_token **lst)
 	t_token	*tmp;
 	t_token	*ptr;
 
-
 	tmp = *lst;
 	while (tmp)
 	{
@@ -89,11 +89,6 @@ void	switch_sp_free(t_token **lst)
 		ptr = tmp;
 		tmp = tmp->next;
 	}
-	if (ptr->type == SPACE)
-	{
-		ptr->prev->next = tmp;
-		free(ptr);
-	}
 }
 
 void	rm_node_white_space(t_token **lst)
@@ -103,9 +98,9 @@ void	rm_node_white_space(t_token **lst)
 	tmp = *lst;
 	if (!tmp)
 		return ;
-	after_f_cmd(lst);
+	after_first_cmd(lst);
 	between_oper(lst);
-	between_word_var(lst);
 	switch_sp_free(lst);
 	space_after_cmd(lst);
+	between_word_var(lst);
 }
