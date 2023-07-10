@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/09 16:25:40 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/10 11:03:37 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,38 +90,43 @@ void	space_after_cmd(t_token **lst)
 	}
 }
 
-void	cmd_not_echo(t_token **lst)
+t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space)
+{
+	if (!ft_strncmp(tmp->content, "echo", 5))
+	{
+		while ((ptr && ptr->operator == 0)
+			|| (ptr && ptr->operator == 1 && ptr->type == SPACE))
+			ptr = ptr->next;
+	}
+	else
+	{
+		while (ptr && ptr->operator == 0 && ptr->type != SPACE)
+		{
+			space = ptr->next;
+			if (space && space->type == SPACE)
+			{
+				ptr->next = space->next;
+				space->next->prev = ptr;
+				free (space);
+			}
+			ptr = ptr->next;
+		}
+	}
+	return (ptr);
+}
+
+void	check_cmd(t_token **lst)
 {
 	t_token	*tmp;
 	t_token	*ptr;
 	t_token	*space;
 
+	space = NULL;
 	tmp = *lst;
 	while (tmp)
 	{
 		ptr = tmp->next;
-		if (!ft_strncmp(tmp->content, "echo", 5))
-		{
-			while ((ptr && ptr->operator == 0)
-				|| (ptr && ptr->operator == 1 && ptr->type == SPACE))
-			{
-				ptr = ptr->next;
-			}
-		}
-		else
-		{
-			while (ptr && ptr->operator == 0 && ptr->type != SPACE)
-			{
-				space = ptr->next;
-				if (space && space->type == SPACE)
-				{
-					ptr->next = space->next;
-					space->next->prev = ptr;
-					free (space);
-				}
-				ptr = ptr->next;
-			}
-		}
+		ptr = check_echo(tmp, ptr, space);
 		if (!ptr)
 			break ;
 		tmp = ptr->next;

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/08 20:25:32 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/10 11:03:34 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_strtrim(char *s1, char *set);
 char	*ft_strsearch(const char *s, int c);
 void	rm_node_white_space(t_token **lst);
 void	util_between_word_var(t_token *ptr, t_token	*tmp);
-void	cmd_not_echo(t_token **lst);
+void	check_cmd(t_token **lst);
 void	util_between_oper(t_token *tmp, t_token	*right_op, t_token	*left_op);
 int		check_spases(t_token *tmp);
 void	space_after_cmd(t_token **lst);
