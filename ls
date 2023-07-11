@@ -1,0 +1,13 @@
+Makefile
+builtins
+correction.pdf
+incld
+lexer
+ls
+main.c
+main.o
+minishell
+parsing
+test
+todo
+utils

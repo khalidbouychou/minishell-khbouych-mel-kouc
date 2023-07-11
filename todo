@@ -1,0 +1,31 @@
+token
+trim quotes
+expander 
+joiner
+parser 
+
+
+O_CREATE ----> red_out | red_app | heredoc
+O_RDONLY ---> red_in
+
+
+red_app -> O_ APPEND
+heredoc ->  O_WRONLY | O_CREAT | O_TRUNC
+
+
+
+testin bash    --->       > text ls
+
+
+test  bash   --->       ls > a | cat < a   -----> indefined behavier
+
+
+echo >>> test
+
+echo >>| test
+echo >|> test
+echo >>|> test
+
+
+bash-3.2$ ls >| ls
+bash-3.2$ ls > | ls
