@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/11 21:22:53 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:16:05 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,12 @@ int	oper_in_end(t_token	*list_tokens)
 
 int	util_successive_oper(t_token *tmp)
 {
-	int		flag;
+	t_token	*ptr;
+	// int		flag;
 
-	if (tmp->next && tmp->type == OUTPUT && tmp->next->type == PIPE)
-		flag = 1;
-	else if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
+	// if (tmp->next && tmp->type == OUTPUT && tmp->next->type == PIPE)
+	// 	flag = 1;
+	 if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
 		&& tmp->type != TAB && tmp->next->operator == 1
 		&& tmp->next->type != SPACE && tmp->next->type != PIPE
 		&& tmp->next->type != TAB)
@@ -131,6 +132,19 @@ int	util_successive_oper(t_token *tmp)
 // 	return (1);
 // }
 
+// int	search_outp_pipe(t_token *tmp)
+// {
+// 	t_token	*ptr;
+
+// 	ptr = tmp->next;
+// 	while (ptr && tmp->type == OUTPUT
+// 		&& (ptr->type == SPACE || ptr->type == TAB))
+// 		ptr = ptr->next;
+// 	if (ptr && ptr->type == PIPE)
+// 		return (0);
+// 	return (1);
+// }
+
 int	successive_oper(t_token *list_tokens)
 {
 	t_token	*tmp;
@@ -152,6 +166,8 @@ int	successive_oper(t_token *list_tokens)
 				&& ptr->next->operator == 1 && ptr->next->type != SPACE)
 				return (0);
 		}
+		// if (!search_outp_pipe(tmp))
+		// 	return (0);
 		tmp = tmp->next;
 	}
 	return (1);

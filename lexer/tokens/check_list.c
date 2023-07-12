@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/11 20:34:42 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/12 09:39:25 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,4 @@ void	check_list(t_token **lst, t_env *env)
 	trim_list(lst);
 	lixer_list(lst);
 	rm_node_white_space(lst);
-	
 }

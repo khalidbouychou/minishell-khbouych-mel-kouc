@@ -27,5 +27,7 @@ echo >|> test
 echo >>|> test
 
 
+ls <> ls // i don't handel
+
 bash-3.2$ ls >| ls
 bash-3.2$ ls > | ls
