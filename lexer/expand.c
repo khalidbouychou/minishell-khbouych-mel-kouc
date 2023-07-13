@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/22 18:34:49 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/13 21:52:30 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,29 @@ void	ft_init_var_expd(t_exp *var_expd)
 	var_expd->r = NULL;
 }
 
+
 char	*ft_expandhelp(char *cnt, t_env *env)
 {
 	t_exp	v;
-
+	(void)env;
 	ft_init_var_expd(&v);
-	if (cnt[++v.i] != '$')
+	if(cnt[++v.i] == '\'')
 	{
-		v.s = v.i;
-		while (cnt[v.i] != '$')
+		v.i++;
+		while (cnt[v.i] != '\'')
+		{
+			printf("%c",cnt[v.i]);
 			v.i++;
-		v.e = v.i;
-		v.r = ft_strjoin(v.r, ft_substr(cnt, v.s, (v.e - v.s)));
+		}
 	}
+	// if (cnt[++v.i] != '$')
+	// {
+	// 	v.s = v.i;
+	// 	while (cnt[v.i] != '$')
+	// 		v.i++;
+	// 	v.e = v.i;
+	// 	v.r = ft_strjoin(v.r, ft_substr(cnt, v.s, (v.e - v.s)));
+	// }
 	while (cnt[++v.i])
 	{
 		v.s = v.i;
@@ -66,12 +76,11 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 	return (v.r);
 }
 
-
 void	ft_expander(t_token *tok, t_env *env)
 {
 	char			*res;
 	t_token			*tmp;
-
+	(void)env;
 	res = NULL;
 	tmp = tok;
 	while (tmp)

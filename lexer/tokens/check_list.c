@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/21 21:57:01 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/13 21:48:21 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	trim_list(t_token **list)
 	tmp = *list;
 	while (tmp)
 	{
-		if (tmp->content[i] == '\'')
-			tmp->content = ft_strtrim(tmp->content, "'");
+		// if (tmp->content[i] == '\'')
+		// 	tmp->content = ft_strtrim(tmp->content, "'");
 		if (tmp->content[i] == '"')
 			tmp->content = ft_strtrim(tmp->content, "\"");
 		tmp = tmp->next;

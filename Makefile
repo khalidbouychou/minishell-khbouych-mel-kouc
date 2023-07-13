@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/06/22 16:23:39 by khbouych         ###   ########.fr        #
+#    Updated: 2023/07/13 15:43:14 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC = ./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 # ./parsing/parsing.c
 OSRC = $(SRC:.c=.o)
 CC = cc
-CFLAGS =   -Wall -Wextra -Werror
+# -g -fsanitize=address
+CFLAGS =   -Wall -Wextra -Werror 
 
 all: $(NAME)
 
