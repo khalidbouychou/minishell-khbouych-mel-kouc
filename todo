@@ -28,6 +28,11 @@ echo >>|> test
 
 
 ls <> ls // i don't handel it
+ls <<< ls // i don't handel it
 
 bash-3.2$ ls >| ls
 bash-3.2$ ls > | ls
+
+LS > -la | echo >> test     white space in last cmd -> segmentation fault
+
+<< del cat  >l | echo hello asking for this case

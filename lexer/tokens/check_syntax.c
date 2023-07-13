@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/12 22:14:42 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/13 22:55:27 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,6 @@ int	oper_in_end(t_token	*list_tokens)
 
 int	util_successive_oper(t_token *tmp)
 {
-	// int		flag;
-
-	// if (tmp->next && tmp->type == OUTPUT && tmp->next->type == PIPE)
-	// 	flag = 1;
 	if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
 		&& tmp->type != TAB && tmp->next->operator == 1
 		&& tmp->next->type != SPACE && tmp->next->type != PIPE
@@ -116,7 +112,7 @@ int	util_successive_oper(t_token *tmp)
 }
 // int	oper_error(t_token *tmp)
 // {
-// 	t_token	*ptr;
+// 	t_token	*ptr; 
 
 // 	ptr = tmp->next;
 // 	if ((tmp->type == INPUT || tmp->type == APPND

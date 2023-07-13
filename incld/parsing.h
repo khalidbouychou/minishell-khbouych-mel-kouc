@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/11 09:47:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/13 23:09:41 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,24 @@
 
 # include "../incld/token.h"
 
+// typedef struct s_parse
+// {
+// 	char			*content;
+// 	struct s_parse	*next;
+// 	t_token			*ptr;
+// 	char			**arg;
+// }	t_parse;
+
 typedef struct s_parse
 {
-	char			*content;
-	struct s_parse	*next;
-	t_token			*ptr;
+	char			cmd;
+	int				fd_input;
+	int				fd_in_heredoc;
+	int				fd_output;
+	char			*name;
 	char			**arg;
+	// t_token			*ptr;
 }	t_parse;
-
 
 // example : < out << here cat
 // typedef struct s_parse
