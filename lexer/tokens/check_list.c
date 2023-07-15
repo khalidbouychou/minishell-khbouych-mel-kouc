@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/15 16:55:50 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:25:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,9 @@ void	lixer_list(t_token **list)
 		ptr = tmp->next;
 		while (ptr)
 		{
-			if (!ptr || (!tmp->operator && !ptr->operator))
+			if ((!tmp->operator && !ptr->operator))
 			{
 				tmp->content = ft_strjoin(tmp->content, ptr->content);
-				 printf("(content after join) = %s\n", tmp->content);
-				if (ft_strchr(tmp->content, '$') != -1  && (ft_strchr(tmp->content, '\'') == -1 || ft_strchr(tmp->content, '"') != -1))
-				{
-					tmp->type = VAR;
-					printf("(type after join) = %d\n", tmp->type);
-				}
 				tmp->next = ptr->next;
 				free(ptr);
 			}
@@ -69,6 +63,10 @@ void	lixer_list(t_token **list)
 				break ;
 			ptr = tmp->next;
 		}
+		if (ft_strchr(tmp->content, '$') != -1
+			&& ft_strchr(tmp->content, '"') < ft_strchr(tmp->content, '\'')
+			&& ft_strchr(tmp->content, '"') != -1)
+			tmp->type = VAR;
 		tmp = tmp->next;
 	}
 }
