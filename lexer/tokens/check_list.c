@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/15 14:42:27 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:53:03 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	trim_list(t_token **list)
 			if (tmp->content[i] == '\'')
 				tmp->content = ft_strtrim(tmp->content, "'");
 			if (tmp->content[i] == '"')
-				tmp->content = ft_strtrim(tmp->content, "\"");	
+				tmp->content = ft_strtrim(tmp->content, "\"");
 		}
 		tmp = tmp->next;
 	}
