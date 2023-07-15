@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/21 21:56:53 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 10:39:31 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_word(char *cmd, int *i, int init)
 void	ft_get_type(t_token *tok)
 {
 	tok->type = WORD;
-	if ('$' == tok->content[0])
+	if (ft_strchr(tok->content, '$') != -1 && tok->content[0] != '\'')
 		tok->type = VAR;
 	else if ('>' == tok->content[0] && '>' == tok->content[1])
 		tok->type = APPND;
