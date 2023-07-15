@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/12 09:39:25 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:42:27 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	lixer_list(t_token **list)
 			if (!tmp->operator && !ptr->operator)
 			{
 				tmp->content = ft_strjoin(tmp->content, ptr->content);
+				if (ft_strchr(tmp->content, '$') != -1  && (ft_strchr(tmp->content, '\'') == -1 || ft_strchr(tmp->content, '"') != -1))
+					tmp->type = VAR;
 				tmp->next = ptr->next;
 				free(ptr);
 			}
@@ -76,10 +78,13 @@ void	trim_list(t_token **list)
 	tmp = *list;
 	while (tmp)
 	{
-		// if (tmp->content[i] == '\'')
-		// 	tmp->content = ft_strtrim(tmp->content, "'");
-		if (tmp->content[i] == '"')
-			tmp->content = ft_strtrim(tmp->content, "\"");
+		if (ft_strchr(tmp->content, '$') == -1)
+		{
+			if (tmp->content[i] == '\'')
+				tmp->content = ft_strtrim(tmp->content, "'");
+			if (tmp->content[i] == '"')
+				tmp->content = ft_strtrim(tmp->content, "\"");	
+		}
 		tmp = tmp->next;
 	}
 }

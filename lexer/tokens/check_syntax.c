@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/13 22:55:27 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 08:51:00 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int	successive_oper(t_token *list_tokens)
 		ptr = tmp->next;
 		if (!util_successive_oper(tmp))
 			return (0);
-		ptr = tmp->next;
+		// ptr = tmp->next;
 		if ((tmp->type == INPUT || tmp->type == APPND
 				|| tmp->type == HERDOC) && (tmp->next->type == PIPE))
 			return (0);

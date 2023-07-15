@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/14 23:36:34 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 08:42:32 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,20 +80,10 @@ void	space_after_cmd(t_token **lst)
 			space = cmd->next;
 			while (space && space->type == SPACE)
 			{
-				// if (space->next)
-				// {
-					cmd->next = space->next;
+				cmd->next = space->next;
+				if (space->next)
 					space->next->prev = cmd;
-					// free(space);
-					// printf("hello\n");
-				// }
-				// else
-				// {
-					// cmd->next = space->next;
-					// printf("space = |%s|\n", space->content);
-					// printf("test\n");
-					free(space);
-				// }
+				free(space);
 				space = cmd->next;
 			}
 		}

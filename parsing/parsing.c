@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/13 23:46:23 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 10:47:42 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,11 @@
 // 			*flag = 1;
 // 	}
 // }
+// void	check_parce_list(t_token *tmp, t_parse **list, int *flag, int *count)
+// {
+	
+// }
+
 
 // t_parse	*parser_list(t_token *list_tokens, int *is_alloc)
 // {
@@ -135,7 +140,7 @@
 // 	// *(pars->arg) = NULL;
 // 	while (tmp)
 // 	{
-// 		check_list_or_arg(tmp, &lst, &flag, is_alloc);
+// 		check_parce_list(tmp, &lst, &flag, is_alloc);
 // 		// lst = lst->next;
 // 		// printf ("test\n");
 // 		tmp = tmp->next;

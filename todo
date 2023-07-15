@@ -36,3 +36,10 @@ bash-3.2$ ls > | ls
 LS > -la | echo >> test     white space in last cmd -> segmentation fault
 
 << del cat  >l | echo hello asking for this case
+
+
+re"'$HOME'"   // don't remove double code befor expanding
+
+"'$HOME'" => variable -> exp
+
+re'"$HOME"' -> word without exp

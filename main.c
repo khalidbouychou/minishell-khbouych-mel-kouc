@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/13 22:55:42 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 11:17:56 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print(t_token *lst)
 	while (tmp)
 	{
 		printf("[cmd]  : |%s|\n", tmp->content);
-		printf("[type] : %u\n", tmp->type);
+		printf("[type] : %d\n", tmp->type);
 		printf("[is_op] : %d\n", tmp->operator);
 		// printf("[path] : %s\n", tmp->path);
 		printf("------------------\n");

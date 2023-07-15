@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/10 14:07:07 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:29:09 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_init_var_expd(t_exp *var_expd)
 
 char	*ft_expandhelp(char *cnt, t_env *env)
 {
+	// you chould handle the expander like itch content in his node
 	t_exp	v;
 
 	ft_init_var_expd(&v);

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/13 23:09:41 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 10:42:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 typedef struct s_parse
 {
-	char			cmd;
+	// char			cmd;
 	int				fd_input;
 	int				fd_in_heredoc;
 	int				fd_output;
