@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/15 16:04:31 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:40:49 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	lixer_list(t_token **list)
 			if (!ptr || (!tmp->operator && !ptr->operator))
 			{
 				tmp->content = ft_strjoin(tmp->content, ptr->content);
-					printf("(content after join) = %s\n", tmp->content);
+				 printf("(content after join) = %s\n", tmp->content);
 				if (ft_strchr(tmp->content, '$') != -1  && (ft_strchr(tmp->content, '\'') == -1 || ft_strchr(tmp->content, '"') != -1))
 				{
 					tmp->type = VAR;
