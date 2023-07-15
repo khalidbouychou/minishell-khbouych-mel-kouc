@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/13 21:52:30 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/14 00:08:58 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,16 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 			printf("%c",cnt[v.i]);
 			v.i++;
 		}
+		printf("\n");
 	}
-	// if (cnt[++v.i] != '$')
-	// {
-	// 	v.s = v.i;
-	// 	while (cnt[v.i] != '$')
-	// 		v.i++;
-	// 	v.e = v.i;
-	// 	v.r = ft_strjoin(v.r, ft_substr(cnt, v.s, (v.e - v.s)));
-	// }
+	if (cnt[++v.i] != '$')
+	{
+		v.s = v.i;
+		while (cnt[v.i] != '$')
+			v.i++;
+		v.e = v.i;
+		v.r = ft_strjoin(v.r, ft_substr(cnt, v.s, (v.e - v.s)));
+	}
 	while (cnt[++v.i])
 	{
 		v.s = v.i;
@@ -66,7 +67,6 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 			v.i++;
 		v.e = v.i;
 		v.r = ft_strjoin(v.r, ft_substr(cnt, v.s, (v.e - v.s)));
-
 		v.s = v.i;
 		while (cnt[v.i] != '$' && cnt[v.i])
 			v.i++;
@@ -89,5 +89,5 @@ void	ft_expander(t_token *tok, t_env *env)
 			res = ft_strjoin(res, ft_expandhelp(tmp->content, env));
 		tmp = tmp->next;
 	}
-	printf("%s\n", res);
+	printf("res_expander = %s\n", res);
 }

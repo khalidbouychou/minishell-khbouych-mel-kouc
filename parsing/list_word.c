@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/13 16:39:35 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/06/24 11:13:29 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 // 		if (node == NULL)
 // 			return (NULL);
 // 	}
-// 	return (NULL); 
+// 	return (NULL);
 // }
 
 // int	ft_count_word(t_token *list_tokens)
@@ -58,6 +58,8 @@
 // 		tmp = return_operator(tmp);
 // 		if (!tmp)
 // 			return (word);
+// 		else
+// 			word++;
 // 		tmp = tmp->next;
 // 	}
 
@@ -66,39 +68,39 @@
 
 // void	split_operator(t_token *list_tokens)
 // {
-// 	t_token	*operator;
-// 	t_token	*tmp;
+// 	t_parse	*operator;
+// 	t_parse	*tmp;
 // 	int		i;
 // 	int		word;
 // 	int		flag;
 
-// 	tmp = NULL;
-// 	operator = NULL;
+// 	// tmp-> = NULL;
+// 	// operator = NULL;
 // 	flag = 0;
 // 	// *(tmp->split) = NULL;
 // 	i = 0;
 // 	// *(tmp->split) = ft_strdup("\0");
-// 	tmp = list_tokens;
+// 	tmp->ptr = list_tokens;
 // 	word = ft_count_word(list_tokens);
-// 	// printf("\nword = %d\n", word);
-// 	tmp->split = malloc(sizeof(char *) *(word + 1));
-// 	// operator = return_operator(tmp);
+//     printf("\nword = %d\n", word);
+// 	tmp->arg = malloc(sizeof(char *) *(word + 1));
+// 	operator->ptr = return_operator(tmp->ptr);
 // 	while (tmp)
 // 	{
 // 		if (!flag)
 // 		{
-// 			operator = return_operator(tmp);
+// 			operator->ptr = return_operator(tmp->ptr);
 // 			flag = 1;
 // 		}
-// 		if (operator)
+// 		if (operator->ptr)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     )
 // 		{
-// 			if (ft_strncmp(tmp->content, operator->content, ft_strlen(tmp->content)))
+// 			if (ft_strncmp(tmp->ptr->content, operator->ptr->content, ft_strlen(tmp->ptr->content)))
 // 			{
 // 				printf("\nhello\n");
-// 				if (*(tmp->split) == NULL)
-// 					*(tmp->split) = ft_strdup(tmp->content);
+// 				if (*(tmp->arg) == NULL)
+// 					*(tmp->arg) = ft_strdup(tmp->ptr->content);
 // 				else
-// 					tmp->split[i] = ft_strjoin(tmp->split[i], tmp->content);
+// 					tmp->arg[i] = ft_strjoin(tmp->arg[i], tmp->content);
 // 				i++;
 // 			}
 // 			else
@@ -106,13 +108,13 @@
 // 		}
 // 		// else
 // 		// {
-// 		// 	if (*(tmp->split) == NULL)
-// 		// 		*(tmp->split) = ft_strdup(tmp->content);
+// 		// 	if (*(tmp->arg) == NULL)
+// 		// 		*(tmp->arg) = ft_strdup(tmp->content);
 // 		// 	else
-// 		// 		tmp->split[i] = ft_strjoin(tmp->split[i], tmp->content);
+// 		// 		tmp->arg[i] = ft_strjoin(tmp->arg[i], tmp->content);
 // 		// 	i++;
 // 		// }
 // 		tmp = tmp->next;
 // 	}
-// 	tmp->split[i] = NULL;
+// 	tmp->arg[i] = NULL;
 // }
