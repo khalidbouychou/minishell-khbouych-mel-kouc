@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/13 22:22:06 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:04:31 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,15 @@ void	lixer_list(t_token **list)
 		ptr = tmp->next;
 		while (ptr)
 		{
-			if (!tmp->operator && !ptr->operator)
+			if (!ptr || (!tmp->operator && !ptr->operator))
 			{
 				tmp->content = ft_strjoin(tmp->content, ptr->content);
+					printf("(content after join) = %s\n", tmp->content);
+				if (ft_strchr(tmp->content, '$') != -1  && (ft_strchr(tmp->content, '\'') == -1 || ft_strchr(tmp->content, '"') != -1))
+				{
+					tmp->type = VAR;
+					printf("(type after join) = %d\n", tmp->type);
+				}
 				tmp->next = ptr->next;
 				free(ptr);
 			}
@@ -76,10 +82,13 @@ void	trim_list(t_token **list)
 	tmp = *list;
 	while (tmp)
 	{
-		// if (tmp->content[i] == '\'')
-		// 	tmp->content = ft_strtrim(tmp->content, "'");
-		if (tmp->content[i] == '"')
-			tmp->content = ft_strtrim(tmp->content, "\"");
+		if (ft_strchr(tmp->content, '$') == -1)
+		{
+			if (tmp->content[i] == '\'')
+				tmp->content = ft_strtrim(tmp->content, "'");
+			if (tmp->content[i] == '"')
+				tmp->content = ft_strtrim(tmp->content, "\"");	
+		}
 		tmp = tmp->next;
 	}
 }
@@ -94,7 +103,7 @@ void	check_list(t_token **lst, t_env *env)
 		return ;
 		// free_env_list(env);
 	}
-	trim_list(lst);
+	// trim_list(lst);
 	lixer_list(lst);
 	rm_node_white_space(lst);
 }

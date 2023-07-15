@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/09 16:47:02 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 08:51:00 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,7 @@ int	oper_in_end(t_token	*list_tokens)
 
 int	util_successive_oper(t_token *tmp)
 {
-	int		flag;
-
-	if (tmp->next && tmp->type == OUTPUT && tmp->next->type == PIPE)
-		flag = 1;
-	else if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
+	if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
 		&& tmp->type != TAB && tmp->next->operator == 1
 		&& tmp->next->type != SPACE && tmp->next->type != PIPE
 		&& tmp->next->type != TAB)
@@ -114,16 +110,59 @@ int	util_successive_oper(t_token *tmp)
 	}
 	return (1);
 }
+// int	oper_error(t_token *tmp)
+// {
+// 	t_token	*ptr; 
+
+// 	ptr = tmp->next;
+// 	if ((tmp->type == INPUT || tmp->type == APPND
+// 			|| tmp->type == HERDOC) && (tmp->next->type == PIPE))
+// 		return (0);
+// 	if (ptr && ptr->next)
+// 	{
+// 		if (ptr->next && tmp->type == OUTPUT && ptr->type == PIPE
+// 			&& ptr->next->operator == 1 && ptr->next->type != SPACE)
+// 			return (0);
+// 	}
+// 	return (1);
+// }
+
+// int	search_outp_pipe(t_token *tmp)
+// {
+// 	t_token	*ptr;
+
+// 	ptr = tmp->next;
+// 	while (ptr && tmp->type == OUTPUT
+// 		&& (ptr->type == SPACE || ptr->type == TAB))
+// 		ptr = ptr->next;
+// 	if (ptr && ptr->type == PIPE)
+// 		return (0);
+// 	return (1);
+// }
 
 int	successive_oper(t_token *list_tokens)
 {
 	t_token	*tmp;
+	t_token	*ptr;
 
 	tmp = list_tokens;
 	while (tmp)
 	{
+		ptr = tmp->next;
 		if (!util_successive_oper(tmp))
 			return (0);
+		// ptr = tmp->next;
+		if ((tmp->type == INPUT || tmp->type == APPND
+				|| tmp->type == HERDOC) && (tmp->next->type == PIPE))
+			return (0);
+		if (ptr && ptr->next)
+		{
+			if (ptr->next && tmp->type == OUTPUT && ptr->type == PIPE
+				&& ptr->next->operator == 1 && ptr->next->type != SPACE)
+				return (0);
+		}
+		// if (!search_outp_pipe(tmp))
+		// 	return (0);
 		tmp = tmp->next;
 	}
 	return (1);

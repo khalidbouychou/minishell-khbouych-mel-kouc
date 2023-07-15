@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/15 10:30:06 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/15 15:00:21 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print(t_token *lst)
 	while (tmp)
 	{
 		printf("[cmd]  : |%s|\n", tmp->content);
-		printf("[type] : %u\n", tmp->type);
+		printf("[type] : %d\n", tmp->type);
 		printf("[is_op] : %d\n", tmp->operator);
 		// printf("[path] : %s\n", tmp->path);
 		printf("------------------\n");
@@ -85,7 +85,7 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		// cmd = readline("\033[1;33mminishell >\033[34m$ \033[0m");
-		cmd = readline("minishell > ");
+		cmd = readline("minishell ~> ");
 		if (!cmd)
 			return (printf("error in readline\n"));
 		add_history(cmd);
