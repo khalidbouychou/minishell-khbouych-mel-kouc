@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/15 11:17:56 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 15:00:21 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ int	main(int argc, char **argv, char **envp)
 			// parser(list_tokens);
 		}
 		print(list_tokens);
-		free (cmd);
-		printf("\n*********************\n");
+		// free (cmd);
+		// printf("\n*********************\n");
+		// free (cmd);
 	}
 }

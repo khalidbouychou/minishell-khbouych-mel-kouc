@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/15 11:41:28 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/15 15:48:45 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_word(char *cmd, int *i, int init)
 void	ft_get_type(t_token *tok)
 {
 	tok->type = WORD;
-	if (ft_strchr(tok->content, '$') != -1 && ft_strchr(tok->content, '\'') == -1)
+	if (ft_strchr(tok->content, '$') != -1 && (ft_strchr(tok->content, '\'') == -1 ))
 		tok->type = VAR;
 	else if ('>' == tok->content[0] && '>' == tok->content[1])
 		tok->type = APPND;
@@ -88,7 +88,6 @@ void	ft_get_type(t_token *tok)
 		tok->type = SPACE;
 	else if ('	' == tok->content[0])
 		tok->type = TAB;
-	printf("tok->type = %d\n", tok->type);
 	if (tok->type != WORD)
 		tok->path = NULL;
 	if (tok->type != WORD && tok->type != VAR)
@@ -103,8 +102,9 @@ t_token	*ft_init_token(char *cmd, int i, int count, t_env *env)
 
 	tok = malloc(sizeof(t_token));
 	tok->content = ft_substr(cmd, i, count);
-	printf("tok->content= %s\n", tok->content);
+	printf("(tok->content)= %s\n", tok->content);
 	ft_get_type(tok);
+	printf("(tok->type) = %d\n", tok->type);
 	(void)env;
 	// tok->path = ft_get_path(env, tok);
 	tok->next = NULL;
