@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/15 15:31:50 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/16 13:41:27 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,12 @@
 // 			*flag = 1;
 // 	}
 // }
+
 // void	check_parce_list(t_token *tmp, t_parse **list, int *flag, int *count)
 // {
+// 	if (tmp->type == PIPE)
+// 		*flag = 1;
+// 	if (*flag == 0)
 // }
 
 

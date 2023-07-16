@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/15 15:21:28 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/16 17:30:00 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	ft_expander(t_token *tok, t_env *env)
 			res = ft_strjoin(res, ft_expandhelp(tmp->content, env));
 			tmp->content = res;
 		}
+		res = ft_strjoin(res, tmp->content);
 		tmp = tmp->next;
 	}
 	printf("res_expander = %s\n", res);

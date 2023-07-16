@@ -29,6 +29,7 @@ echo >>|> test
 
 ls <> ls // i don't handel it
 ls <<< ls // i don't handel it
+<< 5< a  --------> syntax error near unexpected token `5'
 
 bash-3.2$ ls >| ls
 bash-3.2$ ls > | ls
