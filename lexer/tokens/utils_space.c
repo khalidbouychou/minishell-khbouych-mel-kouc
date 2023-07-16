@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/15 08:42:32 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/16 17:33:12 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	util_between_word_var(t_token *ptr, t_token	*tmp)
 		{
 			ptr->prev->next = NULL;
 			free(ptr);
-		}	
+		}
 	}
 }
 

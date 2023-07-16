@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/15 15:00:49 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/16 17:28:07 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ int		check_quotes(t_token **list_tokens);
 t_token	*divide(char *cmd, t_env *env);
 t_token	*ft_listlast(t_token *lst);
 t_token	*ft_init_token(char *cmd, int i, int count, t_env *env);
+void	ft_set_oper(t_token *tok);
 
 #endif

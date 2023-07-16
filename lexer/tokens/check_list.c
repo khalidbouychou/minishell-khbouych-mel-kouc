@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/15 18:36:38 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/16 17:19:18 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,6 @@ void	lixer_list(t_token **list)
 				break ;
 			ptr = tmp->next;
 		}
-		if (ft_strchr(tmp->content, '$') != -1
-			&& ft_strchr(tmp->content, '"') < ft_strchr(tmp->content, '\'')
-			&& ft_strchr(tmp->content, '"') != -1)
-			tmp->type = VAR;
 		tmp = tmp->next;
 	}
 }
@@ -80,13 +76,10 @@ void	trim_list(t_token **list)
 	tmp = *list;
 	while (tmp)
 	{
-		if (ft_strchr(tmp->content, '$') == -1)
-		{
-			if (tmp->content[i] == '\'')
-				tmp->content = ft_strtrim(tmp->content, "'");
-			if (tmp->content[i] == '"')
-				tmp->content = ft_strtrim(tmp->content, "\"");
-		}
+		if (tmp->content[i] == '\'')
+			tmp->content = ft_strtrim(tmp->content, "'");
+		else if (tmp->content[i] == '"')
+			tmp->content = ft_strtrim(tmp->content, "\"");
 		tmp = tmp->next;
 	}
 }
@@ -97,11 +90,11 @@ void	check_list(t_token **lst, t_env *env)
 	{
 		printf("\nsyntax error near unexpected token \n");
 		free_token_list(lst);
-		(void)env;
 		return ;
 		// free_env_list(env);
 	}
 	trim_list(lst);
+	ft_expander(*lst, env);
 	lixer_list(lst);
 	rm_node_white_space(lst);
 }
