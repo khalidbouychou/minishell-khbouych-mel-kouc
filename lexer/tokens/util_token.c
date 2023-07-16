@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/16 17:32:55 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/16 17:46:20 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_word(char *cmd, int *i, int init)
 	return (count);
 }
 
-// char	*ft_get_path(t_env *env, t_token *tok)
+char	*ft_get_path(t_env *env, t_token *tok)
 {
 	char	*p;
 	t_env	*tmp;

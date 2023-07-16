@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/16 17:42:49 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/16 20:46:16 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ void	print(t_token *lst)
 // 		env();
 // }
 
-void	l()
-{
-	system("leaks ./minishell");
-}
+// void	l()
+// {
+// 	system("leaks ./minishell");
+// }
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -76,7 +76,7 @@ int	main(int argc, char **argv, char **envp)
 	t_env	*env;
 	t_token	*list_tokens;
 
-	atexit(l);
+	// atexit(l);
 	(void)argc;
 	(void)argv;
 	env = NULL;
