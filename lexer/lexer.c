@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/11 17:56:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/16 17:27:35 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ int	check_spases(t_token *tmp)
 	return (1);
 }
 
+void	ft_set_oper(t_token *tok)
+{
+	if (tok->type != WORD && tok->type != VAR)
+		tok->operator = 1;
+	else
+		tok->operator = 0;
+}
 // int	error_pipe(char *commande)
 // {
 // 	int	i;

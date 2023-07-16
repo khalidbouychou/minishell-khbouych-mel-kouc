@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/15 18:55:41 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/16 17:42:49 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	print(t_token *lst)
 	tmp = lst;
 	i = 0;
 	printf("\n------------------\n");
-	while (tmp)
+	while (tmp && tmp->content)
 	{
 		printf("[cmd]  : |%s|\n", tmp->content);
-		printf("[type] : %d\n", tmp->type);
+		// printf("[type] : %d\n", tmp->type);
 		printf("[is_op] : %d\n", tmp->operator);
-		// printf("[path] : %s\n", tmp->path);
+		printf("[path] : %s\n", tmp->path);
 		printf("------------------\n");
 		tmp = tmp->next;
 		i++;
@@ -65,10 +65,10 @@ void	print(t_token *lst)
 // 		env();
 // }
 
-// void	l()
-// {
-// 	system("leaks minishell");
-// }
+void	l()
+{
+	system("leaks ./minishell");
+}
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -76,7 +76,7 @@ int	main(int argc, char **argv, char **envp)
 	t_env	*env;
 	t_token	*list_tokens;
 
-	// atexit(l);
+	atexit(l);
 	(void)argc;
 	(void)argv;
 	env = NULL;
@@ -84,19 +84,15 @@ int	main(int argc, char **argv, char **envp)
 	env = env_list(envp);
 	while (1)
 	{
-		// cmd = readline("\033[1;33mminishell >\033[34m$ \033[0m");
 		cmd = readline("minishell ~> ");
-		if (!cmd)
-			return (printf("error in readline\n"));
-		add_history(cmd);
-		list_tokens = divide(cmd, env);
-		if (list_tokens)
+		if (*cmd)
 		{
-			ft_expander(list_tokens, env);
+			add_history(cmd);
+			list_tokens = divide(cmd, env);
+			print(list_tokens);
 			// parser(list_tokens);
+			printf("\n*********************\n");
 		}
-		print(list_tokens);
 		free (cmd);
-		// printf("\n*********************\n");
 	}
 }

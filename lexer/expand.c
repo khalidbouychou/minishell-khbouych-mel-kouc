@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/16 17:30:00 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/16 17:42:05 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,39 +31,48 @@ void	ft_init_var_expd(t_exp *var_expd)
 	var_expd->r = NULL;
 }
 
+char	*ft_h_h_expand(char *cnt, int *i, int *s, int *e)
+{
+	char	*r;
+
+	r = NULL;
+	if (cnt[++*i] != '$')
+	{
+		*s = *(i);
+		while (cnt[*i] != '$')
+			(*i)++;
+		*e = *(i);
+		r = ft_strjoin(r, ft_substr(cnt, *s, (*e - *s)));
+	}
+	if (cnt[*i] == '\'')
+	{
+		i++;
+		*s = *i;
+		while (cnt[*i] != '\'')
+			i++;
+		*e = *i;
+		r = ft_strjoin(r, ft_substr(cnt, *s, (*e - *s)));
+	}
+	return (r);
+}
 
 char	*ft_expandhelp(char *cnt, t_env *env)
 {
-	// you chould handle the expander like itch content in his node
 	t_exp	v;
-	(void)env;
+
 	ft_init_var_expd(&v);
-	if (cnt[++v.i] != '$')
-	{
-		v.s = v.i;
-		while (cnt[v.i] != '$')
-			v.i++;
-		v.e = v.i;
-		v.r = ft_strjoin(v.r, ft_substr(cnt, v.s, (v.e - v.s)));
-	}
-	if(cnt[v.i] == '\'')
-	{
-		v.i++;
-		v.s = v.i;
-		while (cnt[v.i] != '\'')
-			v.i++;
-		v.e = v.i;
-		v.r = ft_strjoin(v.r, ft_substr(cnt, v.s, (v.e - v.s)));
-	}
+	v.r = ft_h_h_expand(cnt, &v.i, &v.s, &v.e);
 	while (cnt[++v.i])
 	{
 		v.s = v.i;
-		while (cnt[v.i] != '$' && cnt[v.i] && ft_isalnum(cnt[v.i]) && cnt[v.i] != '\'')
+		while (cnt[v.i] != '$' && cnt[v.i]
+			&& ft_isalnum(cnt[v.i]) && cnt[v.i] != '\'')
 			v.i++;
 		v.e = v.i;
 		v.r = ft_strjoin(v.r, ft_v_k(ft_substr(cnt, v.s, (v.e - v.s)), env));
 		v.s = v.i;
-		while (cnt[v.i] != '$' && cnt[v.i] && !ft_isalnum(cnt[v.i]) && cnt[v.i] != '\'')
+		while (cnt[v.i] != '$' && cnt[v.i]
+			&& !ft_isalnum(cnt[v.i]) && cnt[v.i] != '\'')
 			v.i++;
 		v.e = v.i;
 		v.r = ft_strjoin(v.r, ft_substr(cnt, v.s, (v.e - v.s)));
@@ -76,16 +85,16 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 	return (v.r);
 }
 
+
 void	ft_expander(t_token *tok, t_env *env)
 {
 	char			*res;
 	t_token			*tmp;
-	(void)env;
+
 	res = NULL;
 	tmp = tok;
 	while (tmp)
 	{
-		// if (ft_strchr(tmp->content, '$') != -1)
 		if (tmp->type == VAR)
 		{
 			res = ft_strjoin(res, ft_expandhelp(tmp->content, env));
@@ -94,5 +103,4 @@ void	ft_expander(t_token *tok, t_env *env)
 		res = ft_strjoin(res, tmp->content);
 		tmp = tmp->next;
 	}
-	printf("res_expander = %s\n", res);
 }
