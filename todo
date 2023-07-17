@@ -6,7 +6,7 @@ parser
 
 
 O_CREATE ----> red_out | red_app | heredoc
-O_RDONLY ---> red_in
+O_RDONLY ----> red_in
 
 
 red_app -> O_ APPEND
@@ -17,7 +17,7 @@ heredoc ->  O_WRONLY | O_CREAT | O_TRUNC
 testin bash    --->       > text ls
 
 
-test  bash   --->       ls > a | cat < a   -----> indefined behavier
+test  bash     --->       ls > a | cat < a   -----> indefined behavier
 
 
 echo >>> test
@@ -47,9 +47,11 @@ re'"$HOME"' -> word without exp
 
 '"$HOME"'   ---> word
 
-export  
+export
     ---->   alphabet or tiri8
-    
+
+
     ----->  export a=ls
     ----->  echo $a           -> ls
-    ----->  export a+=last    -> lslast 
+    ----->  export a+=last
+    ----->  echo $a           -> lslast

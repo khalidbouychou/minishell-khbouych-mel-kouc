@@ -6,22 +6,11 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/16 13:41:27 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/18 00:02:17 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-
-// void	check_syntax(t_token *list_tokens)
-// {
-// 	if (!check_operator(list_tokens) || !check_quotes(list_tokens))
-// 	{
-// 		printf("\nsyntax error near unexpected token \n");
-// 	}
-	// else
-	// 	printf ("\n succese\n");
-	// split_operator(list_tokens);
-// }
 
 ///////////////////// this code is to maintene parser
 // t_parse	*ft_last_parser(t_parse *lst)
@@ -57,22 +46,26 @@
 // 		last->next = newtok;
 // 	}
 // }
-// int	alloc_arg(t_token *tmp)
-// {
-// 	int	size;
-// 	int	flag;
 
-// 	size = 0;
-// 	flag = 0;
-// 	while (tmp)
-// 	{
-// 		if (tmp->operator == 1 && tmp->type != SPACE)
-// 			break ;
-// 		size++;
-// 		tmp = tmp->next;
-// 	}
-// 	return (size);
-// }
+int	alloc_arg(t_token *tmp)
+{
+	int	size;
+	int	flag;
+
+	size = 0;
+	flag = 0;
+	if (tmp->type == PIPE)
+		tmp = tmp->next;
+	while (tmp)
+	{
+		if (tmp->type == PIPE)
+			break ;
+		if (tmp->type == WORD || tmp->type == VAR || tmp->type == SPACE)
+			size++;
+		tmp = tmp->next;
+	}
+	return (size);
+}
 
 // void	check_list_or_arg(t_token *tmp, t_parse **list, int *flag, int *count)
 // {
@@ -123,41 +116,56 @@
 
 // void	check_parce_list(t_token *tmp, t_parse **list, int *flag, int *count)
 // {
+// 	t_parse		*pars;
+
+// 	pars = *list;
 // 	if (tmp->type == PIPE)
 // 		*flag = 1;
 // 	if (*flag == 0)
-// }
-
-
-// t_parse	*parser_list(t_token *list_tokens, int *is_alloc)
-// {
-// 	t_parse	*lst;
-// 	t_token	*tmp;
-// 	int		i;
-// 	int		flag;
-
-// 	tmp = list_tokens;
-// 	lst = NULL;
-// 	i = 0;
-// 	flag = 0;
-// 	// *(pars->arg) = NULL;
-// 	while (tmp)
 // 	{
-// 		check_parce_list(tmp, &lst, &flag, is_alloc);
-// 		// lst = lst->next;
-// 		// printf ("test\n");
-// 		tmp = tmp->next;
+// 		while (pars->next)
+// 			pars = pars->next;
+		
 // 	}
-// 	return (lst);
 // }
 
-// void	parser(t_token	*list_tokens)
-// {
-// 	int		is_alloc;
 
-// 	is_alloc = 0;
-// 	parser_list(list_tokens, &is_alloc);
-// }
+t_parse	*parser_list(t_token *list_tokens, int *is_alloc, int count)
+{
+	t_parse	*lst;
+	t_token	*tmp;
+	int		i;
+
+	// int		flag;
+
+	tmp = list_tokens;
+	lst = NULL;
+	i = 0;
+	// flag = 0;
+	// *(pars->arg) = NULL;
+	while (tmp)
+	{
+		if (*is_alloc == 0 || tmp->type == PIPE)
+		{
+			count = alloc_arg(tmp);
+			printf("count alloc = %d\n", count);
+			*is_alloc = 1;
+		}
+		// check_parce_list(tmp, &lst, &flag, count);
+		tmp = tmp->next;
+	}
+	return (lst);
+}
+
+void	parser(t_token	*list_tokens)
+{
+	int		is_alloc;
+	int		count;
+
+	is_alloc = 0;
+	count = 0;
+	parser_list(list_tokens, &is_alloc, count);
+}
 
 // t_parse	*parser_list(t_token *list_tokens, int *is_alloc)
 // {

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/16 20:46:16 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/17 21:56:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	print(t_token *lst)
 	while (tmp && tmp->content)
 	{
 		printf("[cmd]  : |%s|\n", tmp->content);
-		// printf("[type] : %d\n", tmp->type);
+		printf("[type] : %d\n", tmp->type);
 		printf("[is_op] : %d\n", tmp->operator);
-		printf("[path] : %s\n", tmp->path);
+		// printf("[path] : %s\n", tmp->path);
 		printf("------------------\n");
 		tmp = tmp->next;
 		i++;
@@ -90,7 +90,7 @@ int	main(int argc, char **argv, char **envp)
 			add_history(cmd);
 			list_tokens = divide(cmd, env);
 			print(list_tokens);
-			// parser(list_tokens);
+			parser(list_tokens);
 			printf("\n*********************\n");
 		}
 		free (cmd);
