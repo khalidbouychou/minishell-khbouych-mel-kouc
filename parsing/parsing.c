@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/18 00:02:17 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/18 23:30:13 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,6 @@
 // 	}
 // }
 
-int	alloc_arg(t_token *tmp)
-{
-	int	size;
-	int	flag;
-
-	size = 0;
-	flag = 0;
-	if (tmp->type == PIPE)
-		tmp = tmp->next;
-	while (tmp)
-	{
-		if (tmp->type == PIPE)
-			break ;
-		if (tmp->type == WORD || tmp->type == VAR || tmp->type == SPACE)
-			size++;
-		tmp = tmp->next;
-	}
-	return (size);
-}
 
 // void	check_list_or_arg(t_token *tmp, t_parse **list, int *flag, int *count)
 // {
@@ -114,21 +95,67 @@ int	alloc_arg(t_token *tmp)
 // 	}
 // }
 
+int	alloc_arg(t_token *tmp)
+{
+	int	size;
+	int	flag;
+
+	size = 0;
+	flag = 0;
+	// if (tmp->type == PIPE)
+	// 	tmp = tmp->next;
+	while (tmp)
+	{
+		if (tmp->type == PIPE)
+			break ;
+		if (tmp->type == WORD || tmp->type == VAR || tmp->type == SPACE)
+			size++;
+		tmp = tmp->next;
+	}
+	return (size);
+}
+
+// t_parse	*ft_init_parser(t_token *tmp)
+// {
+// 	t_parse	*new_p;
+
+// 	new_p = NULL;
+// 	new_p = malloc(sizeof(t_parse));
+// 	// new_p->content = tmp->content;
+// 	// printf("new_p = |%s|\n", new_p->content);
+// 	// ft_get_type(new_p);
+// 	// new_p->path = ft_get_path(env, cmd);
+// 	new_p->next = NULL;
+// 	return (new_p);
+// }
+
+// void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok)
+// {
+// 	t_parse	*last;
+
+// 	if (*lst_tok == NULL)
+// 		*lst_tok = newtok;
+// 	else
+// 	{
+// 		last = ft_last_parser(*lst_tok);
+// 		last->next = newtok;
+// 	}
+// }
+
 // void	check_parce_list(t_token *tmp, t_parse **list, int *flag, int *count)
 // {
 // 	t_parse		*pars;
 
 // 	pars = *list;
-// 	if (tmp->type == PIPE)
-// 		*flag = 1;
-// 	if (*flag == 0)
-// 	{
+// 	// if (tmp->type == PIPE)
+// 	// 	*flag = 1;
+// 	// if (*flag == 0)
+// 	// {
 // 		while (pars->next)
 // 			pars = pars->next;
-		
-// 	}
+// 		add_to_list_parser(list, ft_init_parser(tmp));
+// 	// }
 // }
-
 
 t_parse	*parser_list(t_token *list_tokens, int *is_alloc, int count)
 {
@@ -145,13 +172,15 @@ t_parse	*parser_list(t_token *list_tokens, int *is_alloc, int count)
 	// *(pars->arg) = NULL;
 	while (tmp)
 	{
-		if (*is_alloc == 0 || tmp->type == PIPE)
+		if (*is_alloc == 0)
 		{
 			count = alloc_arg(tmp);
 			printf("count alloc = %d\n", count);
 			*is_alloc = 1;
+			// check_parce_list(tmp, &lst, &flag, count);
 		}
-		// check_parce_list(tmp, &lst, &flag, count);
+		if (tmp->type == PIPE)
+			*is_alloc = 0;
 		tmp = tmp->next;
 	}
 	return (lst);

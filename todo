@@ -55,3 +55,7 @@ export
     ----->  echo $a           -> ls
     ----->  export a+=last
     ----->  echo $a           -> lslast
+
+
+what we will do in this example about linked list 
+            echo hello test | > test
