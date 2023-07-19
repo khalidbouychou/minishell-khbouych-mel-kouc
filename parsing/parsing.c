@@ -6,46 +6,11 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/18 23:30:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/19 17:49:38 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-
-///////////////////// this code is to maintene parser
-// t_parse	*ft_last_parser(t_parse *lst)
-// {
-// 	if (!lst)
-// 		return (0);
-// 	while (lst->next != NULL)
-// 		lst = lst->next;
-// 	return (lst);
-// }
-// t_parse	*ft_init_parser(t_token *tmp)
-// {
-// 	t_parse	*new_p;
-
-// 	new_p = NULL;
-// 	new_p = malloc(sizeof(t_parse));
-// 	new_p->content = tmp->content;
-// 	printf("new_p = |%s|\n", new_p->content);
-// 	// ft_get_type(new_p);
-// 	// new_p->path = ft_get_path(env, cmd);
-// 	new_p->next = NULL;
-// 	return (new_p);
-// }
-// void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok)
-// {
-// 	t_parse	*last;
-
-// 	if (*lst_tok == NULL)
-// 		*lst_tok = newtok;
-// 	else
-// 	{
-// 		last = ft_last_parser(*lst_tok);
-// 		last->next = newtok;
-// 	}
-// }
 
 
 // void	check_list_or_arg(t_token *tmp, t_parse **list, int *flag, int *count)
@@ -95,67 +60,50 @@
 // 	}
 // }
 
-int	alloc_arg(t_token *tmp)
-{
-	int	size;
-	int	flag;
+// add_to_arg()
 
-	size = 0;
-	flag = 0;
-	// if (tmp->type == PIPE)
-	// 	tmp = tmp->next;
+void	push_arg(t_token *tmp, t_parse	*new_p, int *i)
+{
 	while (tmp)
 	{
-		if (tmp->type == PIPE)
+		while (tmp && tmp->type != PIPE && (tmp->type == WORD
+				|| tmp->type == VAR || tmp->type == SPACE))
+		{
+			new_p->arg[++(*i)] = ft_strdup(tmp->content);
+			printf("new_p->arg[%d] = |%s|\n", *i, new_p->arg[*i]);
+			if (!tmp->next || tmp->next->type == PIPE)
+				break ;
+			tmp = tmp->next;
+		}
+		if (!tmp->next || tmp->next->type == PIPE)
+		{
+			new_p->arg[++(*i)] = NULL;
+			printf("new_p->arg[%d] = |%s|\n", *i, new_p->arg[*i]);
+		}
+		// if (tmp && (tmp->type == INPUT || tmp->type == OUTPUT
+		// 		|| tmp->type == HERDOC || tmp->type == APPND))
+		// 	ft_handle_oper(tmp);
+		if (!tmp || tmp->type == PIPE)
 			break ;
-		if (tmp->type == WORD || tmp->type == VAR || tmp->type == SPACE)
-			size++;
 		tmp = tmp->next;
 	}
-	return (size);
 }
 
-// t_parse	*ft_init_parser(t_token *tmp)
-// {
-// 	t_parse	*new_p;
+t_parse	*ft_list_parser(t_token *tmp, int count)
+{
+	t_parse	*new_p;
+	int		i;
 
-// 	new_p = NULL;
-// 	new_p = malloc(sizeof(t_parse));
-// 	// new_p->content = tmp->content;
-// 	// printf("new_p = |%s|\n", new_p->content);
-// 	// ft_get_type(new_p);
-// 	// new_p->path = ft_get_path(env, cmd);
-// 	new_p->next = NULL;
-// 	return (new_p);
-// }
-
-// void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok)
-// {
-// 	t_parse	*last;
-
-// 	if (*lst_tok == NULL)
-// 		*lst_tok = newtok;
-// 	else
-// 	{
-// 		last = ft_last_parser(*lst_tok);
-// 		last->next = newtok;
-// 	}
-// }
-
-// void	check_parce_list(t_token *tmp, t_parse **list, int *flag, int *count)
-// {
-// 	t_parse		*pars;
-
-// 	pars = *list;
-// 	// if (tmp->type == PIPE)
-// 	// 	*flag = 1;
-// 	// if (*flag == 0)
-// 	// {
-// 		while (pars->next)
-// 			pars = pars->next;
-// 		add_to_list_parser(list, ft_init_parser(tmp));
-// 	// }
-// }
+	i = -1;
+	new_p = NULL;
+	new_p = malloc(sizeof(t_parse));
+	new_p->arg = malloc(sizeof(char *) * ((count) + 1));
+	push_arg(tmp, new_p, &i);
+	// ft_get_type(new_p);
+	// new_p->path = ft_get_path(env, cmd);
+	new_p->next = NULL;
+	return (new_p);
+}
 
 t_parse	*parser_list(t_token *list_tokens, int *is_alloc, int count)
 {
@@ -163,21 +111,22 @@ t_parse	*parser_list(t_token *list_tokens, int *is_alloc, int count)
 	t_token	*tmp;
 	int		i;
 
-	// int		flag;
-
 	tmp = list_tokens;
 	lst = NULL;
+	lst = malloc(sizeof(t_parse));
 	i = 0;
-	// flag = 0;
-	// *(pars->arg) = NULL;
+	init_parce(lst);
+	printf("*list->fd_input = %d\n", lst->fd_input);
+	printf("*list->fd_input = %d\n", lst->fd_output);
+	printf("*list->fd_input = %d\n", lst->fd_heredoc);
 	while (tmp)
 	{
 		if (*is_alloc == 0)
 		{
 			count = alloc_arg(tmp);
-			printf("count alloc = %d\n", count);
+			printf("count alloc = %d\n", count + 1);
+			add_to_list_parser(&lst, ft_list_parser(tmp, count));
 			*is_alloc = 1;
-			// check_parce_list(tmp, &lst, &flag, count);
 		}
 		if (tmp->type == PIPE)
 			*is_alloc = 0;
@@ -186,15 +135,15 @@ t_parse	*parser_list(t_token *list_tokens, int *is_alloc, int count)
 	return (lst);
 }
 
-void	parser(t_token	*list_tokens)
-{
-	int		is_alloc;
-	int		count;
+// void	parser(t_token	*list_tokens)
+// {
+// 	int		is_alloc;
+// 	int		count;
 
-	is_alloc = 0;
-	count = 0;
-	parser_list(list_tokens, &is_alloc, count);
-}
+// 	is_alloc = 0;
+// 	count = 0;
+// 	parser_list(list_tokens, &is_alloc, count);
+// }
 
 // t_parse	*parser_list(t_token *list_tokens, int *is_alloc)
 // {

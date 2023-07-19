@@ -2,6 +2,7 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "bitset": "c",
-        "__node_handle": "c"
+        "__node_handle": "c",
+        "ios": "c"
     }
 }

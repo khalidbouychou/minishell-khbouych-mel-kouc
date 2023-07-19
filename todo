@@ -57,5 +57,7 @@ export
     ----->  echo $a           -> lslast
 
 
-what we will do in this example about linked list 
-            echo hello test | > test
+    echo hello test | > test
+
+echo test EE$HOME
+echo  test | ls -la $HOME  < test

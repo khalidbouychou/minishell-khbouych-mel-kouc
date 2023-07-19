@@ -1,16 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_word.c                                        :+:      :+:    :+:   */
+/*   util_lst_parce.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/24 11:13:29 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/19 17:41:06 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
+
+t_parse	*ft_last_parser(t_parse *lst)
+{
+	if (!lst)
+		return (0);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}
+
+int	alloc_arg(t_token *tmp)
+{
+	int	size;
+	int	flag;
+
+	size = 0;
+	flag = 0;
+	while (tmp)
+	{
+		if (tmp->type == PIPE)
+			break ;
+		if (tmp->type == WORD || tmp->type == VAR || tmp->type == SPACE)
+			size++;
+		tmp = tmp->next;
+	}
+	return (size);
+}
+
+void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok)
+{
+	t_parse	*last;
+
+	if (*lst_tok == NULL)
+		*lst_tok = newtok;
+	else
+	{
+		last = ft_last_parser(*lst_tok);
+		last->next = newtok;
+	}
+}
+
+void	init_parce(t_parse *list)
+{
+	list->fd_input = -4;
+	list->fd_output = -5;
+	list->fd_heredoc = -6;
+	list->name = NULL;
+	list->arg = NULL;
+}
 
 // void	ft_strcopy(char *s1, char *s2, int j)
 // {
