@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:40:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/22 16:22:39 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:27:37 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,3 +56,4 @@ char	*ft_strtrim(char *s1, char *set)
 		lens2--;
 	return (ft_substr(s1, i, lens2 + 1 - i));
 }
+

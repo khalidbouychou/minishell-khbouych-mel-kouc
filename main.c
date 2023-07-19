@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 17:49:44 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/19 20:08:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ void	print(t_token *lst)
 	i = 0;
 	tmp = lst;
 	i = 0;
-	printf("\n------------------\n");
+	printf("\n------------------------------------\n");
 	while (tmp && tmp->content)
 	{
-		printf("[cmd]  : |%s|\n", tmp->content);
-		printf("[type] : %d\n", tmp->type);
-		printf("[is_op] : %d\n", tmp->operator);
-		// printf("[path] : %s\n", tmp->path);
-		printf("------------------\n");
-		tmp = tmp->next;
+		printf("√ cmd\t--> (%s)\n", tmp->content);
+		printf("√ type\t--> (%d)\n", tmp->type);
+		printf("√ is_op\t--> (%d)\n", tmp->operator);
+		// printf("√ path\t--> (%s)\n", tmp->path);
+		printf("------------------------------------\n");
+ 		tmp = tmp->next;
 		i++;
 	}
 }
@@ -82,6 +82,7 @@ int	main(int argc, char **argv, char **envp)
 	env = NULL;
 	list_tokens = NULL;
 	env = env_list(envp);
+	// ft_echo(argv,1);
 	while (1)
 	{
 		cmd = readline("minishell ~> ");
