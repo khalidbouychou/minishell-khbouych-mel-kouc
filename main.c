@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 20:29:24 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/19 21:57:27 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int argc, char **argv, char **envp)
 			add_history(cmd);
 			list_tokens = divide(cmd, env);
 			print(list_tokens);
-			// parser(list_tokens);
+			parser(list_tokens);
 			printf("\n*********************\n");
 		}
 		free (cmd);

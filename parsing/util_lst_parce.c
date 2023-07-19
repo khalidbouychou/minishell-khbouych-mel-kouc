@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/19 17:41:06 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/19 21:56:21 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok)
 		*lst_tok = newtok;
 	else
 	{
+		printf("\n the error is after this line \n");
 		last = ft_last_parser(*lst_tok);
+		printf("\n the error is befor this line \n");
 		last->next = newtok;
 	}
 }
