@@ -6,56 +6,71 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 15:50:34 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:39:30 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	ft_strlcpy(char *dst, char *src, size_t dstsize)
-{
-	size_t	i;
+// void	ft_strlcpy(char *dst, char *src, int dstsize)
+// {
+// 	int	i;
 
-	i = 0;
-	if (dstsize > 0)
-	{
-		while (src[i] && i < dstsize - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = 0;
-	}
+// 	i = 0;
+// 	while (src[i] && i < dstsize)
+// 	{
+// 		dst[i] = src[i];
+// 		i++;
+// 	}
+// 	dst[i] = '\0';
+// }
+
+// void	ft_strcpy(char* dest, const char* src)
+// {
+//     if (dest == NULL || src == NULL)
+//         return ;
+
+//     char* ptr = dest;
+
+//     while (*src != '\0') {
+//         *ptr = *src;
+//         ptr++;
+//         src++;
+//     }
+//     *ptr = '\0';
+// }
+
+void	ft_hard_copy(char *k ,char *v, t_env *e1, t_env *e2)
+{
+	ft_strcpy(k, e1->key);
+	ft_strcpy(v, e1->value);
+	ft_strcpy(e1->key, e2->key);
+	ft_strcpy(e1->value, e2->value);
+	ft_strcpy(e1->key, k);
+	ft_strcpy(e1->value, v);
 }
 
-void	ft_hard_copy(char *k char *v, t_env *e1, t_env *e2)
-{
-	ft_strlcpy(k, e1->key, ft_strlen(e1->key));
-	ft_strlcpy(v, e1->value, ft_strlen(e1->value));
-	ft_strlcpy(e1->key, e2->key, ft_strlen(e2->key));
-	ft_strlcpy(e1->value, e2->value, ft_strlen(e2->value));
-	ft_strlcpy(e1->key, k, ft_strlen(k));
-	ft_strlcpy(e1->value, v, ft_strlen(v));
-}
-
-int	ft_sortlist(t_env *cpy_env)
+void	ft_sortlist(t_env *cpy_env)
 {
 	int		i;
 	t_env	*tmp;
 	t_env	*next;
-	char	*_key;
-	char	*_value;
+	char	*_key = NULL;
+	char	*_value = NULL;
 
 	i = 0;
 	tmp = cpy_env;
-	next = tmp->next;
-	while (tmp)
+	next = cpy_env->next;
+	while (tmp && next)
 	{
 		if (tmp->key[0] > next->key[0])
+		{
+			// puts("ddd\n");
 			ft_hard_copy(_key, _value, tmp, next);
-		tmp = tmp.next;
+		}
+		tmp = tmp->next;
+		next = next->next;
 	}
-	return (0);
 }
 
 int	ft_check_ifkey_valid(char *key)
@@ -77,7 +92,9 @@ int	ft_check_ifkey_valid(char *key)
 	return (1);
 }
 
-int	ft_export(char **arg, t_env *env)
+void	ft_export(char **arg, t_env *env)
 {
-	return (1);
+	(void)arg;
+	ft_sortlist(env);
+	ft_print_env(env);
 }
