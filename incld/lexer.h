@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:09:11 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 11:33:33 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:38:56 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ typedef struct s_variable
 }t_exp;
 
 void	ft_expander(t_token *tok, t_env *env);
+void	ft_strcpy(char *dest, char *src);
 #endif

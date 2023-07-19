@@ -6,15 +6,15 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/16 17:27:35 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:38:33 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "../incld/minishell.h"
+#include "../incld/minishell.h"
 
-char	*ft_strncpy(char *dest, char *src, int len)
+char *ft_strncpy(char *dest, char *src, int len)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (src[i] && i < len)
@@ -26,18 +26,19 @@ char	*ft_strncpy(char *dest, char *src, int len)
 	return (dest);
 }
 
-char	*ft_strcpy(char *dest, char *src)
+void ft_strcpy(char *dest, char *src)
 {
-	int	i;
+	int i;
 
 	i = 0;
+	// if (dest == NULL || src == NULL)
+	// 	return NULL;
 	while (src[i])
 	{
 		dest[i] = src[i];
 		i++;
 	}
 	dest[i] = '\0';
-	return (dest);
 }
 
 int	check_spases(t_token *tmp)

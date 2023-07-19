@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 20:08:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/19 20:29:24 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int argc, char **argv, char **envp)
 	env = NULL;
 	list_tokens = NULL;
 	env = env_list(envp);
+	// ft_export(argv,env);
 	// ft_echo(argv,1);
 	while (1)
 	{
