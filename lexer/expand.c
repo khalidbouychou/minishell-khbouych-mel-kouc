@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 17:44:24 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/19 20:39:42 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_expander(t_token *tok, t_env *env)
 			res = ft_strjoin(res, ft_expandhelp(tmp->content, env));
 			tmp->content = res;
 		}
-		res = ft_strjoin(res, tmp->content);
+		// res = ft_strjoin(res, tmp->content);
 		tmp = tmp->next;
 	}
 }
