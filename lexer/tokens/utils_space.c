@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/16 17:33:12 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:07:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,24 @@ void	space_after_cmd(t_token **lst)
 	}
 }
 
+void	ft_tolower(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] >= 'A' && s[i] <= 'Z')
+			s[i] += 32;
+		i++;
+	}
+}
+
 t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space)
 {
+	ft_tolower(tmp->content);
 	if (!ft_strncmp(tmp->content, "echo", 5))
-	{
-		while ((ptr && ptr->operator == 0)
-			|| (ptr && ptr->operator == 1 && ptr->type == SPACE))
-			ptr = ptr->next;
-	}
+		ptr = echo_and_n(ptr, space);
 	else
 	{
 		while (ptr && ptr->operator == 0 && ptr->type != SPACE)
@@ -127,7 +137,8 @@ void	check_cmd(t_token **lst)
 	while (tmp)
 	{
 		ptr = tmp->next;
-		ptr = check_echo(tmp, ptr, space);
+		if (ptr)
+			ptr = check_echo(tmp, ptr, space);
 		if (!ptr)
 			break ;
 		tmp = ptr->next;

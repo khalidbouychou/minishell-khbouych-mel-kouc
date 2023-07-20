@@ -6,11 +6,19 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/20 12:55:42 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/20 23:10:57 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
+
+// void	ft_handle_oper(t_token *tmp)
+// {
+// 	int	file_descriptor;
+
+// 	if (tmp->type == OUTPUT)
+// 		file_descriptor = open(file_name, O_WRONLY | O_CREAT | O_TRUNC);
+// }
 
 void	push_arg(t_token *tmp, t_parse	*new_p, int *i)
 {
@@ -30,7 +38,6 @@ void	push_arg(t_token *tmp, t_parse	*new_p, int *i)
 			new_p->arg[++(*i)] = NULL;
 			printf("new_p->arg[%d] = |%s|\n", *i, new_p->arg[*i]);
 		}
-        // printf("\nKHOURIBGA  CASA\n");
 		// if (tmp && (tmp->type == INPUT || tmp->type == OUTPUT
 		// 		|| tmp->type == HERDOC || tmp->type == APPND))
 		// 	ft_handle_oper(tmp);
@@ -92,10 +99,10 @@ t_parse	*parser_list(t_token *list_tokens, int *is_alloc)
 void	parser(t_token	*list_tokens)
 {
 	int		is_alloc;
-	int		count;
+	// int		count;
 
 	is_alloc = 0;
-	count = 0;
+	// count = 0;
 	parser_list(list_tokens, &is_alloc);
 	// parser_list(list_tokens, &is_alloc, count);
 }

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 18:38:33 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/20 23:40:50 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-char *ft_strncpy(char *dest, char *src, int len)
+char	*ft_strncpy(char *dest, char *src, int len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (src[i] && i < len)
@@ -26,7 +26,7 @@ char *ft_strncpy(char *dest, char *src, int len)
 	return (dest);
 }
 
-void ft_strcpy(char *dest, char *src)
+void	ft_strcpy(char *dest, char *src)
 {
 	int i;
 
@@ -59,6 +59,55 @@ void	ft_set_oper(t_token *tok)
 		tok->operator = 1;
 	else
 		tok->operator = 0;
+}
+
+t_token	*test(t_token *ptr)
+{
+	int	flag;
+
+	flag = 0;
+	if (ptr->next && ((ptr->type == FIL && (ptr->next->type == VAR || ptr->next->type == WORD))
+		|| (ptr->type == VAR && (ptr->next->type == WORD || ptr->next->type == VAR))
+			|| (ptr->type == WORD && (ptr->next->type == WORD || ptr->next->type == VAR) )) )
+	{
+		// ptr->next->content = 
+		flag = 1;
+		printf("\n here we go againg \n");
+		// ptr = ptr->next;
+	}
+	return (ptr);
+}
+
+t_token	*echo_and_n(t_token *ptr, t_token *space)
+{
+	if (ft_check_n(ptr->content))
+	{
+		space = ptr->next;
+		if (space && space->type == SPACE)
+		{
+			ptr->next = space->next;
+			space->next->prev = ptr;
+			free (space);
+		}
+		ptr = ptr->next;
+	}
+	else
+	{
+		while ((ptr && ptr->operator == 0)
+			|| (ptr && ptr->operator == 1 && ptr->type == SPACE))
+			ptr = ptr->next;
+		while ((ptr && ptr->type != PIPE))
+		{
+			test(ptr);
+		// 	// if (ptr->next && (ptr->type == FIL && (ptr->next->type == VAR || ptr->next->type == WORD))
+		// 	// 	|| (ptr->next->type == VAR || ptr->next->type == VAR)))
+		// 	// {
+				
+		// 	// }
+			ptr = ptr->next;
+		}
+	}
+	return (ptr);
 }
 // int	error_pipe(char *commande)
 // {

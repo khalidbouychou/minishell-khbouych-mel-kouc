@@ -63,6 +63,14 @@ echo  test | ls -la  > txt   eeee$HOME < test     --> segvault ou rien
 
 
 
-khalid : in echo
+echo hello test > file dew
 
-    test -->    ls | echo hello
+
+EXPLIQUE     ---> echo hello test > file $home
+
+
+
+
+explique why spaces is nor remove after FILE LIKE IN EXAPLE  :
+
+    echo hello test > file hello    home < test   q            ll
