@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/19 21:56:21 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:53:32 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_parse	*ft_last_parser(t_parse *lst)
 {
 	if (!lst)
-		return (0);
+		return (NULL);
 	while (lst->next != NULL)
 		lst = lst->next;
 	return (lst);
@@ -24,15 +24,13 @@ t_parse	*ft_last_parser(t_parse *lst)
 int	alloc_arg(t_token *tmp)
 {
 	int	size;
-	int	flag;
 
 	size = 0;
-	flag = 0;
 	while (tmp)
 	{
 		if (tmp->type == PIPE)
 			break ;
-		if (tmp->type == WORD || tmp->type == VAR || tmp->type == SPACE)
+		if ((tmp->type == WORD || tmp->type == VAR || tmp->type == SPACE))
 			size++;
 		tmp = tmp->next;
 	}
@@ -47,20 +45,18 @@ void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok)
 		*lst_tok = newtok;
 	else
 	{
-		printf("\n the error is after this line \n");
 		last = ft_last_parser(*lst_tok);
-		printf("\n the error is befor this line \n");
 		last->next = newtok;
 	}
 }
 
-void	init_parce(t_parse *list)
+void	init_parce(t_parse *new_p)
 {
-	list->fd_input = -4;
-	list->fd_output = -5;
-	list->fd_heredoc = -6;
-	list->name = NULL;
-	list->arg = NULL;
+	new_p->fd_input = -4;
+	new_p->fd_output = -5;
+	new_p->fd_heredoc = -6;
+	new_p->name = NULL;
+	new_p->arg = NULL;
 }
 
 // void	ft_strcopy(char *s1, char *s2, int j)

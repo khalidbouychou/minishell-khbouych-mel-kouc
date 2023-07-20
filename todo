@@ -60,3 +60,9 @@ export
     echo hello test | > test
 
 echo  test | ls -la  > txt   eeee$HOME < test     --> segvault ou rien 
+
+
+
+khalid : in echo
+
+    test -->    ls | echo hello
