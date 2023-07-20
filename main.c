@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 19:51:43 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:40:30 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,9 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	env = NULL;
+	cmd = NULL;
 	list_tokens = NULL;
 	env = env_list(envp);
-	// ft_export(argv,env);
-	// ft_echo(argv,1);
 	while (1)
 	{
 		cmd = readline("minishell ~> ");
@@ -91,7 +90,9 @@ int	main(int argc, char **argv, char **envp)
 		{
 			add_history(cmd);
 			list_tokens = divide(cmd, env);
-			print(list_tokens);
+			ft_export(argv,env);
+			// ft_echo(argv,1);
+			// print(list_tokens);
 			// parser(list_tokens);
 			printf("\n*********************\n");
 		}

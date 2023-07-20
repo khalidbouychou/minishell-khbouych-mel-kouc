@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 16:30:54 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:20:58 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	ft_print_env(t_env *env);
 void	ft_putchar_fd(char c, int fd);
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
-
+int		ft_strcmp(const char *str1, const char *str2);
 #endif

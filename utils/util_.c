@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/22 18:03:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:18:59 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,20 @@ int	ft_strncmp(const char *str1, const char *str2, int n)
 		str1++;
 		str2++;
 		n--;
+	}
+	return ((unsigned char)*str1 - (unsigned char)*str2);
+}
+
+int	ft_strcmp(const char *str1, const char *str2)
+{
+	if (!str1 && !str2)
+		return (0);
+	if (!str1 || !str2)
+		return (1);
+	while (*str1 && *str1 == *str2)
+	{
+		str1++;
+		str2++;
 	}
 	return ((unsigned char)*str1 - (unsigned char)*str2);
 }

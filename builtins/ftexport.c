@@ -6,79 +6,17 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 18:39:30 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:36:43 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-
-// void	ft_strlcpy(char *dst, char *src, int dstsize)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (src[i] && i < dstsize)
-// 	{
-// 		dst[i] = src[i];
-// 		i++;
-// 	}
-// 	dst[i] = '\0';
-// }
-
-// void	ft_strcpy(char* dest, const char* src)
-// {
-//     if (dest == NULL || src == NULL)
-//         return ;
-
-//     char* ptr = dest;
-
-//     while (*src != '\0') {
-//         *ptr = *src;
-//         ptr++;
-//         src++;
-//     }
-//     *ptr = '\0';
-// }
-
-void	ft_hard_copy(char *k ,char *v, t_env *e1, t_env *e2)
-{
-	ft_strcpy(k, e1->key);
-	ft_strcpy(v, e1->value);
-	ft_strcpy(e1->key, e2->key);
-	ft_strcpy(e1->value, e2->value);
-	ft_strcpy(e1->key, k);
-	ft_strcpy(e1->value, v);
-}
-
-void	ft_sortlist(t_env *cpy_env)
-{
-	int		i;
-	t_env	*tmp;
-	t_env	*next;
-	char	*_key = NULL;
-	char	*_value = NULL;
-
-	i = 0;
-	tmp = cpy_env;
-	next = cpy_env->next;
-	while (tmp && next)
-	{
-		if (tmp->key[0] > next->key[0])
-		{
-			// puts("ddd\n");
-			ft_hard_copy(_key, _value, tmp, next);
-		}
-		tmp = tmp->next;
-		next = next->next;
-	}
-}
 
 int	ft_check_ifkey_valid(char *key)
 {
 	int	i;
 
 	i = 0;
-
 	if (key[0] != '_' || key[ft_strlen(key) - 1] != '_'
 		|| !ft_isalpha(key[0]) || !ft_isalpha(key[ft_strlen(key) - 1])
 		|| key[ft_strlen(key) - 1] != '+')
@@ -92,9 +30,112 @@ int	ft_check_ifkey_valid(char *key)
 	return (1);
 }
 
-void	ft_export(char **arg, t_env *env)
+char	**ft_get_keys_tab(env, size)
 {
+	char	**res;
+	t_env	*head;
+	int		i;
+
+	i = -1;
+	head = env;
+	res = (char **)malloc(sizeof(char *) * size + 1);
+	while (head)
+	{
+		if (head->key != NULL)
+			res[++i] = ft_strdup(head->key);
+		head = head->next;
+	}
+	res[i] = NULL;
+	return (res);
+}
+
+void	ft_sort_keys(char **tab_keys, int i, int j)
+{
+	char	*swap;
+
+	if (!tab_keys[j])
+		return ;
+	if (ft_strcmp(tab_keys[i], tab_keys[j]) > 0)
+	{
+		swap = tab_keys[i];
+		tab_keys[i] = tab_keys[j];
+		tab_keys[j] = swap;
+	}
+	ft_sort_keys(tab_keys, i, j++);
+	ft_sort_keys(tab_keys, i++, 0);
+}
+
+void	ft_print_export(char *key1, char *value)
+{
+	if (value != NULL)
+		printf ("declare -x %s=\"%s\"\n", key, value);
+	else
+		printf ("declare -x %s\n", key);
+}
+
+void	ft_print_after_sort(t_env *env, char **tab_keys)
+{
+	int		i;
+	t_env	*head;
+
+	head = env;
+	while (head)
+	{
+		i = 0;
+		while (tab_keysp[i])
+		{
+			if (!ft_strcmp(head->key, tab_keys[i]))
+			{
+				ft_print_export(tab_keys[i], head->value);
+				break ;
+			}
+			i++;
+		}
+		head = head->next;
+	}
+}
+
+void	ft_sorting_export(t_env *env)
+{
+	int		size;
+	char	**tab_keys;
+	t_env	*head_env;
+	int		i;
+	int		j;
+
 	(void)arg;
-	ft_sortlist(env);
-	ft_print_env(env);
+	head_env = env;
+	tab_keys = NULL;
+	size = 0;
+	head_env = env;
+	while (head_env)
+	{
+		size += 1;
+		head_env = head_env->next;
+	}
+	tab_keys = ft_get_keys_tab(env, size);
+	ft_sort_tabkeys(tab_keys, i, j);
+	ft_print_after_sort(env, tab_keys);
+}
+
+void	ft_export(char **export , t_env **env)
+{
+	t_env	*_env;
+	int		i;
+
+	_env = (*env);
+	i = 1;
+	if(export[i])
+	{
+		while (export[i])
+		{
+			ft_exp_vars(export[i], env)
+			return ;
+		}
+	}
+	else
+	{
+		ft_sorting_export(env);
+		return ;
+	}
 }
