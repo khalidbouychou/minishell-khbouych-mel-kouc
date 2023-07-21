@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/21 12:57:55 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/21 21:27:37 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,17 @@ void	space_after_cmd(t_token **lst)
 	}
 }
 
-t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space)
+t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space, int *flag)
 {
 	ft_tolower(tmp->content);
 	if (!ft_strncmp(tmp->content, "echo", 5))
+	{
 		ptr = echo_and_n(ptr, space);
+		*flag = 1;
+	}
 	else
 	{
-		while (ptr && ptr->operator == 0 && ptr->type != SPACE)
+		while (ptr && ptr->operator == 0 && ptr->type != SPACE && *flag == 0)
 		{
 			space = ptr->next;
 			if (space && space->type == SPACE)
@@ -118,14 +121,16 @@ void	check_cmd(t_token **lst)
 	t_token	*tmp;
 	t_token	*ptr;
 	t_token	*space;
+	int		flag;
 
+	flag = 0;
 	space = NULL;
 	tmp = *lst;
 	while (tmp)
 	{
 		ptr = tmp->next;
 		if (ptr)
-			ptr = check_echo(tmp, ptr, space);
+			ptr = check_echo(tmp, ptr, space, &flag);
 		if (!ptr)
 			break ;
 		tmp = ptr->next;

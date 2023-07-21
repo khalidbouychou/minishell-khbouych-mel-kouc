@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/21 13:06:02 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/21 21:27:03 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_set_oper(t_token *tok)
 		tok->operator = 0;
 }
 
-void	test(t_token *ptr)
+void	add_node_space(t_token *ptr)
 {
 	int		flag;
 	t_token	*new;
@@ -67,50 +67,25 @@ t_token	*echo_and_n(t_token *ptr, t_token *space)
 {
 	if (ft_check_n(ptr->content))
 	{
-		space = ptr->next;
-		if (space && space->type == SPACE)
+		while (ft_check_n(ptr->content))
 		{
-			ptr->next = space->next;
-			space->next->prev = ptr;
-			free (space);
+			space = ptr->next;
+			if (space && space->type == SPACE)
+			{
+				ptr->next = space->next;
+				space->next->prev = ptr;
+				free (space);
+			}
+			ptr = ptr->next;
 		}
-		ptr = ptr->next;
 	}
-	else
+	while ((ptr && ptr->operator == 0)
+		|| (ptr && ptr->operator == 1 && ptr->type == SPACE))
+		ptr = ptr->next;
+	while ((ptr && ptr->type != PIPE))
 	{
-		while ((ptr && ptr->operator == 0)
-			|| (ptr && ptr->operator == 1 && ptr->type == SPACE))
-			ptr = ptr->next;
-		while ((ptr && ptr->type != PIPE))
-		{
-			test(ptr);
-			ptr = ptr->next;
-		}
+		add_node_space(ptr);
+		ptr = ptr->next;
 	}
 	return (ptr);
 }
-// int	error_pipe(char *commande)
-// {
-// 	int	i;
-// 	int	pipe_index;
-
-// 	i = 0;
-
-// 	pipe_index = ft_strchr(commande, '|');
-// 	if (commande[0] == '|')
-// 		return (0);
-// 	if (pipe_index != -1 && !check_spases(commande, pipe_index))
-// 		return (0);
-// 	i++;
-// 	return (1);
-// }
-
-// char	*lexer(char *commande)
-// {
-// 	if (!error_pipe(commande))
-// 	{
-// 		printf("error");
-// 		exit(1);
-// 	}
-// 	return (commande);
-// }
