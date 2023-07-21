@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/18 22:17:09 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:09:29 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_echo(char **arg, int fd)
 	int	i;
 	int	j;
 	int	nline;
-
+	(void)fd;
 	i = 2;
 	j = 0;
 	nline = ft_check_n(arg[2]);
@@ -46,12 +46,13 @@ void	ft_echo(char **arg, int fd)
 	{
 		while (arg[i] && ft_check_n(arg[i]))
 			i++;
-		write(fd, &arg[i++], 1);
-		// printf(" %s",arg[i++]);
+		// write(fd, &arg[i++], 1);
+		printf(" %s",arg[i++]);
 	}
 	if (!ft_check_n(arg[2]))
 	{
-		write(1,"\n",fd);
+		// write(1,"\n",fd);
+		printf("\n");
 		return ;
 	}
 }

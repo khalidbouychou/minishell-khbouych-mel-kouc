@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 19:51:43 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:08:47 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	l()
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*cmd;
+	// char	*cmd;
 	t_env	*env;
 	t_token	*list_tokens;
 
@@ -83,18 +83,18 @@ int	main(int argc, char **argv, char **envp)
 	list_tokens = NULL;
 	env = env_list(envp);
 	// ft_export(argv,env);
-	// ft_echo(argv,1);
-	while (1)
-	{
-		cmd = readline("minishell ~> ");
-		if (*cmd)
-		{
-			add_history(cmd);
-			list_tokens = divide(cmd, env);
-			print(list_tokens);
-			// parser(list_tokens);
-			printf("\n*********************\n");
-		}
-		free (cmd);
-	}
+		ft_echo(argv,1);
+	// while (1)
+	// {
+	// 	cmd = readline("minishell ~> ");
+	// 	if (*cmd)
+	// 	{
+	// 		add_history(cmd);
+	// 		list_tokens = divide(cmd, env);
+	// 		print(list_tokens);
+	// 		// parser(list_tokens);
+	// 		printf("\n*********************\n");
+	// 	}
+	// 	free (cmd);
+	// }
 }
