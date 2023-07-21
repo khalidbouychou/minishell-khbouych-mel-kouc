@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftecho.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/18 22:17:09 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:38:05 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_echo(char **arg, int fd)
 
 	i = 2;
 	j = 0;
-	nline = ft_check_n(arg[2]);
 	while (arg[i])
 	{
 		while (arg[i] && ft_check_n(arg[i]))

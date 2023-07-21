@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/20 23:40:50 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:22:15 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ t_token	*test(t_token *ptr)
 	int	flag;
 
 	flag = 0;
-	if (ptr->next && ((ptr->type == FIL && (ptr->next->type == VAR || ptr->next->type == WORD))
-		|| (ptr->type == VAR && (ptr->next->type == WORD || ptr->next->type == VAR))
-			|| (ptr->type == WORD && (ptr->next->type == WORD || ptr->next->type == VAR) )) )
+	if (ptr->next && ((ptr->type == FIL
+				&& (ptr->next->type == VAR || ptr->next->type == WORD))
+	))
 	{
+		ft_init_token(" ",0, 1, env);
 		// ptr->next->content = 
 		flag = 1;
 		printf("\n here we go againg \n");
