@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/21 10:38:05 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/21 11:04:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	ft_echo(char **arg, int fd)
 {
 	int	i;
 	int	j;
-	int	nline;
 
 	i = 2;
 	j = 0;

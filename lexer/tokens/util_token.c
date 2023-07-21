@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 20:03:38 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/21 11:00:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,13 @@ void	ft_get_type(t_token *tok)
 	ft_set_oper(tok);
 }
 
-t_token	*ft_init_token(char *cmd, int i, int count, t_env *env)
+t_token	*ft_init_token(char *cmd, int i, int count)
 {
 	t_token	*tok;
 
 	tok = malloc(sizeof(t_token));
 	tok->content = ft_substr(cmd, i, count);
 	ft_get_type(tok);
-	(void)env;
 	// tok->path = ft_get_path(env, tok);
 	tok->next = NULL;
 	tok->prev = NULL;

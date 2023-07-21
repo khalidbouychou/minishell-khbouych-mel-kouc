@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:40:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/19 22:20:49 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:06:10 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	// if (!s)
-	// 	return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
@@ -59,3 +57,29 @@ char	*ft_strtrim(char *s1, char *set)
 	return (ft_substr(s1, i, lens2 + 1 - i));
 }
 
+void	ft_tolower(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] >= 'A' && s[i] <= 'Z')
+			s[i] += 32;
+		i++;
+	}
+}
+
+char	*ft_strncpy(char *dest, char *src, int len)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] && i < len)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}

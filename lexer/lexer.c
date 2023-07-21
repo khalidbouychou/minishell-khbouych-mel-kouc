@@ -6,29 +6,15 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/21 10:22:15 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:06:02 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-char	*ft_strncpy(char *dest, char *src, int len)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] && i < len)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
 void	ft_strcpy(char *dest, char *src)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	// if (dest == NULL || src == NULL)
@@ -61,22 +47,20 @@ void	ft_set_oper(t_token *tok)
 		tok->operator = 0;
 }
 
-t_token	*test(t_token *ptr)
+void	test(t_token *ptr)
 {
-	int	flag;
+	int		flag;
+	t_token	*new;
 
 	flag = 0;
-	if (ptr->next && ((ptr->type == FIL
-				&& (ptr->next->type == VAR || ptr->next->type == WORD))
-	))
+	if (ptr->next && ptr->type == FIL
+		&& (ptr->next->type == VAR || ptr->next->type == WORD))
 	{
-		ft_init_token(" ",0, 1, env);
-		// ptr->next->content = 
-		flag = 1;
-		printf("\n here we go againg \n");
-		// ptr = ptr->next;
+		new = ft_init_token(" ", 0, 1);
+		new->next = ptr->next;
+		ptr->next = new;
+		new->prev = ptr;
 	}
-	return (ptr);
 }
 
 t_token	*echo_and_n(t_token *ptr, t_token *space)
@@ -100,11 +84,6 @@ t_token	*echo_and_n(t_token *ptr, t_token *space)
 		while ((ptr && ptr->type != PIPE))
 		{
 			test(ptr);
-		// 	// if (ptr->next && (ptr->type == FIL && (ptr->next->type == VAR || ptr->next->type == WORD))
-		// 	// 	|| (ptr->next->type == VAR || ptr->next->type == VAR)))
-		// 	// {
-				
-		// 	// }
 			ptr = ptr->next;
 		}
 	}

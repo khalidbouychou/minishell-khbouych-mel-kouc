@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/20 16:40:29 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:58:47 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok);
 int		ft_qoutes(char *cmd, int *i, int init);
 int		ft_word(char *cmd, int *i, int init);
 char	*ft_check_if_cmd_valid(char **path, t_token *tok);
-t_token	*ft_init_token(char *cmd, int i, int count, t_env *env);
+t_token	*ft_init_token(char *cmd, int i, int count);
 void	check_list(t_token **lst, t_env *env);
 int		successive_oper(t_token *list_tokens);
 int		oper_in_end(t_token	*list_tokens);
@@ -66,6 +66,7 @@ char	*ft_strsearch(const char *s, int c);
 void	rm_node_white_space(t_token **lst);
 void	util_between_word_var(t_token *ptr, t_token	*tmp);
 void	check_cmd(t_token **lst);
+void	ft_tolower(char *s);
 t_token	*echo_and_n(t_token *ptr, t_token *space);
 void	util_between_oper(t_token *tmp, t_token	*right_op, t_token	*left_op);
 int		check_spases(t_token *tmp);
@@ -76,7 +77,6 @@ int		check_operator(t_token	**list_tokens);
 int		check_quotes(t_token **list_tokens);
 t_token	*divide(char *cmd, t_env *env);
 t_token	*ft_listlast(t_token *lst);
-t_token	*ft_init_token(char *cmd, int i, int count, t_env *env);
 void	ft_set_oper(t_token *tok);
 
 #endif
