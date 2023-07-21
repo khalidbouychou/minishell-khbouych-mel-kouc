@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/21 09:39:13 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/21 11:30:21 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef enum s_builtins
 
 // void    env(t_env *env);
 void	ft_echo(char **arg, int fd);
-void	ft_export(char **arg, t_env *env);
+void	ft_export(char **export , t_env **env);
 void	ft_print_env(t_env *env);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);

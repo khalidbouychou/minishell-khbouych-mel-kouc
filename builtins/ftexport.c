@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/21 10:02:00 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/21 11:38:28 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_check_ifkey_valid(char *key)
 	return (1);
 }
 
-char	**ft_get_keys_tab(env, size)
+char	**ft_get_keys_tab(t_env *env, int size)
 {
 	char	**res;
 	t_env	*head;
@@ -71,7 +71,7 @@ void	ft_sort_keys(char **tab_keys, int i, int j)
 	ft_sort_keys(tab_keys, i++, 0);
 }
 
-void	ft_print_export(char *key1, char *value)
+void	ft_print_export(char *key, char *value)
 {
 	if (value != NULL)
 		printf ("declare -x %s=\"%s\"\n", key, value);
@@ -88,7 +88,7 @@ void	ft_print_after_sort(t_env *env, char **tab_keys)
 	while (head)
 	{
 		i = 0;
-		while (tab_keysp[i])
+		while (tab_keys[i])
 		{
 			if (!ft_strcmp(head->key, tab_keys[i]))
 			{
@@ -109,9 +109,10 @@ void	ft_sorting_export(t_env *env)
 	int		i;
 	int		j;
 
-	(void)arg;
 	head_env = env;
 	tab_keys = NULL;
+	i = 0;
+	j = 0;
 	size = 0;
 	head_env = env;
 	while (head_env)
@@ -120,14 +121,14 @@ void	ft_sorting_export(t_env *env)
 		head_env = head_env->next;
 	}
 	tab_keys = ft_get_keys_tab(env, size);
-	ft_sort_tabkeys(tab_keys, i, j);
+	ft_sort_keys(tab_keys, i, j);
 	ft_print_after_sort(env, tab_keys);
 }
 
-int	ft_exp_vars(char *exp,t_env **env)
-{
+// int	ft_exp_vars(char *exp,t_env **env)
+// {
 
-}
+// }
 
 void	ft_export(char **export , t_env **env)
 {
@@ -140,14 +141,14 @@ void	ft_export(char **export , t_env **env)
 	{
 		while (export[i])
 		{
-			ft_exp_vars(export[i], env);
+			// ft_exp_vars(export[i], env);
 			i++;
 			return ;
 		}
 	}
 	else
 	{
-		ft_sorting_export(env);
+		ft_sorting_export(_env);
 		return ;
 	}
 }
