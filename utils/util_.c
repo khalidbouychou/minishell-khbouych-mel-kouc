@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/20 14:18:59 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/21 09:38:26 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-
 	ft_help_join(&s1, &s2);
 	res_joined = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (res_joined == NULL)

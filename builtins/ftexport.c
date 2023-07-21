@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/20 14:36:43 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:02:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,17 @@ int	ft_check_ifkey_valid(char *key)
 	if (key[0] != '_' || key[ft_strlen(key) - 1] != '_'
 		|| !ft_isalpha(key[0]) || !ft_isalpha(key[ft_strlen(key) - 1])
 		|| key[ft_strlen(key) - 1] != '+')
+	{
+		ft_putstr_fd("[ export : Not a valid identifier ]\n", 2);
 		return (0);
+	}
 	while (key[i])
 	{
-		if (key[i] != '_' && !ft_isalnum(key[i]) && key[i] != '_')
+		if (key[i] != '_' && !ft_isalnum(key[i]))
+		{
+			ft_putstr_fd("[ export : Not a valid identifier ]\n", 2);
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -118,6 +124,11 @@ void	ft_sorting_export(t_env *env)
 	ft_print_after_sort(env, tab_keys);
 }
 
+int	ft_exp_vars(char *exp,t_env **env)
+{
+
+}
+
 void	ft_export(char **export , t_env **env)
 {
 	t_env	*_env;
@@ -125,11 +136,12 @@ void	ft_export(char **export , t_env **env)
 
 	_env = (*env);
 	i = 1;
-	if(export[i])
+	if (export[i])
 	{
 		while (export[i])
 		{
-			ft_exp_vars(export[i], env)
+			ft_exp_vars(export[i], env);
+			i++;
 			return ;
 		}
 	}

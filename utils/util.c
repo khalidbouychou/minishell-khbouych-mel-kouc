@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:40:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/19 11:27:37 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/21 09:38:42 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,3 +57,21 @@ char	*ft_strtrim(char *s1, char *set)
 	return (ft_substr(s1, i, lens2 + 1 - i));
 }
 
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
+}
