@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/21 11:20:44 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/22 10:25:25 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ int	main(int argc, char **argv, char **envp)
 	cmd = NULL;
 	list_tokens = NULL;
 	env = env_list(envp);
-	ft_echo(argv,1);
+	// ft_echo(argv,1);//done
+	ft_export(argv, env, 1);
 	// while (1)
 	// {
 	// 	cmd = readline("minishell ~> ");
