@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/20 23:10:57 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:36:47 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,14 @@ t_parse	*parser_list(t_token *list_tokens, int *is_alloc)
 		tmp = tmp->next;
 	}
 	return (lst);
-	return (NULL);
 }
 
 void	parser(t_token	*list_tokens)
 {
 	int		is_alloc;
-	// int		count;
+	t_parse	*list_pars;
 
 	is_alloc = 0;
-	// count = 0;
-	parser_list(list_tokens, &is_alloc);
+	list_pars = parser_list(list_tokens, &is_alloc);
 	// parser_list(list_tokens, &is_alloc, count);
 }
-

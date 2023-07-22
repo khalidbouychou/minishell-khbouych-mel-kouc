@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 17:40:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:22:41 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_parse	*ft_last_parser(t_parse *lst);
 int		alloc_arg(t_token *tmp);
 void	init_parce(t_parse *list);
 void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok);
+void	ft_handle_oper(t_token *tmp);
 // int		check_pipe(t_token	*list_tokens);
 // int		check_spases(t_token *tmp);
 // void	split_operator(t_token *list_tokens);

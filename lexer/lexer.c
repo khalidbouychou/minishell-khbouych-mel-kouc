@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/21 21:27:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:18:07 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ void	ft_set_oper(t_token *tok)
 
 void	add_node_space(t_token *ptr)
 {
-	int		flag;
 	t_token	*new;
 
-	flag = 0;
 	if (ptr->next && ptr->type == FIL
 		&& (ptr->next->type == VAR || ptr->next->type == WORD))
 	{
