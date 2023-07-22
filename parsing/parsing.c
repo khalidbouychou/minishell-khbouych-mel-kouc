@@ -6,19 +6,16 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/22 23:25:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/22 23:43:13 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-// void	ft_handle_oper(t_token *tmp)
-// {
-// 	int	file_descriptor;
-
-// 	if (tmp->type == OUTPUT)
-// 		file_descriptor = open(file_name, O_WRONLY | O_CREAT | O_TRUNC);
-// }
+// i have a error in push_ arg
+// i should open all herdoc that i find in cmd first 
+// afted that iwell open other redirections
+// ft_handle_oper(tmp, new_p) is fault
 
 void	push_arg(t_token *tmp, t_parse *new_p, int *i)
 {
