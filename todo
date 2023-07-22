@@ -5,7 +5,7 @@ joiner
 parser 
 
 
-O_CREATE ----> red_out | red_app | heredoc
+O_CREATE ----> red_out heredoc | red_app | 
 O_RDONLY ----> red_in
 
 

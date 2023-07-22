@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/22 18:36:47 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/22 23:25:03 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 // 		file_descriptor = open(file_name, O_WRONLY | O_CREAT | O_TRUNC);
 // }
 
-void	push_arg(t_token *tmp, t_parse	*new_p, int *i)
+void	push_arg(t_token *tmp, t_parse *new_p, int *i)
 {
 	while (tmp)
 	{
@@ -40,7 +40,7 @@ void	push_arg(t_token *tmp, t_parse	*new_p, int *i)
 		}
 		// if (tmp && (tmp->type == INPUT || tmp->type == OUTPUT
 		// 		|| tmp->type == HERDOC || tmp->type == APPND))
-		// 	ft_handle_oper(tmp);
+		// 	ft_handle_oper(tmp, new_p);
 		if (!tmp || tmp->type == PIPE)
 			break ;
 		tmp = tmp->next;
