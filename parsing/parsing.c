@@ -6,16 +6,11 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/22 23:43:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/23 21:46:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-
-// i have a error in push_ arg
-// i should open all herdoc that i find in cmd first 
-// afted that iwell open other redirections
-// ft_handle_oper(tmp, new_p) is fault
 
 void	push_arg(t_token *tmp, t_parse *new_p, int *i)
 {
@@ -35,9 +30,7 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i)
 			new_p->arg[++(*i)] = NULL;
 			printf("new_p->arg[%d] = |%s|\n", *i, new_p->arg[*i]);
 		}
-		// if (tmp && (tmp->type == INPUT || tmp->type == OUTPUT
-		// 		|| tmp->type == HERDOC || tmp->type == APPND))
-		// 	ft_handle_oper(tmp, new_p);
+		ft_searsh_herdoc(tmp, new_p);
 		if (!tmp || tmp->type == PIPE)
 			break ;
 		tmp = tmp->next;
@@ -53,7 +46,7 @@ t_parse	*ft_list_parser(t_token *tmp, int count)
 	(void)tmp;
 	new_p = NULL;
 	new_p = malloc(sizeof(t_parse));
-	init_parce(new_p);
+	init_struct_parce(new_p);
 	// printf("*list->fd_input = %d\n", lst->fd_input);
 	// printf("*list->fd_input = %d\n", lst->fd_output);
 	// printf("*list->fd_input = %d\n", lst->fd_heredoc);
@@ -96,8 +89,23 @@ void	parser(t_token	*list_tokens)
 {
 	int		is_alloc;
 	t_parse	*list_pars;
+	t_token	*tmp_tok;
+	t_parse	*tmp_pars;
 
 	is_alloc = 0;
 	list_pars = parser_list(list_tokens, &is_alloc);
-	// parser_list(list_tokens, &is_alloc, count);
+	tmp_tok = list_tokens;
+	tmp_pars = list_pars;
+	while (tmp_tok)
+	{
+		if (tmp_tok->type != PIPE)
+		{
+			if (tmp_tok && (tmp_tok->type == INPUT || tmp_tok->type == OUTPUT
+					|| tmp_tok->type == APPND))
+				tmp_tok = ft_handle_oper(tmp_tok, tmp_pars);
+		}
+		else
+			tmp_pars = tmp_pars->next;
+		tmp_tok = tmp_tok->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/20 12:53:32 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/23 18:49:22 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,17 @@ void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok)
 	}
 }
 
-void	init_parce(t_parse *new_p)
+void	init_struct_parce(t_parse *new_p)
 {
 	new_p->fd_input = -4;
 	new_p->fd_output = -5;
-	new_p->fd_heredoc = -6;
-	new_p->name = NULL;
+	new_p->f_name = NULL;
+	// new_p->fd_append = -6;
+	// new_p->fd_herdoc = -7;
+	// new_p->name_inp = NULL;
+	// new_p->name_outp = NULL;
+	// new_p->name_append = NULL;
+	// new_p->name_herdoc = NULL;
 	new_p->arg = NULL;
 }
 
