@@ -82,3 +82,13 @@ me
 khalid   
         echo -nnnnn -nnnnn hello world
         echo -nnnnn -nnnnna hello world
+
+
+
+
+test : first we creat (input) < txt then aplay this example 
+
+    echo hello >> file < txt > txtr
+
+            fd int = 4
+            fd out = 3

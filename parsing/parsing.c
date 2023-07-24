@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/23 21:46:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/24 23:33:15 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	parser(t_token	*list_tokens)
 	{
 		if (tmp_tok->type != PIPE)
 		{
+			// printf("\ntmp->content = %s\n", tmp_tok->content);
 			if (tmp_tok && (tmp_tok->type == INPUT || tmp_tok->type == OUTPUT
 					|| tmp_tok->type == APPND))
 				tmp_tok = ft_handle_oper(tmp_tok, tmp_pars);
@@ -108,4 +109,7 @@ void	parser(t_token	*list_tokens)
 			tmp_pars = tmp_pars->next;
 		tmp_tok = tmp_tok->next;
 	}
+	printf("\n***** fd int = %d *****\n", tmp_pars->fd_input);
+	printf("\n***** fd out = %d *****\n", tmp_pars->fd_output);
+	execute_main(list_pars);
 }

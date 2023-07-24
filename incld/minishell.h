@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/22 20:20:50 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:40:52 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <readline/readline.h>
+# include "../incld/execution.h"
 # include "../incld/lexer.h"
 # include "../incld/parsing.h"
 # include "../incld/builtins.h"
