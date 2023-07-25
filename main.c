@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/24 14:27:24 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 00:21:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,36 @@ void	print(t_token *lst)
 		printf("√ cmd\t--> (%s)\n", tmp->content);
 		printf("√ type\t--> (%d)\n", tmp->type);
 		printf("√ is_op\t--> (%d)\n", tmp->operator);
+		printf("√ flag\t--> (%d)\n", tmp->flag);
 		// printf("√ path\t--> (%s)\n", tmp->path);
-		printf("------------------------------------\n");
+		printf("\n------------------------------------\n");
  		tmp = tmp->next;
 		i++;
+	}
+}
+void	parser_print(t_parse *lst)
+{
+	t_parse	*tmp;
+	int		i;
+	int		j;
+
+	i = 0;
+	tmp = lst;
+	
+	printf("\n------------------------------------\n");
+	while (tmp)
+	{
+		j = 0;
+		while (tmp->arg[j])
+		{
+			printf("√ cmd\t--> (%s)\n", tmp->arg[j]);
+			j++;
+		}
+		printf("√ \n***** fd int = %d *****\n", tmp->fd_input);
+		printf("√ \n***** fd out = %d *****\n", tmp->fd_output);
+		// printf("√ path\t--> (%s)\n", tmp->path);
+		printf("\n------------------------------------\n");
+ 		tmp = tmp->next;
 	}
 }
 
@@ -75,12 +101,14 @@ int	main(int argc, char **argv, char **envp)
 	char	*cmd;
 	t_env	*env;
 	t_token	*list_tokens;
+	t_parse	*list_parser;
 
 	// atexit(l);
 	(void)argc;
 	(void)argv;
 	env = NULL;
 	list_tokens = NULL;
+	list_parser = NULL;
 	env = env_list(envp);
 	// ft_export(argv,env);
 	// ft_echo(argv,1);
@@ -91,9 +119,12 @@ int	main(int argc, char **argv, char **envp)
 		{
 			add_history(cmd);
 			list_tokens = divide(cmd, env);
-			print(list_tokens);
-			parser(list_tokens);
+			// print(list_tokens);
+			list_parser = parser(list_tokens);
+			printf("\n***** $$$$$$$$$$$$$$ *****\n");
+			execute_main(list_parser);
 			printf("\n*********************\n");
+			// parser_print(list_parser);
 		}
 		free (cmd);
 	}

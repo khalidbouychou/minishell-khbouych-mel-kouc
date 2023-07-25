@@ -93,6 +93,7 @@ void	check_list(t_token **lst, t_env *env)
 		return ;
 		// free_env_list(env);
 	}
+	check_herdoc_quotes(*lst);
 	trim_list(lst);
 	ft_expander(*lst, env);
 	lixer_list(lst);

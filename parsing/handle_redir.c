@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/24 23:33:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:40:43 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,6 @@ char	*generate_name(void)
 	return (str);
 }
 
-void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p)
-{
-	if (tmp->type == HERDOC)
-	{
-		if (new_p->fd_input != -4)
-			close(new_p->fd_input);
-		new_p->f_name = generate_name();
-		new_p->fd_input = open(new_p->f_name, O_CREAT, O_WRONLY, 0666);
-		// if (new_p->fd_herdoc == -1)
-		// 	printf("\nerror in herdoc\n");
-	}
-}
-
 t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p)
 {
 	// 4 : READ
@@ -93,8 +80,8 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p)
 			close(new_p->fd_input);
 		new_p->f_name = tmp->next->content;
 		new_p->fd_input = open(new_p->f_name, O_RDONLY, 0666);
-		// if (new_p->fd_input == -1)
-		// 	ft_putstr_fd("No such file or directory\n", 2);
+		if (new_p->fd_input == -1)
+			ft_putstr_fd("No such file or directory\n", 2);
 	}
 	else if (tmp->type == OUTPUT)
 	{
@@ -102,9 +89,8 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p)
 			close(new_p->fd_output);
 		new_p->f_name = tmp->next->content;
 		new_p->fd_output = open(new_p->f_name, O_CREAT | O_RDONLY | O_TRUNC, 0666);
-		// printf("\n***** fd outhandel = %d *****\n", new_p->fd_output);
-		// if (new_p->fd_output == -1)
-		// 	ft_putstr_fd("unexpected error\n", 2);
+		if (new_p->fd_output == -1)
+			ft_putstr_fd("unexpected error\n", 2);
 	}	
 	else
 	{
@@ -112,8 +98,8 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p)
 			close(new_p->fd_output);
 		new_p->f_name = tmp->next->content;
 		new_p->fd_output = open(new_p->f_name, O_CREAT | O_RDONLY | O_APPEND, 0666);
-		// if (new_p->fd_output == -1)
-		// 	ft_putstr_fd("unexpected error\n", 2);
+		if (new_p->fd_output == -1)
+			ft_putstr_fd("unexpected error\n", 2);
 	}
 	return (tmp->next);
 }

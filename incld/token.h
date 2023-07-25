@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/22 20:33:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/25 21:55:41 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_token
 	int					operator;
 	struct s_token		*next;
 	struct s_token		*prev;
+	int					flag;
 }t_token;
 
 /************************************************************/
@@ -78,5 +79,6 @@ int		check_quotes(t_token **list_tokens);
 t_token	*divide(char *cmd, t_env *env);
 t_token	*ft_listlast(t_token *lst);
 void	ft_set_oper(t_token *tok);
+void	check_herdoc_quotes(t_token *lst);
 
 #endif

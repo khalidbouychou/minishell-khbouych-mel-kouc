@@ -69,11 +69,19 @@ echo hello test > file dew
 EXPLIQUE     ---> echo hello test > file $home
 
 
+/////////////////////////////  FIXED
+we have error in space after echo ,we must remove it
+echo  <<'del' "test" hello 
+
+        parser count + 1 = | 6 |
+        new_p->arg[0] = |echo|
+        new_p->arg[1] = | |
+        new_p->arg[2] = |test|
+        new_p->arg[3] = | |
+        new_p->arg[4] = |hello|
+        new_p->arg[5] = |(null)|
 
 
-explique why spaces is nor remove after FILE LIKE IN EXAPLE  :
-
-    echo hello test > file hello    home < test   q            ll
 
 me 
     echo -nnnnn -nnnnn hello world
@@ -83,12 +91,29 @@ khalid
         echo -nnnnn -nnnnn hello world
         echo -nnnnn -nnnnna hello world
 
-
+///////////////////////////////////////////////
 
 
 test : first we creat (input) < txt then aplay this example 
 
     echo hello >> file < txt > txtr
 
-            fd int = 4
+            fd inp = 4
             fd out = 3
+
+    echo  <  txt
+
+
+explique why spaces is nor remove after FILE LIKE IN EXAPLE  :
+
+    echo hello test > file khouribga    home < world   q            ll
+
+
+
+cat << del""
+
+cat << del ""
+        cat: : No such file or directory
+
+
+ft_echo(tmp->arg, tmp->fd_output); function ---> segfault

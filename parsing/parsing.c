@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/24 23:33:15 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/25 23:46:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_parse	*ft_list_parser(t_token *tmp, int count)
 
 	i = -1;
 	(void)tmp;
-	new_p = NULL;
 	new_p = malloc(sizeof(t_parse));
 	init_struct_parce(new_p);
 	// printf("*list->fd_input = %d\n", lst->fd_input);
@@ -84,8 +83,7 @@ t_parse	*parser_list(t_token *list_tokens, int *is_alloc)
 	}
 	return (lst);
 }
-
-void	parser(t_token	*list_tokens)
+t_parse	*parser(t_token	*list_tokens)
 {
 	int		is_alloc;
 	t_parse	*list_pars;
@@ -111,5 +109,6 @@ void	parser(t_token	*list_tokens)
 	}
 	printf("\n***** fd int = %d *****\n", tmp_pars->fd_input);
 	printf("\n***** fd out = %d *****\n", tmp_pars->fd_output);
-	execute_main(list_pars);
+	// execute_main(list_pars);
+	return (list_pars);
 }

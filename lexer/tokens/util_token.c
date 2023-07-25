@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/21 11:00:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/25 22:13:12 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,30 @@ int	ft_word(char *cmd, int *i, int init)
 	return (count);
 }
 
-// char	*ft_get_path(t_env *env, t_token *tok)
-// {
-// 	char	*p;
-// 	t_env	*tmp;
+void	check_herdoc_quotes(t_token *lst)
+{
+	t_token	*tmp;
+	t_token	*ptr;
 
-// 	p = NULL;
-// 	tmp = env;
-// 	while (tmp)
-// 	{
-// 		if (ft_strncmp(tmp->key, "PATH", 4) == 0)
-// 		{
-// 			p = tmp->value;
-// 			break ;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// 	return (ft_check_if_cmd_valid(ft_split(p, ':'), tok));
-// }
+	tmp = lst;
+	ptr = NULL;
+	while (tmp)
+	{
+		printf("\ncheck_herd = |%s|", tmp->content);
+		if (tmp->type == HERDOC)
+		{
+			tmp = tmp->next;
+			while (tmp->type == SPACE || tmp->type == TAB)
+				tmp = tmp->next;
+			if (tmp->content[0] == '\'' || tmp->content[0] == '"')
+				tmp->flag = 1;
+			else if (tmp->next && (!ft_strncmp(tmp->next->content, "''", 3)
+				|| !ft_strncmp(tmp->next->content, "\"\"", 3)))
+				tmp->flag = 1;
+		}
+		tmp = tmp->next;
+	}
+}
 
 void	ft_get_type(t_token *tok)
 {
@@ -101,10 +107,31 @@ t_token	*ft_init_token(char *cmd, int i, int count)
 	t_token	*tok;
 
 	tok = malloc(sizeof(t_token));
+	tok->content = NULL;
+	tok->next = NULL;
+	tok->prev = NULL;
+	tok->flag = 0;
 	tok->content = ft_substr(cmd, i, count);
 	ft_get_type(tok);
 	// tok->path = ft_get_path(env, tok);
-	tok->next = NULL;
-	tok->prev = NULL;
 	return (tok);
 }
+
+// char	*ft_get_path(t_env *env, t_token *tok)
+// {
+// 	char	*p;
+// 	t_env	*tmp;
+
+// 	p = NULL;
+// 	tmp = env;
+// 	while (tmp)
+// 	{
+// 		if (ft_strncmp(tmp->key, "PATH", 4) == 0)
+// 		{
+// 			p = tmp->value;
+// 			break ;
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// 	return (ft_check_if_cmd_valid(ft_split(p, ':'), tok));
+// }
