@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/19 18:46:13 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:20:17 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
-# include <readline/readline.h>
 # include "../incld/lexer.h"
 # include "../incld/parsing.h"
 # include "../incld/builtins.h"
 # include "../incld/token.h"
+# include <readline/readline.h>
 
 //----------------------* struct env *----------------------//
 
