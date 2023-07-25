@@ -45,3 +45,12 @@ re"'$HOME'"   // don't remove double code befor expanding
 re'"$HOME"' -> word without exp
 
 '"$HOME"'   ---> word
+
+/***** bultins ******/
+    echo    √
+    export  √
+    env     √
+    exit    x
+    pwd     x
+    cd      x
+    unset   x

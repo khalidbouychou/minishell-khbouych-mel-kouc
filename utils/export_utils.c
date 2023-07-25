@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 09:56:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/22 10:01:23 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/25 23:19:55 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ft_strcmp(const char *str1, const char *str2)
 {
-	if (!str1 && !str2)
-		return (0);
 	if (!str1 || !str2)
 		return (1);
 	while (*str1 && *str1 == *str2)
@@ -26,71 +24,57 @@ int	ft_strcmp(const char *str1, const char *str2)
 	return ((unsigned char)*str1 - (unsigned char)*str2);
 }
 
-int	ft_get_size_of_list(t_env *env)
+// int	ft_get_size_of_list(t_env *env)
+// {
+// 	int		i;
+// 	t_env	*e;
+
+// 	i = 0;
+// 	e = env;
+// 	while (e)
+// 	{
+// 		i++;
+// 		e = e->next;
+// 	}
+// 	return (i);
+// }
+
+void	ft_print_after_sort(t_env *ee)
 {
-	int		i;
 	t_env	*e;
 
-	i = 0;
-	e = env;
+	ft_sort_keys(ee);
+	e = ee;
 	while (e)
 	{
-		i++;
+		if (!e->value)
+			printf("declare -x %s\n", e->key);
+		else
+			printf("declare -x %s=\"%s\"\n", e->key, e->value);
 		e = e->next;
 	}
-	return (i);
 }
 
-void	ft_sort_keys(char **t_keys)
+char	*ft_get_key_without_plus(char *key)
 {
-	char	*swap;
-	int		i;
-	int		j;
+	int	i;
 
 	i = 0;
-	j = 0;
-	if (!t_keys[j])
-		return ;
-	while (t_keys[i])
-	{
-		j = 0;
-		while (t_keys[j])
-		{
-			if (ft_strcmp(t_keys[i], t_keys[j]) < 0)
-			{
-				swap = t_keys[i];
-				t_keys[i] = t_keys[j];
-				t_keys[j] = swap;
-			}
-			j++;
-		}
+	while (key[i] && key[i] != '+')
 		i++;
-	}
+	return (ft_substr(key, 0, i));
 }
 
-void	ft_print_export(char *key, char *value)
+char	*ft_get_old_value(t_env *e, char *key)
 {
-	if (value != NULL)
-		printf ("declare -x %s=\"%s\"\n", key, value);
-	else
-		printf ("declare -x %s\n", key);
-}
+	t_env	*tmp;
 
-void	ft_print_after_sort(t_env *e, char **tkeys)
-{
-	int		i;
-	t_env	*h;
-
-	i = 0;
-	while (tkeys[i])
+	tmp = e;
+	while (tmp)
 	{
-		h = e;
-		while (h)
-		{
-			if (!ft_strcmp(h->key, tkeys[i]))
-				ft_print_export(h->key, h->value);
-			h = h->next;
-		}
-		i++;
+		if (ft_strcmp(key, tmp->key) == 0)
+			return (tmp->value);
+		tmp = tmp->next;
 	}
+	return (NULL);
 }

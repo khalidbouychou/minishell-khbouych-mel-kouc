@@ -6,31 +6,28 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/22 15:28:09 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/26 00:07:05 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-int	ft_check_ifkey_valid(char *key, int fd)
+int	ft_check_ifkey_valid(t_env *node, int fd)
 {
 	int	i;
 
 	i = 0;
-	if (key[0] != '_' || key[ft_strlen(key) - 1] != '_'
-		|| !ft_isalpha(key[0]) || !ft_isalpha(key[ft_strlen(key) - 1])
-		|| key[ft_strlen(key) - 1] != '+')
+	if(node->key[ft_strlen(node->key) - 1] == '+' && node->value == NULL)
+		return (write(fd, "[export : key not valide ]\n" ,28), 0);
+	if (!ft_isalpha(node->key[0]) && node->key[0] != '_')
+		return (write(fd, "[export : key not valide ]\n" ,28), 0);
+	if (node->key[ft_strlen(node->key) - 1] != '_' && !ft_isalnum(node->key[ft_strlen(node->key) - 1])
+		&& node->key[ft_strlen(node->key) - 1] != '+')
+		return (write(fd, "[export : key not valide ]\n" ,28), 0);
+	while (node->key[i] && node->key[i + 1])
 	{
-		ft_putstr_fd("[export : Not a valid identifier ]\n", fd);
-		return (0);
-	}
-	while (key[i])
-	{
-		if (key[i] != '_' && !ft_isalnum(key[i]))
-		{
-			ft_putstr_fd("[export : Not a valid identifier ]\n", fd);
-			return (0);
-		}
+		if (node->key[i] != '_' && !ft_isalnum(node->key[i]))
+			return (write(fd, "[export : key not valide ]\n", 28), 0);
 		i++;
 	}
 	return (1);
@@ -55,37 +52,94 @@ char	**ft_get_keys_tab(t_env *env, int size)
 	return (res);
 }
 
+
+void	ft_sort_keys(t_env *e)
+{
+	t_env	*tmp;
+	t_env	*ptr;
+	char	*x;
+	char	*v;
+
+	tmp = e;
+	while (tmp)
+	{
+		ptr = tmp->next;
+		while (ptr)
+		{
+			if (tmp->key[0] > ptr->key[0])
+			{
+				x = tmp->key;
+				tmp->key = ptr->key;
+				ptr->key = x;
+				v = tmp->value;
+				tmp->value = ptr->value;
+				ptr->value = v;
+			}
+			ptr = ptr->next;
+		}
+		tmp = tmp->next;
+	}
+}
+
+int	ft_if_key_exist(t_env *e, t_env *node)
+{
+	t_env	*tmp;
+
+	tmp = e;
+	while (tmp)
+	{
+		if (!ft_strcmp(ft_get_key_without_plus(node->key), tmp->key))
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+void ft_join_value(t_env *e, t_env *node)
+{
+	t_env	*tmp;
+
+	tmp = e;
+	while (tmp)
+	{
+		if (!ft_strcmp(ft_get_key_without_plus(node->key), tmp->key))
+			tmp->value = ft_strjoin(tmp->value, node->value);
+		tmp = tmp->next;
+	}
+}
+
+void	ft_add_to_env(t_env *e, t_env *node)
+{
+	node->prev = ft_lstlast(e);
+	node->key = ft_get_key_without_plus(node->key);
+	ft_lst_addback(&e, node);
+}
+
 void	ft_export(char **export, t_env *env, int fd)
 {
 	int		i;
-	// int		size;
-	// char	**tkeys;
 	t_env	*node;
+	// t_env	*e;
 
-	// size = 0;
-	node = NULL;
-	// tkeys = NULL;
-	i = 2;
-	// size = ft_get_size_of_list(env);
-	// tkeys = ft_get_keys_tab(env, size);
-	if (ft_strcmp("export", export[1]) > 0)
+	(void)fd;
+	if (export[2] == NULL)
 	{
-		ft_putstr_fd("[error] -->command not found", fd);
+		ft_sort_keys(env);
+		ft_print_after_sort(env);
 		return ;
 	}
-	else
+	i = 2;
+	while (export[i])
 	{
-		while (export[i])
+		node = ft_lstnew(export[i++]);
+		if (ft_check_ifkey_valid(node, fd))
 		{
-			node = ft_lstnew(export[i]);
-			if (!ft_is_key_exist(node->key,
-					ft_get_keys_tab(env, ft_get_size_of_list(env))))
-			{
-				ft_lst_addback(&env, node);
-			}
-			i++;
+			if (node->key[ft_strlen(node->key) - 1] == '+'
+				&& ft_if_key_exist(env, node))
+				ft_join_value(env, node);
+			else
+				ft_add_to_env(env, node);
 		}
 	}
-	ft_sort_keys(ft_get_keys_tab(env, ft_get_size_of_list(env)));
-	ft_print_after_sort(env, ft_get_keys_tab(env, ft_get_size_of_list(env)));
+	ft_print_after_sort(env);
 }

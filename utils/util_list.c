@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:37:03 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/03 16:28:07 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/24 21:18:47 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,14 @@ t_env	*ft_lstnew(char *env)
 	{
 		new_node->key = ft_substr(env, 0, equal);
 		new_node->value = ft_substr(env, equal + 1, ft_strlen(env) - equal);
-		new_node->next = NULL;
 	}
+	else
+	{
+		new_node->key = ft_substr(env, 0, ft_strlen(env));
+		new_node->value = NULL;
+	}
+	new_node->next = NULL;
+	new_node->prev = NULL;
 	return (new_node);
 }
 
