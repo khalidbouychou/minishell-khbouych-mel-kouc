@@ -6,16 +6,17 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/26 01:23:58 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:18:08 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	check_cmd_bult(t_parse *list_pars)
+void	check_cmd_built(t_parse *list_pars, t_env *env)
 {
 	t_parse	*tmp;
 
+	(void)env;
 	tmp = list_pars;
 	while (tmp)
 	{
@@ -53,13 +54,11 @@ void	check_cmd_bult(t_parse *list_pars)
 			printf("\n----->test cd\n");
 			
 		}
-		printf("\n*******  \\\\\\\\\\ ********\n");
 		tmp = tmp->next;
 	}
 }
 
-
-void    execute_main(t_parse *list_pars)
+void    execute_main(t_parse *list_pars, t_env *env)
 {
-	check_cmd_bult(list_pars);
+	check_cmd_built(list_pars, env);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/26 01:30:11 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 23:44:03 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	main(int argc, char **argv, char **envp)
 	// atexit(l);
 	(void)argc;
 	(void)argv;
-	env = NULL;
 	cmd = NULL;
 	list_tokens = NULL;
 	list_parser = NULL;
@@ -94,16 +93,20 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		cmd = readline("minishell ~> ");
-		if (*cmd)
+		if (cmd)
 		{
 			add_history(cmd);
 			list_tokens = divide(cmd, env);
 			// print(list_tokens);
-			list_parser = parser(list_tokens);
-			printf("\n***** $$$$$$$$$$$$$$ *****\n");
-			execute_main(list_parser);
+			list_parser = parser(list_tokens, env);
+			execute_main(list_parser, env);
+			// parser_print(list_parser);
 			printf("\n*********************\n");
-			parser_print(list_parser);
+		}
+		else
+		{
+			ft_putendl_fd("\nexit", 1);
+			break ;
 		}
 		free (cmd);
 	}

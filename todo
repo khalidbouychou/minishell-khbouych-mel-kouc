@@ -34,7 +34,6 @@ ls <<< ls // i don't handel it
 bash-3.2$ ls >| ls
 bash-3.2$ ls > | ls
 
-LS > -la | echo >> test     white space in last cmd -> segmentation fault
 
 << del cat  >l | echo hello asking for this case
 
@@ -69,29 +68,6 @@ echo hello test > file dew
 EXPLIQUE     ---> echo hello test > file $home
 
 
-/////////////////////////////  FIXED
-we have error in space after echo ,we must remove it
-echo  <<'del' "test" hello 
-
-        parser count + 1 = | 6 |
-        new_p->arg[0] = |echo|
-        new_p->arg[1] = | |
-        new_p->arg[2] = |test|
-        new_p->arg[3] = | |
-        new_p->arg[4] = |hello|
-        new_p->arg[5] = |(null)|
-
-
-
-me 
-    echo -nnnnn -nnnnn hello world
-    echo -nnnnn -nnnnna hello world
-
-khalid   
-        echo -nnnnn -nnnnn hello world
-        echo -nnnnn -nnnnna hello world
-
-///////////////////////////////////////////////
 
 
 test : first we creat (input) < txt then aplay this example 
@@ -104,20 +80,16 @@ test : first we creat (input) < txt then aplay this example
     echo  <  txt
 
 
-explique why spaces is nor remove after FILE LIKE IN EXAPLE  :
-
-    echo hello test > file khouribga    home < world   q            ll
-
-
+        ----------------PARSER_LIST---------------
+        √ cmd   --> (echo)
+        √ cmd   --> (hello)
+        √ cmd   --> ( )
+        √ cmd   --> ()
 
 cat << del""
 
 cat << del ""
         cat: : No such file or directory
-
-
-ft_echo(tmp->arg, tmp->fd_output); function ---> segfault
-ECHO -n   --------> segfault
 
 
 /***** bultins ******/
@@ -128,3 +100,55 @@ ECHO -n   --------> segfault
     pwd     x
     cd      x
     unset   x
+
+
+
+/////////////////////  FIXED ///////////////////
+
+we have error in space after echo ,we must remove it
+echo  <<'del' "test" hello 
+
+        parser count + 1 = | 6 |
+        new_p->arg[0] = |echo|
+        new_p->arg[1] = | |
+        new_p->arg[2] = |test|
+        new_p->arg[3] = | |
+        new_p->arg[4] = |hello|
+        new_p->arg[5] = |(null)|
+
+LS > -la | echo >> test     white space in last cmd -> segmentation fault
+
+
+me 
+    echo -nnnnn -nnnnn hello world
+    echo -nnnnn -nnnnna hello world
+
+khalid   
+        echo -nnnnn -nnnnn hello world
+        echo -nnnnn -nnnnna hello world
+
+ECHO -n   --------> segfault
+
+explique why spaces is nor remove after FILE LIKE IN EXAPLE  :
+
+    echo hello test > file khouribga    home < world   q            ll
+
+
+
+
+
+///////////////////////////////////////////////
+
+
+breakoint for lldb -----> breakpoint set --name main
+move step by step  ------> s
+move a big step    ------> n
+view the comntent     ------> v cmd   (cmd (char *cmd)= is the variable that we want to view)
+move a big step    ------> n
+
+
+
+<< e'' << d'' segfault
+<< $USER   
+    mel-kouc
+    we shouldn't expand

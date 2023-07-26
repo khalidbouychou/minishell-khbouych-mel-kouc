@@ -6,7 +6,7 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/07/26 01:10:18 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/07/26 23:06:23 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ $(NAME) : $(OSRC)
 	@$(CC) -lreadline $(CFLAGS)  $(OSRC) -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 
-%.o: %.c ../incld/minishell.h
+%.o: %.c ../incld/minishell.h 
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "*** {Compaling Files ...} ***"
 
