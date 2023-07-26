@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/26 00:42:26 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/26 01:37:47 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,23 @@ int	ft_check_n(char *arg)
 void	ft_echo(char **arg, int fd)
 {
 	int	i;
-	i = 2;
-	if (ft_strcmp(arg[1], "echo") != 0)
+
+	i = 1;
+	if (ft_strcmp(arg[0], "echo") != 0)
 		return ;
-	if (!arg[2])
+	if (arg[1])
 	{
-		ft_putstr_fd("\n", fd);
-		// write(1,"\n",fd);
-		printf("\n");
+		// ft_putstr_fd("\n", fd);
 		while (arg[i] && ft_check_n(arg[i]))
 			i++;
 		while (arg[i])
 		{
 			ft_putstr_fd(arg[i], fd);
-			if (arg[i] && arg[i + 1])
-				ft_putstr_fd(" ", fd);
+			// if (arg[i] && arg[i + 1])
+			// 	ft_putstr_fd(" ", fd);
 			i++;
 		}
-		if (!ft_check_n(arg[2]))
+		if (!ft_check_n(arg[1]))
 			ft_putstr_fd("\n", fd);
 	}
 }

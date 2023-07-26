@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/26 00:27:47 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/26 01:30:11 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,51 +30,56 @@ void	print(t_token *lst)
 	i = 0;
 	tmp = lst;
 	i = 0;
-	printf("\n------------------------------------\n");
+	printf("\n--------------TOKEN_LIST----------------\n");
 	while (tmp && tmp->content)
 	{
 		printf("√ cmd\t--> (%s)\n", tmp->content);
 		printf("√ type\t--> (%d)\n", tmp->type);
 		printf("√ is_op\t--> (%d)\n", tmp->operator);
+		printf("√ flag\t--> (%d)\n", tmp->flag);
 		// printf("√ path\t--> (%s)\n", tmp->path);
-		printf("------------------------------------\n");
+		printf("\n------------------------------------\n");
  		tmp = tmp->next;
 		i++;
 	}
 }
-
-// void	ft_handel_signal(int signal)
-// {
-// 	if (signal == SIGQUIT)
-// 	{
-// 		ft_putchar_fd('\r', 1);
-// 		rl_on_new_line();
-// 	}
-// 	else if (signal == SIGINT)
-// 	{
-// 		ft_putchar_fd('\n', 1);
-// 		rl_replace_line("", 0);
-// 		rl_on_new_line();
-// 		rl_redisplay();
-// 	}
-// }
-
-// void 	ft_menu_bultins(char *cmd)
-// {
-// 	if(ft_strncmp(cmd, "echo",ft_strlen(cmd)) == 0)
-// 		env();
-// }
-
-void	l()
+void	parser_print(t_parse *lst)
 {
-	system("leaks ./minishell");
+	t_parse	*tmp;
+	int		i;
+	int		j;
+
+	i = 0;
+	tmp = lst;
+	
+	printf("\n----------------PARSER_LIST---------------\n");
+	while (tmp)
+	{
+		j = 0;
+		while (tmp->arg[j])
+		{
+			printf("√ cmd\t--> (%s)\n", tmp->arg[j]);
+			j++;
+		}
+		printf("√ \n***** fd int = %d *****\n", tmp->fd_input);
+		printf("√ \n***** fd out = %d *****\n", tmp->fd_output);
+		// printf("√ path\t--> (%s)\n", tmp->path);
+		printf("\n------------------------------------\n");
+ 		tmp = tmp->next;
+	}
 }
+
+// void	l()
+// {
+// 	system("leaks ./minishell");
+// }
 
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
 	t_env	*env;
 	t_token	*list_tokens;
+	t_parse	*list_parser;
 
 	// atexit(l);
 	(void)argc;
@@ -82,22 +87,26 @@ int	main(int argc, char **argv, char **envp)
 	env = NULL;
 	cmd = NULL;
 	list_tokens = NULL;
+	list_parser = NULL;
 	env = env_list(envp);
+	// ft_export(argv,env);
+	// ft_echo(argv,1);
+	while (1)
+	{
+		cmd = readline("minishell ~> ");
+		if (*cmd)
+		{
+			add_history(cmd);
+			list_tokens = divide(cmd, env);
+			// print(list_tokens);
+			list_parser = parser(list_tokens);
+			printf("\n***** $$$$$$$$$$$$$$ *****\n");
+			execute_main(list_parser);
+			printf("\n*********************\n");
+			parser_print(list_parser);
+		}
+		free (cmd);
+	}
 	// ft_echo(argv,1);//done
-	ft_export(argv, env, 1);
-	// while (1)
-	// {
-	// 	cmd = readline("minishell ~> ");
-	// 	if (*cmd)
-	// 	{
-	// 		add_history(cmd);
-	// 		list_tokens = divide(cmd, env);
-	// 		ft_export(argv,env);
-	// 		// ft_echo(argv,1);
-	// 		// print(list_tokens);
-			// parser(list_tokens);
-	// 		printf("\n*********************\n");
-	// 	}
-	// 	free (cmd);
-	// }
+	// ft_export(argv, env, 1);
 }

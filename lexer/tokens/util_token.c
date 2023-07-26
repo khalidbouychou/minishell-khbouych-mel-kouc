@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/16 19:35:22 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/26 01:29:47 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,29 @@ int	ft_word(char *cmd, int *i, int init)
 	return (count);
 }
 
-// char	*ft_get_path(t_env *env, t_token *tok)
-// {
-// 	char	*p;
-// 	t_env	*tmp;
+void	check_herdoc_quotes(t_token *lst)
+{
+	t_token	*tmp;
+	t_token	*ptr;
 
-// 	p = NULL;
-// 	tmp = env;
-// 	while (tmp)
-// 	{
-// 		if (ft_strncmp(tmp->key, "PATH", 4) == 0)
-// 		{
-// 			p = tmp->value;
-// 			break ;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// 	return (ft_check_if_cmd_valid(ft_split(p, ':'), tok));
-// }
+	tmp = lst;
+	ptr = NULL;
+	while (tmp)
+	{
+		if (tmp->type == HERDOC)
+		{
+			tmp = tmp->next;
+			while (tmp->type == SPACE || tmp->type == TAB)
+				tmp = tmp->next;
+			if (tmp->content[0] == '\'' || tmp->content[0] == '"')
+				tmp->flag = 1;
+			else if (tmp->next && (!ft_strncmp(tmp->next->content, "''", 3)
+				|| !ft_strncmp(tmp->next->content, "\"\"", 3)))
+				tmp->flag = 1;
+		}
+		tmp = tmp->next;
+	}
+}
 
 void	ft_get_type(t_token *tok)
 {
@@ -96,16 +101,36 @@ void	ft_get_type(t_token *tok)
 	ft_set_oper(tok);
 }
 
-t_token	*ft_init_token(char *cmd, int i, int count, t_env *env)
+t_token	*ft_init_token(char *cmd, int i, int count)
 {
 	t_token	*tok;
 
 	tok = malloc(sizeof(t_token));
-	tok->content = ft_substr(cmd, i, count);
-	ft_get_type(tok);
-	(void)env;
-	// tok->path = ft_get_path(env, tok);
+	tok->content = NULL;
 	tok->next = NULL;
 	tok->prev = NULL;
+	tok->flag = 0;
+	tok->content = ft_substr(cmd, i, count);
+	ft_get_type(tok);
+	// tok->path = ft_get_path(env, tok);
 	return (tok);
 }
+
+// char	*ft_get_path(t_env *env, t_token *tok)
+// {
+// 	char	*p;
+// 	t_env	*tmp;
+
+// 	p = NULL;
+// 	tmp = env;
+// 	while (tmp)
+// 	{
+// 		if (ft_strncmp(tmp->key, "PATH", 4) == 0)
+// 		{
+// 			p = tmp->value;
+// 			break ;
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// 	return (ft_check_if_cmd_valid(ft_split(p, ':'), tok));
+// }

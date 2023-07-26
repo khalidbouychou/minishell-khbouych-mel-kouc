@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/16 17:19:18 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:15:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,12 @@ void	check_list(t_token **lst, t_env *env)
 {
 	if (!check_operator(lst) || !check_quotes(lst))
 	{
-		printf("\nsyntax error near unexpected token \n");
+		printf("syntax error near unexpected token \n");
 		free_token_list(lst);
 		return ;
 		// free_env_list(env);
 	}
+	check_herdoc_quotes(*lst);
 	trim_list(lst);
 	ft_expander(*lst, env);
 	lixer_list(lst);

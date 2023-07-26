@@ -1,4 +1,12 @@
 {
+<<<<<<< HEAD
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "bitset": "c",
+        "__node_handle": "c",
+        "ios": "c"
+    }
+=======
   "C_Cpp.errorSquiggles": "disabled",
   "files.associations": {
     "bitset": "c",
@@ -77,4 +85,5 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false
+>>>>>>> e71cb8a3407bbe6ce9f40de5208781765523fd59
 }

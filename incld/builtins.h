@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/24 21:30:57 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/26 00:51:32 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void	ft_print_after_sort(t_env *e);
 char	*ft_get_key_without_plus(char *key);
 char	*ft_get_old_value(t_env *e, char *key);
 t_env	*ft_lstlast(t_env *lst);
+int	ft_check_n(char *arg);
 #endif

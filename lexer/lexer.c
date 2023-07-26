@@ -3,32 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 18:38:33 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/26 01:27:51 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-char *ft_strncpy(char *dest, char *src, int len)
+void	ft_strcpy(char *dest, char *src)
 {
-	int i;
-
-	i = 0;
-	while (src[i] && i < len)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-void ft_strcpy(char *dest, char *src)
-{
-	int i;
+	int	i;
 
 	i = 0;
 	// if (dest == NULL || src == NULL)
@@ -60,28 +46,52 @@ void	ft_set_oper(t_token *tok)
 	else
 		tok->operator = 0;
 }
-// int	error_pipe(char *commande)
-// {
-// 	int	i;
-// 	int	pipe_index;
 
-// 	i = 0;
+void	add_node_space(t_token *ptr)
+{
+	t_token	*new;
+	t_token	*next_ptr;
 
-// 	pipe_index = ft_strchr(commande, '|');
-// 	if (commande[0] == '|')
-// 		return (0);
-// 	if (pipe_index != -1 && !check_spases(commande, pipe_index))
-// 		return (0);
-// 	i++;
-// 	return (1);
-// }
+	next_ptr = NULL;
+	if (ptr->next)
+	{
+		next_ptr = ptr->next;
+		if (next_ptr->next && next_ptr->type == FIL
+			&& ft_strncmp(ptr->prev->content, "echo", 5)
+			&& (next_ptr->next->type == VAR || next_ptr->next->type == WORD))
+		{
+			new = ft_init_token(" ", 0, 1);
+			new->next = next_ptr->next;
+			next_ptr->next = new;
+			new->prev = next_ptr;
+		}
+	}
+}
 
-// char	*lexer(char *commande)
-// {
-// 	if (!error_pipe(commande))
-// 	{
-// 		printf("error");
-// 		exit(1);
-// 	}
-// 	return (commande);
-// }
+t_token	*echo_and_n(t_token *ptr, t_token *space)
+{
+	if (ft_check_n(ptr->content))
+	{
+		while (ft_check_n(ptr->content))
+		{
+			space = ptr->next;
+			if (space && space->type == SPACE)
+			{
+				ptr->next = space->next;
+				space->next->prev = ptr;
+				free (space);
+			}
+			ptr = ptr->next;
+		}
+	}
+		printf("test\n");
+	while ((ptr && ptr->operator == 0)
+		|| (ptr && ptr->operator == 1 && ptr->type == SPACE))
+		ptr = ptr->next;
+	while ((ptr && ptr->type != PIPE))
+	{
+		add_node_space(ptr);
+		ptr = ptr->next;
+	}
+	return (ptr);
+}
