@@ -6,95 +6,140 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 18:39:30 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/26 00:07:05 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-// void	ft_strlcpy(char *dst, char *src, int dstsize)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (src[i] && i < dstsize)
-// 	{
-// 		dst[i] = src[i];
-// 		i++;
-// 	}
-// 	dst[i] = '\0';
-// }
-
-// void	ft_strcpy(char* dest, const char* src)
-// {
-//     if (dest == NULL || src == NULL)
-//         return ;
-
-//     char* ptr = dest;
-
-//     while (*src != '\0') {
-//         *ptr = *src;
-//         ptr++;
-//         src++;
-//     }
-//     *ptr = '\0';
-// }
-
-void	ft_hard_copy(char *k ,char *v, t_env *e1, t_env *e2)
-{
-	ft_strcpy(k, e1->key);
-	ft_strcpy(v, e1->value);
-	ft_strcpy(e1->key, e2->key);
-	ft_strcpy(e1->value, e2->value);
-	ft_strcpy(e1->key, k);
-	ft_strcpy(e1->value, v);
-}
-
-void	ft_sortlist(t_env *cpy_env)
-{
-	int		i;
-	t_env	*tmp;
-	t_env	*next;
-	char	*_key = NULL;
-	char	*_value = NULL;
-
-	i = 0;
-	tmp = cpy_env;
-	next = cpy_env->next;
-	while (tmp && next)
-	{
-		if (tmp->key[0] > next->key[0])
-		{
-			// puts("ddd\n");
-			ft_hard_copy(_key, _value, tmp, next);
-		}
-		tmp = tmp->next;
-		next = next->next;
-	}
-}
-
-int	ft_check_ifkey_valid(char *key)
+int	ft_check_ifkey_valid(t_env *node, int fd)
 {
 	int	i;
 
 	i = 0;
-
-	if (key[0] != '_' || key[ft_strlen(key) - 1] != '_'
-		|| !ft_isalpha(key[0]) || !ft_isalpha(key[ft_strlen(key) - 1])
-		|| key[ft_strlen(key) - 1] != '+')
-		return (0);
-	while (key[i])
+	if(node->key[ft_strlen(node->key) - 1] == '+' && node->value == NULL)
+		return (write(fd, "[export : key not valide ]\n" ,28), 0);
+	if (!ft_isalpha(node->key[0]) && node->key[0] != '_')
+		return (write(fd, "[export : key not valide ]\n" ,28), 0);
+	if (node->key[ft_strlen(node->key) - 1] != '_' && !ft_isalnum(node->key[ft_strlen(node->key) - 1])
+		&& node->key[ft_strlen(node->key) - 1] != '+')
+		return (write(fd, "[export : key not valide ]\n" ,28), 0);
+	while (node->key[i] && node->key[i + 1])
 	{
-		if (key[i] != '_' && !ft_isalnum(key[i]) && key[i] != '_')
-			return (0);
+		if (node->key[i] != '_' && !ft_isalnum(node->key[i]))
+			return (write(fd, "[export : key not valide ]\n", 28), 0);
 		i++;
 	}
 	return (1);
 }
 
-void	ft_export(char **arg, t_env *env)
+char	**ft_get_keys_tab(t_env *env, int size)
 {
-	(void)arg;
-	ft_sortlist(env);
-	ft_print_env(env);
+	char	**res;
+	t_env	*head;
+	int		i;
+
+	i = -1;
+	head = env;
+	res = (char **)malloc(sizeof(char *) * size + 1);
+	while (head)
+	{
+		if (head->key != NULL)
+			res[++i] = ft_strdup(head->key);
+		head = head->next;
+	}
+	res[i] = NULL;
+	return (res);
+}
+
+
+void	ft_sort_keys(t_env *e)
+{
+	t_env	*tmp;
+	t_env	*ptr;
+	char	*x;
+	char	*v;
+
+	tmp = e;
+	while (tmp)
+	{
+		ptr = tmp->next;
+		while (ptr)
+		{
+			if (tmp->key[0] > ptr->key[0])
+			{
+				x = tmp->key;
+				tmp->key = ptr->key;
+				ptr->key = x;
+				v = tmp->value;
+				tmp->value = ptr->value;
+				ptr->value = v;
+			}
+			ptr = ptr->next;
+		}
+		tmp = tmp->next;
+	}
+}
+
+int	ft_if_key_exist(t_env *e, t_env *node)
+{
+	t_env	*tmp;
+
+	tmp = e;
+	while (tmp)
+	{
+		if (!ft_strcmp(ft_get_key_without_plus(node->key), tmp->key))
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+void ft_join_value(t_env *e, t_env *node)
+{
+	t_env	*tmp;
+
+	tmp = e;
+	while (tmp)
+	{
+		if (!ft_strcmp(ft_get_key_without_plus(node->key), tmp->key))
+			tmp->value = ft_strjoin(tmp->value, node->value);
+		tmp = tmp->next;
+	}
+}
+
+void	ft_add_to_env(t_env *e, t_env *node)
+{
+	node->prev = ft_lstlast(e);
+	node->key = ft_get_key_without_plus(node->key);
+	ft_lst_addback(&e, node);
+}
+
+void	ft_export(char **export, t_env *env, int fd)
+{
+	int		i;
+	t_env	*node;
+	// t_env	*e;
+
+	(void)fd;
+	if (export[2] == NULL)
+	{
+		ft_sort_keys(env);
+		ft_print_after_sort(env);
+		return ;
+	}
+	i = 2;
+	while (export[i])
+	{
+		node = ft_lstnew(export[i++]);
+		if (ft_check_ifkey_valid(node, fd))
+		{
+			if (node->key[ft_strlen(node->key) - 1] == '+'
+				&& ft_if_key_exist(env, node))
+				ft_join_value(env, node);
+			else
+				ft_add_to_env(env, node);
+		}
+	}
+	ft_print_after_sort(env);
 }

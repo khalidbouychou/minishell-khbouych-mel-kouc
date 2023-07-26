@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/24 18:17:49 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 00:55:32 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,16 @@ void	init_struct_parce(t_parse *new_p)
 	new_p->arg = NULL;
 }
 
-void	ft_putstr_fd(char *s, int fd)
-{
-	int	i;
+// void	ft_putstr_fd(char *s, int fd)
+// {
+// 	int	i;
 
-	if (s == NULL)
-		return ;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
+// 	if (s == NULL)
+// 		return ;
+// 	i = 0;
+// 	while (s[i] != '\0')
+// 	{
+// 		write(fd, &s[i], 1);
+// 		i++;
+// 	}
+// }

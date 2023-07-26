@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/26 00:26:57 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 01:23:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ void	check_cmd_bult(t_parse *list_pars)
 	tmp = list_pars;
 	while (tmp)
 	{
-		printf("\nhello");
 		if (!ft_strncmp(tmp->arg[0], "echo", 5))
 		{
 			printf("\n----->test echo\n");
-			// ft_echo(tmp->arg, 1);
+			ft_echo(tmp->arg, 1);
 		}
 		else if (!ft_strncmp(tmp->arg[0], "env", 4))
 		{

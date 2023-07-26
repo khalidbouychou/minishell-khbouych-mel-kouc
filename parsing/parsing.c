@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/25 23:46:58 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 01:23:22 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i)
 				|| tmp->type == VAR || tmp->type == SPACE))
 		{
 			new_p->arg[++(*i)] = ft_strdup(tmp->content);
-			printf("new_p->arg[%d] = |%s|\n", *i, new_p->arg[*i]);
+			// printf("new_p->arg[%d] = |%s|\n", *i, new_p->arg[*i]);
 			if (!tmp->next || tmp->next->type == PIPE)
 				break ;
 			tmp = tmp->next;
@@ -28,7 +28,7 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i)
 		if (!tmp->next || (tmp->next && tmp->next->type == PIPE))
 		{
 			new_p->arg[++(*i)] = NULL;
-			printf("new_p->arg[%d] = |%s|\n", *i, new_p->arg[*i]);
+			// printf("new_p->arg[%d] = |%s|\n", *i, new_p->arg[*i]);
 		}
 		ft_searsh_herdoc(tmp, new_p);
 		if (!tmp || tmp->type == PIPE)
@@ -49,7 +49,7 @@ t_parse	*ft_list_parser(t_token *tmp, int count)
 	// printf("*list->fd_input = %d\n", lst->fd_input);
 	// printf("*list->fd_input = %d\n", lst->fd_output);
 	// printf("*list->fd_input = %d\n", lst->fd_heredoc);
-	printf("\nparser count + 1 = | %d |\n", count + 1);
+	// printf("\nparser count + 1 = | %d |\n", count + 1);
 	new_p->arg = malloc(sizeof(char *) * (count + 1));
 	push_arg(tmp, new_p, &i);
 	// ft_get_type(new_p);
@@ -107,8 +107,8 @@ t_parse	*parser(t_token	*list_tokens)
 			tmp_pars = tmp_pars->next;
 		tmp_tok = tmp_tok->next;
 	}
-	printf("\n***** fd int = %d *****\n", tmp_pars->fd_input);
-	printf("\n***** fd out = %d *****\n", tmp_pars->fd_output);
+	// printf("\n***** fd int = %d *****\n", tmp_pars->fd_input);
+	// printf("\n***** fd out = %d *****\n", tmp_pars->fd_output);
 	// execute_main(list_pars);
 	return (list_pars);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/24 14:40:52 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 00:38:50 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "../incld/parsing.h"
 # include "../incld/builtins.h"
 # include "../incld/token.h"
+# include <readline/readline.h>
 
 //----------------------* struct env *----------------------//
 

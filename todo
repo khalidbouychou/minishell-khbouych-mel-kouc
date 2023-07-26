@@ -117,3 +117,14 @@ cat << del ""
 
 
 ft_echo(tmp->arg, tmp->fd_output); function ---> segfault
+ECHO -n   --------> segfault
+
+
+/***** bultins ******/
+    echo    √
+    export  √
+    env     √
+    exit    x
+    pwd     x
+    cd      x
+    unset   x

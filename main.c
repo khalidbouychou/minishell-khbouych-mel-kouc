@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/26 00:21:35 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 01:30:11 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_env(t_env *env)
 {
 	while (env)
 	{
-		printf("%s = %s \n", env->key, env->value);
+		printf("%s=%s\n", env->key, env->value);
 		env = env->next;
 	}
 }
@@ -30,7 +30,7 @@ void	print(t_token *lst)
 	i = 0;
 	tmp = lst;
 	i = 0;
-	printf("\n------------------------------------\n");
+	printf("\n--------------TOKEN_LIST----------------\n");
 	while (tmp && tmp->content)
 	{
 		printf("√ cmd\t--> (%s)\n", tmp->content);
@@ -52,7 +52,7 @@ void	parser_print(t_parse *lst)
 	i = 0;
 	tmp = lst;
 	
-	printf("\n------------------------------------\n");
+	printf("\n----------------PARSER_LIST---------------\n");
 	while (tmp)
 	{
 		j = 0;
@@ -68,28 +68,6 @@ void	parser_print(t_parse *lst)
  		tmp = tmp->next;
 	}
 }
-
-// void	ft_handel_signal(int signal)
-// {
-// 	if (signal == SIGQUIT)
-// 	{
-// 		ft_putchar_fd('\r', 1);
-// 		rl_on_new_line();
-// 	}
-// 	else if (signal == SIGINT)
-// 	{
-// 		ft_putchar_fd('\n', 1);
-// 		rl_replace_line("", 0);
-// 		rl_on_new_line();
-// 		rl_redisplay();
-// 	}
-// }
-
-// void 	ft_menu_bultins(char *cmd)
-// {
-// 	if(ft_strncmp(cmd, "echo",ft_strlen(cmd)) == 0)
-// 		env();
-// }
 
 // void	l()
 // {
@@ -107,6 +85,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	env = NULL;
+	cmd = NULL;
 	list_tokens = NULL;
 	list_parser = NULL;
 	env = env_list(envp);
@@ -124,8 +103,10 @@ int	main(int argc, char **argv, char **envp)
 			printf("\n***** $$$$$$$$$$$$$$ *****\n");
 			execute_main(list_parser);
 			printf("\n*********************\n");
-			// parser_print(list_parser);
+			parser_print(list_parser);
 		}
 		free (cmd);
 	}
+	// ft_echo(argv,1);//done
+	// ft_export(argv, env, 1);
 }

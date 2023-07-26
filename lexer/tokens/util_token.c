@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/25 22:13:12 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 01:29:47 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	check_herdoc_quotes(t_token *lst)
 	ptr = NULL;
 	while (tmp)
 	{
-		printf("\ncheck_herd = |%s|", tmp->content);
 		if (tmp->type == HERDOC)
 		{
 			tmp = tmp->next;
