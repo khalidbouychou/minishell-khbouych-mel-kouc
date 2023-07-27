@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/26 13:25:44 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/27 23:11:31 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,30 +74,38 @@ t_parse	*parser_list(t_token *list_tokens, int *is_alloc, t_env *env)
 	return (lst);
 }
 
-t_parse	*parser(t_token	*list_tokens, t_env *env)
+int	redirection(t_token	*list_tokens, t_parse *list_pars)
 {
-	int		is_alloc;
-	t_parse	*list_pars;
 	t_token	*tmp_tok;
 	t_parse	*tmp_pars;
+	int		flag;
 
-	is_alloc = 0;
-	list_pars = parser_list(list_tokens, &is_alloc, env);
+	flag = 0;
 	tmp_tok = list_tokens;
 	tmp_pars = list_pars;
 	while (tmp_tok)
 	{
-		if (tmp_tok->type != PIPE)
-		{
-			if (tmp_tok && (tmp_tok->type == INPUT || tmp_tok->type == OUTPUT
-					|| tmp_tok->type == APPND))
-				tmp_tok = ft_handle_oper(tmp_tok, tmp_pars);
-		}
-		else
+		if (tmp_tok->type == PIPE)
+			flag = 0;
+		if (tmp_tok && flag == 0 && (tmp_tok->type == INPUT
+				|| tmp_tok->type == OUTPUT || tmp_tok->type == APPND))
+			tmp_tok = ft_handle_oper(tmp_tok, tmp_pars, &flag);
+		else if (tmp_tok->type == PIPE)
 			tmp_pars = tmp_pars->next;
-		tmp_tok = tmp_tok->next;
+		if (tmp_tok)
+			tmp_tok = tmp_tok->next;
 	}
-	// printf("\n***** fd int = %d *****\n", tmp_pars->fd_input);
-	// printf("\n***** fd out = %d *****\n", tmp_pars->fd_output);
+	return (1);
+}
+
+t_parse	*parser(t_token	*list_tokens, t_env *env)
+{
+	int		is_alloc;
+	t_parse	*list_pars;
+
+	is_alloc = 0;
+	list_pars = parser_list(list_tokens, &is_alloc, env);
+	if (!redirection(list_tokens, list_pars))
+		printf("\n THIS IS ERROR IN FD \n");
 	return (list_pars);
 }

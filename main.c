@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/26 23:44:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/27 23:13:20 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	parser_print(t_parse *lst)
 
 	i = 0;
 	tmp = lst;
-	
 	printf("\n----------------PARSER_LIST---------------\n");
 	while (tmp)
 	{
@@ -99,7 +98,7 @@ int	main(int argc, char **argv, char **envp)
 			list_tokens = divide(cmd, env);
 			// print(list_tokens);
 			list_parser = parser(list_tokens, env);
-			execute_main(list_parser, env);
+			// execute_main(list_parser, env);
 			// parser_print(list_parser);
 			printf("\n*********************\n");
 		}

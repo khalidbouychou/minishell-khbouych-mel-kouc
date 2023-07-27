@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:02:36 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/26 21:27:21 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/27 14:39:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,19 @@ void	between_word_var(t_token **lst)
 	t_token	*ptr;
 
 	tmp = *lst;
-	tmp = tmp->next;
+	// tmp = tmp->next;
 	while (tmp)
 	{
 		ptr = tmp->next;
 		if (ptr)
 			util_between_word_var(ptr, tmp);
 		if (tmp->operator == 1 && tmp->type != SPACE
-			&& tmp->type != PIPE && tmp->next->type == WORD)
-			tmp->next->type = FIL;
+			&& tmp->type != PIPE && tmp->next)
+		{
+			while (tmp && tmp->type != WORD && tmp->type != VAR)
+				tmp = tmp->next;
+			tmp->type = FIL;
+		}
 		tmp = tmp->next;
 	}
 	check_cmd(lst);

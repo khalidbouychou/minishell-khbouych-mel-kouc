@@ -2,15 +2,7 @@ token
 trim quotes
 expander 
 joiner
-parser 
-
-
-O_CREATE ----> red_out heredoc | red_app | 
-O_RDONLY ----> red_in
-
-
-red_app -> O_ APPEND
-heredoc ->  O_WRONLY | O_CREAT | O_TRUNC
+parser
 
 
 
@@ -20,20 +12,11 @@ testin bash    --->       > text ls
 test  bash     --->       ls > a | cat < a   -----> indefined behavier
 
 
-echo >>> test
-
-echo >>| test
-echo >|> test
-echo >>|> test
 
 
 ls <> ls // i don't handel it
 ls <<< ls // i don't handel it
 << 5< a  --------> syntax error near unexpected token `5'
-
-bash-3.2$ ls >| ls
-bash-3.2$ ls > | ls
-
 
 << del cat  >l | echo hello asking for this case
 
@@ -134,21 +117,75 @@ explique why spaces is nor remove after FILE LIKE IN EXAPLE  :
     echo hello test > file khouribga    home < world   q            ll
 
 
-
-
-
-///////////////////////////////////////////////
-
-
-breakoint for lldb -----> breakpoint set --name main
-move step by step  ------> s
-move a big step    ------> n
-view the comntent     ------> v cmd   (cmd (char *cmd)= is the variable that we want to view)
-move a big step    ------> n
-
-
-
 << e'' << d'' segfault
 << $USER   
     mel-kouc
     we shouldn't expand
+
+echo >>> test
+
+echo >>| test
+echo >|> test
+echo >>|> test
+
+bash-3.2$ ls > | ls
+
+ls >| txt seg fault
+
+ls >| txt hello
+
+        ----------------PARSER_LIST---------------
+        √ cmd   --> (ls)
+        √ 
+        ***** fd int = -4 *****
+        √ 
+        ***** fd out = 3 *****
+
+        ------------------------------------
+        √ cmd   --> (hello)
+        √ 
+        ***** fd int = -4 *****
+        √ 
+        ***** fd out = -5 *****
+
+///////////////////////////////////////////////
+
+$$$$$$$$$$$$$$$         LLDB        $$$$$$$$$$$$$$$$
+
+        breakoint for lldb -----> breakpoint set --name main
+        move step by step  ------> s
+        move a big step    ------> n
+        view the comntent     ------> v cmd   (cmd (char *cmd)= is the variable that we want to view)
+        move a big step    ------> n
+
+
+
+problem
+
+    if a have a file txt the test of bash
+    ls >| txt hello
+
+            ls: hello: No such file or directory   
+
+    ls >| cat txt
+
+    ls >|  txt
+
+
+    bash-3.2$ ls >| ls
+        bash ---> open a file ls
+
+        my minishel open file |
+
+
+if a use a test in my minishell
+
+                minishell ~> ls |
+                syntax error near unexpected token
+                
+
+when i try to detect leaks and   free_token_list(lst)   is work 
+the shell display --->  3 leaks for 48 total leaked bytes.
+
+and when i commant the   free_token_list(lst)    the shell
+display ----->    0 leaks for 0 total leaked bytes.
