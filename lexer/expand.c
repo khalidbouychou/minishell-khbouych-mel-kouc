@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/19 20:41:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:40:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 	}
 	return (v.r);
 }
-
 
 void	ft_expander(t_token *tok, t_env *env)
 {

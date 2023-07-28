@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/26 00:38:50 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:50:18 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,21 @@
 # include <string.h>
 # include <fcntl.h>
 # include <readline/readline.h>
+# include <readline/readline.h>
 # include "../incld/execution.h"
 # include "../incld/lexer.h"
 # include "../incld/parsing.h"
-# include "../incld/builtins.h"
 # include "../incld/token.h"
-# include <readline/readline.h>
+# include "../incld/builtins.h"
 
+// for exit status and signals
+typedef struct s_glbl
+{
+	int	ex_stu;
+	int	sig;
+}	t_glbl;
+
+t_glbl	g_stu;
 //----------------------* struct env *----------------------//
 
 t_env	*ft_lstnew(char *env);

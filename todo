@@ -128,3 +128,7 @@ ECHO -n   --------> segfault
     pwd     x
     cd      x
     unset   x
+    /***go crazy***
+    ls >'|' | ls | echo hello --> filename '|' with content ls
+    ls >"|"
+    ls > '>' |ls | echo hello --> filename '|' with content ls

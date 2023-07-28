@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/26 01:23:58 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:38:09 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	check_cmd_bult(t_parse *list_pars)
 		}
 		else if (!ft_strncmp(tmp->arg[0], "unset", 6))
 		{
+			// ft_unset()
 			printf("\n----->test unset\n");
 			
 		}
