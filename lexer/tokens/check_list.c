@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/27 23:14:32 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:58:07 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ void	trim_list(t_token **list)
 	}
 }
 
-void	check_list(t_token **lst, t_env *env)
+int	check_list(t_token **lst, t_env *env)
 {
 	if (!check_operator(lst) || !check_quotes(lst))
 	{
 		printf("syntax error near unexpected token \n");
 		free_token_list(lst);
-		return ;
+		return (0);
 		// free_env_list(env);
 	}
 	check_herdoc_quotes(*lst);
@@ -100,4 +100,5 @@ void	check_list(t_token **lst, t_env *env)
 	ft_expander(*lst, env);
 	lixer_list(lst);
 	rm_node_white_space(lst);
+	return (1);
 }

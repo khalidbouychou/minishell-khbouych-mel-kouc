@@ -53,13 +53,6 @@ EXPLIQUE     ---> echo hello test > file $home
 
 
 
-test : first we creat (input) < txt then aplay this example 
-
-    echo hello >> file < txt > txtr
-
-            fd inp = 4
-            fd out = 3
-
     echo  <  txt
 
 
@@ -69,7 +62,6 @@ test : first we creat (input) < txt then aplay this example
         √ cmd   --> ( )
         √ cmd   --> ()
 
-cat << del""
 
 cat << del ""
         cat: : No such file or directory
@@ -87,6 +79,8 @@ cat << del ""
 
 
 /////////////////////  FIXED ///////////////////
+
+cat << del""
 
 we have error in space after echo ,we must remove it
 echo  <<'del' "test" hello 
@@ -148,7 +142,20 @@ ls >| txt hello
         √ 
         ***** fd out = -5 *****
 
+
+bash-3.2$ ls >| ls
+        bash ---> open a file ls
+
+        my minishel open file |
+
+ls  > hay < file > txt
+
+
+the content of ls not in hay
+because if a file is not open the command don't pass au execut
+
 ///////////////////////////////////////////////
+
 
 $$$$$$$$$$$$$$$         LLDB        $$$$$$$$$$$$$$$$
 
@@ -158,6 +165,7 @@ $$$$$$$$$$$$$$$         LLDB        $$$$$$$$$$$$$$$$
         view the comntent     ------> v cmd   (cmd (char *cmd)= is the variable that we want to view)
         move a big step    ------> n
 
+$$$$$$$$$$$$$$$$                   $$$$$$$$$$$$$$$$
 
 
 problem
@@ -172,20 +180,7 @@ problem
     ls >|  txt
 
 
-    bash-3.2$ ls >| ls
-        bash ---> open a file ls
 
-        my minishel open file |
+ls  > hay < file | ls > mmm
 
-
-if a use a test in my minishell
-
-                minishell ~> ls |
-                syntax error near unexpected token
-                
-
-when i try to detect leaks and   free_token_list(lst)   is work 
-the shell display --->  3 leaks for 48 total leaked bytes.
-
-and when i commant the   free_token_list(lst)    the shell
-display ----->    0 leaks for 0 total leaked bytes.
+mmmm  have a content of ls

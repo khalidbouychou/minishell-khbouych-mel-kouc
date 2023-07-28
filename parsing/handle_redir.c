@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/27 23:10:38 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/28 13:20:26 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,17 @@ char	*generate_name(void)
 	// 2 : write
 	// 1 : execute
 	// perror, strerror
+t_token	*output_function(t_token *tmp, t_parse *new_p)
+{
+	if (new_p->fd_output != -5)
+		close(new_p->fd_output);
+	while (tmp && tmp->type != FIL)
+		tmp = tmp->next;
+	new_p->f_name = tmp->content;
+	new_p->fd_output = open(new_p->f_name, O_CREAT | O_RDONLY | O_TRUNC, 0666);
+	return (tmp);
+}
+
 t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 {
 	if (tmp->type == INPUT)
@@ -85,20 +96,14 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 		new_p->fd_input = open(new_p->f_name, O_RDONLY, 0666);
 	}
 	else if (tmp->type == OUTPUT)
-	{
-		if (new_p->fd_output != -5)
-			close(new_p->fd_output);
-		while (tmp && tmp->type != FIL)
-			tmp = tmp->next;
-		new_p->f_name = tmp->content;
-		new_p->fd_output = open(new_p->f_name, O_CREAT | O_RDONLY | O_TRUNC, 0666);
-	}
+		tmp = output_function(tmp, new_p);
 	else
 	{
 		if (new_p->fd_output != -5)
 			close(new_p->fd_output);
 		new_p->f_name = tmp->next->content;
-		new_p->fd_output = open(new_p->f_name, O_CREAT | O_RDONLY | O_APPEND, 0666);
+		new_p->fd_output = open(new_p->f_name, O_CREAT
+				| O_RDONLY | O_APPEND, 0666);
 	}
 	if (new_p->fd_input == -1 || new_p->fd_output == -1)
 	{

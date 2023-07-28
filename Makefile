@@ -6,7 +6,7 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/07/26 23:06:23 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/07/28 18:21:28 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./lexer/tokens/check_list.c utils/util_.c utils/util__.c ./lexer/tokens/free.c ./lexer/tokens/check_syntax.c \
 		./parsing/parsing.c ./parsing/util_lst_parce.c   \
 		./builtins/ftecho.c  ./builtins/ftexport.c ./parsing/handle_redir.c \
-		./parsing/handle_herdoc.c ./execution/main_exec.c \
+		./parsing/handle_herdoc.c ./execution/main_exec.c  ./execution/util_m_exec.c  \
 	   	./utils/export_utils.c ./utils/export_utils_.c
 		
 

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/27 23:13:20 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:11:26 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	print(t_token *lst)
 		i++;
 	}
 }
+
 void	parser_print(t_parse *lst)
 {
 	t_parse	*tmp;
@@ -73,42 +74,45 @@ void	parser_print(t_parse *lst)
 // 	system("leaks ./minishell");
 // }
 
+void	help_main(char *cmd, t_env *env)
+{
+	t_token	*list_tokens;
+	t_parse	*list_parser;
+
+	list_tokens = NULL;
+	list_parser = NULL;
+	add_history(cmd);
+	list_tokens = divide(cmd, env);
+	if (list_tokens)
+	{
+		// print(list_tokens);
+		list_parser = parser(list_tokens, env);
+		execute_main(list_parser, env);
+		parser_print(list_parser);
+		printf("\n*********************\n");
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
 	t_env	*env;
-	t_token	*list_tokens;
-	t_parse	*list_parser;
 
 	// atexit(l);
 	(void)argc;
 	(void)argv;
 	cmd = NULL;
-	list_tokens = NULL;
-	list_parser = NULL;
 	env = env_list(envp);
-	// ft_export(argv,env);
-	// ft_echo(argv,1);
 	while (1)
 	{
 		cmd = readline("minishell ~> ");
 		if (cmd)
-		{
-			add_history(cmd);
-			list_tokens = divide(cmd, env);
-			// print(list_tokens);
-			list_parser = parser(list_tokens, env);
-			// execute_main(list_parser, env);
-			// parser_print(list_parser);
-			printf("\n*********************\n");
-		}
+			help_main(cmd, env);
 		else
 		{
-			ft_putendl_fd("\nexit", 1);
+			ft_putendl_fd("exit", 1);
 			break ;
 		}
 		free (cmd);
 	}
-	// ft_echo(argv,1);//done
-	// ft_export(argv, env, 1);
 }
