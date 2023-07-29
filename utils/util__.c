@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:21:51 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/28 20:32:07 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 16:58:47 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,17 @@ char	*ft_strsearch(const char *s, int c)
 		s++;
 	}
 	return ((char *)s);
+}
+
+void	ft_tolower(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			str[i] += 32;
+		i++;
+	}
 }

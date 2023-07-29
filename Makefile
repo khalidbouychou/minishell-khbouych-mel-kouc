@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/07/28 18:18:34 by khbouych         ###   ########.fr        #
+#    Updated: 2023/07/29 17:00:47 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./parsing/parsing.c ./parsing/util_lst_parce.c  ./builtins/ftexit.c \
 		./builtins/ftecho.c  ./builtins/ftexport.c ./parsing/handle_redir.c \
 		./parsing/handle_herdoc.c ./execution/main_exec.c ./builtins/ftunset.c \
-	   	./utils/export_utils.c ./utils/export_utils_.c ./utils/exit_utils.c
+	   	./utils/export_utils.c ./utils/export_utils_.c ./utils/exit_utils.c ./builtins/ftpwd.c \
+		./builtins/ftcd.c ./builtins/ftenv.c
 
 OSRC = $(SRC:.c=.o)
 CC = cc  -g
@@ -32,7 +33,7 @@ $(NAME) : $(OSRC)
 	@$(CC) -lreadline $(CFLAGS)  $(OSRC) -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 
-%.o: %.c ../incld/minishell.h 
+%.o: %.c ../incld/minishell.h
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "*** {Compaling Files ...} ***"
 

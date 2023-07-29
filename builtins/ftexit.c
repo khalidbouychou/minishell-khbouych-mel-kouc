@@ -6,15 +6,15 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:45 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 15:21:17 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:03:56 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void ft_exit_output(char *msg, int exit_status , bool _bool)
+void	ft_exit_output(char *msg, int exit_status, bool _bool)
 {
-	printf("%s",msg);
+	printf("%s", msg);
 	if (_bool)
 		exit(g_stu.ex_stu = exit_status);
 	else
@@ -32,7 +32,7 @@ void	ft_exit(char **arg)
 		ft_exit_output("exit\n --> too many arguments\n", 1, false);
 	else if (ft_isdigit(arg[1][ft_strlen(arg[1]) - 1])
 		&& ((ft_atoi(arg[1]) < 0 || ft_atoi(arg[1]) > 256)))
-		ft_exit_output("exit\n", ft_atoi(arg[1]) % 256 , true);
-	else if(!ft_arg_digit(arg[1]))
+		ft_exit_output("exit\n", ft_atoi(arg[1]) % 256, true);
+	else if (!ft_arg_digit(arg[1]))
 		ft_exit_output("exit\n--> numeric argument required\n", 255, true);
 }

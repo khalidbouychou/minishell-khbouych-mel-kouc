@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/27 15:35:57 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:21:48 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,10 @@ void	ft_delete_node(t_env **e_lst, char *key)
 void	ft_unset(t_env *env, char **arg)
 {
 	int		i;
-	// t_env	*tmp;
 
 	if (!arg[1])
 		return ;
-	i = 2;
+	i = 1;
 	while (arg[i])
 	{
 		if (!ft_key_syntax(arg[i]))
