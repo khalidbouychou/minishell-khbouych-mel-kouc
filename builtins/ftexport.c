@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 17:18:46 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:35:55 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ void	ft_add_to_env(t_env *e, t_env *node)
 	ft_lst_addback(&e, node);
 }
 
+void	ft_null_case(t_env *e, t_env *n)
+{
+	n->value = "";
+	ft_strjoin(e->value, n->value);
+	ft_add_to_env(e, n);
+}
+
 void	ft_export(char **export, t_env *env, int fd)
 {
 	int		i;
@@ -80,6 +87,8 @@ void	ft_export(char **export, t_env *env, int fd)
 			if (node->key[ft_strlen(node->key) - 1] == '+'
 				&& ft_if_key_exist(env, node))
 				ft_join_value(env, node);
+			else if (!node->value)
+				ft_null_case(env, node);
 			else
 				ft_add_to_env(env, node);
 		}
