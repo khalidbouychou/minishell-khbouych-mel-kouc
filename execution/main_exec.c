@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/29 14:46:48 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:35:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,24 @@ void	cmd_in_built(t_parse *list_pars, t_env *env)
 
 void	execute_main(t_parse *list_pars, t_env *env)
 {
+	char	**str;
+	// int i = 0;
+
+	str = NULL;
+	str = list_to_char(env, str);
+	// while (str[i])
+	// {
+	// 	printf("double pointer = {%s}\n", str[i]);
+	// 	i++;
+	// }
 	if (!list_pars->next)
 	{
 		if (compare_cmd(list_pars))
 			cmd_in_built(list_pars, env);
 		else
 		{
-			printf("\n CMD NOT IN BUILTINS --->FORD\n");
-			// simple_not_built(list_pars, env);
+			printf("\n CMD NOT IN BUILTINS --->FORk\n");
+			simple_not_built(list_pars, env);
 			// fork()
 		}
 	}
@@ -79,6 +89,5 @@ void	execute_main(t_parse *list_pars, t_env *env)
 		printf("\nCOMPLEX COMMAND ---> FORK\n");
 		// complex_cmd(list_pars, env);
 		// fork()
-		
 	}
 }

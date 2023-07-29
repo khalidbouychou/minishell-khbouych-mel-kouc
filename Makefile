@@ -6,7 +6,7 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/07/28 18:21:28 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/07/29 16:25:43 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./parsing/parsing.c ./parsing/util_lst_parce.c   \
 		./builtins/ftecho.c  ./builtins/ftexport.c ./parsing/handle_redir.c \
 		./parsing/handle_herdoc.c ./execution/main_exec.c  ./execution/util_m_exec.c  \
-	   	./utils/export_utils.c ./utils/export_utils_.c
+	   	./utils/export_utils.c ./utils/export_utils_.c ./execution/simple_cmd.c
 		
 
 OSRC = $(SRC:.c=.o)

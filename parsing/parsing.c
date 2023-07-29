@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/28 18:25:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:17:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ t_parse	*ft_list_parser(t_token *tmp, int count, t_env *env)
 	int		i;
 
 	i = -1;
-	(void)tmp;
 	new_p = malloc(sizeof(t_parse));
 	init_struct_parce(new_p);
 	new_p->arg = malloc(sizeof(char *) * (count + 1));
+	if (!new_p->arg)
+		return (NULL);
 	push_arg(tmp, new_p, &i, env);
 	new_p->next = NULL;
 	return (new_p);
