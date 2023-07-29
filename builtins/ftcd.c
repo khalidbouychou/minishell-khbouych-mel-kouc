@@ -6,8 +6,14 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/06/06 14:13:06 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 16:36:38 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
+
+void	ft_cd(char **cd)
+{
+	printf("%s\n", cd[1]);
+	g_stu.ex_stu = 0;
+}

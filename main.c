@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/26 23:44:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/28 20:44:46 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	parser_print(t_parse *lst)
 
 	i = 0;
 	tmp = lst;
-	
-	printf("\n----------------PARSER_LIST---------------\n");
+	printf("\n ----------------PARSER_LIST---------------\n");
 	while (tmp)
 	{
 		j = 0;
@@ -88,6 +87,8 @@ int	main(int argc, char **argv, char **envp)
 	list_tokens = NULL;
 	list_parser = NULL;
 	env = env_list(envp);
+	// signal(SIGINT,_handler);
+	// signal(SIGQUIT,_handler);
 	// ft_export(argv,env);
 	// ft_echo(argv,1);
 	while (1)
@@ -101,7 +102,6 @@ int	main(int argc, char **argv, char **envp)
 			list_parser = parser(list_tokens, env);
 			execute_main(list_parser, env);
 			// parser_print(list_parser);
-			printf("\n*********************\n");
 		}
 		else
 		{
@@ -110,6 +110,4 @@ int	main(int argc, char **argv, char **envp)
 		}
 		free (cmd);
 	}
-	// ft_echo(argv,1);//done
-	// ft_export(argv, env, 1);
 }

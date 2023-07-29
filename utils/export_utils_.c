@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:44:30 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/22 13:50:10 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/27 09:57:43 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,59 @@ int	ft_is_key_exist(char *key, char **tkeys)
 		i++;
 	}
 	return (1);
+}
+
+void	ft_sort_keys(t_env *e)
+{
+	t_env	*tmp;
+	t_env	*ptr;
+	char	*x;
+	char	*v;
+
+	tmp = e;
+	while (tmp)
+	{
+		ptr = tmp->next;
+		while (ptr)
+		{
+			if (tmp->key[0] > ptr->key[0])
+			{
+				x = tmp->key;
+				tmp->key = ptr->key;
+				ptr->key = x;
+				v = tmp->value;
+				tmp->value = ptr->value;
+				ptr->value = v;
+			}
+			ptr = ptr->next;
+		}
+		tmp = tmp->next;
+	}
+}
+
+int	ft_if_key_exist(t_env *e, t_env *node)
+{
+	t_env	*tmp;
+
+	tmp = e;
+	while (tmp)
+	{
+		if (!ft_strcmp(ft_get_key_without_plus(node->key), tmp->key))
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+void	ft_join_value(t_env *e, t_env *node)
+{
+	t_env	*tmp;
+
+	tmp = e;
+	while (tmp)
+	{
+		if (!ft_strcmp(ft_get_key_without_plus(node->key), tmp->key))
+			tmp->value = ft_strjoin(tmp->value, node->value);
+		tmp = tmp->next;
+	}
 }

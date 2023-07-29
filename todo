@@ -146,9 +146,37 @@ move a big step    ------> n
 view the comntent     ------> v cmd   (cmd (char *cmd)= is the variable that we want to view)
 move a big step    ------> n
 
+/***** bultins ******/
+    echo    √ $$ --> pid
+    export  √
+    env     √
+    exit    x
+    pwd     x
+    cd      x
+    unset   x
+    /***go crazy***
+    ls >'|' | ls | echo hello --> filename '|' with content ls
+    ls >"|"
+    ls > '>' |ls | echo hello --> filename '|' with content ls
 
 
 << e'' << d'' segfault
 << $USER   
     mel-kouc
     we shouldn't expand
+
+
+
+aplha && alpha alpha -- > 255 + exit
+alpha + number --> 255 + exit
+number_alpha --> 255 exit
+------
+number alpha --> 1 noexit too many arguments
+number number --> 1 noexit too many arguments
+-number --> oferflow + exit
+
+
+
+
+
+

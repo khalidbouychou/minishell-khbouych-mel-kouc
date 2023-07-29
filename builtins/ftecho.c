@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftecho.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/27 00:17:11 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:11:20 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,24 @@ void	ft_echo(char **arg, int fd)
 	int	i;
 
 	i = 1;
-	if (ft_strcmp(arg[0], "echo") != 0)
-		return ;
-	if (arg[1])
+	if (!arg[1])
 	{
-		// ft_putstr_fd("\n", fd);
-		while (arg[i] && ft_check_n(arg[i]))
-			i++;
-		while (arg[i])
+		ft_putstr_fd("\n", fd);
+		return ;
+	}
+	if (!ft_strcmp(arg[1], "$?"))
+		printf("%d\n", g_stu.ex_stu);
+	else
+	{
+		if (arg[1])
 		{
-			ft_putstr_fd(arg[i], fd);
-			// if (arg[i] && arg[i + 1])
-			// 	ft_putstr_fd(" ", fd);
-			i++;
+			while (arg[i] && ft_check_n(arg[i]))
+				i++;
+			while (arg[i])
+				ft_putstr_fd(arg[i++], fd);
+			if (!ft_check_n(arg[1]))
+				ft_putstr_fd("\n", fd);
 		}
-		if (!ft_check_n(arg[1]))
-			ft_putstr_fd("\n", fd);
+		g_stu.ex_stu = 0;
 	}
 }

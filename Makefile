@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
+#    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/07/26 23:06:23 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/07/29 17:00:47 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,15 +17,15 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./lexer/lexer.c  ./lexer/tokens/token.c  ./lexer/tokens/white_space.c \
 		./lexer/tokens/utils_space.c utils/ft_split.c ./lexer/tokens/util_token.c \
 		./lexer/tokens/check_list.c utils/util_.c utils/util__.c ./lexer/tokens/free.c ./lexer/tokens/check_syntax.c \
-		./parsing/parsing.c ./parsing/util_lst_parce.c   \
+		./parsing/parsing.c ./parsing/util_lst_parce.c  ./builtins/ftexit.c \
 		./builtins/ftecho.c  ./builtins/ftexport.c ./parsing/handle_redir.c \
-		./parsing/handle_herdoc.c ./execution/main_exec.c \
-	   	./utils/export_utils.c ./utils/export_utils_.c
-		
+		./parsing/handle_herdoc.c ./execution/main_exec.c ./builtins/ftunset.c \
+	   	./utils/export_utils.c ./utils/export_utils_.c ./utils/exit_utils.c ./builtins/ftpwd.c \
+		./builtins/ftcd.c ./builtins/ftenv.c
 
 OSRC = $(SRC:.c=.o)
 CC = cc  -g
-CFLAGS =   -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS =   -Wall -Wextra -Werror -fsanitize=address
 
 all: $(NAME)
 
@@ -33,7 +33,7 @@ $(NAME) : $(OSRC)
 	@$(CC) -lreadline $(CFLAGS)  $(OSRC) -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 
-%.o: %.c ../incld/minishell.h 
+%.o: %.c ../incld/minishell.h
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "*** {Compaling Files ...} ***"
 
