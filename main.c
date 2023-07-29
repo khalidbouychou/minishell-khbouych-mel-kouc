@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/28 18:11:26 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:58:40 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	parser_print(t_parse *lst)
 
 	i = 0;
 	tmp = lst;
-	printf("\n----------------PARSER_LIST---------------\n");
+	printf("\n ----------------PARSER_LIST---------------\n");
 	while (tmp)
 	{
 		j = 0;
@@ -103,6 +103,10 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	cmd = NULL;
 	env = env_list(envp);
+	// signal(SIGINT,_handler);
+	// signal(SIGQUIT,_handler);
+	// ft_export(argv,env);
+	// ft_echo(argv,1);
 	while (1)
 	{
 		cmd = readline("minishell ~> ");
