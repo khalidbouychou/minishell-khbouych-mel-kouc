@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/29 18:56:29 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 21:47:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	cmd_in_built(t_parse *list_pars, t_env *env)
 		if (tmp->fd_input == -1 || tmp->fd_output == -1)
 			check_fd = 0;
 		else if (!ft_strcmp(tmp->arg[0], "echo"))
-			ft_echo(tmp->arg, 1);
+			ft_echo(tmp->arg, tmp->fd_output);
 		else if (!ft_strcmp(tmp->arg[0], "env"))
 			ft_env(tmp->arg, env);
 		else if (!ft_strcmp(tmp->arg[0], "export"))
@@ -46,6 +46,7 @@ void	execute_main(t_parse *list_pars, t_env *env)
 	char	**str;
 	// int i = 0;
 
+
 	str = NULL;
 	str = list_to_char(env, str);
 	// while (str[i])
@@ -59,8 +60,8 @@ void	execute_main(t_parse *list_pars, t_env *env)
 			cmd_in_built(list_pars, env);
 		else
 		{
-			printf("\n CMD NOT IN BUILTINS --->FORk\n");
-			simple_not_built(list_pars, env);
+			// printf("\n CMD NOT IN BUILTINS --->FORk\n");
+			simple_not_built(list_pars, env, str);
 			// fork()
 		}
 	}

@@ -6,11 +6,13 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/29 18:22:30 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 23:39:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
+#include <unistd.h>
+#include <sys/wait.h>
 
 int	count_size(t_env *env)
 {
@@ -48,13 +50,23 @@ char	**list_to_char(t_env *env, char **str)
 	return (str);
 }
 
-void	simple_not_built(t_parse *list_pars, t_env *env)
+void	simple_not_built(t_parse *list_pars, t_env *env, char **str)
 {
+	int id;
 	// char	**str;
 	// int		i;
 
 	// str = NULL;
+	id = fork();
+	if(id == 0)
+	{
+		execve(list_pars->path, list_pars->arg, str);
+		perror("execve");
+		exit (1);
+	}
+	wait(NULL);
 	(void)list_pars;
 	(void)env;
-	// str = list_to_char(env, str);
+	
+	//  str = list_to_char(env, str);
 }

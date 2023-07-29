@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/27 11:09:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 21:51:14 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)
 	ptr = tmp->next;
 	if (tmp->type == HERDOC)
 	{
-		if (new_p->fd_input != -4)
+		if (new_p->fd_input != 0)
 			close(new_p->fd_input);
 		write_in_herdoc(ptr, new_p, env);
 		// new_p->f_name = generate_name();

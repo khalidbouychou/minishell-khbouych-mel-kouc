@@ -214,7 +214,10 @@ number number --> 1 noexit too many arguments
 -number --> oferflow + exit
 
 
+cat < test
 
 
+cat < test < test2 < test3 > out
+echo world  < test2 < test3 > out < test
 
 

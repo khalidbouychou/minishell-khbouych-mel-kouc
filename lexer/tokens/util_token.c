@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 18:59:09 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 23:21:11 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,25 +112,6 @@ t_token	*ft_init_token(char *cmd, int i, int count)
 	tok->flag = 0;
 	tok->content = ft_substr(cmd, i, count);
 	ft_get_type(tok);
-	// tok->path = ft_get_path(env, tok);
 	return (tok);
 }
 
-// char	*ft_get_path(t_env *env, t_token *tok)
-// {
-// 	char	*p;
-// 	t_env	*tmp;
-
-// 	p = NULL;
-// 	tmp = env;
-// 	while (tmp)
-// 	{
-// 		if (ft_strncmp(tmp->key, "PATH", 4) == 0)
-// 		{
-// 			p = tmp->value;
-// 			break ;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// 	return (ft_check_if_cmd_valid(ft_split(p, ':'), tok));
-// }

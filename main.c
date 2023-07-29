@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 19:07:43 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 21:55:20 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	help_main(char *cmd, t_env *env)
 
 	list_tokens = NULL;
 	list_parser = NULL;
+
 	add_history(cmd);
 	list_tokens = divide(cmd, env);
 	if (list_tokens)
@@ -88,20 +89,25 @@ void	help_main(char *cmd, t_env *env)
 		// print(list_tokens);
 		list_parser = parser(list_tokens, env);
 		execute_main(list_parser, env);
-		parser_print(list_parser);
-		printf("\n*********************\n");
+		// parser_print(list_parser);
+		// printf("\n*********************\n");
 	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
-	t_env	*env;
+	t_env	*env = NULL;
 
 	// atexit(l);
 	(void)argc;
 	(void)argv;
 	cmd = NULL;
+	// if(!env)
+	// {
+	// 	puts("khawi");
+	// 	return(0);
+	// }
 	env = env_list(envp);
 	// signal(SIGINT,_handler);
 	// signal(SIGQUIT,_handler);

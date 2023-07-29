@@ -6,13 +6,13 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/28 12:58:15 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 23:21:25 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incld/minishell.h"
 
-char	*ft_check_if_cmd_valid(char **path, t_token *tok)
+char	*ft_check_if_cmd_valid(char **path, char *str)
 {
 	int		i;
 	char	*p;
@@ -22,12 +22,31 @@ char	*ft_check_if_cmd_valid(char **path, t_token *tok)
 	while (path[i])
 	{
 		p = ft_strjoin(path[i], "/");
-		p = ft_strjoin(p, tok->content);
+		p = ft_strjoin(p, str);
 		if (access(p, X_OK | F_OK) == 0)
 			return (p);
 		i++;
 	}
 	return (NULL);
+}
+
+char	*ft_get_path(t_env *env, char *str)
+{
+	char	*p;
+	t_env	*tmp;
+
+	p = NULL;
+	tmp = env;
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->key, "PATH", 4) == 0)
+		{
+			p = tmp->value;
+			break ;
+		}
+		tmp = tmp->next;
+	}
+	return (ft_check_if_cmd_valid(ft_split(p, ':'), str));
 }
 
 void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok)

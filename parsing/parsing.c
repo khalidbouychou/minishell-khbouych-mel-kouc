@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 17:17:58 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 23:11:26 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 				|| tmp->type == VAR || tmp->type == SPACE))
 		{
 			new_p->arg[++(*i)] = ft_strdup(tmp->content);
+			if (*i == 0)
+				new_p->path = ft_get_path(env, new_p->arg[0]);
 			if (!tmp->next || tmp->next->type == PIPE)
 				break ;
 			tmp = tmp->next;
