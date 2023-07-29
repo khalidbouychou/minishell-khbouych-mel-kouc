@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:21:51 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/21 09:38:12 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/28 20:32:07 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	ft_isdigit(int c)
 {
-	return (c >= '0' && c <= '9');
+	if (!(c >= '0' && c <= '9'))
+		return (0);
+	return (1);
 }
 
 int	ft_isalpha(int c)

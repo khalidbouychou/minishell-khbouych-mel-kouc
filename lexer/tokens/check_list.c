@@ -1,12 +1,12 @@
-         /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   check_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/19 19:15:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:50:34 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	lixer_list(t_token **list)
 			{
 				tmp->content = ft_strjoin(tmp->content, ptr->content);
 				tmp->next = ptr->next;
+				ptr->next->prev = tmp;
 				free(ptr);
 			}
 			else
@@ -95,7 +96,8 @@ void	check_list(t_token **lst, t_env *env)
 	}
 	check_herdoc_quotes(*lst);
 	trim_list(lst);
-	ft_expander(*lst, env);
+	// ft_expander(*lst, env);
+	(void)env;
 	lixer_list(lst);
 	rm_node_white_space(lst);
 }

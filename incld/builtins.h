@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/27 18:36:08 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:10:59 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ char		*ft_get_key_without_plus(char *key);
 char		*ft_get_old_value(t_env *e, char *key);
 t_env		*ft_lstlast(t_env *lst);
 int			ft_check_n(char *arg);
-long long	ft_atoi(const char *str);
-int			ft_check_arg_is_digit(char *arg);
+int			ft_atoi(const char *str);
+int			ft_arg_digit(char *arg);
 int			ft_isdigit(int c);
 int			ft_if_key_exist(t_env *e, t_env *node);
 void		ft_sort_keys(t_env *e);

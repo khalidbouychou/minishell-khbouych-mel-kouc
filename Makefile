@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/07/27 13:17:56 by khbouych         ###   ########.fr        #
+#    Updated: 2023/07/28 18:18:34 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 
 OSRC = $(SRC:.c=.o)
 CC = cc  -g
-CFLAGS =   -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS =   -Wall -Wextra -Werror -fsanitize=address
 
 all: $(NAME)
 
@@ -32,7 +32,7 @@ $(NAME) : $(OSRC)
 	@$(CC) -lreadline $(CFLAGS)  $(OSRC) -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 
-%.o: %.c ../incld/minishell.h
+%.o: %.c ../incld/minishell.h 
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "*** {Compaling Files ...} ***"
 

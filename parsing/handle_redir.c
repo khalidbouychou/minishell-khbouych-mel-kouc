@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/25 14:40:43 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:02:42 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,14 @@ char	*ft_itoa(int nbr)
 char	*generate_name(void)
 {
 	char		*str;
+	char		*count;
 	int static	i;
 
 	i++;
 	str = "herdoc";
-	str = ft_strjoin(str, ft_itoa(i));
+	count = ft_itoa(i);
+	str = ft_strjoin(str, count);
+	free(count);
 	return (str);
 }
 

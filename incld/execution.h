@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:22:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/24 15:36:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:03:02 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "../incld/parsing.h"
 
-void	execute_main(t_parse *list_pars);
+void    execute_main(t_parse *list_pars, t_env *env);
 
 #endif
