@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/29 00:09:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 14:46:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ void	execute_main(t_parse *list_pars, t_env *env)
 		else
 		{
 			printf("\n CMD NOT IN BUILTINS --->FORD\n");
-			simple_not_bluilt(list_pars, env);
+			// simple_not_built(list_pars, env);
 			// fork()
 		}
 	}
 	else
 	{
 		printf("\nCOMPLEX COMMAND ---> FORK\n");
-		complex_cmd(list_pars, env)
+		// complex_cmd(list_pars, env);
 		// fork()
 		
 	}
