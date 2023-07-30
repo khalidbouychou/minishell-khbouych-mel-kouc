@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 18:45:04 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:50:52 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_cd(char **cmd)
 {
-	int flag;
+	int	flag;
 
 	flag = 0;
 	if (!cmd[1])

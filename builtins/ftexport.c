@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 17:35:55 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 20:54:43 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,26 @@ void	ft_add_to_env(t_env *e, t_env *node)
 
 void	ft_null_case(t_env *e, t_env *n)
 {
-	n->value = "";
 	ft_strjoin(e->value, n->value);
 	ft_add_to_env(e, n);
+}
+
+t_env *ft_sr_node(t_env *env, t_env *node)
+{
+	while (env)
+	{
+		if (!ft_strcmp(env->key, node->key))
+			return (env);
+		env = env->next;
+	}
+	return (NULL);
 }
 
 void	ft_export(char **export, t_env *env, int fd)
 {
 	int		i;
 	t_env	*node;
+	t_env	*tmp;
 
 	if (export[1] == NULL)
 	{
@@ -87,8 +98,11 @@ void	ft_export(char **export, t_env *env, int fd)
 			if (node->key[ft_strlen(node->key) - 1] == '+'
 				&& ft_if_key_exist(env, node))
 				ft_join_value(env, node);
-			else if (!node->value)
-				ft_null_case(env, node);
+			else if (ft_if_key_exist(env, node))
+			{
+				tmp = ft_sr_node(env, node);
+				tmp->value = node->value;
+			}
 			else
 				ft_add_to_env(env, node);
 		}

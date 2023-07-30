@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:40 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 17:07:46 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 20:02:10 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	ft_env(char **echo, t_env *env)
 	{
 		while (env)
 		{
-			printf("%s=%s\n", env->key, env->value);
+			if(env->value)
+				printf("%s=%s\n", env->key, env->value);
 			env = env->next;
 		}
 		g_stu.ex_stu = 0;
