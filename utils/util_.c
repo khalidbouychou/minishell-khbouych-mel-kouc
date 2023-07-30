@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/27 10:03:04 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:25:11 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 void	ft_help_join(char **s1, char **s2)
 {
-	char	*tmp;
-
-	tmp = ft_strdup("");
 	if (*(s1) == NULL)
 	{
-		*(s1) = tmp;
+		*(s1) = ft_strdup("");
 		*(s1)[0] = '\0';
 	}
 	if (*(s2) == NULL)
 	{
-		*(s2) = tmp;
+		*(s2) = ft_strdup("");
 		*(s2)[0] = '\0';
 	}
-	free (tmp);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/29 21:47:35 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/30 14:29:47 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	cmd_in_built(t_parse *list_pars, t_env *env)
 void	execute_main(t_parse *list_pars, t_env *env)
 {
 	char	**str;
+	// int		fd[2];
 	// int i = 0;
-
 
 	str = NULL;
 	str = list_to_char(env, str);
@@ -62,7 +62,6 @@ void	execute_main(t_parse *list_pars, t_env *env)
 		{
 			// printf("\n CMD NOT IN BUILTINS --->FORk\n");
 			simple_not_built(list_pars, env, str);
-			// fork()
 		}
 	}
 	else
