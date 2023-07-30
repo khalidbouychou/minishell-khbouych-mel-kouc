@@ -220,4 +220,6 @@ cat < test
 cat < test < test2 < test3 > out
 echo world  < test2 < test3 > out < test
 
+relink in all heder files
 
+Will we work whith env when we pout it in double pointer?

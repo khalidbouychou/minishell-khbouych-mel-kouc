@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 23:11:26 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/30 13:39:31 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ int	redirection(t_token	*list_tokens, t_parse *list_pars)
 		if (tmp_tok)
 			tmp_tok = tmp_tok->next;
 	}
-	// if (flag == 1)
-	// 	return (0);
 	return (1);
 }
 
