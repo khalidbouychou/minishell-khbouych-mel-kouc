@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 18:15:15 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/30 16:13:22 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ void	ft_echo(char **arg, int fd)
 	int	i;
 
 	i = 1;
+	puts("\ndddddd\n");
 	if (!arg[1])
 	{
 		ft_putstr_fd("\n", fd);
 		return ;
 	}
-	if (!ft_strcmp(arg[1], "$?"))
-		printf("%d\n", g_stu.ex_stu);
 	else
 	{
 		if (arg[1])
