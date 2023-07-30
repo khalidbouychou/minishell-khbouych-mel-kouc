@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/30 15:26:45 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:49:08 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,19 @@ char	**ft_get_keys_tab(t_env *env, int size)
 
 void	ft_add_to_env(t_env *e, t_env *node)
 {
-	node->prev = ft_lstlast(e);
 	node->key = ft_get_key_without_plus(node->key);
 	ft_lst_addback(&e, node);
 }
 
-void	ft_null_case(t_env *e, t_env *n)
+t_env	*ft_getadress_node(t_env *env, t_env *node)
 {
-	n->value = "";
-	ft_strjoin(e->value, n->value);
-	ft_add_to_env(e, n);
+	while (env)
+	{
+		if (!ft_strcmp(env->key, node->key))
+			return (env);
+		env = env->next;
+	}
+	return (NULL);
 }
 
 void	ft_export(char **export, t_env *env, int fd)
@@ -87,8 +90,8 @@ void	ft_export(char **export, t_env *env, int fd)
 			if (node->key[ft_strlen(node->key) - 1] == '+'
 				&& ft_if_key_exist(env, node))
 				ft_join_value(env, node);
-			else if (!node->value)
-				ft_null_case(env, node);
+			else if (ft_if_key_exist(env, node))
+				ft_getadress_node(env, node)->value = node->value;
 			else
 				ft_add_to_env(env, node);
 		}
