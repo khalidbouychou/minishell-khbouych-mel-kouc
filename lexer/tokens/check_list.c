@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/29 18:22:43 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:59:02 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	lixer_list(t_token **list)
 			{
 				tmp->content = ft_strjoin(tmp->content, ptr->content);
 				tmp->next = ptr->next;
-				ptr->next->prev = tmp;
+				if (ptr->next)
+					ptr->next->prev = tmp;
 				free(ptr);
 			}
 			else
@@ -85,13 +86,13 @@ void	trim_list(t_token **list)
 	}
 }
 
-void	check_list(t_token **lst, t_env *env)
+int	check_list(t_token **lst, t_env *env)
 {
 	if (!check_operator(lst) || !check_quotes(lst))
 	{
 		printf("syntax error near unexpected token \n");
 		free_token_list(lst);
-		return ;
+		return (0);
 		// free_env_list(env);
 	}
 	check_herdoc_quotes(*lst);
@@ -100,4 +101,5 @@ void	check_list(t_token **lst, t_env *env)
 	(void)env;
 	lixer_list(lst);
 	rm_node_white_space(lst);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:40:26 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/06/22 17:12:23 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:51:20 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	free_token_list(t_token **lst)
 	while (tmp)
 	{
 		next = tmp->next;
+		free(tmp->content);
 		free (tmp);
 		tmp = next;
 	}
@@ -36,6 +37,8 @@ void	free_env_list(t_env *env)
 	while (tmp)
 	{
 		next = tmp->next;
+		free(tmp->key);
+		free(tmp->value);
 		free (tmp);
 		tmp = next;
 	}

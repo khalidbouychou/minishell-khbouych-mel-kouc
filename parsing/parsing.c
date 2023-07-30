@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/26 13:25:44 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 23:11:26 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 				|| tmp->type == VAR || tmp->type == SPACE))
 		{
 			new_p->arg[++(*i)] = ft_strdup(tmp->content);
+			if (*i == 0)
+				new_p->path = ft_get_path(env, new_p->arg[0]);
 			if (!tmp->next || tmp->next->type == PIPE)
 				break ;
 			tmp = tmp->next;
@@ -39,13 +41,40 @@ t_parse	*ft_list_parser(t_token *tmp, int count, t_env *env)
 	int		i;
 
 	i = -1;
-	(void)tmp;
 	new_p = malloc(sizeof(t_parse));
 	init_struct_parce(new_p);
 	new_p->arg = malloc(sizeof(char *) * (count + 1));
+	if (!new_p->arg)
+		return (NULL);
 	push_arg(tmp, new_p, &i, env);
 	new_p->next = NULL;
 	return (new_p);
+}
+
+int	redirection(t_token	*list_tokens, t_parse *list_pars)
+{
+	t_token	*tmp_tok;
+	t_parse	*tmp_pars;
+	int		flag;
+
+	flag = 0;
+	tmp_tok = list_tokens;
+	tmp_pars = list_pars;
+	while (tmp_tok)
+	{
+		if (tmp_tok->type == PIPE)
+			flag = 0;
+		if (tmp_tok && flag == 0 && (tmp_tok->type == INPUT
+				|| tmp_tok->type == OUTPUT || tmp_tok->type == APPND))
+			tmp_tok = ft_handle_oper(tmp_tok, tmp_pars, &flag);
+		else if (tmp_tok->type == PIPE)
+			tmp_pars = tmp_pars->next;
+		if (tmp_tok)
+			tmp_tok = tmp_tok->next;
+	}
+	// if (flag == 1)
+	// 	return (0);
+	return (1);
 }
 
 t_parse	*parser_list(t_token *list_tokens, int *is_alloc, t_env *env)
@@ -78,26 +107,14 @@ t_parse	*parser(t_token	*list_tokens, t_env *env)
 {
 	int		is_alloc;
 	t_parse	*list_pars;
-	t_token	*tmp_tok;
-	t_parse	*tmp_pars;
 
 	is_alloc = 0;
 	list_pars = parser_list(list_tokens, &is_alloc, env);
-	tmp_tok = list_tokens;
-	tmp_pars = list_pars;
-	while (tmp_tok)
-	{
-		if (tmp_tok->type != PIPE)
-		{
-			if (tmp_tok && (tmp_tok->type == INPUT || tmp_tok->type == OUTPUT
-					|| tmp_tok->type == APPND))
-				tmp_tok = ft_handle_oper(tmp_tok, tmp_pars);
-		}
-		else
-			tmp_pars = tmp_pars->next;
-		tmp_tok = tmp_tok->next;
-	}
-	// printf("\n***** fd int = %d *****\n", tmp_pars->fd_input);
-	// printf("\n***** fd out = %d *****\n", tmp_pars->fd_output);
+	redirection(list_tokens, list_pars);
+	// if (!redirection(list_tokens, list_pars))
+	// {
+	// 	// free_token_list(&list_tokens);
+	// 	printf("\n THIS IS ERROR IN FD \n");
+	// }
 	return (list_pars);
 }

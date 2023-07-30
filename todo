@@ -2,15 +2,7 @@ token
 trim quotes
 expander 
 joiner
-parser 
-
-
-O_CREATE ----> red_out heredoc | red_app | 
-O_RDONLY ----> red_in
-
-
-red_app -> O_ APPEND
-heredoc ->  O_WRONLY | O_CREAT | O_TRUNC
+parser
 
 
 
@@ -20,20 +12,11 @@ testin bash    --->       > text ls
 test  bash     --->       ls > a | cat < a   -----> indefined behavier
 
 
-echo >>> test
-
-echo >>| test
-echo >|> test
-echo >>|> test
 
 
 ls <> ls // i don't handel it
 ls <<< ls // i don't handel it
 << 5< a  --------> syntax error near unexpected token `5'
-
-bash-3.2$ ls >| ls
-bash-3.2$ ls > | ls
-
 
 << del cat  >l | echo hello asking for this case
 
@@ -70,13 +53,6 @@ EXPLIQUE     ---> echo hello test > file $home
 
 
 
-test : first we creat (input) < txt then aplay this example 
-
-    echo hello >> file < txt > txtr
-
-            fd inp = 4
-            fd out = 3
-
     echo  <  txt
 
 
@@ -86,7 +62,6 @@ test : first we creat (input) < txt then aplay this example
         √ cmd   --> ( )
         √ cmd   --> ()
 
-cat << del""
 
 cat << del ""
         cat: : No such file or directory
@@ -104,6 +79,8 @@ cat << del ""
 
 
 /////////////////////  FIXED ///////////////////
+
+cat << del""
 
 we have error in space after echo ,we must remove it
 echo  <<'del' "test" hello 
@@ -134,17 +111,60 @@ explique why spaces is nor remove after FILE LIKE IN EXAPLE  :
     echo hello test > file khouribga    home < world   q            ll
 
 
+<< e'' << d'' segfault
+<< $USER   
+    mel-kouc
+    we shouldn't expand
+
+echo >>> test
+
+echo >>| test
+echo >|> test
+echo >>|> test
+
+bash-3.2$ ls > | ls
+
+ls >| txt seg fault
+
+ls >| txt hello
+
+        ----------------PARSER_LIST---------------
+        √ cmd   --> (ls)
+        √ 
+        ***** fd int = -4 *****
+        √ 
+        ***** fd out = 3 *****
+
+        ------------------------------------
+        √ cmd   --> (hello)
+        √ 
+        ***** fd int = -4 *****
+        √ 
+        ***** fd out = -5 *****
 
 
+bash-3.2$ ls >| ls
+        bash ---> open a file ls
+
+        my minishel open file |
+
+ls  > hay < file > txt
+
+
+the content of ls not in hay
+because if a file is not open the command don't pass au execut
 
 ///////////////////////////////////////////////
 
 
-breakoint for lldb -----> breakpoint set --name main
-move step by step  ------> s
-move a big step    ------> n
-view the comntent     ------> v cmd   (cmd (char *cmd)= is the variable that we want to view)
-move a big step    ------> n
+$$$$$$$$$$$$$$$         LLDB        $$$$$$$$$$$$$$$$
+
+        breakoint for lldb -----> breakpoint set --name main
+        move step by step  ------> s
+        move a big step    ------> n
+        view the comntent     ------> v cmd   (cmd (char *cmd)= is the variable that we want to view)
+        move a big step    ------> n
+
 
 /***** bultins ******/
     echo    √ $$ --> pid
@@ -159,7 +179,25 @@ move a big step    ------> n
     ls >"|"
     ls > '>' |ls | echo hello --> filename '|' with content ls
 
+$$$$$$$$$$$$$$$$                   $$$$$$$$$$$$$$$$
 
+
+problem
+
+    if a have a file txt the test of bash
+    ls >| txt hello
+
+            ls: hello: No such file or directory   
+
+    ls >| cat txt
+
+    ls >|  txt
+
+
+
+ls  > hay < file | ls > mmm
+
+mmmm  have a content of ls
 << e'' << d'' segfault
 << $USER   
     mel-kouc
@@ -176,7 +214,10 @@ number number --> 1 noexit too many arguments
 -number --> oferflow + exit
 
 
+cat < test
 
 
+cat < test < test2 < test3 > out
+echo world  < test2 < test3 > out < test
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/26 17:40:00 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:59:12 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,23 @@ void	ft_expander(t_token *tok, t_env *env)
 {
 	char			*res;
 	t_token			*tmp;
+	t_token			*ptr;
 
+	res = NULL;
 	res = NULL;
 	tmp = tok;
 	while (tmp)
 	{
 		if (tmp->type == VAR)
 		{
-			res = ft_strjoin(res, ft_expandhelp(tmp->content, env));
-			tmp->content = res;
+			ptr = tmp->prev;
+			while (ptr && (ptr->type == SPACE || ptr->type == TAB))
+				ptr = ptr->prev;
+			if (ptr && ptr->type != HERDOC)
+			{
+				res = ft_strjoin(res, ft_expandhelp(tmp->content, env));
+				tmp->content = res;
+			}
 		}
 		tmp = tmp->next;
 	}

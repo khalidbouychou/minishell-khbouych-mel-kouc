@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/26 00:55:32 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/29 21:50:39 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok)
 
 void	init_struct_parce(t_parse *new_p)
 {
-	new_p->fd_input = -4;
-	new_p->fd_output = -5;
+	new_p->fd_input = 0;
+	new_p->fd_output = 1;
 	new_p->f_name = NULL;
 	// new_p->fd_append = -6;
 	// new_p->fd_herdoc = -7;

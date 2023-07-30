@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 16:57:11 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 22:56:49 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int		ft_strncmp(const char *str1, const char *str2, int n);
 void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok);
 int		ft_qoutes(char *cmd, int *i, int init);
 int		ft_word(char *cmd, int *i, int init);
-char	*ft_check_if_cmd_valid(char **path, t_token *tok);
+char	*ft_check_if_cmd_valid(char **path, char *str);
 t_token	*ft_init_token(char *cmd, int i, int count);
-void	check_list(t_token **lst, t_env *env);
+int		check_list(t_token **lst, t_env *env);
 int		successive_oper(t_token *list_tokens);
 int		oper_in_end(t_token	*list_tokens);
 int		check_close_q(t_token *tmp);

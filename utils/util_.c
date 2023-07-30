@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/22 09:56:40 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:03:04 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 
 void	ft_help_join(char **s1, char **s2)
 {
+	char	*tmp;
+
+	tmp = ft_strdup("");
 	if (*(s1) == NULL)
 	{
-		*(s1) = ft_strdup("");
+		*(s1) = tmp;
 		*(s1)[0] = '\0';
 	}
 	if (*(s2) == NULL)
 	{
-		*(s2) = ft_strdup("");
+		*(s2) = tmp;
 		*(s2)[0] = '\0';
 	}
+	free (tmp);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

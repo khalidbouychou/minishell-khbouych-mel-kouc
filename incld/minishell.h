@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/29 14:36:08 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/29 20:33:15 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/readline.h>
-# include "../incld/execution.h"
 # include "../incld/lexer.h"
 # include "../incld/parsing.h"
 # include "../incld/token.h"
 # include "../incld/builtins.h"
+# include "../incld/execution.h"
 
 // for exit status and signals
 typedef struct s_glbl
