@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/29 23:39:01 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:36:38 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ char	**list_to_char(t_env *env, char **str)
 	while (env)
 	{
 		str[i] = ft_strjoin(env->key, "=");
-		str[i] = ft_strjoin(str[i], env->value);
+		if (env->value)
+			str[i] = ft_strjoin(str[i], env->value);
 		env = env->next;
 		i++;
 	}
@@ -67,6 +68,5 @@ void	simple_not_built(t_parse *list_pars, t_env *env, char **str)
 	wait(NULL);
 	(void)list_pars;
 	(void)env;
-	
 	//  str = list_to_char(env, str);
 }

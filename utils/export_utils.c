@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 09:56:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/30 13:55:46 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:35:42 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,6 @@ int	ft_strcmp(const char *str1, const char *str2)
 	}
 	return ((unsigned char)*str1 - (unsigned char)*str2);
 }
-
-// int	ft_get_size_of_list(t_env *env)
-// {
-// 	int		i;
-// 	t_env	*e;
-
-// 	i = 0;
-// 	e = env;
-// 	while (e)
-// 	{
-// 		i++;
-// 		e = e->next;
-// 	}
-// 	return (i);
-// }
 
 void	ft_print_after_sort(t_env *ee)
 {

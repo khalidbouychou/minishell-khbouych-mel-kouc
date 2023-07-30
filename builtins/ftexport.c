@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/30 13:59:04 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:34:40 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,11 @@ char	**ft_get_keys_tab(t_env *env, int size)
 
 void	ft_add_to_env(t_env *e, t_env *node)
 {
-	node->prev = ft_lstlast(e);
 	node->key = ft_get_key_without_plus(node->key);
 	ft_lst_addback(&e, node);
 }
 
-void	ft_null_case(t_env *e, t_env *n)
-{
-	ft_strjoin(e->value, n->value);
-	ft_add_to_env(e, n);
-}
-
-t_env *ft_sr_node(t_env *env, t_env *node)
+t_env	*ft_getadress_node(t_env *env, t_env *node)
 {
 	while (env)
 	{
@@ -81,7 +74,6 @@ void	ft_export(char **export, t_env *env, int fd)
 {
 	int		i;
 	t_env	*node;
-	t_env	*tmp;
 
 	if (export[1] == NULL)
 	{
@@ -99,14 +91,9 @@ void	ft_export(char **export, t_env *env, int fd)
 				&& ft_if_key_exist(env, node))
 				ft_join_value(env, node);
 			else if (ft_if_key_exist(env, node))
-			{
-				tmp = ft_sr_node(env, node);
-				tmp->value = node->value;
-			}
+				ft_getadress_node(env, node)->value = node->value;
 			else
-			{
 				ft_add_to_env(env, node);
-			}
 		}
 	}
 	g_stu.ex_stu = 0;
