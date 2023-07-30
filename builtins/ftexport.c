@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 20:54:43 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/30 13:59:04 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,9 @@ void	ft_export(char **export, t_env *env, int fd)
 				tmp->value = node->value;
 			}
 			else
+			{
 				ft_add_to_env(env, node);
+			}
 		}
 	}
 	g_stu.ex_stu = 0;
