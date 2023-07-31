@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:40 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 20:02:10 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/30 17:14:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	ft_env(char **echo, t_env *env)
 		g_stu.ex_stu = 0;
 	}
 	else
-		ft_exit_output("--> No such file or directory\n", 127, false);
+		ft_exit_output("--> No such file or directory\n", 1, false);
 }

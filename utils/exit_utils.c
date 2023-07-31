@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:45:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 15:20:52 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/30 18:27:24 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	ft_arg_digit(char *arg)
 	int	i;
 
 	i = 0;
+	if (arg[0] == '-')
+		i++;
 	while (arg[i])
 	{
 		if (!(arg[i] >= '0' && arg[i] <= '9'))

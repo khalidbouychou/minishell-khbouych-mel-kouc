@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/30 13:02:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:38:23 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	cmd = NULL;
-	// if(!env)
-	// {
-	// 	puts("khawi");
-	// 	return(0);
-	// }
 	env = env_list(envp);
 	// signal(SIGINT,_handler);
 	// signal(SIGQUIT,_handler);

@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/07/30 16:22:53 by khbouych         ###   ########.fr        #
+#    Updated: 2023/07/31 15:36:23 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./parsing/parsing.c ./parsing/util_lst_parce.c  ./builtins/ftexit.c \
 		./builtins/ftecho.c  ./builtins/ftexport.c ./parsing/handle_redir.c \
 		./parsing/handle_herdoc.c ./execution/main_exec.c  ./execution/util_m_exec.c  \
-	   	./utils/export_utils.c ./utils/export_utils_.c ./execution/simple_cmd.c \
+	   	./utils/export_utils.c ./utils/export_utils_.c ./execution/simple_cmd.c ./utils/cd_utils.c \
 		./utils/exit_utils.c ./builtins/ftpwd.c ./builtins/ftcd.c ./builtins/ftenv.c ./builtins/ftunset.c
 
 OSRC = $(SRC:.c=.o)

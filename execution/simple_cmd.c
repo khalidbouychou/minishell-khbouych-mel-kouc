@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/30 15:59:08 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:23:41 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,17 @@ int	simple_not_built(t_parse *list_pars, t_env *env, char **str)
 	else if (id == 0)
 	{
 		check_fd_exec(list_pars);
-		execve(list_pars->path, list_pars->arg, str);
-		perror("execve");
-		// exit (1);
+		if (execve(list_pars->path, list_pars->arg, str) == -1)
+		{
+			// if (errno == EACCES)
+			// 	printf("minishell: %s: Permission denied\n", list_pars->arg[0]);
+			// else if (errno == ENOENT)
+			// 	printf("%s: No such file or directory\n", list_pars->arg[0]);
+			// else
+			// 	printf("%s: command not found\n", list_pars->arg[0]);
+			g_stu.ex_stu = 127;
+			exit(g_stu.ex_stu);
+		}
 	}
 	wait(NULL);
 	(void)list_pars;

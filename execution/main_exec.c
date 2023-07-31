@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/30 15:52:15 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:41:29 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	cmd_in_built(t_parse *list_pars, t_env *env)
 		else if (!ft_strcmp(tmp->arg[0], "unset"))
 			ft_unset(env, tmp->arg);
 		else if (!ft_strcmp(tmp->arg[0], "cd"))
-			ft_cd(tmp->arg);
+			ft_cd(tmp->arg,env);
 		tmp = tmp->next;
 	}
 }
@@ -62,6 +62,7 @@ void	execute_main(t_parse *list_pars, t_env *env)
 		{
 			// printf("\n CMD NOT IN BUILTINS --->FORk\n");
 			simple_not_built(list_pars, env, str);
+			
 		}
 	}
 	else

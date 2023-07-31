@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/30 15:53:12 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/07/30 16:49:49 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	ft_expander(t_token *tok, t_env *env)
 	{
 		if (tmp->type == VAR)
 		{
+			(void)env;
 			ptr = tmp->prev;
 			while (ptr && (ptr->type == SPACE || ptr->type == TAB))
 				ptr = ptr->prev;
@@ -106,7 +107,6 @@ void	ft_expander(t_token *tok, t_env *env)
 				res = ft_strjoin(res, ft_expandhelp(tmp->content, env));
 				tmp->content = res;
 			}
-			g_stu.ex_stu = 0;
 		}
 		tmp = tmp->next;
 	}
