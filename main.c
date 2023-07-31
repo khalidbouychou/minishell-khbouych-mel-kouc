@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/30 13:02:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/31 23:35:37 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,17 +97,19 @@ void	help_main(char *cmd, t_env *env)
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
-	t_env	*env = NULL;
+	t_env	*env;
 
 	// atexit(l);
 	(void)argc;
 	(void)argv;
 	cmd = NULL;
-	// if(!env)
+	
+	// if(!*envp)
 	// {
 	// 	puts("khawi");
 	// 	return(0);
 	// }
+	printf("zzzzzzzzz\n");
 	env = env_list(envp);
 	// signal(SIGINT,_handler);
 	// signal(SIGQUIT,_handler);

@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.h                                        :+:      :+:    :+:   */
+/*   complex_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 14:22:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/30 18:30:11 by mel-kouc         ###   ########.fr       */
+/*   Created: 2023/07/30 16:54:53 by mel-kouc          #+#    #+#             */
+/*   Updated: 2023/07/30 18:38:12 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTION_H
-# define EXECUTION_H
+#include "../incld/minishell.h"
 
-# include "../incld/parsing.h"
+void	complex_cmd(t_parse *lst_p, t_env *env, char **str)
+{
+	int	pid;
+	// int	fd[2];
 
-void	execute_main(t_parse *list_pars, t_env *env);
-int		compare_cmd(t_parse *tmp);
-char	**list_to_char(t_env *env, char **str);
-int		simple_not_built(t_parse *list_pars, t_env *env, char **str);
-void	complex_cmd(t_parse *lst_p, t_env *env, char **str);
-void	free_char_double(char **str);
-
-#endif
+	// pipe(fd);
+	pid = fork();
+	if (pid == -1)
+		return ;
+	else if (pid == 0)
+	{
+		
+	}
+	printf("\nCOMPLEX COMMAND ---> FORK\n");
+	(void)lst_p;
+	(void)env;
+	(void)str;
+}
