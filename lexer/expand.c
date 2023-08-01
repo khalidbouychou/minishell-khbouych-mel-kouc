@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 18:59:12 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:00:46 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	ft_expander(t_token *tok, t_env *env)
 			ptr = tmp->prev;
 			while (ptr && (ptr->type == SPACE || ptr->type == TAB))
 				ptr = ptr->prev;
-			if (ptr && ptr->type != HERDOC)
+			if ((ptr && ptr->type != HERDOC) || !ptr)
 			{
 				res = ft_strjoin(res, ft_expandhelp(tmp->content, env));
 				tmp->content = res;

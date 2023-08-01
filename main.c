@@ -6,12 +6,12 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/31 23:35:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:59:53 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "incld/minishell.h"
-#include <sys/types.h>
+// #include <sys/types.h>
 
 void	ft_print_env(t_env *env)
 {
@@ -37,9 +37,8 @@ void	print(t_token *lst)
 		printf("√ type\t--> (%d)\n", tmp->type);
 		printf("√ is_op\t--> (%d)\n", tmp->operator);
 		printf("√ flag\t--> (%d)\n", tmp->flag);
-		// printf("√ path\t--> (%s)\n", tmp->path);
 		printf("\n------------------------------------\n");
- 		tmp = tmp->next;
+		tmp = tmp->next;
 		i++;
 	}
 }
@@ -81,14 +80,15 @@ void	help_main(char *cmd, t_env *env)
 
 	list_tokens = NULL;
 	list_parser = NULL;
-
 	add_history(cmd);
 	list_tokens = divide(cmd, env);
 	if (list_tokens)
 	{
 		// print(list_tokens);
+
 		list_parser = parser(list_tokens, env);
 		execute_main(list_parser, env);
+
 		// parser_print(list_parser);
 		// printf("\n*********************\n");
 	}
@@ -103,18 +103,17 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	cmd = NULL;
-	
-	// if(!*envp)
-	// {
-	// 	puts("khawi");
-	// 	return(0);
-	// }
-	printf("zzzzzzzzz\n");
 	env = env_list(envp);
+	// t_env *tmp = env;
+	// while (tmp)
+	// {
+	// 	printf("env_list-->kay = %s\n", tmp->key);
+	// 	printf("env_list-->value = %s\n", tmp->value);
+	// 	printf("\n------------------------------ \n");
+	// 	tmp = tmp->next;
+	// }
 	// signal(SIGINT,_handler);
 	// signal(SIGQUIT,_handler);
-	// ft_export(argv,env);
-	// ft_echo(argv,1);
 	while (1)
 	{
 		cmd = readline("minishell ~> ");

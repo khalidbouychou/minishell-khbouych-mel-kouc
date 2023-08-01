@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/31 18:04:52 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:07:42 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ void	fealed_execve(t_parse *list_pars)
 			g_stu.ex_stu = 126;
 		}
 		else
+		{
+			printf("is a directory\n");
 			g_stu.ex_stu = 0;
+		}
 	}
 	else
 	{
@@ -106,12 +109,19 @@ int	simple_not_built(t_parse *list_pars, t_env *env, char **str)
 		check_fd_exec(list_pars);
 		if (execve(list_pars->path, list_pars->arg, str) == -1)
 			fealed_execve(list_pars);
+	// {
+	// 	if (access(list_pars->path, F_OK) == -1)
+	// 	{
+	// 		printf("command not found\n");
+	// 		g_stu.ex_stu = 127;
+	// 	}
+	// 	else
+	// 		g_stu.ex_stu = 0;
+	// }
 	}
 	waitpid(id, &status, 0);
-	// printf("%d\n", status);
-	// printf("id %d\n", id);
-	(void)list_pars;
+	printf("staus = %d\n", status);
+	printf("id  = %d\n", id);
 	(void)env;
-	//  str = list_to_char(env, str);
 	return (1);
 }

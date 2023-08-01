@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/30 21:37:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:17:00 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 		{
 			new_p->arg[++(*i)] = ft_strdup(tmp->content);
 			if (*i == 0)
+			{
 				new_p->path = ft_get_path(env, new_p->arg[0]);
+			}
 			if (!tmp->next || tmp->next->type == PIPE)
 				break ;
 			tmp = tmp->next;
@@ -111,7 +113,7 @@ t_parse	*parser(t_token	*list_tokens, t_env *env)
 	redirection(list_tokens, list_pars);
 	// if (!redirection(list_tokens, list_pars))
 	// {
-	// 	// free_token_list(&list_tokens);
+		// free_token_list(&list_tokens);
 	// 	printf("\n THIS IS ERROR IN FD \n");
 	// }
 	return (list_pars);
