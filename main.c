@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/31 15:38:23 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:17:55 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void	help_main(char *cmd, t_env *env)
 	{
 		// print(list_tokens);
 		list_parser = parser(list_tokens, env);
-		execute_main(list_parser, env);
 		// parser_print(list_parser);
+		execute_main(list_parser, env);
 		// printf("\n*********************\n");
 	}
 }

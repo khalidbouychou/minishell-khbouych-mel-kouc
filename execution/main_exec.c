@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/31 15:41:29 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:59:11 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	execute_main(t_parse *list_pars, t_env *env)
 	char	**str;
 	// int		fd[2];
 	// int i = 0;
-
 	str = NULL;
 	str = list_to_char(env, str);
 	// while (str[i])

@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/31 16:08:07 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:27:12 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@
 # include "../incld/builtins.h"
 # include "../incld/execution.h"
 # include <sys/wait.h>
-#include <sys/errno.h>
+# include <sys/errno.h>
+# include <sys/stat.h>
 
 // for exit status and signals
 typedef struct s_glbl
 {
-	int	ex_stu;
-	int	sig;
+	int		ex_stu;
+	int		sig;
+	char	*current_pwd;
 }	t_glbl;
 
 t_glbl	g_stu;
