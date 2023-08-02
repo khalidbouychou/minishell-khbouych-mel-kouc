@@ -223,3 +223,38 @@ echo world  < test2 < test3 > out < test
 relink in all heder files
 
 Will we work whith env when we pout it in double pointer?
+
+
+///////////////////////////////
+
+-------> in normal case without env -i <------
+
+i should handel this
+    $HOME
+    bash: /Users/mel-kouc: is a directory
+
+    
+    is alredy handel
+    $USER
+    bash: mel-kouc: command not found
+    
+    $PATH
+    bash: /usr/local/bin:/usr/bin:/bin:/usr/sbin:
+    /sbin:/usr/local/munki:/Library/Apple/usr/bin:
+    /Applications/Visual: No such file or directory
+
+-------> in case  env -i ./minishell <----
+    is alredy handel
+
+
+//////////////////////////////////
+
+segfault le mode : env -i ./minishell
+        minishell ~> unset PWD
+        minishell ~> cd
+        [1]    56671 segmentation fault  env -i ./minishell
+
+minishell ~> cat herh
+cat: herh: No such file or directory
+staus = 256
+id  = 58301

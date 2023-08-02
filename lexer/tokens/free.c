@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:40:26 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/28 12:51:20 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/07/30 18:29:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,17 @@ void	free_env_list(t_env *env)
 		tmp = next;
 	}
 	env = NULL;
+}
+
+void	free_char_double(char **str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }

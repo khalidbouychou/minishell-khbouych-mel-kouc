@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/01 16:59:11 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:52:31 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,17 @@ void	cmd_in_built(t_parse *list_pars, t_env *env)
 void	execute_main(t_parse *list_pars, t_env *env)
 {
 	char	**str;
-	// int		fd[2];
-	// int i = 0;
 	str = NULL;
 	str = list_to_char(env, str);
-	// while (str[i])
-	// {
-	// 	printf("double pointer = {%s}\n", str[i]);
-	// 	i++;
-	// }
 	if (!list_pars->next)
 	{
 		if (compare_cmd(list_pars))
 			cmd_in_built(list_pars, env);
 		else
-		{
-			// printf("\n CMD NOT IN BUILTINS --->FORk\n");
 			simple_not_built(list_pars, env, str);
-			
-		}
 	}
 	else
-	{
-		printf("\nCOMPLEX COMMAND ---> FORK\n");
-		// complex_cmd(list_pars, env);
-		// fork()
-	}
+		complex_cmd(list_pars, env, str);
+	// free_char_double(str);
+	free_char_double(list_pars->arg);
 }

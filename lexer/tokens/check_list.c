@@ -93,7 +93,6 @@ int	check_list(t_token **lst, t_env *env)
 		printf("syntax error near unexpected token \n");
 		free_token_list(lst);
 		return (0);
-		// free_env_list(env);
 	}
 	check_herdoc_quotes(*lst);
 	trim_list(lst);
