@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:37:03 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/01 17:00:57 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:12:13 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ t_env	*env_list(char **env)
 	int		i;
 	t_env	*head;
 	t_env	*old;
+
 	head = NULL;
 	i = -1;
 	head = NULL;
