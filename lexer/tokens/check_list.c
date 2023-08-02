@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/01 21:05:32 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/01 21:28:26 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	check_list(t_token **lst, t_env *env)
 	check_herdoc_quotes(*lst);
 	trim_list(lst);
 	ft_expander(*lst, env);
-	(void)env;
 	lixer_list(lst);
 	rm_node_white_space(lst);
 	return (1);
