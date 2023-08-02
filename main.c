@@ -105,8 +105,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	cmd = NULL;
 	env = env_list(envp);
-<<<<<<< HEAD
-=======
 	// t_env *tmp = env;
 	// while (tmp)
 	// {
@@ -115,7 +113,6 @@ int	main(int argc, char **argv, char **envp)
 	// 	printf("\n------------------------------ \n");
 	// 	tmp = tmp->next;
 	// }
->>>>>>> 87a8e2838827633f6c57364a790fa10f00152b9a
 	// signal(SIGINT,_handler);
 	// signal(SIGQUIT,_handler);
 	while (1)
