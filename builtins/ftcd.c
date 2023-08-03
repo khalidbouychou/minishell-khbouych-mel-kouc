@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftcd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/01 20:25:54 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:18:39 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ void	ft_cd(char **cmd, t_env *env)
 		old->value = getcwd(NULL, 0);
 	if ((!cmd[1]))
 	{
-		puts("dfhdjfhdjsb\n");
 		if (!home)
 		{
-			ft_putstr_fd("cd: HOME not set\n", 1);
+			ft_putstr_fd("cd: HOME not set\n", 2);
 			g_stu.ex_stu = 1;
 		}
 		else
@@ -40,7 +39,6 @@ void	ft_cd(char **cmd, t_env *env)
 	}
 	else if ((!ft_strcmp(cmd[1], "~")))
 	{
-		puts("dfhdjfhdjsb\n");
 		if (!home)
 			chdir("/Users/khbouych");
 		else
@@ -51,7 +49,7 @@ void	ft_cd(char **cmd, t_env *env)
 	if (chdir(cmd[1]) == -1)
 	{
 		g_stu.ex_stu = 1;
-		ft_putstr_fd("No such file or directory \n", 1);
+		ft_putstr_fd("No such file or directory \n", 2);
 		return ;
 	}
 	else

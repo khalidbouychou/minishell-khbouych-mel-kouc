@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftexport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/31 16:22:18 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:41:13 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_env	*ft_getadress_node(t_env *env, t_env *node)
 	return (NULL);
 }
 
-void	ft_help_export(char **export, t_env *env, int fd)
+int	ft_help_export(char **export, t_env *env, int fd)
 {
 	int		i;
 	t_env	*node;
@@ -90,6 +90,10 @@ void	ft_help_export(char **export, t_env *env, int fd)
 				ft_add_to_env(env, node);
 		}
 		else
+		{
 			ft_exit_output("--> not a valid identifier\n", 1, false);
+			return (g_stu.ex_stu = 1);
+		}
 	}
+	return (g_stu.ex_stu = 0);
 }

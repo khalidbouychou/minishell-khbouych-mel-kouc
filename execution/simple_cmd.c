@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/02 11:38:06 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:09:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	fealed_execve(t_parse *list_pars)
 		else
 		{
 			printf("is a directory\n");
-			// g_stu.ex_stu = 0;
 			g_stu.ex_stu = 126;
 		}
 	}
@@ -116,8 +115,8 @@ int	simple_not_built(t_parse *list_pars, t_env *env, char **str)
 		g_stu.ex_stu = 1;
 	else if (status == 0)
 		g_stu.ex_stu = 0;
-	printf("status = %d\n", status);
-	printf("id  = %d\n", id);
+	// printf("status = %d\n", status);
+	// printf("id  = %d\n", id);
 	(void)env;
 	return (1);
 }

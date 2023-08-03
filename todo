@@ -254,7 +254,31 @@ segfault le mode : env -i ./minishell
         minishell ~> cd
         [1]    56671 segmentation fault  env -i ./minishell
 
-minishell ~> cat herh
-cat: herh: No such file or directory
-staus = 256
-id  = 58301
+
+BASH-3.2$ echo hello > $a
+BASH: $a: ambiguous redirect
+
+
+in bash 
+    ls > a | cat < a
+
+
+inside ./minishell -->
+echo $SHLVL
+1
+minishell ~> ./minishell
+minishell ~> echo $SHLVL
+2
+
+
+inside ./minishell -> unset SHLVL
+    add  SHLVL IN ENV and encrement
+
+
+free
+
+        handel_herdoc
+
+
+ft_delete_node function in ftunset file
+    delete node in the first env 

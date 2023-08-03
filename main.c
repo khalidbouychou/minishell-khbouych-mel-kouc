@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/01 16:59:53 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/02 13:35:03 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	help_main(char *cmd, t_env *env)
 		execute_main(list_parser, env);
 
 		// parser_print(list_parser);
-		execute_main(list_parser, env);
 		// printf("\n*********************\n");
 	}
 }

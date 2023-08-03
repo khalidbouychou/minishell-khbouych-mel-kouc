@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:37:03 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/02 12:12:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/03 01:30:52 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_env	*ft_lstnew(char *env)
 		new_node->value = NULL;
 	}
 	new_node->next = NULL;
-	new_node->prev = NULL;
+	new_node->prev = NULL; 
 	return (new_node);
 }
 
@@ -87,6 +87,7 @@ void	add_if_not_found(t_env **head, int i)
 		{
 			key = ft_strdup("PWD");
 			value = ft_strdup("/Users/mel-kouc/Desktop/minishell-khbouych-mel-kouc");
+			g_stu.current_pwd = value;
 		}
 		else if (i == 1)
 		{
@@ -123,7 +124,10 @@ t_env	*env_list(char **env)
 	{
 		i = 0;
 		while (env[i])
-			ft_lst_addback(&head, ft_lstnew(env[i++]));
+		{
+			ft_lst_addback(&head, ft_lstnew(env[i]));
+			i++;
+		}
 	}
 	old = ft_getenv_node(head, "OLDPWD");
 	if (!old)
