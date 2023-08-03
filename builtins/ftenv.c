@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:40 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/03 16:31:59 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:33:51 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ void	ft_env(char **echo, t_env **env)
 	else
 		ft_exit_output("--> No such file or directory\n", 1, false);
 }
-
