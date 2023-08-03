@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/02 11:46:07 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:40:52 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 	while (cnt[++v.i])
 	{
 		v.s = v.i;
-		while (cnt[v.i] != '$' && cnt[v.i]
+		while (cnt[v.i] && cnt[v.i] != '$' 
 			&& ft_isalnum(cnt[v.i]) && cnt[v.i] != '\'')
 			v.i++;
 		v.e = v.i;
