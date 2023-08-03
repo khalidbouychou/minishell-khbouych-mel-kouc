@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/03 14:35:57 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:03:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	cmd_in_built(t_parse *list_pars, t_env **env)
 void	execute_main(t_parse *list_pars, t_env **env)
 {
 	char	**str;
+
 	str = NULL;
 	str = list_to_char(*env, str);
 	if (!list_pars->next)

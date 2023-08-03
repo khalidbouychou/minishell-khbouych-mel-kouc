@@ -247,20 +247,37 @@ i should handel this
     is alredy handel
 
 
-//////////////////////////////////
+in my minishell
+   command not found
 
-segfault le mode : env -i ./minishell
+
+√    bash: $a: ambiguous redirect
+
+    BASH-3.2$ echo hello > $a
+    BASH: $a: ambiguous redirect
+
+
+√    segfault le mode : env -i ./minishell
         minishell ~> unset PWD
         minishell ~> cd
         [1]    56671 segmentation fault  env -i ./minishell
 
+//////////////////////////////////
 
-BASH-3.2$ echo hello > $a
-BASH: $a: ambiguous redirect
+
+minishell ~> echo hello world  > $a
+ambiguous redirect
+hello world
 
 
 in bash 
     ls > a | cat < a
+
+    i have to understand this example 
+    imagine too process work in the same time
+    when first try to push his content in a
+    the second (cat) try to red from a
+    finally it display nothing 
 
 
 inside ./minishell -->
@@ -282,3 +299,5 @@ free
 
 ft_delete_node function in ftunset file
     delete node in the first env 
+
+

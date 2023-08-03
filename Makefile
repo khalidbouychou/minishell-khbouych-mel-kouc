@@ -6,7 +6,7 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/03 15:34:39 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/08/03 19:53:42 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./builtins/ftecho.c  ./builtins/ftexport.c ./parsing/handle_redir.c \
 		./parsing/handle_herdoc.c ./execution/main_exec.c  ./execution/util_m_exec.c  \
 		./utils/export_utils.c ./utils/export_utils_.c ./execution/simple_cmd.c ./utils/cd_utils.c \
-		./utils/exit_utils.c ./builtins/ftpwd.c ./builtins/ftcd.c ./builtins/ftenv.c ./builtins/ftunset.c ./execution/complex_cmd.c
+		./utils/exit_utils.c ./builtins/ftpwd.c ./builtins/ftcd.c ./builtins/ftenv.c ./builtins/ftunset.c \
+		./execution/complex_cmd.c ./execution/one_pipe.c
 
 OSRC = $(SRC:.c=.o)
 CC = cc  -g
