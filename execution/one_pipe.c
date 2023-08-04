@@ -6,18 +6,20 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/03 22:00:17 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/04 22:35:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-// int	second_child(pid_t	*pid1, t_parse *lst_p, t_env *env, char **str)
+// int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 // {
-// 	*pid1 = fork();
-// 	if (*pid1 == -1)
+// 	pid_t	pid1;
+
+// 	pid1 = fork();
+// 	if (pid1 == -1)
 // 		return (-1);
-// 	else if (*pid1 == 0)
+// 	else if (pid1 == 0)
 // 	{
 // 		close(fd[1]);
 // 		dup2(fd[0], STDIN_FILENO);
@@ -30,15 +32,17 @@
 // 		else
 // 			execve(lst_p->next->path, lst_p->next->arg, str);
 // 	}
-// 	retutn (1);
+// 	return (pid1);
 // }
 
-// int	first_child(pid_t	*pid0, t_parse *lst_p, t_env *env, char **str)
+// int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 // {
-// 	*pid0 = fork();
-// 	if (*pid0 == -1)
+// 	pid_t	pid0;
+
+// 	pid0 = fork();
+// 	if (pid0 == -1)
 // 		return (-1);
-// 	else if (*pid0 == 0)
+// 	else if (pid0 == 0)
 // 	{
 // 		close(fd[0]);
 // 		dup2(fd[1], STDOUT_FILENO);
@@ -51,7 +55,7 @@
 // 		else
 // 			execve(lst_p->path, lst_p->arg, str);
 // 	}
-// 	retutn (1);
+// 	return (pid0);
 // }
 
 int	one_pipe(t_parse *lst_p, t_env *env, char **str)
@@ -66,8 +70,8 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 		perror("pipe");
 		return (-1);
 	}
-	// first_child(&pid0, lst_p, env, str);
-	// second_child(&pid1, lst_p, env, str);
+	// pid0 = first_child(&fd[2], lst_p, env, str);
+	// pid1 = second_child(&fd[2], lst_p, env, str);
 	pid0 = fork();
 	if (pid0 == -1)
 		return (-1);

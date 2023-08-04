@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/03 17:03:48 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:16:08 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	cmd_in_built(t_parse *list_pars, t_env **env)
 	while (tmp)
 	{
 		ft_tolower(*tmp->arg);
-		if (tmp->fd_input == -1 || tmp->fd_output == -1)
+		if (tmp->fd_input == -1 || tmp->fd_output == -1 || g_stu.flag == 1)
 			check_fd = 0;
 		else if (!ft_strcmp(tmp->arg[0], "echo"))
 			ft_echo(tmp->arg, tmp->fd_output);

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/03 18:47:18 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:56:28 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ void	ft_expander(t_token *tok, t_env *env)
 	char			*res;
 	t_token			*tmp;
 	t_token			*ptr;
+	t_token			*dolar;
 
-	res = NULL;
-	res = NULL;
 	tmp = tok;
 	while (tmp)
 	{
 		if (tmp->type == VAR)
 		{
+			dolar = tmp;
 			ptr = tmp->prev;
 			while (ptr && (ptr->type == SPACE || ptr->type == TAB))
 				ptr = ptr->prev;
@@ -105,7 +105,12 @@ void	ft_expander(t_token *tok, t_env *env)
 			{
 				res = ft_strjoin(res, ft_expandhelp(tmp->content, env));
 				tmp->content = res;
+				printf("tmp-> (%s)\n", tmp->content);
 			}
+			if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
+					|| ptr->type == APPND) && *(tmp)->content == '\0')
+				// && *(dolar)->content == '$')
+				g_stu.flag = 1;
 		}
 		tmp = tmp->next;
 	}

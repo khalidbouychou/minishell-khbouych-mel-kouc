@@ -264,14 +264,19 @@ in my minishell
 
 //////////////////////////////////
 
+my minishell
+ 
+√    minishell ~> echo hello world  > $a
+        ambiguous redirect
+        hello world
 
-minishell ~> echo hello world  > $a
-ambiguous redirect
-hello world
 
+    echo hello  > ""
+        ambiguous redirect
+        hello
 
 in bash 
-    ls > a | cat < a
+√    ls > a | cat < a
 
     i have to understand this example 
     imagine too process work in the same time

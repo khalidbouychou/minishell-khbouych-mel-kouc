@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/02 20:36:42 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/04 23:00:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,12 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 	delim = ptr->content;
 	buffer = NULL;
 	new_p->f_name = generate_name();
-	// new_p->fd_input = open(new_p->f_name, O_CREAT, O_WRONLY, 0666);
-	// if (new_p->fd_input == -1)
-	// 	ft_putstr_fd(" herdoc\n", 2);
-	// else
-	// {
 	while (1)
 	{
 		str = readline("> ");
 		if (!str || !ft_strncmp(delim, str, ft_strlen(str)))
 		{
-			new_p->fd_input = open(new_p->f_name, O_WRONLY | O_CREAT
-					| O_TRUNC, 0644);
+			new_p->fd_input = open(new_p->f_name, O_WRONLY | O_CREAT, 0644);
 			if (buffer)
 				write(new_p->fd_input, buffer, ft_strlen(buffer));
 			break ;
@@ -61,8 +55,9 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 		buffer = ft_strjoin(buffer, str);
 		buffer = ft_strjoin(buffer, "\n");
 	}
-	// }
 	close(new_p->fd_input);
+	new_p->fd_input = open(new_p->f_name, O_RDWR | O_CREAT, 0644);
+	unlink(new_p->f_name);
 }
 
 void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)

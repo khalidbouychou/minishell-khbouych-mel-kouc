@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:37:03 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/03 13:27:14 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/04 20:23:46 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	add_if_not_found(t_env **head, int i)
 
 	while (++i < 4)
 	{
-		// printf("%d\n", i);
 		if (i == 0)
 		{
 			key = ft_strdup("PWD");

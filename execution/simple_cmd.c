@@ -6,11 +6,12 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/02 23:09:01 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/04 20:23:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
+// #include <errno.h>
 
 int	count_size(t_env *env)
 {
@@ -62,7 +63,6 @@ void	check_fd_exec(t_parse *list_pars)
 		close(list_pars->fd_output);
 	}
 }
-// #include <errno.h>
 
 void	fealed_execve(t_parse *list_pars)
 {
@@ -70,17 +70,17 @@ void	fealed_execve(t_parse *list_pars)
 	{
 		if (access(list_pars->path, F_OK) == -1)
 		{
-			printf("No such file or directory\n");
+			ft_putstr_fd("No such file or directory\n", 2);
 			g_stu.ex_stu = 127;
 		}
 		else if (access(list_pars->path, X_OK) == -1)
 		{
-			printf("Permission denied\n");
+			ft_putstr_fd("Permission denied\n", 2);
 			g_stu.ex_stu = 126;
 		}
 		else
 		{
-			printf("is a directory\n");
+			ft_putstr_fd("is a directory\n", 2);
 			g_stu.ex_stu = 126;
 		}
 	}
@@ -88,7 +88,7 @@ void	fealed_execve(t_parse *list_pars)
 	{
 		if (access(list_pars->path, F_OK) == -1)
 		{
-			printf("command not found\n");
+			ft_putstr_fd("command not found\n", 2);
 			g_stu.ex_stu = 127;
 		}
 		else
