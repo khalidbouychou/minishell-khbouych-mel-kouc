@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/04 16:40:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 11:46:56 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int	main(int argc, char **argv, char **envp)
 	env = env_list(envp);
 	// signal(SIGINT,_handler);
 	// signal(SIGQUIT,_handler);
+
+	
 	while (1)
 	{
 		cmd = readline("minishell ~> ");
