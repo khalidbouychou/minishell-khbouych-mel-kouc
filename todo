@@ -278,7 +278,6 @@ my minishell
 in bash 
 √    ls > a | cat < a
 
-
     ls > a | cat < a | cat | cat | cat | cat | cat a
 
     i have to understand this example 
@@ -315,3 +314,16 @@ bash: /Users/mel-kouc: Is a directory
 
 bash-3.2$ echo hello world  > $PATH
 bash: $PATH: ambiguous redirect
+
+
+cat << ''$USER
+
+ls | cat txt
+cat: txt: No such file or directory
+Makefile        correction.pdf  incld           main.c          minishell       parsing         utils
+builtins        execution       lexer           main.o          minishell.tldr  todo
+minishell ~> 
+
+ls | cat < txt
+
+ls |  > txt
