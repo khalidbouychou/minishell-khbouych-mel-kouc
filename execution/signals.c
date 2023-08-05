@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftenv.c                                            :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 17:45:40 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 12:03:04 by khbouych         ###   ########.fr       */
+/*   Created: 2023/08/05 11:05:52 by khbouych          #+#    #+#             */
+/*   Updated: 2023/08/05 11:48:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	ft_env(char **echo, t_env **env)
+void *sig_handler(int signal)
 {
-	t_env	*tmp;
+    (void)signal;
+    write (1,"\n",1);
+    rl_newline();
+    
+}
 
-	if (!echo[1])
-	{
-		tmp = *env;
-		while (tmp)
-		{
-			if (tmp->value)
-				printf("%s=%s\n", tmp->key, tmp->value);
-			tmp = tmp->next;
-		}
-		g_stu.ex_stu = 0;
-	}
-	else
-		ft_exit_output("--> No such file or directory\n", 1, false);
+void ft_signals(void)
+{
+    signal(SIGINT,sig_handler);
+    signal(SIGQUIT,sig_handler);
 }

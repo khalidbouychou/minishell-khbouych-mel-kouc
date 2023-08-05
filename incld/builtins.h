@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/01 15:07:19 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:35:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		ft_sort_keys(t_env *e);
 void		ft_join_value(t_env *e, t_env *node);
 int			ft_check_overflow(char *arg);
 void		ft_exit_output(char *msg, int exit_status, bool _bool);
-void		ft_help_export(char **export, t_env *env, int fd);
+int			ft_help_export(char **export, t_env *env, int fd);
 char		*ft_get_env(t_env *env, char *key);
 void		ft_update_env(t_env *env, char *key_oldpwd, char *set_value_oldpwd);
 t_env		*ft_add_env(char *key, char *value);
@@ -41,11 +41,12 @@ int			ft_check_by_key(t_env *env, char *key);
 /********builtines**************/
 void		ft_echo(char **arg, int fd);
 void		ft_export(char **export, t_env *env, int fd);
-void		ft_unset(t_env *env, char **arg);
+void		ft_unset(t_env **env, char **arg);
 void		ft_exit(char **arg);
-void		ft_env(char**echo, t_env *env);
+// void		ft_env(char**echo, t_env *env);
+void		ft_env(char **echo, t_env **env);
 void		ft_cd(char **cd, t_env *e);
 // void		ft_pwd(void);
-t_env       *ft_getenv_node(t_env *env, char *key);
-void        ft_pwd(void);
+t_env		*ft_getenv_node(t_env *env, char *key);
+void		ft_pwd(void);
 #endif

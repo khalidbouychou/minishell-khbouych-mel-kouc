@@ -6,16 +6,12 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/29 21:51:14 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 00:36:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-// char	*expande_herdoc(char *var)
-// {
-	
-// }
 void	ft_putendl_fd(char *s, int fd)
 {
 	int	i;
@@ -40,18 +36,12 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 	delim = ptr->content;
 	buffer = NULL;
 	new_p->f_name = generate_name();
-	// new_p->fd_input = open(new_p->f_name, O_CREAT, O_WRONLY, 0666);
-	// if (new_p->fd_input == -1)
-	// 	ft_putstr_fd("No such file or directory herdoc\n", 2);
-	// else
-	// {
 	while (1)
 	{
 		str = readline("> ");
 		if (!str || !ft_strncmp(delim, str, ft_strlen(str)))
 		{
-			new_p->fd_input = open(new_p->f_name, O_WRONLY | O_CREAT
-					| O_TRUNC, 0644);
+			new_p->fd_input = open(new_p->f_name, O_WRONLY | O_CREAT, 0644);
 			if (buffer)
 				write(new_p->fd_input, buffer, ft_strlen(buffer));
 			break ;
@@ -61,8 +51,9 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 		buffer = ft_strjoin(buffer, str);
 		buffer = ft_strjoin(buffer, "\n");
 	}
-	// }
 	close(new_p->fd_input);
+	new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
+	unlink(new_p->f_name);
 }
 
 void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)

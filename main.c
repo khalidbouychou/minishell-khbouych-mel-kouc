@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/01 16:59:53 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 11:46:56 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,22 @@ void	parser_print(t_parse *lst)
 // 	system("leaks ./minishell");
 // }
 
-void	help_main(char *cmd, t_env *env)
+void	help_main(char *cmd, t_env **env)
 {
 	t_token	*list_tokens;
 	t_parse	*list_parser;
 
 	list_tokens = NULL;
 	list_parser = NULL;
-	add_history(cmd);
-	list_tokens = divide(cmd, env);
+	list_tokens = divide(cmd, *env);
 	if (list_tokens)
 	{
 		// print(list_tokens);
 
-		list_parser = parser(list_tokens, env);
-		execute_main(list_parser, env);
-
+		list_parser = parser(list_tokens, *env);
 		// parser_print(list_parser);
 		execute_main(list_parser, env);
+
 		// printf("\n*********************\n");
 	}
 }
@@ -105,21 +103,16 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	cmd = NULL;
 	env = env_list(envp);
-	// t_env *tmp = env;
-	// while (tmp)
-	// {
-	// 	printf("env_list-->kay = %s\n", tmp->key);
-	// 	printf("env_list-->value = %s\n", tmp->value);
-	// 	printf("\n------------------------------ \n");
-	// 	tmp = tmp->next;
-	// }
 	// signal(SIGINT,_handler);
 	// signal(SIGQUIT,_handler);
+
+	
 	while (1)
 	{
 		cmd = readline("minishell ~> ");
+		add_history(cmd);
 		if (cmd)
-			help_main(cmd, env);
+			help_main(cmd, &env);
 		else
 		{
 			ft_putendl_fd("exit", 1);

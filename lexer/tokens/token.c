@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/01 16:59:31 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:43:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_check_if_cmd_valid(char **path, char *str)
 
 	p = NULL;
 	i = 0;
-	while (path[i])
+	while (path && path[i])
 	{
 		p = ft_strjoin(path[i], "/");
 		p = ft_strjoin(p, str);
@@ -39,7 +39,7 @@ char	*ft_get_path(t_env *env, char *str)
 	tmp = env;
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->key, "PATH", 4) == 0)
+		if (tmp->key && ft_strcmp(tmp->key, "PATH") == 0)
 		{
 			p = tmp->value;
 			break ;

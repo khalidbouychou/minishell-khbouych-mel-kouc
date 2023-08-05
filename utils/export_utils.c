@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 09:56:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/30 17:30:12 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:41:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,4 @@ void	ft_export(char **export, t_env *env, int fd)
 		return ;
 	}
 	ft_help_export(export, env, fd);
-	g_stu.ex_stu = 0;
 }
