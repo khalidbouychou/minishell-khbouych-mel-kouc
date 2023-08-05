@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 00:44:15 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 15:52:27 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 	while (tmp)
 	{
 		while (tmp && tmp->type != PIPE && (tmp->type == WORD
-				|| tmp->type == VAR || tmp->type == SPACE))
+				|| tmp->type == VAR || tmp->type == SPC))
 		{
 			new_p->arg[++(*i)] = ft_strdup(tmp->content);
 			if (*i == 0)

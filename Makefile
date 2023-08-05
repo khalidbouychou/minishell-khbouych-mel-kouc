@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
+#    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/03 19:53:42 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/08/05 15:49:31 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,10 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./parsing/handle_herdoc.c ./execution/main_exec.c  ./execution/util_m_exec.c  \
 		./utils/export_utils.c ./utils/export_utils_.c ./execution/simple_cmd.c ./utils/cd_utils.c \
 		./utils/exit_utils.c ./builtins/ftpwd.c ./builtins/ftcd.c ./builtins/ftenv.c ./builtins/ftunset.c \
-		./execution/complex_cmd.c ./execution/one_pipe.c
+		./execution/complex_cmd.c ./execution/one_pipe.c ./execution/signals.c
+
+LIB = -L/Users/khbouych/.brew/opt/readline/lib
+INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc  -g
@@ -31,12 +34,12 @@ CFLAGS =   -Wall -Wextra -Werror #-fsanitize=address
 
 all: $(NAME)
 
-$(NAME) : $(OSRC)
-	@$(CC) -lreadline $(CFLAGS)  $(OSRC) -o $(NAME)
+$(NAME) : $(OSRC) 
+	@$(CC) -lreadline -fsanitize=address ${LIB} $(CFLAGS) $(OSRC) -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 
-%.o: %.c ../incld/minishell.h
-	@$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c ./incld/minishell.h ./incld/builtins.h ./incld/execution.h ./incld/lexer.h ./incld/parsing.h ./incld/token.h
+	@$(CC) $(CFLAGS) -c $< -o $@ ${INCLUDE}
 	@echo "*** {Compaling Files ...} ***"
 
 clean :

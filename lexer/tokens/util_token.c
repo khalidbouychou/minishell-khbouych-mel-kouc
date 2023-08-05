@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/29 23:21:11 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 15:52:27 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	check_herdoc_quotes(t_token *lst)
 		if (tmp->type == HERDOC)
 		{
 			tmp = tmp->next;
-			while (tmp->type == SPACE || tmp->type == TAB)
+			while (tmp->type == SPC || tmp->type == _TAB)
 				tmp = tmp->next;
 			if (tmp->content[0] == '\'' || tmp->content[0] == '"')
 				tmp->flag = 1;
@@ -93,9 +93,9 @@ void	ft_get_type(t_token *tok)
 	else if ('|' == tok->content[0])
 		tok->type = PIPE;
 	else if (32 == tok->content[0])
-		tok->type = SPACE;
+		tok->type = SPC;
 	else if ('	' == tok->content[0])
-		tok->type = TAB;
+		tok->type = _TAB;
 	if (tok->type != WORD)
 		tok->path = NULL;
 	ft_set_oper(tok);

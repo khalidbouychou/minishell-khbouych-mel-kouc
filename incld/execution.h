@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:22:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/05 11:51:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 15:38:32 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int		one_pipe(t_parse *lst_p, t_env *env, char **str);
 void	check_fd_exec(t_parse *list_pars);
 int		second_child(int fd[2], t_parse *lst_p, t_env *env, char **str);
 int		first_child(int fd[2], t_parse *lst_p, t_env *env, char **str);
-
+void ft_signals(void);
 #endif

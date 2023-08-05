@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 00:21:11 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 15:52:27 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	ft_expander(t_token *tok, t_env *env)
 		{
 			dolar = tmp;
 			ptr = tmp->prev;
-			while (ptr && (ptr->type == SPACE || ptr->type == TAB))
+			while (ptr && (ptr->type == SPC || ptr->type == _TAB))
 				ptr = ptr->prev;
 			if ((ptr && ptr->type != HERDOC) || !ptr)
 			{

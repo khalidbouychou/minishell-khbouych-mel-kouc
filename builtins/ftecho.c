@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftecho.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/02 11:45:46 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 20:39:41 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,63 @@ int	ft_check_n(char *arg)
 	return (1);
 }
 
+void	ft_split_space(char *str, int fd)
+{
+	int	i;
+	int	flg;
+
+	i = 0;
+	flg = 0;
+	while (str[i] == ' ' || str[i] == '\t')
+		i += 1;
+	while (str[i])
+	{
+		if (str[i] == ' ' || str[i] == '\t')
+			flg = 1;
+		if (!(str[i] == ' ' || str[i] == '\t'))
+		{
+			if (flg)
+				write(1, " ", fd);
+			flg = 0;
+			write(1, &str[i], fd);
+		}
+		i += 1;
+	}
+}
+int	ft_detect_more_spaces(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] <= 32 && str[i + 1] <= 32)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	ft_echo(char **arg, int fd)
 {
 	int	i;
 
 	i = 1;
-	if (!arg[1])
+	while (arg[i] && ft_check_n(arg[i]))
+		i++;
+	while (arg[i])
 	{
-		ft_putstr_fd("\n", fd);
-		return ;
-	}
-	if (!ft_strcmp(arg[1], "?"))
-		printf("%d\n", g_stu.ex_stu);
-	else
-	{
-		if (arg[1])
+		if (!ft_detect_more_spaces(arg[i]))
+			ft_split_space(arg[i], fd);
+		else 
 		{
-			while (arg[i] && ft_check_n(arg[i]))
-				i++;
-			while (arg[i])
-				ft_putstr_fd(arg[i++], fd);
-			if (!ft_check_n(arg[1]))
-				ft_putstr_fd("\n", fd);
+			if (!ft_strcmp(arg[i], "?"))
+				printf("%d", g_stu.ex_stu);
+			else 
+				ft_putstr_fd(arg[i], fd);
 		}
-		g_stu.ex_stu = 0;
+		i++;
 	}
+	if (0 != ft_strcmp(arg[1], "-n"))
+		printf("\n");
 }

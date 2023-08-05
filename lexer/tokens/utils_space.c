@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/29 16:56:51 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/05 15:52:27 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	util_between_word_var(t_token *ptr, t_token	*tmp)
 {
 	while (ptr)
 	{
-		if ((ptr->next && ptr->type == SPACE && ptr->next->type == SPACE))
+		if ((ptr->next && ptr->type == SPC && ptr->next->type == SPC))
 		{
 			tmp->next = ptr->next;
 			ptr->next->prev = tmp;
@@ -28,7 +28,7 @@ void	util_between_word_var(t_token *ptr, t_token	*tmp)
 	}
 	if (!ptr->next)
 	{
-		if (ptr->type == SPACE)
+		if (ptr->type == SPC)
 		{
 			ptr->prev->next = NULL;
 			free(ptr);
@@ -38,7 +38,7 @@ void	util_between_word_var(t_token *ptr, t_token	*tmp)
 
 void	util_between_oper(t_token *tmp, t_token	*right_op, t_token	*left_op)
 {
-	if (tmp->operator && tmp->type != SPACE && tmp->type != TAB)
+	if (tmp->operator && tmp->type != SPC && tmp->type != _TAB)
 	{
 		left_op = tmp->prev;
 		if (left_op)
@@ -73,12 +73,12 @@ void	space_after_cmd(t_token **lst)
 	tmp = *lst;
 	while (tmp)
 	{
-		if (tmp->operator && tmp->type != SPACE
+		if (tmp->operator && tmp->type != SPC
 			&& tmp->next->operator != 1)
 		{
 			cmd = tmp->next;
 			space = cmd->next;
-			while (space && space->type == SPACE)
+			while (space && space->type == SPC)
 			{
 				cmd->next = space->next;
 				if (space->next)
@@ -101,10 +101,10 @@ t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space, int *flag)
 	}
 	else
 	{
-		while (ptr && ptr->operator == 0 && ptr->type != SPACE && *flag == 0)
+		while (ptr && ptr->operator == 0 && ptr->type != SPC && *flag == 0)
 		{
 			space = ptr->next;
-			if (space && space->type == SPACE)
+			if (space && space->type == SPC)
 			{
 				ptr->next = space->next;
 				space->next->prev = ptr;
