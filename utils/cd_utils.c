@@ -3,22 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:30:13 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/01 14:41:30 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:43:10 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
 char	*ft_get_env(t_env *env, char *key)
-{
-	while (env)
+{	
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp)
 	{
-		if (!ft_strcmp(key, env->key))
-			return (env->value);
-		env = env->next;
+		if (!ft_strcmp(key, tmp->key))
+			return (tmp->value);
+		tmp = tmp->next;
 	}
 	return (NULL);
 }

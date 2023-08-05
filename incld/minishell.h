@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/01 16:27:12 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:05:39 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_glbl
 	int		ex_stu;
 	int		sig;
 	char	*current_pwd;
+	int		flag;
 }	t_glbl;
 
 t_glbl	g_stu;

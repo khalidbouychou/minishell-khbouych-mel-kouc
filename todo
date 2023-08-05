@@ -247,14 +247,71 @@ i should handel this
     is alredy handel
 
 
-//////////////////////////////////
+in my minishell
+   command not found
 
-segfault le mode : env -i ./minishell
+
+√    bash: $a: ambiguous redirect
+
+    BASH-3.2$ echo hello > $a
+    BASH: $a: ambiguous redirect
+
+
+√    segfault le mode : env -i ./minishell
         minishell ~> unset PWD
         minishell ~> cd
         [1]    56671 segmentation fault  env -i ./minishell
 
-minishell ~> cat herh
-cat: herh: No such file or directory
-staus = 256
-id  = 58301
+//////////////////////////////////
+
+my minishell
+ 
+√    minishell ~> echo hello world  > $a
+        ambiguous redirect
+        hello world
+
+
+    echo hello  > ""
+        ambiguous redirect
+        hello
+
+in bash 
+√    ls > a | cat < a
+
+
+    ls > a | cat < a | cat | cat | cat | cat | cat a
+
+    i have to understand this example 
+    imagine too process work in the same time
+    when first try to push his content in a
+    the second (cat) try to red from a
+    finally it display nothing 
+
+
+inside ./minishell -->
+echo $SHLVL
+1
+minishell ~> ./minishell
+minishell ~> echo $SHLVL
+2
+
+
+inside ./minishell -> unset SHLVL
+    add  SHLVL IN ENV and encrement
+
+
+free
+
+        handel_herdoc
+
+
+ft_delete_node function in ftunset file
+    delete node in the first env 
+
+
+
+cho hello world > $HOME
+bash: /Users/mel-kouc: Is a directory
+
+bash-3.2$ echo hello world  > $PATH
+bash: $PATH: ambiguous redirect
