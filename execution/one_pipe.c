@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/04 22:35:35 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 00:49:10 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 		perror("pipe");
 		return (-1);
 	}
+	// int input = fd[1];
+	// int output = fd[0];
+	// printf("%d\n",input);
+	// printf("%d\n",output);
 	// pid0 = first_child(&fd[2], lst_p, env, str);
 	// pid1 = second_child(&fd[2], lst_p, env, str);
 	pid0 = fork();

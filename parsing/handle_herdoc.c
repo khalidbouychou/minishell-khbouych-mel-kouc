@@ -6,16 +6,12 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/04 23:00:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 00:36:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-// char	*expande_herdoc(char *var)
-// {
-	
-// }
 void	ft_putendl_fd(char *s, int fd)
 {
 	int	i;
@@ -56,7 +52,7 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 		buffer = ft_strjoin(buffer, "\n");
 	}
 	close(new_p->fd_input);
-	new_p->fd_input = open(new_p->f_name, O_RDWR | O_CREAT, 0644);
+	new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
 	unlink(new_p->f_name);
 }
 

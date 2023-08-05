@@ -277,6 +277,7 @@ my minishell
 
 in bash 
 √    ls > a | cat < a
+    ls > a | cat < a | cat | cat | cat | cat | cat a
 
     i have to understand this example 
     imagine too process work in the same time
@@ -306,3 +307,9 @@ ft_delete_node function in ftunset file
     delete node in the first env 
 
 
+
+cho hello world > $HOME
+bash: /Users/mel-kouc: Is a directory
+
+bash-3.2$ echo hello world  > $PATH
+bash: $PATH: ambiguous redirect
