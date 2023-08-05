@@ -277,6 +277,8 @@ my minishell
 
 in bash 
 √    ls > a | cat < a
+
+
     ls > a | cat < a | cat | cat | cat | cat | cat a
 
     i have to understand this example 
