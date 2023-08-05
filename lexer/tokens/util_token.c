@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 15:52:27 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/05 22:54:35 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,12 @@ void	ft_get_type(t_token *tok)
 		&& ((ft_strchr(tok->content, '\'') == -1)
 			|| (ft_strchr(tok->content, '"') < ft_strchr(tok->content, '\'')
 				&& ft_strchr(tok->content, '"') != -1)))
+	{
 		tok->type = VAR;
+		if (tok->content[ft_strlen(tok->content) - 1] != '"'
+			&& tok->content[0] != '"')
+			g_stu.v_q = 1;
+	}
 	else if ('>' == tok->content[0] && '>' == tok->content[1])
 		tok->type = APPND;
 	else if ('<' == tok->content[0] && '<' == tok->content[1])

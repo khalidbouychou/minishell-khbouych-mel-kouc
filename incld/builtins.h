@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 12:42:44 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/05 23:46:12 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char		*ft_get_env(t_env *env, char *key);
 void		ft_update_env(t_env *env, char *key_oldpwd, char *set_value_oldpwd);
 t_env		*ft_add_env(char *key, char *value);
 int			ft_check_by_key(t_env *env, char *key);
+int         ft_detect_more_spaces(char *str);
 /********builtines**************/
 void		ft_echo(char **arg, int fd);
 void		ft_export(char **export, t_env *env, int fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:30:13 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/03 14:43:10 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 23:49:20 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ char	*ft_get_env(t_env *env, char *key)
 	}
 	return (NULL);
 }
-void ft_update_env(t_env *env, char *key_oldpwd, char *set_value_oldpwd)
+
+void	ft_update_env(t_env *env, char *key_oldpwd, char *set_value_oldpwd)
 {
 	t_env *track;
 
@@ -40,7 +41,8 @@ void ft_update_env(t_env *env, char *key_oldpwd, char *set_value_oldpwd)
 		track = track->next;
 	}
 }
-int ft_check_by_key(t_env *env, char *key)
+
+int	ft_check_by_key(t_env *env, char *key)
 {
 	t_env	*tmp;
 
@@ -54,7 +56,6 @@ int ft_check_by_key(t_env *env, char *key)
 	return (0);
 }
 
-
 t_env	*ft_getenv_node(t_env *env, char *key)
 {
 	while (env)
@@ -66,7 +67,7 @@ t_env	*ft_getenv_node(t_env *env, char *key)
 	return (NULL);
 }
 
-t_env    *ft_add_env(char *key, char *value)
+t_env	*ft_add_env(char *key, char *value)
 {
     t_env    *new_node;
 

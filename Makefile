@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/05 15:49:31 by khbouych         ###   ########.fr        #
+#    Updated: 2023/08/05 23:48:30 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./parsing/handle_herdoc.c ./execution/main_exec.c  ./execution/util_m_exec.c  \
 		./utils/export_utils.c ./utils/export_utils_.c ./execution/simple_cmd.c ./utils/cd_utils.c \
 		./utils/exit_utils.c ./builtins/ftpwd.c ./builtins/ftcd.c ./builtins/ftenv.c ./builtins/ftunset.c \
-		./execution/complex_cmd.c ./execution/one_pipe.c ./execution/signals.c
+		./execution/complex_cmd.c ./execution/one_pipe.c ./execution/signals.c ./utils/ft_utils___.c
 
 LIB = -L/Users/khbouych/.brew/opt/readline/lib
 INCLUDE = -I/Users/khbouych/.brew/opt/readline/include

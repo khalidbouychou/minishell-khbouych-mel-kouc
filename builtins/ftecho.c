@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 20:39:41 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/05 23:58:10 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,10 @@ void	ft_split_space(char *str, int fd)
 int	ft_detect_more_spaces(char *str)
 {
 	int i;
-
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] <= 32 && str[i + 1] <= 32)
+		if (str[i] == 32 && str[i + 1] == 32)
 			return (0);
 		i++;
 	}
@@ -73,15 +72,16 @@ void	ft_echo(char **arg, int fd)
 		i++;
 	while (arg[i])
 	{
-		if (!ft_detect_more_spaces(arg[i]))
-			ft_split_space(arg[i], fd);
-		else 
+		if (!ft_strcmp(arg[i], "?"))
+			printf("%d", g_stu.ex_stu);
+		else if (g_stu.v_q == 1)
 		{
-			if (!ft_strcmp(arg[i], "?"))
-				printf("%d", g_stu.ex_stu);
-			else 
-				ft_putstr_fd(arg[i], fd);
+			printf("hhhhh\n");
+			ft_split_space(arg[i], fd);
+			g_stu.v_q = 0;
 		}
+		else if (g_stu.v_q == 0)
+			ft_putstr_fd(arg[i], fd);
 		i++;
 	}
 	if (0 != ft_strcmp(arg[1], "-n"))

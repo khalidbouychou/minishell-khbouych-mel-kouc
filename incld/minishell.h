@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/05 12:42:22 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/05 23:34:01 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ typedef struct s_glbl
 	int		sig;
 	char	*current_pwd;
 	int		flag;
+	int		v_q;
 }	t_glbl;
 
 t_glbl	g_stu;
 //----------------------* struct env *----------------------//
-
 t_env	*ft_lstnew(char *env);
 void	ft_lst_addback(t_env **head, t_env *new);
 t_env	*env_list(char **env);
