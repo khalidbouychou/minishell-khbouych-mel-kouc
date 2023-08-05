@@ -14,6 +14,7 @@
 
 void	ft_env(char **echo, t_env *env)
 {
+
 	if (!echo[1])
 	{
 		while (env)
