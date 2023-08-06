@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/05 00:36:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/06 01:13:38 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 				write(new_p->fd_input, buffer, ft_strlen(buffer));
 			break ;
 		}
-		if (ft_strchr(str, '$') != -1 && ptr->flag != 1)
+		if (ft_strchr(str, '$') != -1 && ptr->flag != 1 && ptr->flag != 2)
 			str = ft_expandhelp(str, env);
 		buffer = ft_strjoin(buffer, str);
 		buffer = ft_strjoin(buffer, "\n");
@@ -60,9 +60,9 @@ void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)
 {
 	t_token	*ptr;
 
-	ptr = tmp->next;
 	if (tmp->type == HERDOC)
 	{
+		ptr = tmp->next;
 		if (new_p->fd_input != 0)
 			close(new_p->fd_input);
 		write_in_herdoc(ptr, new_p, env);

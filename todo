@@ -277,6 +277,7 @@ my minishell
 
 in bash 
 √    ls > a | cat < a
+        ls | cat
 
     ls > a | cat < a | cat | cat | cat | cat | cat a
 
@@ -315,15 +316,13 @@ bash: /Users/mel-kouc: Is a directory
 bash-3.2$ echo hello world  > $PATH
 bash: $PATH: ambiguous redirect
 
+ls | cat
+echo hello | cat
 
-cat << ''$USER
 
-ls | cat txt
-cat: txt: No such file or directory
-Makefile        correction.pdf  incld           main.c          minishell       parsing         utils
-builtins        execution       lexer           main.o          minishell.tldr  todo
-minishell ~> 
 
-ls | cat < txt
-
-ls |  > txt
+		// if (dup2(fd[0], STDIN_FILENO) == -1)
+		// 	printf("dup2 fealed in secode shild\n");
+        
+		// if (dup2(fd[1], STDOUT_FILENO) == -1)
+		// 	printf("dup2 fealed in first shild\n");
