@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/06 20:36:26 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/06 23:35:22 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,62 +27,31 @@ int	ft_check_n(char *arg)
 	return (1);
 }
 
-void	ft_split_space(char *str, int fd)
-{
-	int	i;
-	int	flg;
-
-	i = 0;
-	flg = 0;
-	while (str[i] == ' ' || str[i] == '\t')
-		i += 1;
-	while (str[i])
-	{
-		if (str[i] == ' ' || str[i] == '\t')
-			flg = 1;
-		if (!(str[i] == ' ' || str[i] == '\t'))
-		{
-			if (flg)
-				write(1, " ", fd);
-			flg = 0;
-			write(1, &str[i], fd);
-		}
-		i += 1;
-	}
-}
-int	ft_detect_more_spaces(char *str)
-{
-	int i;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == 32 && str[i + 1] == 32)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 void	ft_echo(char **arg, int fd)
 {
 	int	i;
+	int	x;
+
 
 	i = 1;
+	x = 0;
+
 	while (arg[i] && ft_check_n(arg[i]))
-		i++;
-	while (arg[i])
 	{
-		if (!ft_strcmp(arg[i], "?"))
-			printf("%d", g_stu.ex_stu);
-		else if (g_stu.v_q == 1)
-		{
-			ft_split_space(arg[i], fd);
-			g_stu.v_q = 0;
-		}
-		else if (g_stu.v_q == 0)
-			ft_putstr_fd(arg[i], fd);
+		x = 1;
 		i++;
 	}
-	if (0 != ft_strcmp(arg[1], "-n"))
-		printf("\n");
+	while (arg[i])
+	{
+		if (ft_strcmp("?", arg[i]) == 0)
+			ft_putnbr(g_stu.ex_stu);
+		else 
+			ft_putstr_fd(arg[i], 1);
+		if (arg[i])
+			write(1, " ", 1);
+		i++;
+	}
+	if (!x)
+		ft_putstr_fd("\n", fd);
+	g_stu.ex_stu = 0;
 }
