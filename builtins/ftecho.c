@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 23:58:10 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/06 20:36:26 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	ft_echo(char **arg, int fd)
 			printf("%d", g_stu.ex_stu);
 		else if (g_stu.v_q == 1)
 		{
-			printf("hhhhh\n");
 			ft_split_space(arg[i], fd);
 			g_stu.v_q = 0;
 		}
