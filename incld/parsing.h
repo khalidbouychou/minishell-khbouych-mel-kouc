@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 00:44:57 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/06 14:33:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,9 @@
 
 typedef struct s_parse
 {
-	// char			cmd;
 	int				fd_input;
 	int				fd_output;
 	char			*f_name;
-	// variable to specify whitsh redirection we have
-	// int				fd_append;
-	// int				fd_herdoc;
-	// char			*name_inp;
-	// char			*name_outp;
-	// char			*name_append;
-	// char			*name_herdoc;
 	char			**arg;
 	struct s_parse	*next;
 	char			*path;

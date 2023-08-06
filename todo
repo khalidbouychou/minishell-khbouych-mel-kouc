@@ -271,10 +271,6 @@ my minishell
         hello world
 
 
-    echo hello  > ""
-        ambiguous redirect
-        hello
-
 in bash 
 √    ls > a | cat < a
         ls | cat
@@ -310,7 +306,7 @@ ft_delete_node function in ftunset file
 
 
 
-cho hello world > $HOME
+echo hello world > $HOME
 bash: /Users/mel-kouc: Is a directory
 
 bash-3.2$ echo hello world  > $PATH
@@ -326,3 +322,49 @@ echo hello | cat
         
 		// if (dup2(fd[1], STDOUT_FILENO) == -1)
 		// 	printf("dup2 fealed in first shild\n");
+
+
+    my minishell 
+        << ""$USER
+        command not found
+    
+    echo hello  > ""
+    ambiguous redirect
+    hello
+
+
+    minishell ~> > $TEST
+    ambiguous redirect
+    list_pars->path = (null)
+    command not found
+
+    minishell ~> > $HOME
+    is a directory
+    list_pars->path = |(null)|
+    command not found
+
+    minishell ~> << $ergh
+    > $ergh
+    list_pars->path = |(null)|
+    command not found
+    minishell ~> exit
+
+    minishell ~> > f
+    command not found
+    
+    --------- style not handled --------------
+
+try to handel this
+        > a ls
+        cat a
+
+-------------------  khalid -----------------
+    
+    bash-3.2$ echo "k     hnj     bj"
+
+            -----------------------
+
+
+    function not use
+        ft_strcpy
+        ft_get_env

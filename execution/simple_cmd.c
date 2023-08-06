@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/05 15:40:39 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/06 23:33:22 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,16 @@ int	simple_not_built(t_parse *list_pars, t_env *env, char **str)
 	else if (id == 0)
 	{
 		check_fd_exec(list_pars);
-		if (execve(list_pars->path, list_pars->arg, str) == -1)
-			fealed_execve(list_pars);
+		// if (g_stu.flag == 1)
+		// {
+		// 	g_stu.flag = 0;
+		// 	exit(0);
+		// }
+		// else
+		// {
+			if (execve(list_pars->path, list_pars->arg, str) == -1)
+				fealed_execve(list_pars);
+		// }
 	}
 	waitpid(id, &status, 0);
 	if (status == 256)

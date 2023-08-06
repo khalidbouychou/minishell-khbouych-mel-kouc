@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/06 00:27:29 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/06 10:38:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	check_herdoc_quotes(t_token *lst)
 			if (tmp->next && tmp->next->type != SPACE
 				&& tmp->next->type != TAB && (!ft_strncmp(tmp->content, "''", 3)
 					|| !ft_strncmp(tmp->content, "\"\"", 3)))
-				tmp->flag = 2;
+				tmp->flag = 1;
 			else if (tmp->content[0] == '\'' || tmp->content[0] == '"')
 				tmp->flag = 1;
 			else if (tmp->next && (!ft_strncmp(tmp->next->content, "''", 3)

@@ -6,14 +6,14 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:30:13 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/03 14:43:10 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/06 16:00:24 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
 char	*ft_get_env(t_env *env, char *key)
-{	
+{
 	t_env	*tmp;
 
 	tmp = env;
@@ -57,11 +57,14 @@ int ft_check_by_key(t_env *env, char *key)
 
 t_env	*ft_getenv_node(t_env *env, char *key)
 {
-	while (env)
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp)
 	{
-		if (!ft_strcmp(env->key, key))
-			return (env);
-		env = env->next;
+		if (!ft_strcmp(tmp->key, key))
+			return (tmp);
+		tmp = tmp->next;
 	}
 	return (NULL);
 }
