@@ -365,8 +365,7 @@ try to handel this
 
 -   echo  rabat  |  cat > z
     write in pipe -> read from paipe and put in file
-    : the santense saba9 redirection
-            3la pipe not work in this case
+
 
 -   echo  bengrir > b | cat b
         write in a file -> read from a file
@@ -379,6 +378,21 @@ try to handel this
 
 -   echo  hello > b | cat b > c
         write in file -> read from a file
+
+
+
+env  > a | cat    work
+ls > a | cat     work
+
+
+echo 111  > a | cat      
+cat a                  not work
+
+
+env > a       not work
+
+minishell ~> echo hello > q
+hello minishell ~>                     not work
 
 
 -------------------  khalid -----------------

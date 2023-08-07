@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/07 13:24:47 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/07 21:01:10 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,24 @@ char	**list_to_char(t_env *env, char **str)
 	return (str);
 }
 
-int	check_fd_exec(t_parse *list_pars, int *ptr_fd)
+int	check_fd_exec(t_parse *list_pars)
 {
+	int	i;
+
+	i = 0;
 	if (list_pars->fd_input != 0)
 	{
 		dup2(list_pars->fd_input, STDIN_FILENO);
 		close(list_pars->fd_input);
-		*ptr_fd = 1;
+		i = 1;
 	}
 	if (list_pars->fd_output != 1)
 	{
 		dup2(list_pars->fd_output, STDOUT_FILENO);
 		close(list_pars->fd_output);
-		*ptr_fd = 1;
+		i = 2;
 	}
-	return (*ptr_fd);
+	return (i);
 }
 
 void	fealed_execve(t_parse *list_pars)
@@ -111,7 +114,7 @@ int	simple_not_built(t_parse *list_pars, t_env *env, char **str)
 		return (-1);
 	else if (id == 0)
 	{
-		check_fd_exec(list_pars, &ptr_fd);
+		check_fd_exec(list_pars);
 		// if (g_stu.flag == 1)
 		// {
 		// 	g_stu.flag = 0;

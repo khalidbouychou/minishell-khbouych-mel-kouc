@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/06 23:46:16 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:53:30 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_token	*output_append_function(t_token *tmp, t_parse *new_p)
 			tmp = tmp->next;
 		new_p->f_name = tmp->content;
 		new_p->fd_output = open(new_p->f_name, O_CREAT
-				| O_RDWR | O_TRUNC, 0666);
+				| O_RDWR, 0644);
 	}
 	else
 	{
@@ -89,7 +89,7 @@ t_token	*output_append_function(t_token *tmp, t_parse *new_p)
 			close(new_p->fd_output);
 		new_p->f_name = tmp->next->content;
 		new_p->fd_output = open(new_p->f_name, O_CREAT
-				| O_RDONLY | O_WRONLY | O_APPEND, 0666);
+				| O_RDONLY | O_WRONLY | O_APPEND, 0644);
 	}
 	return (tmp);
 }
@@ -136,7 +136,7 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 			if (new_p->fd_input != 0)
 				close(new_p->fd_input);
 			new_p->f_name = tmp->next->content;
-			new_p->fd_input = open(new_p->f_name, O_RDONLY, 0666);
+			new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
 		}
 		else if (tmp->type == OUTPUT || tmp->type == APPND)
 			tmp = output_append_function(tmp, new_p);
