@@ -394,12 +394,13 @@ env > a       not work
 minishell ~> echo hello > q
 hello minishell ~>                     not work
 
+echo hello > test                       not work
+hello minishell ~> 
 
--------------------  khalid -----------------
-    
-    bash-3.2$ echo "k     hnj     bj"
 
-            -----------------------
+-------> look a simple_not_built function to solv the probleme
+hello minishell ~> ewfgrw > a           not work  crash
+command not found
 
 
     function not use

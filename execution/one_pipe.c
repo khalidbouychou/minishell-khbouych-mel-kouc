@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/07 20:59:46 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/07 23:12:21 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,6 @@ int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 	else if (pid1 == 0)
 	{
 		close(fd[1]);
-		// if (g_stu.wr_p == 1)
-		// {
-		// 	dup2(fd[0], STDIN_FILENO);
-		// 	g_stu.wr_p = 0;
-		// }
 		if (check_fd_exec(lst_p) != 1)
 			dup2(fd[0], STDIN_FILENO);
 		close(fd[0]);
@@ -129,10 +124,7 @@ int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 	{
 		close(fd[0]);
 		if (check_fd_exec(lst_p) == 0)
-		{
 			dup2(fd[1], STDOUT_FILENO);
-			g_stu.wr_p = 1;
-		}
 		close(fd[1]);
 		if (compare_cmd(lst_p))
 		{

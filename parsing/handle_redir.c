@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/07 18:53:30 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/07 21:51:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_token	*output_append_function(t_token *tmp, t_parse *new_p)
 			close(new_p->fd_output);
 		new_p->f_name = tmp->next->content;
 		new_p->fd_output = open(new_p->f_name, O_CREAT
-				| O_RDONLY | O_WRONLY | O_APPEND, 0644);
+				| O_RDWR | O_APPEND, 0644);
 	}
 	return (tmp);
 }
