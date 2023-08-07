@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:37:03 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/04 20:23:46 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:38:13 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	add_if_not_found(t_env **head, int i)
 		if (i == 0)
 		{
 			key = ft_strdup("PWD");
-			value = ft_strdup("/Users/mel-kouc/Desktop/minishell-khbouych-mel-kouc");
+			value = ft_strdup(g_stu.current_pwd);
 			g_stu.current_pwd = value;
 		}
 		else if (i == 1)

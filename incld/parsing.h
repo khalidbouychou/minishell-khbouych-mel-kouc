@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/06 14:33:58 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/07 14:24:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_parse
 	struct s_parse	*next;
 	char			*path;
 	int				flag_herd;
+	pid_t			pid0;
 }	t_parse;
 
 t_parse	*parser(t_token	*list_tokens, t_env *env);
