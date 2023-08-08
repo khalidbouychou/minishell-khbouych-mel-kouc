@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/05 23:48:30 by khbouych         ###   ########.fr        #
+#    Updated: 2023/08/08 09:04:10 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,17 +19,18 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./lexer/tokens/check_list.c utils/util_.c utils/util__.c ./lexer/tokens/free.c ./lexer/tokens/check_syntax.c \
 		./parsing/parsing.c ./parsing/util_lst_parce.c  ./builtins/ftexit.c \
 		./builtins/ftecho.c  ./builtins/ftexport.c ./parsing/handle_redir.c \
-		./parsing/handle_herdoc.c ./execution/main_exec.c  ./execution/util_m_exec.c  \
+		./parsing/handle_herdoc.c ./execution/main_exec.c  ./utils/util_m_exec.c  \
 		./utils/export_utils.c ./utils/export_utils_.c ./execution/simple_cmd.c ./utils/cd_utils.c \
 		./utils/exit_utils.c ./builtins/ftpwd.c ./builtins/ftcd.c ./builtins/ftenv.c ./builtins/ftunset.c \
-		./execution/complex_cmd.c ./execution/one_pipe.c ./execution/signals.c ./utils/ft_utils___.c
+		./execution/complex_cmd.c ./execution/one_pipe.c ./execution/signals.c ./utils/ft_utils___.c \
+		./utils/simple_cmd_utils.c ./utils/expand_utils.c
 
 LIB = -L/Users/khbouych/.brew/opt/readline/lib
 INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc  -g
-CFLAGS =   -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS =   -Wall -Wextra -Werror -fsanitize=address
 #-fsanitize=address
 
 all: $(NAME)

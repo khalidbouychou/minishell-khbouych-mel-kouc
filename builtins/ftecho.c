@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/06 23:35:22 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/07 13:52:09 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ void	ft_echo(char **arg, int fd)
 	int	i;
 	int	x;
 
-
 	i = 1;
 	x = 0;
-
 	while (arg[i] && ft_check_n(arg[i]))
 	{
 		x = 1;

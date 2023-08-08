@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 23:39:46 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:00:20 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ void	ft_putstr_fd(char *s, int fd);
 char	*generate_name(void);
 char	*ft_get_path(t_env *env, char *str);
 void	add_if_not_found(t_env **head, int i);
+char	*ft_expandhelp(char *cnt, t_env *env);
 #endif
