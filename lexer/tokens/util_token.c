@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/06 23:03:43 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/07 11:13:50 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,3 @@ t_token	*ft_init_token(char *cmd, int i, int count)
 	ft_get_type(tok);
 	return (tok);
 }
-

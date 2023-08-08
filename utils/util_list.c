@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:37:03 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/05 23:44:08 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:11:19 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ void	ft_lst_addback(t_env **head, t_env *new)
 		new->prev = last;
 	}
 }
-
-
-
-
 
 t_env	*add_env(char *key, char *value)
 {

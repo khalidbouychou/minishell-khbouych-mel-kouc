@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 22:16:31 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/08 09:10:03 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	parser_print(t_parse *lst)
 
 // void	l()
 // {
-// 	system("leaks ./minishell");
+// 	system("leaks minishell");
 // }
 
 void	help_main(char *cmd, t_env **env)
@@ -84,11 +84,9 @@ void	help_main(char *cmd, t_env **env)
 	if (list_tokens)
 	{
 		// print(list_tokens);
-
 		list_parser = parser(list_tokens, *env);
 		// parser_print(list_parser);
 		execute_main(list_parser, env);
-
 		// printf("\n*********************\n");
 	}
 }
@@ -114,9 +112,9 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		cmd = readline("minishell ~> ");
-		if(!cmd)
+		if (!cmd)
 			break;
-		// add_history(cmd);
+		add_history(cmd);
 		if (cmd)
 			help_main(cmd, &env);
 		else

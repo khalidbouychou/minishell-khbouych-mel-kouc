@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 15:19:26 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/07 13:52:41 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	ft_key_syntax(char *key)
 {
 	int	i;
+
 	if (key && !ft_isalpha(key[0]) && key[0] != '_')
 		return (0);
 	if (key && !ft_isalnum(key[ft_strlen(key) - 1]) && ft_strlen(key) > 1)
