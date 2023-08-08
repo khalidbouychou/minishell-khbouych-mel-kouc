@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 09:44:41 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:34:30 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,13 @@ int	main(int argc, char **argv, char **envp)
 	cmd = NULL;
 	env = env_list(envp);
 	ft_init_variables();
-	ft_signals();
+	// ft_signals();
 	while (1)
 	{
 		cmd = readline("minishell ~> ");
 		if (!cmd)
-			break;
-		// add_history(cmd);
+			break ;
+		add_history(cmd);
 		if (cmd)
 			help_main(cmd, &env);
 		else
