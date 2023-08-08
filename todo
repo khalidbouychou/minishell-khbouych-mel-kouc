@@ -398,7 +398,7 @@ echo hello > test                       not work
 hello minishell ~> 
 
 
--------> look a simple_not_built function to solv the probleme
+-------> look a simple_not_built function to solve the probleme
 hello minishell ~> ewfgrw > a           not work  crash
 command not found
 
