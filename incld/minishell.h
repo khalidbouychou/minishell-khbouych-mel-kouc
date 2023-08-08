@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 09:42:29 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:58:27 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <readline/readline.h>
-# include <readline/readline.h>
+#include <readline/history.h>
 # include "../incld/lexer.h"
 # include "../incld/parsing.h"
 # include "../incld/token.h"
@@ -57,5 +57,5 @@ char	*ft_strjoin(char *s1, char *s2);
 /**************************************************************/
 void	ft_print_env(t_env *env);
 void	ft_putendl_fd(char *s, int fd);
-
+void	sig_handler(int signal);
 #endif

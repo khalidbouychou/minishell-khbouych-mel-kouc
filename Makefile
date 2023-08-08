@@ -6,7 +6,7 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/08 10:11:47 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/08/08 22:49:27 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,23 +25,24 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./execution/complex_cmd.c ./execution/one_pipe.c ./execution/multiple_pipe.c \
 		./execution/signals.c ./utils/ft_utils___.c ./utils/simple_cmd_utils.c ./utils/expand_utils.c
 
-# LIB = -L/Users/mel-kouc/.brew/opt/readline/lib
-# INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
+LIB = -L/Users/mel-kouc/.brew/opt/readline/lib
+INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc  -g
-CFLAGS =   -Wall -Wextra -Werror -fsanitize=address
+CFLAGS =   -Wall -Wextra -Werror 
+#-fsanitize=address
 #-fsanitize=address
 
 all: $(NAME)
-#  ${LIB}
+# ${LIB}
 # ${INCLUDE}
 $(NAME) : $(OSRC) 
-	@$(CC) -lreadline  $(CFLAGS) $(OSRC) -o $(NAME)
+	@$(CC) -lreadline  $(CFLAGS) $(OSRC)  ${LIB} -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 
 %.o: %.c ./incld/minishell.h ./incld/builtins.h ./incld/execution.h ./incld/lexer.h ./incld/parsing.h ./incld/token.h
-	@$(CC) $(CFLAGS) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -c $< -o $@ ${INCLUDE}
 	@echo "*** {Compaling Files ...} ***"
 
 clean :
