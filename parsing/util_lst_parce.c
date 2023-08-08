@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/07 11:09:44 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/08 09:43:37 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	alloc_arg(t_token *tmp)
 	{
 		if (tmp->type == PIPE)
 			break ;
-		if ((tmp->type == WORD || tmp->type == VAR || tmp->type == SPACE))
+		if ((tmp->type == WORD || tmp->type == VAR || tmp->type == SPC))
 			size++;
 		tmp = tmp->next;
 	}

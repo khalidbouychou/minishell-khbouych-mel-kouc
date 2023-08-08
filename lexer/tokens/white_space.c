@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   white_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:02:36 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/27 14:39:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 15:52:27 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	between_word_var(t_token **lst)
 		ptr = tmp->next;
 		if (ptr)
 			util_between_word_var(ptr, tmp);
-		if (tmp->operator == 1 && tmp->type != SPACE
+		if (tmp->operator == 1 && tmp->type != SPC
 			&& tmp->type != PIPE && tmp->next)
 		{
 			while (tmp && tmp->type != WORD && tmp->type != VAR)
@@ -88,10 +88,10 @@ void	switch_sp_free(t_token **lst)
 	tmp = *lst;
 	while (tmp)
 	{
-		if (tmp->type == TAB)
+		if (tmp->type == _TAB)
 		{
 			tmp->content = ft_strdup(" ");
-			tmp->type = SPACE;
+			tmp->type = SPC;
 		}
 		ptr = tmp;
 		tmp = tmp->next;

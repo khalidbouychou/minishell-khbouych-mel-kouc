@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/06 10:38:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/08 09:48:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	check_herdoc_quotes(t_token *lst)
 		if (tmp->type == HERDOC)
 		{
 			tmp = tmp->next;
-			while (tmp->type == SPACE || tmp->type == TAB)
+			while (tmp->type == SPC || tmp->type == _TAB)
 				tmp = tmp->next;
-			if (tmp->next && tmp->next->type != SPACE
-				&& tmp->next->type != TAB && (!ft_strncmp(tmp->content, "''", 3)
+			if (tmp->next && tmp->next->type != SPC
+				&& tmp->next->type != _TAB && (!ft_strncmp(tmp->content, "''", 3)
 					|| !ft_strncmp(tmp->content, "\"\"", 3)))
 				tmp->flag = 1;
 			else if (tmp->content[0] == '\'' || tmp->content[0] == '"')
@@ -95,9 +95,9 @@ void	ft_get_type(t_token *tok)
 	else if ('|' == tok->content[0])
 		tok->type = PIPE;
 	else if (32 == tok->content[0])
-		tok->type = SPACE;
+		tok->type = SPC;
 	else if ('	' == tok->content[0])
-		tok->type = TAB;
+		tok->type = _TAB;
 	if (tok->type != WORD)
 		tok->path = NULL;
 	ft_set_oper(tok);
@@ -116,4 +116,3 @@ t_token	*ft_init_token(char *cmd, int i, int count)
 	ft_get_type(tok);
 	return (tok);
 }
-

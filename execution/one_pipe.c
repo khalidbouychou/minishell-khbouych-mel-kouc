@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/07 23:12:21 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/08 09:41:42 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 		if (check_fd_exec(lst_p) == 0)
 			dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
+		check_fd_exec(lst_p);
 		if (compare_cmd(lst_p))
 		{
 			cmd_in_built(lst_p, &env);

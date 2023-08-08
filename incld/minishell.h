@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/07 21:37:12 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/08 09:42:29 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <unistd.h>
+
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
@@ -38,11 +39,11 @@ typedef struct s_glbl
 	int		sig;
 	char	*current_pwd;
 	int		flag;
+	int		v_q;
 }	t_glbl;
 
 t_glbl	g_stu;
 //----------------------* struct env *----------------------//
-
 t_env	*ft_lstnew(char *env);
 void	ft_lst_addback(t_env **head, t_env *new);
 t_env	*env_list(char **env);

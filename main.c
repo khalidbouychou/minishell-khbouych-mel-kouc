@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/07 20:16:04 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/08 09:44:41 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	parser_print(t_parse *lst)
 
 // void	l()
 // {
-// 	system("leaks ./minishell");
+// 	system("leaks minishell");
 // }
 
 void	help_main(char *cmd, t_env **env)
@@ -84,15 +84,19 @@ void	help_main(char *cmd, t_env **env)
 	if (list_tokens)
 	{
 		// print(list_tokens);
-
 		list_parser = parser(list_tokens, *env);
 		// parser_print(list_parser);
 		execute_main(list_parser, env);
-
 		// printf("\n*********************\n");
 	}
 }
 
+void  ft_init_variables()
+{
+	g_stu.ex_stu = 0;
+	g_stu.v_q = 0;
+	g_stu.sig = 0;
+}
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
@@ -103,12 +107,14 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	cmd = NULL;
 	env = env_list(envp);
-	// signal(SIGINT,_handler);
-	// signal(SIGQUIT,_handler);
+	ft_init_variables();
+	ft_signals();
 	while (1)
 	{
 		cmd = readline("minishell ~> ");
-		add_history(cmd);
+		if (!cmd)
+			break;
+		// add_history(cmd);
 		if (cmd)
 			help_main(cmd, &env);
 		else

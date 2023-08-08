@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftenv.c                                            :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 17:45:40 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 09:39:48 by mel-kouc         ###   ########.fr       */
+/*   Created: 2023/08/05 11:05:52 by khbouych          #+#    #+#             */
+/*   Updated: 2023/08/08 09:36:11 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	ft_env(char **echo, t_env **env)
+void	sig_handler(int signal)
 {
-	t_env	*tmp;
+	(void)signal;
+	// rl_catch_signals = 0;
+	ft_putstr_fd("\n", 1);
+	// rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
+	g_stu.ex_stu = 1;
+}
 
-	if (!echo[1])
-	{
-		tmp = *env;
-		while (tmp)
-		{
-			if (tmp->value)
-			{
-				ft_putstr_fd(tmp->key,1);
-				ft_putstr_fd("=",1);
-				ft_putstr_fd(tmp->value,1);
-				ft_putstr_fd("\n",1);
-			}
-				// printf("%s=%s\n", tmp->key, tmp->value);
-			tmp = tmp->next;
-		}
-		g_stu.ex_stu = 0;
-	}
-	else
-		ft_exit_output("--> No such file or directory\n", 1, false);
+void	ft_signals(void)
+{
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, SIG_IGN);
 }

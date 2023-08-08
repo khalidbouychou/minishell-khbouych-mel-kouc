@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/26 09:59:15 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/05 15:52:27 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_token	*echo_and_n(t_token *ptr, t_token *space)
 		while (ptr && ft_check_n(ptr->content))
 		{
 			space = ptr->next;
-			if (space && space->type == SPACE)
+			if (space && space->type == SPC)
 			{
 				ptr->next = space->next;
 				space->next->prev = ptr;
@@ -85,7 +85,7 @@ t_token	*echo_and_n(t_token *ptr, t_token *space)
 		}
 	}
 	while ((ptr && ptr->operator == 0)
-		|| (ptr && ptr->operator == 1 && ptr->type == SPACE))
+		|| (ptr && ptr->operator == 1 && ptr->type == SPC))
 		ptr = ptr->next;
 	while ((ptr && ptr->type != PIPE))
 	{

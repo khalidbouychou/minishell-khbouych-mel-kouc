@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftexport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/02 22:41:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/07 11:45:21 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,6 @@ int	ft_check_ifkey_valid(t_env *node, int fd)
 		i++;
 	}
 	return (1);
-}
-
-char	**ft_get_keys_tab(t_env *env, int size)
-{
-	char	**res;
-	t_env	*head;
-	int		i;
-
-	i = -1;
-	head = env;
-	res = (char **)malloc(sizeof(char *) * size + 1);
-	while (head)
-	{
-		if (head->key != NULL)
-			res[++i] = ft_strdup(head->key);
-		head = head->next;
-	}
-	res[i] = NULL;
-	return (res);
 }
 
 void	ft_add_to_env(t_env *e, t_env *node)

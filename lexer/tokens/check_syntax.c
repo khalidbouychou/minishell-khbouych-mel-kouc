@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/15 08:51:00 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/08 09:48:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	oper_in_end(t_token	*list_tokens)
 	tmp = list_tokens;
 	while (tmp)
 	{
-		if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != TAB)
+		if (tmp->operator == 1 && tmp->type != SPC && tmp->type != _TAB)
 		{
 			if (tmp->next == NULL)
 				return (0);
@@ -91,20 +91,20 @@ int	oper_in_end(t_token	*list_tokens)
 
 int	util_successive_oper(t_token *tmp)
 {
-	if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
-		&& tmp->type != TAB && tmp->next->operator == 1
-		&& tmp->next->type != SPACE && tmp->next->type != PIPE
-		&& tmp->next->type != TAB)
+	if (tmp->operator == 1 && tmp->type != SPC && tmp->type != PIPE
+		&& tmp->type != _TAB && tmp->next->operator == 1
+		&& tmp->next->type != SPC && tmp->next->type != PIPE
+		&& tmp->next->type != _TAB)
 		return (0);
-	else if (tmp->operator == 1 && tmp->type != SPACE && tmp->type != PIPE
-		&& tmp->type != TAB)
+	else if (tmp->operator == 1 && tmp->type != SPC && tmp->type != PIPE
+		&& tmp->type != _TAB)
 	{
 		while (!ft_strncmp(tmp->next->content, " ", 2)
 			|| !ft_strncmp(tmp->next->content, "	", 2))
 		{
 			tmp = tmp->next;
-			if (tmp->next->operator == 1 && tmp->next->type != SPACE
-				&& tmp->next->type != TAB)
+			if (tmp->next->operator == 1 && tmp->next->type != SPC
+				&& tmp->next->type != _TAB)
 				return (0);
 		}
 	}
@@ -121,7 +121,7 @@ int	util_successive_oper(t_token *tmp)
 // 	if (ptr && ptr->next)
 // 	{
 // 		if (ptr->next && tmp->type == OUTPUT && ptr->type == PIPE
-// 			&& ptr->next->operator == 1 && ptr->next->type != SPACE)
+// 			&& ptr->next->operator == 1 && ptr->next->type != SPC)
 // 			return (0);
 // 	}
 // 	return (1);
@@ -133,7 +133,7 @@ int	util_successive_oper(t_token *tmp)
 
 // 	ptr = tmp->next;
 // 	while (ptr && tmp->type == OUTPUT
-// 		&& (ptr->type == SPACE || ptr->type == TAB))
+// 		&& (ptr->type == SPC || ptr->type == _TAB))
 // 		ptr = ptr->next;
 // 	if (ptr && ptr->type == PIPE)
 // 		return (0);
@@ -158,7 +158,7 @@ int	successive_oper(t_token *list_tokens)
 		if (ptr && ptr->next)
 		{
 			if (ptr->next && tmp->type == OUTPUT && ptr->type == PIPE
-				&& ptr->next->operator == 1 && ptr->next->type != SPACE)
+				&& ptr->next->operator == 1 && ptr->next->type != SPC)
 				return (0);
 		}
 		// if (!search_outp_pipe(tmp))
