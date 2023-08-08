@@ -271,13 +271,9 @@ my minishell
         hello world
 
 
-    echo hello  > ""
-        ambiguous redirect
-        hello
-
 in bash 
 √    ls > a | cat < a
-
+        ls | cat
 
     ls > a | cat < a | cat | cat | cat | cat | cat a
 
@@ -310,8 +306,112 @@ ft_delete_node function in ftunset file
 
 
 
-cho hello world > $HOME
+echo hello world > $HOME
 bash: /Users/mel-kouc: Is a directory
 
 bash-3.2$ echo hello world  > $PATH
 bash: $PATH: ambiguous redirect
+
+ls | cat
+echo hello | cat
+
+
+
+		// if (dup2(fd[0], STDIN_FILENO) == -1)
+		// 	printf("dup2 fealed in secode shild\n");
+        
+		// if (dup2(fd[1], STDOUT_FILENO) == -1)
+		// 	printf("dup2 fealed in first shild\n");
+
+
+    my minishell 
+        << ""$USER
+        command not found
+    
+    echo hello  > ""
+    ambiguous redirect
+    hello
+
+
+    minishell ~> > $TEST
+    ambiguous redirect
+    list_pars->path = (null)
+    command not found
+
+    minishell ~> > $HOME
+    is a directory
+    list_pars->path = |(null)|
+    command not found
+
+    minishell ~> << $ergh
+    > $ergh
+    list_pars->path = |(null)|
+    command not found
+    minishell ~> exit
+
+    minishell ~> > f
+    command not found
+try to handel this
+        > a ls
+        cat a
+    
+    --------- style not handled --------------
+
+√   echo  ls | cat 
+        write in pipe -> read from pipe
+
+√   echo  hello  |  cat b
+        write in pipe -> read from a file   (first cmd should not execut)
+
+-   echo  rabat  |  cat > z
+    write in pipe -> read from paipe and put in file
+
+
+-   echo  bengrir > b | cat b
+        write in a file -> read from a file
+
+-   echo  hello > b | cat <  b
+        write in file -> read from a file
+
+-   echo  hello > b | cat
+        write in file -> read from a pipe
+
+-   echo  hello > b | cat b > c
+        write in file -> read from a file
+
+
+
+env  > a | cat    work
+ls > a | cat     work
+
+
+echo 111  > a | cat      
+cat a                  not work
+
+
+env > a       not work
+
+minishell ~> echo hello > q
+hello minishell ~>                     not work
+
+echo hello > test                       not work
+hello minishell ~> 
+
+
+-------> look a simple_not_built function to solve the probleme
+hello minishell ~> ewfgrw > a           not work  crash
+command not found
+
+
+    function not use
+        ft_strcpy
+        ft_get_env
+
+
+    hello > b | cat
+
+
+
+minishell(70672,0x10ddefdc0) malloc: *** error for object 0x7ff10001141b: pointer being freed was not allocated
+minishell(70672,0x10ddefdc0) malloc: *** set a breakpoint in malloc_error_break to debug
+[1]    70672 abort      ./minishell

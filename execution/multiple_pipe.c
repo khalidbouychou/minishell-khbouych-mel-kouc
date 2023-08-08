@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   complex_cmd.c                                      :+:      :+:    :+:   */
+/*   multiple_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/30 16:54:53 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/07 13:02:13 by mel-kouc         ###   ########.fr       */
+/*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
+/*   Updated: 2023/08/07 13:08:18 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-int	size_parse_lst(t_parse *lst_p)
+int	multiple_pipe(t_parse *lst_p, t_env *env, char **str)
 {
-	t_parse	*tmp;
-	int		count;
-
-	count = 0;
-	tmp = lst_p;
-	while (tmp)
-	{
-		count++;
-		tmp = tmp->next;
-	}
-	return (count);
-}
-
-void	complex_cmd(t_parse *lst_p, t_env *env, char **str)
-{
-	int	size;
-
-	size = size_parse_lst(lst_p);
-	if (size == 2)
-		one_pipe(lst_p, env, str);
-	else
-		multiple_pipe(lst_p, env, str);
+	// int		fd[2];
+	(void)lst_p;
+	(void)env;
+	(void)str;
+	// first_child(fd, lst_p, env, str);
+	// while (lst_p->next)
+	// {
+		
+	// 	lst_p = lst_p->next;
+	// }
+	// second_child(fd, lst_p->next, env, str)
+	return (1);
 }

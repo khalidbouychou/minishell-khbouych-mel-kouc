@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/05 18:12:06 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/08 09:48:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	util_successive_oper(t_token *tmp)
 
 // 	ptr = tmp->next;
 // 	while (ptr && tmp->type == OUTPUT
-// 		&& (ptr->type == SPC || ptr->type == TAB))
+// 		&& (ptr->type == SPC || ptr->type == _TAB))
 // 		ptr = ptr->next;
 // 	if (ptr && ptr->type == PIPE)
 // 		return (0);

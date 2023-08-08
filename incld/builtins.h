@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/07 15:09:48 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:35:13 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ void		ft_echo(char **arg, int fd);
 void		ft_export(char **export, t_env *env, int fd);
 void		ft_unset(t_env **env, char **arg);
 void		ft_exit(char **arg);
-void		ft_env(char **echo, t_env **env);
+void        ft_env(t_parse *penv, t_env **env);
+// void		ft_env(char **echo, t_env **env);
 void		ft_cd(char **cd, t_env *e);
 t_env		*ft_getenv_node(t_env *env, char *key);
-void		ft_pwd(void);
+void        ft_pwd(t_parse *tpwd);
 #endif

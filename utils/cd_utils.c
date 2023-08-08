@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:30:13 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/07 15:09:26 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/08 09:43:43 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,14 @@ int	ft_check_by_key(t_env *env, char *key)
 
 t_env	*ft_getenv_node(t_env *env, char *key)
 {
-	while (env)
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp)
 	{
-		if (!ft_strcmp(env->key, key))
-			return (env);
-		env = env->next;
+		if (!ft_strcmp(tmp->key, key))
+			return (tmp);
+		tmp = tmp->next;
 	}
 	return (NULL);
 }

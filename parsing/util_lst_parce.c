@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_parce.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/05 15:52:27 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/08 09:43:37 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,8 @@ void	init_struct_parce(t_parse *new_p)
 	new_p->fd_input = 0;
 	new_p->fd_output = 1;
 	new_p->f_name = NULL;
-	// new_p->fd_append = -6;
-	// new_p->fd_herdoc = -7;
-	// new_p->name_inp = NULL;
-	// new_p->name_outp = NULL;
-	// new_p->name_append = NULL;
-	// new_p->name_herdoc = NULL;
+	new_p->pid0 = -4;
+	// new_p->pid1 = -5;
 	new_p->arg = NULL;
 }
 

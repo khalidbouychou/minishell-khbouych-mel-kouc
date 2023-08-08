@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 10:18:46 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:20:28 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,13 @@ int	main(int argc, char **argv, char **envp)
 	cmd = NULL;
 	env = env_list(envp);
 	ft_init_variables();
-	ft_signals();
-	while (1)
+	while (1337)
 	{
+		// ft_signals();
 		cmd = readline("minishell ~> ");
 		if (!cmd)
-			break;
-		// add_history(cmd);
+			break ;
+		add_history(cmd);
 		if (cmd)
 			help_main(cmd, &env);
 		else
