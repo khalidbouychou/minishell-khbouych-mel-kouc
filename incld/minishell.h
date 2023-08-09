@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 22:58:27 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:41:20 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/history.h>
 # include "../incld/lexer.h"
 # include "../incld/parsing.h"
 # include "../incld/token.h"
