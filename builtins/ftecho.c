@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 11:23:58 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:14:37 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	ft_echo(char **arg, int fd)
 			ft_putnbr(g_stu.ex_stu);
 		else 
 			ft_putstr_fd(arg[i], fd);
-		if (arg[i])
-			write(fd, " ", 1);
+		// if (arg[i])
+		// 	write(fd, " ", 1);
 		i++;
 	}
 	if (!x)

@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 16:20:54 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:17:13 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ void	ft_quit_handler(int signal)
 		rl_on_new_line();
 		rl_redisplay();
 	}
-	if (len)
+	if (len != 0)
 	{
 		printf("Quit : 3");
+		exit(g_stu.ex_stu = 131);
 	}
 }
 void	ft_signals(void)

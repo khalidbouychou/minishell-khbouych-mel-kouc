@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/07 16:13:24 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:11:43 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,17 @@ void	ft_cd(char **cmd, t_env *env)
 	char *ret = getcwd(NULL,0);
 	if (!ret)
 	{
-		printf ("cd: error retrieving current directory:\
+		// printf ("cd: error retrieving current directory:\
+		// getcwd: cannot access parent directories:\
+		// No such file or directory\n");
+		ft_putstr_fd("cd: error retrieving current directory:\
 		getcwd: cannot access parent directories:\
-		No such file or directory\n");
+		No such file or directory\n", 1);
 		ft_getenv_node(env, "OLDPWD")->value = ft_strdup(g_stu.current_pwd);
-		if(ft_strcmp(cmd[1], "."))
-			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/.");
-		else
+		if(!ft_strcmp(cmd[1], ".."))
 			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/..");
+		else
+			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/.");
 		ft_getenv_node(env, "PWD")->value = ft_strdup(g_stu.current_pwd);
 		return ;
 	}
@@ -93,14 +96,3 @@ void	ft_cd(char **cmd, t_env *env)
 		g_stu.current_pwd = ret;
 	g_stu.ex_stu = 0;
 }
-
-	// else
-	// {
-	// 	printf ("cd: error retrieving current directory:
-	// 	getcwd: cannot access parent directories:
-	// 	No such file or directory");
-	// 	ft_getenv_node(env, "OLDPWD")->value = ft_strdup(g_stu.current_pwd);
-	// 	g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/..");
-	// 	ft_getenv_node(env, "PWD")->value = ft_strdup(g_stu.current_pwd);
-	// 	return ;
-	// }
