@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftcd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/07 16:13:24 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/08 20:46:44 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_cd(char **cmd, t_env *env)
 		getcwd: cannot access parent directories:\
 		No such file or directory\n");
 		ft_getenv_node(env, "OLDPWD")->value = ft_strdup(g_stu.current_pwd);
-		if(ft_strcmp(cmd[1], "."))
+		if(!ft_strcmp(cmd[1], "."))
 			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/.");
 		else
 			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/..");

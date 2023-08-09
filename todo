@@ -401,10 +401,6 @@ hello minishell ~>
 cat < b                   work
 
 
--------> look a simple_not_built function to solve the probleme
-hello minishell ~> ewfgrw > a           not work  crash
-command not found
-
 
     function not use
         ft_strcpy
@@ -428,4 +424,49 @@ minishell(70672,0x10ddefdc0) malloc: *** set a breakpoint in malloc_error_break 
 
 
     env > a
-      not work
+                 work
+
+
+
+simple_not_built        should not print commond not find
+
+    minishell ~> > ""
+    ambiguous redirect
+    command not found
+
+
+-fsanitize=address     ->expand
+        echo $ewfgew
+
+my
+
+    ls $ewvw
+    ls: : No such file or directory
+bash  : execut ls 
+    bash-3.2$ ls $ewvd
+
+
+
+
+    ----------------------
+
+    $hgh
+command not found
+Child exited with status: 13
+
+
+
+---------
+
+minishell ~> exit 1 | exit 2
+exit
+minishell ~> echo $?
+0 
+
+
+--- syntax error exit status == 258
+
+------
+
+command for processe
+lsof -p 81889

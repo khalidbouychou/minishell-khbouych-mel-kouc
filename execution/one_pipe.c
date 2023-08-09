@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 15:54:38 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/09 13:31:57 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 			cmd_in_built(lst_p, &env);
 			exit(g_stu.ex_stu);
 		}
-		else
-			execve(lst_p->path, lst_p->arg, str);
+		else if (execve(lst_p->path, lst_p->arg, str) == -1)
+		{
+			fealed_execve(lst_p);
+			exit(g_stu.ex_stu);
+		}
 	}
 	return (1);
 }
@@ -52,8 +55,11 @@ int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 			cmd_in_built(lst_p, &env);
 			exit(g_stu.ex_stu);
 		}
-		else
-			execve(lst_p->path, lst_p->arg, str);
+		else if (execve(lst_p->path, lst_p->arg, str) == -1)
+		{
+			fealed_execve(lst_p);
+			exit(g_stu.ex_stu);
+		}
 	}
 	return (1);
 }
@@ -70,6 +76,8 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 	}
 	first_child(fd, lst_p, env, str);
 	second_child(fd, lst_p->next, env, str);
+	close_fd(lst_p);
+	close_fd(lst_p->next);
 	close(fd[0]);
 	close(fd[1]);
 	waitpid(lst_p->pid0, &status, 0);

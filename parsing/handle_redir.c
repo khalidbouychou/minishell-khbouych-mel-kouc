@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 14:52:01 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/09 13:17:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ t_token	*output_append_function(t_token *tmp, t_parse *new_p)
 		new_p->f_name = tmp->content;
 		new_p->fd_output = open(new_p->f_name, O_CREAT
 				| O_RDWR | O_TRUNC, 0644);
-
 	}
 	else
 	{
