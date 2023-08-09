@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 23:08:41 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:31:44 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	check_fd_exec(t_parse *list_pars)
 	}
 	return (i);
 }
-
 
 int	simple_not_built(t_parse *list_pars, t_env *env, char **str)
 {
@@ -69,7 +68,8 @@ int	simple_not_built(t_parse *list_pars, t_env *env, char **str)
 				// exit(g_stu.ex_stu = 127);
 			}
 		// }
-	}	
+	}
+	close_fd(list_pars);
 	// printf("g_stu.ex_stu = %d\n",g_stu.ex_stu);
 	waitpid(id, &status, 0);
 	if (WIFEXITED(status))

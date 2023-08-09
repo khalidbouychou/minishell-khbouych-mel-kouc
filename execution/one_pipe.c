@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 17:51:21 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/09 13:31:57 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 	}
 	first_child(fd, lst_p, env, str);
 	second_child(fd, lst_p->next, env, str);
+	close_fd(lst_p);
+	close_fd(lst_p->next);
 	close(fd[0]);
 	close(fd[1]);
 	waitpid(lst_p->pid0, &status, 0);

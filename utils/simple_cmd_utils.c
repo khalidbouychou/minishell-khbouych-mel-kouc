@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:48:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 22:19:14 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:51:55 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,8 @@ void	fealed_execve(t_parse *list_pars)
 		// 	g_stu.ex_stu = 0;
 		// }
 	}
-	
 	g_stu.ex_stu = 0;
 	exit(0);
-
 }
 
 char	**list_to_char(t_env *env, char **str)
@@ -99,4 +97,12 @@ char	**list_to_char(t_env *env, char **str)
 	str[i] = NULL;
 	free_env_list(env);
 	return (str);
+}
+
+void	close_fd(t_parse *list_pars)
+{
+	if (list_pars->fd_output != 1)
+		close(list_pars->fd_output);
+	if (list_pars->fd_input != 0)
+		close(list_pars->fd_input);
 }
