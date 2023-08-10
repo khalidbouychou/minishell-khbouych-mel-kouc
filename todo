@@ -470,3 +470,10 @@ minishell ~> echo $?
 
 command for processe
 lsof -p 81889
+
+
+
+explain
+
+minishell ~> echo hello > a
+minishell ~> ls  | cat a
