@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 16:49:41 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:40:06 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	execute_main(t_parse *list_pars, t_env **env)
 	if (!list_pars->next)
 	{
 		if (compare_cmd(list_pars))
+		{
 			cmd_in_built(list_pars, env);
+			close_fd(list_pars);
+		}
 		else if (g_stu.flag == 1)
 			g_stu.flag = 0;
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftexport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/07 11:45:21 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/08 20:41:14 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_help_export(char **export, t_env *env, int fd)
 		}
 		else
 		{
-			ft_exit_output("--> not a valid identifier\n", 1, false);
+			ft_exit_output("", 1, false);
 			return (g_stu.ex_stu = 1);
 		}
 	}

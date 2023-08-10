@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/08 13:14:58 by khbouych         ###   ########.fr        #
+#    Updated: 2023/08/09 14:40:38 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,14 +34,14 @@ CFLAGS =   -Wall -Wextra -Werror #-fsanitize=address
 #-fsanitize=address
 
 all: $(NAME)
-#  ${LIB}
+# ${LIB}
 # ${INCLUDE}
 $(NAME) : $(OSRC) 
-	@$(CC) -lreadline  $(CFLAGS) $(OSRC) -o $(NAME)
+	@$(CC) -lreadline  $(CFLAGS) $(OSRC)  ${LIB} -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 
 %.o: %.c ./incld/minishell.h ./incld/builtins.h ./incld/execution.h ./incld/lexer.h ./incld/parsing.h ./incld/token.h
-	@$(CC) $(CFLAGS) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -c $< -o $@ ${INCLUDE}
 	@echo "*** {Compaling Files ...} ***"
 
 clean :

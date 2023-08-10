@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 16:50:31 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:40:50 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	main(int argc, char **argv, char **envp)
 	cmd = NULL;
 	env = env_list(envp);
 	ft_init_variables();
+	ft_signals();
 	while (1337)
 	{
 		// ft_signals();

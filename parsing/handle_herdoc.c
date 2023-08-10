@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 12:38:21 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:48:15 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 	delim = ptr->content;
 	buffer = NULL;
 	new_p->f_name = generate_name();
+	ft_signals();
 	while (1)
 	{
 		str = readline("> ");
