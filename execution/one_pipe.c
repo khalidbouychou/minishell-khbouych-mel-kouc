@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/09 13:31:57 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/10 21:23:31 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 		g_stu.ex_stu = 0;
 	return (1);
 }
-
 
 // int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 // {

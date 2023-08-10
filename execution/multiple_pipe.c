@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/10 18:49:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/10 21:47:12 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str)
 {
 	t_pipe	*head;
 	int		i;
+	int		status;
 	// t_parse	*lst_p;
 
 	i = 0;
@@ -136,6 +137,7 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str)
 			middle_pipes(head, lst_p, env, str);
 		else if (!lst_p->next)
 			second_child(head->fd_p, lst_p, env, str);
+		waitpid(lst_p->pid0, &status, 0);
 		lst_p = lst_p->next;
 		if (head->next)
 			head = head->next;
