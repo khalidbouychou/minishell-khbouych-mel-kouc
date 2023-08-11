@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/09 13:40:04 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:58:15 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	execute_main(t_parse *list_pars, t_env **env)
 		else if (g_stu.flag == 1)
 			g_stu.flag = 0;
 		else
-			simple_not_built(list_pars, *env, str);
+			simple_not_built(list_pars, str);
 	}
 	else
 		complex_cmd(list_pars, *env, str);
