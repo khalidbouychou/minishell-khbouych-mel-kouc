@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 16:27:59 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/10 21:57:22 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ void		ft_env(t_parse *penv, t_env **env);
 void		ft_cd(char **cd, t_env *e);
 t_env		*ft_getenv_node(t_env *env, char *key);
 void		ft_pwd(void);
+void        ft_cd_(t_env **env, char **ret, char *cmd);
 #endif

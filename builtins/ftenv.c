@@ -3,61 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ftenv.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:40 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 16:27:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/10 21:43:09 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-
-void    ft_env(t_parse *penv, t_env **env)
+void	ft_env(t_parse *penv, t_env **env)
 {
-    t_env    *tmp;
+	t_env	*tmp;
 
-    if (!penv->arg[1])
-    {
-        tmp = *env;
-        while (tmp)
-        {
-            if (tmp->value)
-            {
-                ft_putstr_fd(tmp->key,penv->fd_output);
-                ft_putstr_fd("=",penv->fd_output);
-                ft_putstr_fd(tmp->value,penv->fd_output);
-                ft_putstr_fd("\n",penv->fd_output);
-            }
-                // printf("%s=%s\n", tmp->key, tmp->value);
-            tmp = tmp->next;
-        }
-        g_stu.ex_stu = 0;
-    }
-    else
-        ft_exit_output("--> No such file or directory\n", 1, false);
+	if (!penv->arg[1])
+	{
+		tmp = *env;
+		while (tmp)
+		{
+			if (tmp->value)
+			{
+				ft_putstr_fd(tmp->key, penv->fd_output);
+				ft_putstr_fd("=", penv->fd_output);
+				ft_putstr_fd(tmp->value, penv->fd_output);
+				ft_putstr_fd("\n", penv->fd_output);
+			}
+			tmp = tmp->next;
+		}
+		g_stu.ex_stu = 0;
+	}
+	else
+		ft_exit_output("--> No such file or directory\n", 1, false);
 }
-// void	ft_env(char **echo, t_env **env)
-// {
-// 	t_env	*tmp;
-
-// 	if (!echo[1])
-// 	{
-// 		tmp = *env;
-// 		while (tmp)
-// 		{
-// 			if (tmp->value)
-// 			{
-// 				ft_putstr_fd(tmp->key,1);
-// 				ft_putstr_fd("=",1);
-// 				ft_putstr_fd(tmp->value,1);
-// 				ft_putstr_fd("\n",1);
-// 			}
-// 				// printf("%s=%s\n", tmp->key, tmp->value);
-// 			tmp = tmp->next;
-// 		}
-// 		g_stu.ex_stu = 0;
-// 	}
-// 	else
-// 		ft_exit_output("--> No such file or directory\n", 1, false);
-// }

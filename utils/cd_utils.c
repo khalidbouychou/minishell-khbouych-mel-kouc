@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:30:13 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 09:43:43 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/10 21:57:06 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,23 @@ t_env	*ft_add_env(char *key, char *value)
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);
+}
+
+void	ft_cd_(t_env **env, char **ret, char *cmd)
+{
+	if (!(*ret))
+	{
+		ft_putstr_fd("cd: error retrieving current directory: ", 1);
+		ft_putstr_fd("getcwd: cannot access parent directories: ", 1);
+		ft_putstr_fd("No such file or directory", 1);
+		ft_getenv_node((*env), "OLDPWD")->value = ft_strdup(g_stu.current_pwd);
+		if (!ft_strcmp(cmd, "."))
+			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/.");
+		else
+			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/..");
+		ft_getenv_node((*env), "PWD")->value = ft_strdup(g_stu.current_pwd);
+		return ;
+	}
+	else
+		g_stu.current_pwd = (*ret);
 }
