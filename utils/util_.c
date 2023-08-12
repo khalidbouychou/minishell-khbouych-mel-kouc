@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/30 15:50:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/12 21:31:02 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[i])
 		res_joined[j++] = s2[i++];
 	res_joined[j] = '\0';
+	// free(s1);
+	// free(s2);
 	return (res_joined);
 }
 

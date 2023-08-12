@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 23:07:39 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/12 12:49:44 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sig_handler(int signal)
 {
-	if(signal == SIGINT && g_stu.ex_stu != -1)
+	if (signal == SIGINT && g_stu.ex_stu != -1)
 	{
 		rl_catch_signals = 0;
 		ft_putstr_fd("\n", 1);

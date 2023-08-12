@@ -525,3 +525,8 @@ one pipe
     echo hello | cat  << q > a    work
 
     cat  < b  > a      work
+
+
+    while infini for leaks
+    
+        while true; do leaks minishell; done

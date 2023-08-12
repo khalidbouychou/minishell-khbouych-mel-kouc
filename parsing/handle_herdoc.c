@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 09:26:26 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/12 23:15:36 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 			new_p->fd_input = open(new_p->f_name, O_WRONLY | O_CREAT, 0644);
 			if (buffer)
 				write(new_p->fd_input, buffer, ft_strlen(buffer));
+			free(buffer);
 			break ;
 		}
 		if (ft_strchr(str, '$') != -1 && ptr->flag != 1)

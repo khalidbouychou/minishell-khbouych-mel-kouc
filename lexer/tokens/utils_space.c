@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/05 15:52:27 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/12 21:01:51 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	util_between_word_var(t_token *ptr, t_token	*tmp)
 		{
 			tmp->next = ptr->next;
 			ptr->next->prev = tmp;
+			free(ptr->content);
 			free(ptr);
 		}
 		else
@@ -31,6 +32,7 @@ void	util_between_word_var(t_token *ptr, t_token	*tmp)
 		if (ptr->type == SPC)
 		{
 			ptr->prev->next = NULL;
+			free(ptr->content);
 			free(ptr);
 		}
 	}
@@ -48,6 +50,7 @@ void	util_between_oper(t_token *tmp, t_token	*right_op, t_token	*left_op)
 			{
 				left_op->prev->next = tmp;
 				tmp->prev = left_op->prev;
+				free(left_op->content);
 				free(left_op);
 				left_op = tmp->prev;
 			}
@@ -58,6 +61,7 @@ void	util_between_oper(t_token *tmp, t_token	*right_op, t_token	*left_op)
 		{
 			tmp->next = right_op->next;
 			right_op->next->prev = tmp;
+			free(right_op->content);
 			free(right_op);
 			right_op = tmp->next;
 		}
@@ -83,6 +87,7 @@ void	space_after_cmd(t_token **lst)
 				cmd->next = space->next;
 				if (space->next)
 					space->next->prev = cmd;
+				free(space->content);
 				free(space);
 				space = cmd->next;
 			}
@@ -108,7 +113,8 @@ t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space, int *flag)
 			{
 				ptr->next = space->next;
 				space->next->prev = ptr;
-				free (space);
+				free(space->content);
+				free(space);
 			}
 			ptr = ptr->next;
 		}
