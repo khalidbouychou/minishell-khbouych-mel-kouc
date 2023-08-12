@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/11 22:27:48 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/12 11:01:26 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,12 @@ int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
 	return (1);
 }
 
-int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
+void	loop_cmd(t_pipe	*head, t_parse *lst_p, t_env *env, char **str)
 {
-	t_pipe	*head;
 	int		i;
-	// int		status;
 	t_pipe	*tmp;
 
 	i = 0;
-	head = NULL;
 	while (lst_p)
 	{
 		if (lst_p->next)
@@ -88,13 +85,23 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 		lst_p = lst_p->next;
 		i = 1;
 	}
+}
+
+int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
+{
+	t_pipe	*head;
+	int		i;
+	// int		status;
+
+	i = 0;
+	head = NULL;
+	loop_cmd(head, lst_p, env, str);
 	i = 0;
 	while (i <= (size - 1))
 	{
 		// pid_t child_pid = waitpid(-1, &g_stu.ex_stu, 0);
 		waitpid(-1, &g_stu.ex_stu, 0);
-        // printf("GLOBAL = %d\n", g_stu.ex_stu);
-        // if (child_pid > 0)
+        printf("GLOBAL = %d\n", g_stu.ex_stu);        // if (child_pid > 0)
 		// {
         //     if (WIFEXITED(status))
 		// 		printf("Child process %d (PID %d) exited with status: %d\n", i, child_pid, WEXITSTATUS(status));
