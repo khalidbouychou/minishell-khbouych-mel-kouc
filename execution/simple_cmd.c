@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/09 14:31:44 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:21:02 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,30 @@
 int	check_fd_exec(t_parse *list_pars)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	if (list_pars->fd_input != 0)
 	{
 		dup2(list_pars->fd_input, STDIN_FILENO);
 		close(list_pars->fd_input);
+		j++;
 		i = 1;
 	}
 	if (list_pars->fd_output != 1)
 	{
+		j = j + 2;
 		dup2(list_pars->fd_output, STDOUT_FILENO);
 		close(list_pars->fd_output);
 		i = 2;
 	}
+	if (j == 3)
+		return (j);
 	return (i);
 }
 
-int	simple_not_built(t_parse *list_pars, t_env *env, char **str)
+int	simple_not_built(t_parse *list_pars, char **str)
 {
 	pid_t	id ;
 	int		status;
@@ -90,6 +96,5 @@ int	simple_not_built(t_parse *list_pars, t_env *env, char **str)
 	// }
 	// printf("status = %d\n", status);
 	// printf("id  = %d\n", id);
-	(void)env;
 	return (1);
 }

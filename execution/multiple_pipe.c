@@ -6,90 +6,41 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/10 21:47:12 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:27:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-t_pipe	*ft_last_pipe(t_pipe *lst)
+void	befor_exec(t_pipe *tmp, t_parse *lst_p)
 {
-	if (!lst)
-		return (0);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
-}
-
-t_pipe	*new_pipe(int fd[2])
-{
-	t_pipe	*new_pipe;
-
-	new_pipe = malloc(sizeof(t_pipe));
-	if (!new_pipe)
-		return (NULL);
-	new_pipe->fd_p[0] = fd[0];
-	new_pipe->fd_p[1] = fd[1];
-	new_pipe->next = NULL;
-	new_pipe->prev = NULL;
-	// new_pipe->fd[]
-	return (new_pipe);
-}
-
-void	add_lst_addback(t_pipe **head, t_pipe *new)
-{
-	t_pipe	*last;
-
-	if (!head || !new)
-		return ;
-	else if (*head == 0)
-		*head = new;
-	else
-	{
-		last = ft_last_pipe(*head);
-		last->next = new;
-		new->prev = last;
-	}
-}
-
-int	creat_pipe(t_pipe **head)
-{
-	int	fd[2];
-
-	if (pipe(fd) == -1)
-	{
-		perror("pipe");
-		return (-1);
-	}
-	add_lst_addback(head, new_pipe(fd));
-	return (1);
-}
-
-int	middle_pipes(t_pipe *head, t_parse *lst_p, t_env *env, char **str)
-{
-	t_pipe	*tmp;
 	int		i;
 
 	i = 0;
-	tmp = head;
+	close(tmp->prev->fd_p[1]);
+	i = check_fd_exec(lst_p);
+	close(tmp->fd_p[0]);
+	close(tmp->prev->fd_p[1]);
+	if (i != 1 && i != 3)
+	{
+		dup2(tmp->prev->fd_p[0], STDIN_FILENO);
+		close(tmp->prev->fd_p[0]);
+		if (i == 0)
+		{
+			dup2(tmp->fd_p[1], STDOUT_FILENO);
+			close(tmp->fd_p[1]);
+		}
+	}
+}
+
+int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
+{
 	lst_p->pid0 = fork();
 	if (lst_p->pid0 == -1)
 		return (-1);
 	else if (lst_p->pid0 == 0)
 	{
-		close(tmp->fd_p[1]);
-		i = check_fd_exec(lst_p);
-		if (i != 1)
-		{
-			dup2(tmp->fd_p[0], STDIN_FILENO);
-			if (i == 0)
-			{
-				close(tmp->next->fd_p[0]);
-				dup2(tmp->next->fd_p[1], STDOUT_FILENO);
-				close(tmp->next->fd_p[1]);
-			}
-		}
-		close(tmp->fd_p[0]);
+		befor_exec(tmp, lst_p);
 		if (compare_cmd(lst_p))
 		{
 			lst_p->fd_output = 1;
@@ -102,47 +53,57 @@ int	middle_pipes(t_pipe *head, t_parse *lst_p, t_env *env, char **str)
 			exit(g_stu.ex_stu);
 		}
 	}
+	else
+	{
+		close(tmp->prev->fd_p[0]);
+		close(tmp->prev->fd_p[1]);
+	}
 	return (1);
 }
 
-void	ft_list_pipe(t_pipe **head, t_parse *lst_p)
-{
-	t_parse	*tmp;
-
-	tmp = lst_p;
-	while (tmp)
-	{
-		if (tmp->next)
-			creat_pipe(head);
-		tmp = tmp->next;
-	}
-}
-
-int	multiple_pipe(t_parse *lst_p, t_env *env, char **str)
+int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 {
 	t_pipe	*head;
 	int		i;
-	int		status;
-	// t_parse	*lst_p;
+	// int		status;
+	t_pipe	*tmp;
 
 	i = 0;
 	head = NULL;
-	ft_list_pipe(&head, lst_p);
 	while (lst_p)
 	{
-		// creat_pipe(&head);
+		if (lst_p->next)
+			tmp = creat_pipe(&head);
 		if (i == 0)
-			first_child(head->fd_p, lst_p, env, str);
+			first_child(tmp->fd_p, lst_p, env, str);
 		else if (lst_p->next)
-			middle_pipes(head, lst_p, env, str);
+			middle_pipes(tmp, lst_p, env, str);
 		else if (!lst_p->next)
-			second_child(head->fd_p, lst_p, env, str);
-		waitpid(lst_p->pid0, &status, 0);
+		{
+			second_child(tmp->fd_p, lst_p, env, str);
+			close(tmp->fd_p[0]);
+			close(tmp->fd_p[1]);
+		}
+		close_fd(lst_p);
 		lst_p = lst_p->next;
-		if (head->next)
-			head = head->next;
 		i = 1;
 	}
-	// second_child(fd, lst_p->next, env, str)
+	i = 0;
+	while (i <= (size - 1))
+	{
+		// pid_t child_pid = waitpid(-1, &g_stu.ex_stu, 0);
+		waitpid(-1, &g_stu.ex_stu, 0);
+        // printf("GLOBAL = %d\n", g_stu.ex_stu);
+        // if (child_pid > 0)
+		// {
+        //     if (WIFEXITED(status))
+		// 		printf("Child process %d (PID %d) exited with status: %d\n", i, child_pid, WEXITSTATUS(status));
+		// 	else
+		// 		printf("Child process %d (PID %d) terminated abnormally\n", i, child_pid);
+		// }
+		i++;
+	}
+	// while (waitpid(-1, NULL, 0) > 0);
+	// waitpid(lst_p->pid0, &status, 0);
 	return (1);
 }

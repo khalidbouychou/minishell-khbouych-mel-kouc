@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/09 13:17:48 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:55:07 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,10 @@ int	type_er_env(t_token *tmp)
 			return (0);
 		}
 	}
-	else if (ft_strchr(tmp->content, ' ') != -1)
+	else if (ft_strchr(tmp->content, 32) != -1)
 	{
 		ft_putstr_fd("ambiguous redirect\n", 2);
+		g_stu.ex_stu = 1;
 		return (0);
 	}
 	return (1);
@@ -127,6 +128,7 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 		{
 			*flag = 1;
 			ft_putstr_fd("ambiguous redirect\n", 2);
+			g_stu.ex_stu = 1;
 			return (tmp);
 		}
 		if (!tmp->prev && !tmp->next->next)
