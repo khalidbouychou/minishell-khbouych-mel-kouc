@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/05 15:52:27 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:10:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*ft_strsearch(const char *s, int c);
 void	rm_node_white_space(t_token **lst);
 void	util_between_word_var(t_token *ptr, t_token	*tmp);
 void	check_cmd(t_token **lst);
-void	ft_tolower (char *str);
+void	ft_tolower(char *str);
 t_token	*echo_and_n(t_token *ptr, t_token *space);
 void	util_between_oper(t_token *tmp, t_token	*right_op, t_token	*left_op);
 int		check_spases(t_token *tmp);

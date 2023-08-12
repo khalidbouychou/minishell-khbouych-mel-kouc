@@ -6,7 +6,7 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/08 22:49:27 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/08/11 21:32:32 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./utils/export_utils.c ./utils/export_utils_.c ./execution/simple_cmd.c ./utils/cd_utils.c \
 		./utils/exit_utils.c ./builtins/ftpwd.c ./builtins/ftcd.c ./builtins/ftenv.c ./builtins/ftunset.c \
 		./execution/complex_cmd.c ./execution/one_pipe.c ./execution/multiple_pipe.c \
-		./execution/signals.c ./utils/ft_utils___.c ./utils/simple_cmd_utils.c ./utils/expand_utils.c
+		./execution/signals.c ./utils/ft_utils___.c ./utils/simple_cmd_utils.c ./utils/expand_utils.c \
+		./utils/utl_multi_p.c
 
 LIB = -L/Users/mel-kouc/.brew/opt/readline/lib
 INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include

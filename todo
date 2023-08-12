@@ -466,6 +466,12 @@ minishell ~> echo $?
 
 --- syntax error exit status == 258
 
+bash-3.2$ echo < a | ls | cat | | cat
+bash: syntax error near unexpected token |
+bash-3.2$ echo $?
+258
+
+
 ------
 
 command for processe
@@ -475,5 +481,47 @@ lsof -p 81889
 
 explain
 
-minishell ~> echo hello > a
-minishell ~> ls  | cat a
+    echo hello > a
+    ls  | cat a
+
+try
+    ls | ls | cat
+
+
+
+
+work 
+
+    ls | grep a  | grep .c | wc -l
+    ls | grep a | wc
+
+
+
+error
+
+    fewf | vc | fwev
+    test :  ls > a | cat b | wc-l > x |<< a | wc -l > c
+
+
+    echo hello > a | cat a > kaka | cat kaka
+
+
+
+
+
+
+
+bash-3.2$ > $bgdr
+bash: $bgdr: ambiguous redirect
+
+
+i have  i differance output in 
+    ls | << q | ls
+
+
+one pipe 
+    echo world | cat  < b  > a    work
+
+    echo hello | cat  << q > a    work
+
+    cat  < b  > a      work
