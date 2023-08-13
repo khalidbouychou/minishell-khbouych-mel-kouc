@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/12 21:01:51 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/13 22:18:44 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,7 @@ void	util_between_oper(t_token *tmp, t_token	*right_op, t_token	*left_op)
 				left_op = tmp->prev;
 			}
 		}
-		right_op = tmp->next;
-		while (!ft_strncmp(right_op->content, " ", 2)
-			|| !ft_strncmp(right_op->content, "	", 2))
-		{
-			tmp->next = right_op->next;
-			right_op->next->prev = tmp;
-			free(right_op->content);
-			free(right_op);
-			right_op = tmp->next;
-		}
+		operator_right(tmp, right_op);
 	}
 }
 

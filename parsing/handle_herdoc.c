@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/13 20:41:04 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:49:22 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	ft_putendl_fd(char *s, int fd)
 	}
 	write(fd, "\n", 1);
 }
-void	fill_buffer(t_token *ptr, t_env *env, char *buffer, char *str)
+void	fill_buffer(t_token **ptr, t_env **env, char *buffer, char *str)
 {
 	char	*tmp;
 
-	if (ft_strchr(str, '$') != -1 && ptr->flag != 1)
-		str = ft_expandhelp(str, env);
+	if (ft_strchr(str, '$') != -1 && (*ptr)->flag != 1)
+		str = ft_expandhelp(str, (*env));
 	tmp = buffer;
 	buffer = ft_strjoin(buffer, str);
 	free(tmp);
@@ -63,7 +63,7 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 			free(str);
 			break ;
 		}
-		// fill_buffer(ptr, env, buffer, str);
+		// fill_buffer(&ptr, &env, buffer, str);
 		if (ft_strchr(str, '$') != -1 && ptr->flag != 1)
 			str = ft_expandhelp(str, env);
 		tmp = buffer;
