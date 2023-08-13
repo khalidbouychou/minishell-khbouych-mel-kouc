@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:48:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/11 22:15:35 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:30:40 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ void	fealed_execve(t_parse *list_pars)
 
 char	**list_to_char(t_env *env, char **str)
 {
-	int	i;
-	int	size;
+	int		i;
+	int		size;
+	char	*tmp;
 
 	i = 0;
 	size = 0;
@@ -83,13 +84,17 @@ char	**list_to_char(t_env *env, char **str)
 	while (env)
 	{
 		str[i] = ft_strjoin(env->key, "=");
+		tmp = str[i];
 		if (env->value)
+		{
 			str[i] = ft_strjoin(str[i], env->value);
+			free(tmp);
+		}
 		env = env->next;
 		i++;
 	}
 	str[i] = NULL;
-	free_env_list(env);
+	// free_env_list(env);
 	return (str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/12 11:01:26 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/13 10:31:44 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	loop_cmd(t_pipe	*head, t_parse *lst_p, t_env *env, char **str)
 		lst_p = lst_p->next;
 		i = 1;
 	}
+	free_pipe(head);
 }
 
 int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)

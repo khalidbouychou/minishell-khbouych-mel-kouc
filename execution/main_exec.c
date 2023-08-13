@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/12 23:25:14 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:12:53 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void	execute_main(t_parse *list_pars, t_env **env)
 	else
 		complex_cmd(list_pars, *env, str);
 	free_char_double(str);
-	free_char_double(list_pars->arg);
+	// free_env_list(*env);
 }

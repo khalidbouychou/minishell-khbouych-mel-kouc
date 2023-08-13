@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/12 23:24:18 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:00:40 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	help_main(char *cmd, t_env **env)
 	// print(list_tokens);
 	if (list_tokens)
 	{
+		// free_token_list(&list_tokens);
 		// print(list_tokens);
 		list_parser = parser(list_tokens, *env);
 		// parser_print(list_parser);
@@ -92,6 +93,7 @@ void	help_main(char *cmd, t_env **env)
 	// 	printf("\n*********************\n");
 	}
 	free_token_list(&list_tokens);
+	free_parser_list(&list_parser);
 }
 
 void  ft_init_variables()

@@ -6,7 +6,7 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/12 21:44:51 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/08/13 20:33:24 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc  -g
-CFLAGS =   -Wall -Wextra -Werror
+CFLAGS =   -Wall -Wextra -Werror -fsanitize=address
 #-fsanitize=address
 #-fsanitize=address
 
