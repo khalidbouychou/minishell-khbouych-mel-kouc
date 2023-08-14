@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/30 15:50:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 10:48:03 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ void	ft_help_join(char **s1, char **s2)
 	if (*(s1) == NULL)
 	{
 		*(s1) = ft_strdup("");
-		*(s1)[0] = '\0';
 	}
 	if (*(s2) == NULL)
 	{
 		*(s2) = ft_strdup("");
-		*(s2)[0] = '\0';
 	}
 }
 
@@ -35,6 +33,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	j = 0;
 	ft_help_join(&s1, &s2);
+	// add this code /////////
+	// if (!s1 || !s2)
+	// 	return (NULL);
+	//////////////
 	res_joined = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (res_joined == NULL)
 		return (NULL);
@@ -45,6 +47,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[i])
 		res_joined[j++] = s2[i++];
 	res_joined[j] = '\0';
+	// free(s1);
+	// free(s2);
 	return (res_joined);
 }
 
@@ -55,6 +59,8 @@ char	*ft_strdup(char *s1)
 	int		i;
 
 	i = 0;
+	if (s1 == NULL)
+		return (NULL);
 	len = ft_strlen(s1);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)

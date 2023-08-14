@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 08:42:41 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/14 08:53:17 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_h_h_expand(char *cnt, int *i, int *s, int *e)
 char	*ft_expandhelp(char *cnt, t_env *env)
 {
 	t_exp	v;
-
+	// (void)env;
 	ft_init_var_expd(&v);
 	v.r = ft_h_h_expand(cnt, &v.i, &v.s, &v.e);
 	while (cnt[++v.i])

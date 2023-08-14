@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   white_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:02:36 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/05 15:52:27 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/12 21:01:18 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	between_word_var(t_token **lst)
 	t_token	*ptr;
 
 	tmp = *lst;
-	// tmp = tmp->next;
 	while (tmp)
 	{
 		ptr = tmp->next;
@@ -70,6 +69,7 @@ void	after_first_cmd(t_token **lst)
 				if (ptr->next)
 				{
 					ptr->next->prev = tmp;
+					free(ptr->content);
 					free(ptr);
 				}
 				ptr = tmp->next;
@@ -90,6 +90,7 @@ void	switch_sp_free(t_token **lst)
 	{
 		if (tmp->type == _TAB)
 		{
+			free(tmp->content);
 			tmp->content = ft_strdup(" ");
 			tmp->type = SPC;
 		}

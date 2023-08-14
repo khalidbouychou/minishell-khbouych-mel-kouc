@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/11 21:58:15 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/14 08:37:04 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	execute_main(t_parse *list_pars, t_env **env)
 	}
 	else
 		complex_cmd(list_pars, *env, str);
-	// free_char_double(str);
-	// free_char_double(list_pars->arg);
+	free_char_double(str);
+	// free_env_list(*env);
 }

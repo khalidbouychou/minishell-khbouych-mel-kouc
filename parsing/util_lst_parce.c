@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 09:43:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/13 22:42:59 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,22 @@ void	init_struct_parce(t_parse *new_p)
 	new_p->fd_output = 1;
 	new_p->f_name = NULL;
 	new_p->pid0 = -4;
-	// new_p->pid1 = -5;
 	new_p->arg = NULL;
 }
 
+void	operator_right(t_token *tmp, t_token *right_op)
+{
+	right_op = tmp->next;
+	while (!ft_strncmp(right_op->content, " ", 2)
+		|| !ft_strncmp(right_op->content, "	", 2))
+	{
+		tmp->next = right_op->next;
+		right_op->next->prev = tmp;
+		free(right_op->content);
+		free(right_op);
+		right_op = tmp->next;
+	}
+}
 // void	ft_putstr_fd(char *s, int fd)
 // {
 // 	int	i;

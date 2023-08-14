@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/06 22:41:35 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:33:17 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,27 @@ char	*ft_check_if_cmd_valid(char **path, char *str)
 {
 	int		i;
 	char	*p;
+	char	*tmp;
 
 	p = NULL;
 	i = 0;
+	// printf("valid path -> |%s|\n", str);
+	// printf("valid path -> |%p|\n", str);
 	while (path && path[i])
 	{
 		p = ft_strjoin(path[i], "/");
+		tmp = p;
 		p = ft_strjoin(p, str);
+		free(tmp);
 		if (access(p, X_OK | F_OK) == 0)
+		{
+			free_char_double(path);
 			return (p);
+		}
+		free(p);
 		i++;
 	}
+	free_char_double(path);
 	return (NULL);
 }
 
@@ -34,8 +44,10 @@ char	*ft_get_path(t_env *env, char *str)
 {
 	char	*p;
 	t_env	*tmp;
+	// char	**dbl_ptr;
 
 	p = NULL;
+	// dbl_ptr = NULL;
 	tmp = env;
 	while (tmp)
 	{
@@ -46,6 +58,9 @@ char	*ft_get_path(t_env *env, char *str)
 		}
 		tmp = tmp->next;
 	}
+	// dbl_ptr = ft_split(p, ':');
+	// if (ft_strchr(str, '/') == -1)
+	// 	return (ft_check_if_cmd_valid(dbl_ptr, str));
 	if (ft_strchr(str, '/') == -1)
 		return (ft_check_if_cmd_valid(ft_split(p, ':'), str));
 	else

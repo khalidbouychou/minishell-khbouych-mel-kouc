@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/11 22:00:03 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/12 11:50:53 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,26 @@
 int	check_fd_exec(t_parse *list_pars)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	if (list_pars->fd_input != 0)
 	{
 		dup2(list_pars->fd_input, STDIN_FILENO);
 		close(list_pars->fd_input);
+		j++;
 		i = 1;
 	}
 	if (list_pars->fd_output != 1)
 	{
+		j = j + 2;
 		dup2(list_pars->fd_output, STDOUT_FILENO);
 		close(list_pars->fd_output);
 		i = 2;
 	}
+	if (j == 3)
+		return (j);
 	return (i);
 }
 
