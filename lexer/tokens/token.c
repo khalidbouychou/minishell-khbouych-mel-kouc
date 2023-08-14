@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/13 17:33:17 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:49:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,18 @@ char	*ft_get_path(t_env *env, char *str)
 {
 	char	*p;
 	t_env	*tmp;
-	// char	**dbl_ptr;
 
 	p = NULL;
-	// dbl_ptr = NULL;
 	tmp = env;
 	while (tmp)
 	{
-		if (tmp->key && ft_strcmp(tmp->key, "PATH") == 0)
+		if (tmp->key && ft_strcmp(tmp->key, "PATH") == 0)     
 		{
 			p = tmp->value;
 			break ;
 		}
 		tmp = tmp->next;
 	}
-	// dbl_ptr = ft_split(p, ':');
-	// if (ft_strchr(str, '/') == -1)
-	// 	return (ft_check_if_cmd_valid(dbl_ptr, str));
 	if (ft_strchr(str, '/') == -1)
 		return (ft_check_if_cmd_valid(ft_split(p, ':'), str));
 	else

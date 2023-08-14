@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/13 18:00:40 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:40:50 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	parser_print(t_parse *lst)
 		}
 		printf("√ \n***** fd int = %d *****\n", tmp->fd_input);
 		printf("√ \n***** fd out = %d *****\n", tmp->fd_output);
-		// printf("√ path\t--> (%s)\n", tmp->path);
+		printf("√ path\t--> (%s)\n", tmp->path);
 		printf("\n------------------------------------\n");
  		tmp = tmp->next;
 	}

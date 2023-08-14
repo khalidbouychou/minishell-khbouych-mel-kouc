@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/09 13:26:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:25:07 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_check_n(char *arg)
 	int	i;
 
 	i = 0;
+	// if (!arg)
+	// 	return (0);
 	if (arg[0] != '-')
 		return (0);
 	while (arg[++i])

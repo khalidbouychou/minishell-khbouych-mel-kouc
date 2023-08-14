@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/13 17:33:48 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:47:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 				|| tmp->type == VAR || tmp->type == SPC))
 		{
 			new_p->arg[++(*i)] = ft_strdup(tmp->content);
+			// printf("new -> |%s|\n", new_p->arg[1]);
 			if (*i == 0)
 				new_p->path = ft_get_path(env, new_p->arg[0]);
-			// printf("new -> %p\n", new_p->path);
-			// printf("new -> |%s|\n", new_p->arg[0]);
+			// printf("new -> %s\n", new_p->path);
 			if (!tmp->next || tmp->next->type == PIPE)
 				break ;
 			tmp = tmp->next;
@@ -49,6 +49,7 @@ t_parse	*ft_list_parser(t_token *tmp, int count, t_env *env)
 	new_p->arg = malloc(sizeof(char *) * (count + 1));
 	if (!new_p->arg)
 		return (NULL);
+	new_p->path = NULL;
 	push_arg(tmp, new_p, &i, env);
 	new_p->next = NULL;
 	return (new_p);

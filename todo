@@ -565,9 +565,18 @@ bash-3.2$ ls
 bash: ls: Permission denied
 
 
+////////////////////////////////////////////////////////
 
-in mau minishell 
 
-ls | ls | ls | ls| ls > sa | ls -la
+strjoin -> dup
+
+not work
+
+    echo helo > e$erg 
+
+
+
+minishell ~> echo "$'HOME'"
+Segmentation fault: 11
+
 echo $?
-[1]    23026 segmentation fault  ./minishell
