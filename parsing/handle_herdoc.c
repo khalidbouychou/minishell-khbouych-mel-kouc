@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/14 08:30:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:56:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ void	ft_putendl_fd(char *s, int fd)
 	}
 	write(fd, "\n", 1);
 }
-void	fill_buffer(t_token **ptr, t_env **env, char *buffer, char *str)
+void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str)
 {
 	char	*tmp;
 
 	if (ft_strchr(str, '$') != -1 && (*ptr)->flag != 1)
 		str = ft_expandhelp(str, (*env));
-	tmp = buffer;
-	buffer = ft_strjoin(buffer, str);
+	tmp = *buffer;
+	*buffer = ft_strjoin(*buffer, str);
 	free(tmp);
-	tmp = buffer;
-	buffer = ft_strjoin(buffer, "\n");
+	tmp = *buffer;
+	*buffer = ft_strjoin(*buffer, "\n");
 	free(tmp);
 	free(str);
 }
@@ -46,7 +46,6 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 	char	*str;
 	char	*delim;
 	char	*buffer;
-	char	*tmp;
 
 	delim = ptr->content;
 	buffer = ft_strdup("");
@@ -63,16 +62,7 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 			free(str);
 			break ;
 		}
-		// fill_buffer(&ptr, &env, buffer, str);
-		if (ft_strchr(str, '$') != -1 && ptr->flag != 1)
-			str = ft_expandhelp(str, env);
-		tmp = buffer;
-		buffer = ft_strjoin(buffer, str);
-		free(tmp);
-		tmp = buffer;
-		buffer = ft_strjoin(buffer, "\n");
-		free(tmp);
-		free(str);
+		fill_buffer(&ptr, &env, &buffer, str);
 	}
 	close(new_p->fd_input);
 	new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
