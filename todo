@@ -580,3 +580,10 @@ minishell ~> echo "$'HOME'"
 Segmentation fault: 11
 
 echo $?
+
+
+export sa="effer"
+
+41 leaks for 656 total leaked bytes.
+
+2 leaks for 32 total leaked bytes

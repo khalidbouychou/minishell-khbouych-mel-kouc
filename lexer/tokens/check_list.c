@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/14 13:46:15 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 23:47:18 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,14 @@ void	lixer_list(t_token **list)
 {
 	t_token	*tmp;
 	t_token	*ptr;
+	char	*str;
 
 	tmp = *list;
+	str = NULL;
+	ptr = NULL;
 	while (tmp)
 	{
-		ptr = tmp->next;
-		while (ptr)
-		{
-			if ((!tmp->operator && !ptr->operator))
-			{
-				tmp->content = ft_strjoin(tmp->content, ptr->content);
-				tmp->next = ptr->next;
-				if (ptr->next)
-					ptr->next->prev = tmp;
-				free(ptr->content);
-				free(ptr);
-			}
-			else
-				break ;
-			ptr = tmp->next;
-		}
+		help_lixer_list(str, tmp, ptr);
 		tmp = tmp->next;
 	}
 }
@@ -73,16 +61,24 @@ void	lixer_list(t_token **list)
 void	trim_list(t_token **list)
 {
 	t_token	*tmp;
+	char	*ptr;
 	int		i;
 
 	i = 0;
 	tmp = *list;
 	while (tmp)
 	{
+		ptr = tmp->content;
 		if (tmp->content[i] == '\'')
+		{
 			tmp->content = ft_strtrim(tmp->content, "'");
+			free(ptr);
+		}
 		else if (tmp->content[i] == '"')
+		{
 			tmp->content = ft_strtrim(tmp->content, "\"");
+			free(ptr);
+		}
 		tmp = tmp->next;
 	}
 }
