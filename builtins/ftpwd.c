@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftpwd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/01 15:59:37 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:55:14 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_pwd()
 	pw = getcwd(NULL, 0);
 	if (!pw)
 	{
-		printf("%s\n", g_stu.current_pwd);
+		ft_putstr_fd(g_stu.current_pwd, 1);
 		g_stu.ex_stu = 1;
 	}
 	else
@@ -28,4 +28,5 @@ void	ft_pwd()
 		ft_putstr_fd("\n", 1);
 		g_stu.ex_stu = 0;
 	}
+	free(pw);
 }

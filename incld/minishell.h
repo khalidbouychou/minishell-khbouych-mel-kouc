@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/11 21:37:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/13 11:47:36 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,8 @@ char	*ft_strjoin(char *s1, char *s2);
 void	ft_print_env(t_env *env);
 void	ft_putendl_fd(char *s, int fd);
 void	sig_handler(int signal);
+
+void	print(t_token *lst);
+void	free_parser_list(t_parse **list);
+
 #endif

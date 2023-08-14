@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:22:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/12 11:38:32 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 08:38:06 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ t_pipe	*ft_last_pipe(t_pipe *lst);
 t_pipe	*new_pipe(int fd[2]);
 void	add_lst_addback(t_pipe **head, t_pipe *new);
 t_pipe	*creat_pipe(t_pipe **head);
+void	free_pipe(t_pipe *pipe);
 
 #endif

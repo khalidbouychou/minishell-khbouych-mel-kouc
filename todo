@@ -525,3 +525,49 @@ one pipe
     echo hello | cat  << q > a    work
 
     cat  < b  > a      work
+
+
+    while infini for leaks
+    
+        while true; do leaks minishell; done
+
+while [ 1 ]; do leaks minishell | grep leaked && sleep 1 done
+
+
+control D in herdoc
+
+
+        minishell ~> << a
+        > 
+        [1]    22165 segmentation fault  ./minishell
+
+
+double free 
+
+    ls | << q
+
+
+when i commant free(tmp->path); the double free not existe 
+but her is a 1 leaks
+
+
+unset PATH
+minishell ~> ls
+[1]    91443 segmentation fault  ./minishell
+
+
+
+
+if not builtins
+
+bash-3.2$ unset PATH
+bash-3.2$ ls
+bash: ls: Permission denied
+
+
+
+in mau minishell 
+
+ls | ls | ls | ls| ls > sa | ls -la
+echo $?
+[1]    23026 segmentation fault  ./minishell
