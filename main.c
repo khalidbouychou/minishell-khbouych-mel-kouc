@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 23:07:26 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/13 20:11:01 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,23 @@ void  ft_init_variables()
 	g_stu.v_q = 0;
 	g_stu.sig = 0;
 }
+
+void	handle_kill(int sig)
+{
+	if (sig == SIGINT && g_stu.v_q == 0)
+	{
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+	else if (sig == SIGINT)
+		write(1, "\n", 1);
+	g_stu.v_q = 0;
+	if (sig == SIGQUIT)
+		return ;
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
@@ -108,7 +125,10 @@ int	main(int argc, char **argv, char **envp)
 	cmd = NULL;
 	env = env_list(envp);
 	ft_init_variables();
-	ft_signals();
+	// ft_signals();
+
+	signal(SIGINT, handle_kill);
+	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		cmd = readline("minishell ~> ");
