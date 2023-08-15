@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/13 11:47:36 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/15 16:09:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_glbl
 	char	*current_pwd;
 	int		flag;
 	int		v_q;
+	int is_p;
 }	t_glbl;
 
 t_glbl	g_stu;
@@ -61,5 +62,6 @@ void	sig_handler(int signal);
 
 void	print(t_token *lst);
 void	free_parser_list(t_parse **list);
+void	env_not_exist(int i, char **key, char **value);
 
 #endif
