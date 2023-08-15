@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 18:40:50 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:00:24 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,49 +73,50 @@ void	parser_print(t_parse *lst)
 // 	system("leaks minishell");
 // }
 
-void	help_main(char *cmd, t_env **env)
+void    help_main(char *cmd, t_env **env)
 {
-	t_token	*list_tokens;
-	t_parse	*list_parser;
+	t_token		*list_tokens;
+	t_parse		*list_parser;
 
 	list_tokens = NULL;
 	list_parser = NULL;
 	list_tokens = divide(cmd, *env);
-	// free_token_list(&list_tokens);
-	// print(list_tokens);
+	g_stu.sig = 0;
 	if (list_tokens)
 	{
-		// free_token_list(&list_tokens);
 		// print(list_tokens);
 		list_parser = parser(list_tokens, *env);
 		// parser_print(list_parser);
 		execute_main(list_parser, env);
-	// 	printf("\n*********************\n");
+		// printf("\n*********************\n");
 	}
 	free_token_list(&list_tokens);
 	free_parser_list(&list_parser);
+	g_stu.sig = 1;
 }
 
 void  ft_init_variables()
 {
-	g_stu.ex_stu = 0;
-	g_stu.v_q = 0;
-	g_stu.sig = 0;
+    g_stu.ex_stu = 0;
+    g_stu.v_q = 0;
+    g_stu.sig = 0;
+	// add
+	g_stu.flag = 0;
 }
-
-int	main(int argc, char **argv, char **envp)
+int    main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
 	t_env	*env;
 
-	// atexit(l);
+    // atexit(l);
 	(void)argc;
 	(void)argv;
 	cmd = NULL;
 	env = env_list(envp);
 	ft_init_variables();
 	ft_signals();
-	while (1)
+	g_stu.sig = 1;
+	while (1337)
 	{
 		cmd = readline("minishell ~> ");
 		if (!cmd)
@@ -128,6 +129,100 @@ int	main(int argc, char **argv, char **envp)
 			ft_putendl_fd("exit", 1);
 			break ;
 		}
+		g_stu.sig = 1;
 		free (cmd);
 	}
 }
+
+// int	main(int argc, char **argv, char **envp)
+// {
+// 	char	*cmd;
+// 	t_env	*env;
+
+// 	// atexit(l);
+// 	(void)argc;
+// 	(void)argv;
+// 	cmd = NULL;
+// 	env = env_list(envp);
+// 	ft_init_variables();
+// 	g_stu.sig = 1;
+// 	ft_signals();
+// 	while (1)
+// 	{
+// 		cmd = readline("minishell ~> ");
+// 		if (!cmd)
+// 			break ;
+// 		add_history(cmd);
+// 		if (cmd)
+// 			help_main(cmd, &env);
+// 		else
+// 		{
+// 			ft_putendl_fd("exit", 1);
+// 			break ;
+// 		}
+// 		g_stu.sig = 1;
+// 		free (cmd);
+// 	}
+// }
+
+// void	help_main(char *cmd, t_env **env)
+// {
+// 	t_token	*list_tokens;
+// 	t_parse	*list_parser;
+
+// 	list_tokens = NULL;
+// 	list_parser = NULL;
+// 	list_tokens = divide(cmd, *env);
+// 	// free_token_list(&list_tokens);
+// 	// print(list_tokens);
+// 	if (list_tokens)
+// 	{
+// 		// free_token_list(&list_tokens);
+// 		// print(list_tokens);
+// 		list_parser = parser(list_tokens, *env);
+// 		// parser_print(list_parser);
+// 		execute_main(list_parser, env);
+// 	// 	printf("\n*********************\n");
+// 	}
+// 	free_token_list(&list_tokens);
+// 	free_parser_list(&list_parser);
+// }
+
+// void  ft_init_variables()
+// {
+// 	g_stu.ex_stu = 0;
+// 	g_stu.v_q = 0;
+// 	g_stu.sig = 0;
+// 	g_stu.is_p = 0;
+// }
+
+// int	main(int argc, char **argv, char **envp)
+// {
+// 	char	*cmd;
+// 	t_env	*env;
+
+// 	// atexit(l);
+// 	(void)argc;
+// 	(void)argv;
+// 	cmd = NULL;
+// 	env = env_list(envp);
+// 	ft_init_variables();
+// 	g_stu.sig = 1;
+// 	ft_signals();
+// 	while (1)
+// 	{
+// 		cmd = readline("minishell ~> ");
+// 		if (!cmd)
+// 			break ;
+// 		add_history(cmd);
+// 		if (cmd)
+// 			help_main(cmd, &env);
+// 		else
+// 		{
+// 			ft_putendl_fd("exit", 1);
+// 			break ;
+// 		}
+// 		free (cmd);
+// 	}
+// 	g_stu.sig = 1;
+// }
