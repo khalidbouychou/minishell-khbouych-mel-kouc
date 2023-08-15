@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils___.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 23:25:05 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/07 15:44:04 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 14:48:46 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,62 @@ void	ft_putnbr(int nb)
 	if (nb < 10)
 		ft_putchar(nb + 48);
 }
+void	env_not_exist(int i, char **key, char **value)
+{
+	if (i == 0)
+		{
+			*key = ft_strdup("PWD");
+			*value = ft_strdup(g_stu.current_pwd);
+			g_stu.current_pwd = *value;
+		}
+		else if (i == 1)
+		{
+			*key = ft_strdup("SHLVL");
+			*value = ft_strdup("1");
+		}
+		else if (i == 2)
+		{
+			*key = ft_strdup("_");
+			*value = ft_strdup("/usr/bin/env");
+		}
+		else if (i == 3)
+		{
+			*key = ft_strdup("PATH");
+			*value = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
+		}
+}
 
 void	add_if_not_found(t_env **head, int i)
 {
 	char	*key;
 	char	*value;
 
+	key = NULL;
+	value = NULL;
 	while (++i < 4)
 	{
-		if (i == 0)
-		{
-			key = ft_strdup("PWD");
-			value = ft_strdup(g_stu.current_pwd);
-			g_stu.current_pwd = value;
-		}
-		else if (i == 1)
-		{
-			key = ft_strdup("SHLVL");
-			value = ft_strdup("1");
-		}
-		else if (i == 2)
-		{
-			key = ft_strdup("_");
-			value = ft_strdup("/usr/bin/env");
-		}
-		else if (i == 3)
-		{
-			key = ft_strdup("PATH");
-			value = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
-		}
+		env_not_exist(i, &key, &value);
+		// if (i == 0)
+		// {
+		// 	key = ft_strdup("PWD");
+		// 	value = ft_strdup(g_stu.current_pwd);
+		// 	g_stu.current_pwd = value;
+		// }
+		// else if (i == 1)
+		// {
+		// 	key = ft_strdup("SHLVL");
+		// 	value = ft_strdup("1");
+		// }
+		// else if (i == 2)
+		// {
+		// 	key = ft_strdup("_");
+		// 	value = ft_strdup("/usr/bin/env");
+		// }
+		// else if (i == 3)
+		// {
+		// 	key = ft_strdup("PATH");
+		// 	value = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
+		// }
 		ft_lst_addback(head, add_env(key, value));
 	}
 }
