@@ -565,9 +565,54 @@ bash-3.2$ ls
 bash: ls: Permission denied
 
 
+////////////////////////////////////////////////////////
 
-in mau minishell 
 
-ls | ls | ls | ls| ls > sa | ls -la
+strjoin -> dup
+
+not work
+
+    echo helo > e$erg 
+
+
+
+minishell ~> echo "$'HOME'"
+Segmentation fault: 11
+
+in my minishell
+    minishell ~> echo "$'HOME'"
+    'HOME'
+
+in my bash
+    echo "$'HOME'"
+    $'HOME'
+
 echo $?
-[1]    23026 segmentation fault  ./minishell
+
+
+export sa="effer"
+
+41 leaks for 656 total leaked bytes.
+
+2 leaks for 32 total leaked bytes
+
+
+
+env -i ./minishell
+
+    env
+    
+    1 leak -> "/Users/mel-kouc/Desktop/minishell-khbouych-mel-kouc"
+
+
+
+minishell ~> echo ew$uyg ioh$io ioug
+            ew ewioh ioug
+
+
+
+echo --->    echo $HOME CDSE$CDS cds$des
+
+///////////////////////
+not work
+    cat << a < f   OR   cat << a << b < f

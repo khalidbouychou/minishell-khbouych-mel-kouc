@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/14 08:45:04 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:58:50 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@ void	ft_putendl_fd(char *s, int fd)
 	}
 	write(fd, "\n", 1);
 }
-void	fill_buffer(t_token **ptr, t_env **env, char *buffer, char *str)
+
+void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str)
 {
 	char	*tmp;
 
 	if (ft_strchr(str, '$') != -1 && (*ptr)->flag != 1)
 		str = ft_expandhelp(str, (*env));
-	tmp = buffer;
-	buffer = ft_strjoin(buffer, str);
+	tmp = *buffer;
+	*buffer = ft_strjoin(*buffer, str);
 	free(tmp);
-	tmp = buffer;
-	buffer = ft_strjoin(buffer, "\n");
+	tmp = *buffer;
+	*buffer = ft_strjoin(*buffer, "\n");
 	free(tmp);
 	free(str);
 }
@@ -52,13 +53,50 @@ void	handle_signal(int signal)
 		exit (1);
 	}
 }
+// void    write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
+// {
+//     char	*str;
+//     char	*delim;
+//     char	*buffer;
+
+//     delim = ptr->content;
+//     buffer = NULL;
+//     new_p->f_name = generate_name();
+//     int pid;
+//     pid = fork();
+//     if (pid == 0)
+// 	{
+// 		signal(SIGINT, SIG_DFL);
+// 		signal(SIGQUIT, SIG_DFL);
+// 		while (1)
+// 		{
+// 			str = readline("> ");
+// 			if (!str || !ft_strncmp(delim, str, ft_strlen(str)))
+// 			{
+// 				new_p->fd_input = open(new_p->f_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+// 				if (buffer)
+// 					write(new_p->fd_input, buffer, ft_strlen(buffer));
+// 				break ;
+// 			}
+// 			fill_buffer(&ptr, &env, &buffer, str);
+// 		}
+// 		close(new_p->fd_input);
+// 		new_p->fd_input = open(new_p->f_name, O_RDONLY | O_TRUNC, 0644);
+// 		unlink(new_p->f_name);
+// 		free(new_p->f_name);
+// 	}
+// 	else
+// 	{
+// 		ft_signals();
+// 		waitpid(pid, NULL, 0);
+// 	}
+// }
 
 void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 {
 	char	*str;
 	char	*delim;
 	char	*buffer;
-	// char	*tmp;
 
 	delim = ptr->content;
 	buffer = ft_strdup("");
@@ -86,6 +124,7 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 		close(new_p->fd_input);
 		new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
 		unlink(new_p->f_name);
+		fill_buffer(&ptr, &env, &buffer, str);
 	}
 	waitpid(pid, &g_stu.ex_stu, 0);
 	g_stu.ex_stu = WEXITSTATUS(g_stu.ex_stu);

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/13 22:19:47 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 23:48:40 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ void	ft_set_oper(t_token *tok);
 void	check_herdoc_quotes(t_token *lst);
 char	*ft_expandhelp(char *cnt, t_env *env);
 void	operator_right(t_token *tmp, t_token *right_op);
+void	help_lixer_list(char *str, t_token *tmp, t_token *ptr);
 
 #endif

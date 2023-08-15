@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:30:13 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/10 21:57:06 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:50:43 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,31 @@ char	*ft_get_env(t_env *env, char *key)
 		tmp = tmp->next;
 	}
 	return (NULL);
+}
+
+void	env_not_exist(int i, char **key, char **value)
+{
+	if (i == 0)
+	{
+		*key = ft_strdup("PWD");
+		*value = ft_strdup(g_stu.current_pwd);
+		g_stu.current_pwd = *value;
+	}
+	else if (i == 1)
+	{
+		*key = ft_strdup("SHLVL");
+		*value = ft_strdup("1");
+	}
+	else if (i == 2)
+	{
+		*key = ft_strdup("_");
+		*value = ft_strdup("/usr/bin/env");
+	}
+	else if (i == 3)
+	{
+		*key = ft_strdup("PATH");
+		*value = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
+	}
 }
 
 int	ft_check_by_key(t_env *env, char *key)

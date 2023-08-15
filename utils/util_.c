@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 10:48:03 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/16 00:00:16 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,9 @@
 void	ft_help_join(char **s1, char **s2)
 {
 	if (*(s1) == NULL)
-	{
 		*(s1) = ft_strdup("");
-	}
 	if (*(s2) == NULL)
-	{
 		*(s2) = ft_strdup("");
-	}
 }
 
 char	*ft_strjoin(char *s1, char *s2)

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:40:26 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/13 21:47:22 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:47:43 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	free_char_double(char **str)
 	int		i;
 
 	i = 0;
+	if (!str)
+		return ;
 	while (str[i])
 	{
 		free(str[i]);
