@@ -6,11 +6,19 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 18:09:25 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:00:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
+
+void	ptr_is_opr(t_token *ptr, t_env *env, t_token *dolar)
+{
+	if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
+			|| ptr->type == APPND)
+		&& !ft_getenv_node(env, dolar->content))
+		g_stu.flag = 1;
+}
 
 void	ft_expander(t_token *tok, t_env *env)
 {
@@ -20,6 +28,7 @@ void	ft_expander(t_token *tok, t_env *env)
 	t_token			*dolar;
 
 	tmp = tok;
+	res = NULL;
 	while (tmp)
 	{
 		if (tmp->type == VAR)
@@ -34,11 +43,13 @@ void	ft_expander(t_token *tok, t_env *env)
 				res = ft_strjoin(res, ft_expandhelp(tmp->content, env));
 				tmp->content = res;
 			}
-			if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
-					|| ptr->type == APPND)
-				&& !ft_getenv_node(env, dolar->content))
-				g_stu.flag = 1;
+			ptr_is_opr(ptr, env, dolar);
+			// if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
+			// 		|| ptr->type == APPND)
+			// 	&& !ft_getenv_node(env, dolar->content))
+			// 	g_stu.flag = 1;
 		}
 		tmp = tmp->next;
 	}
+	// free(res);
 }

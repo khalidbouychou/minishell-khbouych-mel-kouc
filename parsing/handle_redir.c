@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/09 14:40:57 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:39:14 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,10 @@ int	type_er_env(t_token *tmp)
 			return (0);
 		}
 	}
-	else if (ft_strchr(tmp->content, ' ') != -1)
+	else if (ft_strchr(tmp->content, 32) != -1)
 	{
 		ft_putstr_fd("ambiguous redirect\n", 2);
+		g_stu.ex_stu = 1;
 		return (0);
 	}
 	return (1);
@@ -127,6 +128,7 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 		{
 			*flag = 1;
 			ft_putstr_fd("ambiguous redirect\n", 2);
+			g_stu.ex_stu = 1;
 			return (tmp);
 		}
 		if (!tmp->prev && !tmp->next->next)

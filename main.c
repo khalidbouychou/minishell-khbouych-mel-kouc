@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/15 15:55:38 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:48:06 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,59 +73,59 @@ void	parser_print(t_parse *lst)
 // 	system("leaks minishell");
 // }
 
-void	help_main(char *cmd, t_env **env)
+void    help_main(char *cmd, t_env **env)
 {
-	t_token	*list_tokens;
-	t_parse	*list_parser;
+    t_token    *list_tokens;
+    t_parse    *list_parser;
 
-	list_tokens = NULL;
-	list_parser = NULL;
-	list_tokens = divide(cmd, *env);
-	g_stu.sig = 0;
-	if (list_tokens)
-	{
-		// print(list_tokens);
-		list_parser = parser(list_tokens, *env);
-		// parser_print(list_parser);
-		execute_main(list_parser, env);
-		// printf("\n*********************\n");
-	}
-	g_stu.sig = 1;
+    list_tokens = NULL;
+    list_parser = NULL;
+    list_tokens = divide(cmd, *env);
+    g_stu.sig = 0;
+    if (list_tokens)
+    {
+        // print(list_tokens);
+        list_parser = parser(list_tokens, *env);
+        // parser_print(list_parser);
+        execute_main(list_parser, env);
+        // printf("\n*********************\n");
+    }
+    g_stu.sig = 1;
 }
 
 void  ft_init_variables()
 {
-	g_stu.ex_stu = 0;
-	g_stu.v_q = 0;
-	g_stu.sig = 0;
+    g_stu.ex_stu = 0;
+    g_stu.v_q = 0;
+    g_stu.sig = 0;
 }
-int	main(int argc, char **argv, char **envp)
+int    main(int argc, char **argv, char **envp)
 {
-	char	*cmd;
-	t_env	*env;
+    char    *cmd;
+    t_env    *env;
 
-	// atexit(l);
-	(void)argc;
-	(void)argv;
-	cmd = NULL;
-	env = env_list(envp);
-	ft_init_variables();
-	ft_signals();
-	g_stu.sig = 1;
-	while (1337)
-	{
-		cmd = readline("minishell ~> ");
-		if (!cmd)
-			break ;
-		add_history(cmd);
-		if (cmd)
-			help_main(cmd, &env);
-		else
-		{
-			ft_putendl_fd("exit", 1);
-			break ;
-		}
-		g_stu.sig = 1;
-		free (cmd);
-	}
+    // atexit(l);
+    (void)argc;
+    (void)argv;
+    cmd = NULL;
+    env = env_list(envp);
+    ft_init_variables();
+    ft_signals();
+    g_stu.sig = 1;
+    while (1337)
+    {
+        cmd = readline("minishell ~> ");
+        if (!cmd)
+            break ;
+        add_history(cmd);
+        if (cmd)
+            help_main(cmd, &env);
+        else
+        {
+            ft_putendl_fd("exit", 1);
+            break ;
+        }
+        g_stu.sig = 1;
+        free (cmd);
+    }
 }

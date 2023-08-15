@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/15 16:31:11 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:46:07 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 	pid = fork();
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		while (1)
 		{
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
 			str = readline("> ");
 			if (!str || !ft_strncmp(delim, str, ft_strlen(str)))
 			{
@@ -60,12 +60,11 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 		close(new_p->fd_input);
 		new_p->fd_input = open(new_p->f_name, O_RDONLY | O_TRUNC, 0644);
 		unlink(new_p->f_name);
-		free(new_p->f_name);
 	}
 	else
 	{
-		waitpid(pid, NULL, 0);
 		ft_signals();
+		waitpid(pid, NULL, 0);
 	}
 }
 

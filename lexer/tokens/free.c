@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:40:26 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/07/30 18:29:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:47:43 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,45 @@ void	free_char_double(char **str)
 	int		i;
 
 	i = 0;
+	if (!str)
+		return ;
 	while (str[i])
 	{
 		free(str[i]);
 		i++;
 	}
 	free(str);
+}
+
+void	free_parser_list(t_parse **list)
+{
+	t_parse	*tmp;
+	t_parse	*next;
+
+	tmp = *list;
+	while (tmp)
+	{
+		next = tmp->next;
+		free(tmp->path);
+		// free(tmp->f_name);
+		free_char_double(tmp->arg);
+		free (tmp);
+		tmp = next;
+	}
+	*list = NULL;
+}
+
+void	free_pipe(t_pipe *pipe)
+{
+	t_pipe	*tmp;
+	t_pipe	*next;
+
+	tmp = pipe;
+	while (tmp)
+	{
+		next = tmp->next;
+		free (tmp);
+		tmp = next;
+	}
+	pipe = NULL;
 }

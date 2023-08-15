@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/09 15:00:55 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:44:49 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_help_cd(t_env *home, t_env *pwd)
 		chdir(home->value);
 	if (pwd)
 		pwd->value = getcwd(NULL, 0);
+	return ;
 }
 
 void	ft_help__cd(t_env *home)
@@ -56,7 +57,7 @@ void ft_cd_(char *ret, char*cmd, t_env *env)
 	{
 		ft_putstr_fd("cd: error retrieving current directory : ", 1);
 		ft_putstr_fd("getcwd: cannot access parent directories : ", 1);
-		ft_putstr_fd("No such file or directory\n", 1);
+		ft_putstr_fd("No such file or directory", 1);
 		ft_getenv_node(env, "OLDPWD")->value = ft_strdup(g_stu.current_pwd);
 		if (!ft_strcmp(cmd, "."))
 			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/.");
@@ -91,10 +92,7 @@ void	ft_cd(char **cmd, t_env *env)
 
 	ft_init_env(&home, &pwd, &old, env);
 	if ((!cmd[1]))
-	{
-		ft_help_cd(home, pwd);
-		return ;
-	}
+		ft_help_cd(home, pwd);  
 	else if ((!ft_strcmp(cmd[1], "~")))
 	{
 		ft_help__cd(home);

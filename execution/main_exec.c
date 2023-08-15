@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/09 14:40:06 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:37:34 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void	execute_main(t_parse *list_pars, t_env **env)
 		else if (g_stu.flag == 1)
 			g_stu.flag = 0;
 		else
-			simple_not_built(list_pars, *env, str);
+			simple_not_built(list_pars, str);
 	}
 	else
 		complex_cmd(list_pars, *env, str);
-	// free_char_double(str);
-	// free_char_double(list_pars->arg);
+	free_char_double(str);
+	// free_env_list(*env);
 }

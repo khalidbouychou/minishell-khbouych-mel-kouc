@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:48:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/09 11:51:55 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 08:38:13 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,53 +32,43 @@ void	ft_fok_xok(t_parse *lst)
 		if (access(lst->path, F_OK) == -1)
 		{
 			ft_putstr_fd("No such file or directory\n", 2);
-			g_stu.ex_stu = 127;
-			exit (127);
+			exit (g_stu.ex_stu = 127);
 		}
 		else if (access(lst->path, X_OK) == -1)
 		{
 			ft_putstr_fd("Permission denied\n", 2);
-			g_stu.ex_stu = 126;
-			exit(126);
+			exit(g_stu.ex_stu = 126);
 		}
 		else
 		{
 			ft_putstr_fd("is a directory\n", 2);
-			g_stu.ex_stu = 126;
-			exit(126);
+			exit(g_stu.ex_stu = 126);
 		}
 	}
-	g_stu.ex_stu = 0;
-	exit(0);
-
+	exit (g_stu.ex_stu = 0);
 }
 
 void	fealed_execve(t_parse *list_pars)
 {
 	if (ft_strchr(list_pars->arg[0], '/') != -1)
-		return(ft_fok_xok(list_pars));
+		return (ft_fok_xok(list_pars));
 	else
 	{
 		if (!ft_strcmp(list_pars->arg[0], "")
 			|| access(list_pars->path, F_OK) == -1)
 		{
 			ft_putstr_fd("command not found\n", 2);
-			exit(errno);
+			exit(g_stu.ex_stu = 127);
 		}
-		// else
-		// {
-		// 	printf("hhhhhh\n");
-		// 	g_stu.ex_stu = 0;
-		// }
 	}
-	g_stu.ex_stu = 0;
-	exit(0);
+	exit(g_stu.ex_stu = 0);
 }
 
 char	**list_to_char(t_env *env, char **str)
 {
-	int	i;
-	int	size;
+	int		i;
+	int		size;
+	char	*tmp;
 
 	i = 0;
 	size = 0;
@@ -89,13 +79,17 @@ char	**list_to_char(t_env *env, char **str)
 	while (env)
 	{
 		str[i] = ft_strjoin(env->key, "=");
+		tmp = str[i];
 		if (env->value)
+		{
 			str[i] = ft_strjoin(str[i], env->value);
+			free(tmp);
+		}
 		env = env->next;
 		i++;
 	}
 	str[i] = NULL;
-	free_env_list(env);
+	// free_env_list(env);
 	return (str);
 }
 

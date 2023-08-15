@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/09 14:13:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:37:29 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	ft_pwd(t_parse *tpwd)
 	pw = getcwd(NULL, 0);
 	if (!pw)
 	{
-		ft_putstr_fd(g_stu.current_pwd, tpwd->fd_output);
-		ft_putstr_fd("\n", tpwd->fd_output);
+		ft_putstr_fd(g_stu.current_pwd, 1);
 		g_stu.ex_stu = 1;
 	}
 	else
@@ -29,4 +28,5 @@ void	ft_pwd(t_parse *tpwd)
 		ft_putstr_fd("\n", tpwd->fd_output);
 		g_stu.ex_stu = 0;
 	}
+	free(pw);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 09:48:58 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:05:04 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	check_herdoc_quotes(t_token *lst)
 			while (tmp->type == SPC || tmp->type == _TAB)
 				tmp = tmp->next;
 			if (tmp->next && tmp->next->type != SPC
-				&& tmp->next->type != _TAB && (!ft_strncmp(tmp->content, "''", 3)
+				&& tmp->next->type != _TAB
+				&& (!ft_strncmp(tmp->content, "''", 3)
 					|| !ft_strncmp(tmp->content, "\"\"", 3)))
 				tmp->flag = 1;
 			else if (tmp->content[0] == '\'' || tmp->content[0] == '"')

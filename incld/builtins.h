@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 16:50:34 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:41:52 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ void        ft_env(t_parse *penv, t_env **env);
 void		ft_cd(char **cd, t_env *e);
 t_env		*ft_getenv_node(t_env *env, char *key);
 void        ft_pwd(t_parse *tpwd);
+// void        ft_cd_(t_env **env, char **ret, char *cmd);
 #endif
