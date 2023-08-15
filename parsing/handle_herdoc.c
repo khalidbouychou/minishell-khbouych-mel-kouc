@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/15 17:46:07 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:31:25 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ void	ft_putendl_fd(char *s, int fd)
 	write(fd, "\n", 1);
 }
 
+void handler(int signal) 
+{
+	(void)signal;
+	ft_putstr_fd("\n", 1);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+}
+
 void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 {
 	char	*str;
@@ -40,8 +48,9 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 	pid = fork();
 	if (pid == 0)
 	{
+		
 		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+		// signal(SIGQUIT, SIG_DFL);
 		while (1)
 		{
 			str = readline("> ");
@@ -56,15 +65,22 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 				str = ft_expandhelp(str, env);
 			buffer = ft_strjoin(buffer, str);
 			buffer = ft_strjoin(buffer, "\n");
+
 		}
 		close(new_p->fd_input);
 		new_p->fd_input = open(new_p->f_name, O_RDONLY | O_TRUNC, 0644);
 		unlink(new_p->f_name);
+		g_stu.sig = 1;
+		exit(0);
 	}
 	else
 	{
+		wait(NULL);
+		printf("\033[2J");
+		// system("clear");
 		ft_signals();
-		waitpid(pid, NULL, 0);
+	// signal(SIGQUIT, SIG_DFL);
+	// signal(SIGINT, SIG_DFL);
 	}
 }
 
@@ -74,6 +90,7 @@ void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)
 
 	if (tmp->type == HERDOC)
 	{
+		g_stu.sig = 0;
 		if (!tmp->prev)
 			g_stu.flag = 1;
 		ptr = tmp->next;

@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/15 17:39:43 by khbouych         ###   ########.fr        #
+#    Updated: 2023/08/15 18:49:04 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIB = -L/Users/khbouych/.brew/opt/readline/lib
 INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
-CC = cc  -g
+CC = cc  -g3
 CFLAGS =   -Wall -Wextra -Werror #-fsanitize=address
 #-fsanitize=address
 
