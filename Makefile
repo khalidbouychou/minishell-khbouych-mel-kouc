@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/09 14:40:38 by khbouych         ###   ########.fr        #
+#    Updated: 2023/08/15 16:03:38 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,8 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./execution/complex_cmd.c ./execution/one_pipe.c ./execution/multiple_pipe.c \
 		./execution/signals.c ./utils/ft_utils___.c ./utils/simple_cmd_utils.c ./utils/expand_utils.c
 
-# LIB = -L/Users/khbouych/.brew/opt/readline/lib
-# INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
+LIB = -L/Users/khbouych/.brew/opt/readline/lib
+INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc  -g
@@ -34,8 +34,7 @@ CFLAGS =   -Wall -Wextra -Werror #-fsanitize=address
 #-fsanitize=address
 
 all: $(NAME)
-# ${LIB}
-# ${INCLUDE}
+
 $(NAME) : $(OSRC) 
 	@$(CC) -lreadline  $(CFLAGS) $(OSRC)  ${LIB} -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"

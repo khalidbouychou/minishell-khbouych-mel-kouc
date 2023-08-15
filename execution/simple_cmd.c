@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/09 14:31:44 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/15 16:28:36 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	simple_not_built(t_parse *list_pars, t_env *env, char **str)
 	if (WIFEXITED(status))
 	{
 		g_stu.ex_stu = WEXITSTATUS(status);
-        printf("Child exited with status: %d\n", g_stu.ex_stu);
+        // printf("Child exited with status: %d\n", g_stu.ex_stu);
     } else if (WIFSIGNALED(status))
 	{
         if(WTERMSIG(status) == SIGQUIT)
