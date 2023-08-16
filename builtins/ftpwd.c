@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ftpwd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/15 17:37:29 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:55:14 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	ft_pwd(t_parse *tpwd)
+void	ft_pwd()
 {
 	char	*pw;
 
@@ -24,8 +24,8 @@ void	ft_pwd(t_parse *tpwd)
 	}
 	else
 	{
-		ft_putstr_fd(pw, tpwd->fd_output);
-		ft_putstr_fd("\n", tpwd->fd_output);
+		ft_putstr_fd(pw, 1);
+		ft_putstr_fd("\n", 1);
 		g_stu.ex_stu = 0;
 	}
 	free(pw);

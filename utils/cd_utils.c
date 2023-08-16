@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:30:13 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/16 00:09:13 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:50:43 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,21 +93,21 @@ t_env	*ft_add_env(char *key, char *value)
 	return (new_node);
 }
 
-// void	ft_cd_(t_env **env, char **ret, char *cmd)
-// {
-// 	if (!(*ret))
-// 	{
-// 		ft_putstr_fd("cd: error retrieving current directory: ", 1);
-// 		ft_putstr_fd("getcwd: cannot access parent directories: ", 1);
-// 		ft_putstr_fd("No such file or directory", 1);
-// 		ft_getenv_node((*env), "OLDPWD")->value = ft_strdup(g_stu.current_pwd);
-// 		if (!ft_strcmp(cmd, "."))
-// 			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/.");
-// 		else
-// 			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/..");
-// 		ft_getenv_node((*env), "PWD")->value = ft_strdup(g_stu.current_pwd);
-// 		return ;
-// 	}
-// 	else
-// 		g_stu.current_pwd = (*ret);
-// }
+void	ft_cd_(t_env **env, char **ret, char *cmd)
+{
+	if (!(*ret))
+	{
+		ft_putstr_fd("cd: error retrieving current directory: ", 1);
+		ft_putstr_fd("getcwd: cannot access parent directories: ", 1);
+		ft_putstr_fd("No such file or directory", 1);
+		ft_getenv_node((*env), "OLDPWD")->value = ft_strdup(g_stu.current_pwd);
+		if (!ft_strcmp(cmd, "."))
+			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/.");
+		else
+			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/..");
+		ft_getenv_node((*env), "PWD")->value = ft_strdup(g_stu.current_pwd);
+		return ;
+	}
+	else
+		g_stu.current_pwd = (*ret);
+}

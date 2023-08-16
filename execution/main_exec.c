@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/16 09:54:44 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:51:09 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	cmd_in_built(t_parse *list_pars, t_env **env)
 	else if (!ft_strcmp(tmp->arg[0], "export"))
 		ft_export(tmp->arg, *env, tmp->fd_output);
 	else if (!ft_strcmp(tmp->arg[0], "pwd"))
-		ft_pwd(list_pars);
+		ft_pwd();
 	else if (!ft_strcmp(tmp->arg[0], "exit"))
 		ft_exit(tmp->arg);
 	else if (!ft_strcmp(tmp->arg[0], "unset"))

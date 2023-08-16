@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/16 09:54:37 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/16 22:13:50 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # include <sys/wait.h>
 # include <sys/errno.h>
 # include <sys/stat.h>
- #include <signal.h>
+# include <sys/ioctl.h>
 
 // for exit status and signals
 typedef struct s_glbl

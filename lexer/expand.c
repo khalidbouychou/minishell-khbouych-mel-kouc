@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/16 15:18:58 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/16 00:02:42 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	expand_redir(t_token *tmp, t_env *env)
 {
 	t_token	*dolar;
 	t_token	*ptr;
+
 	if (tmp->type == VAR)
 	{
 		dolar = tmp;

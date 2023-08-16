@@ -421,13 +421,8 @@ minishell(70672,0x10ddefdc0) malloc: *** set a breakpoint in malloc_error_break 
 
     echo  hello > b
     echo  world > b
-                            ls -la 
-                            |
-                        
-                            echo hello
-                            
-                            |
-                            cat a
+
+
     env > a
                  work
 

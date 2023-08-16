@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redir.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/15 17:39:14 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:55:07 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_token	*output_append_function(t_token *tmp, t_parse *new_p)
 			close(new_p->fd_output);
 		new_p->f_name = tmp->next->content;
 		new_p->fd_output = open(new_p->f_name, O_CREAT
-				| O_RDWR | O_APPEND | O_TRUNC, 0644);
+				| O_RDWR | O_APPEND, 0644);
 	}
 	return (tmp);
 }
@@ -138,7 +138,7 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 			if (new_p->fd_input != 0)
 				close(new_p->fd_input);
 			new_p->f_name = tmp->next->content;
-			new_p->fd_input = open(new_p->f_name, O_RDONLY | O_TRUNC, 0644);
+			new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
 		}
 		else if (tmp->type == OUTPUT || tmp->type == APPND)
 			tmp = output_append_function(tmp, new_p);

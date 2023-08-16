@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:40:26 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/16 17:31:49 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:47:43 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	free_parser_list(t_parse **list)
 		next = tmp->next;
 		free(tmp->path);
 		// free(tmp->f_name);
-		// free_char_double(tmp->arg);
+		free_char_double(tmp->arg);
 		free (tmp);
 		tmp = next;
 	}

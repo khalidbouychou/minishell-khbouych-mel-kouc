@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/16 15:29:06 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:59:29 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,24 +132,24 @@ void	substr_expand(char *cnt, t_exp *v, t_env *env)
 	v->e = v->i;
 	sub = ft_substr(cnt, v->s, (v->e - v->s));
 	v->r = ft_strjoin(v->r, ft_v_k(sub, env));
-	// free(sub);
-	// // free(join);
-	// v->s = v->i;
-	// while (cnt[v->i] != '$' && cnt[v->i]
-	// 	&& !ft_isalnum(cnt[v->i]) && cnt[v->i] != '\'')
-	// 	v->i++;
-	// v->e = v->i;
-	// sub = ft_substr(cnt, v->s, (v->e - v->s));
-	// v->r = ft_strjoin(v->r, sub);
-	// free(sub);
-	// // free(join);
-	// v->s = v->i;
-	// while (cnt[v->i] != '$' && cnt[v->i])
-	// 	v->i++;
-	// v->e = v->i;
-	// sub = ft_substr(cnt, v->s, (v->e - v->s));
-	// v->r = ft_strjoin(v->r, sub);
-	// free(sub);
+	free(sub);
+	// free(join);
+	v->s = v->i;
+	while (cnt[v->i] != '$' && cnt[v->i]
+		&& !ft_isalnum(cnt[v->i]) && cnt[v->i] != '\'')
+		v->i++;
+	v->e = v->i;
+	sub = ft_substr(cnt, v->s, (v->e - v->s));
+	v->r = ft_strjoin(v->r, sub);
+	free(sub);
+	// free(join);
+	v->s = v->i;
+	while (cnt[v->i] != '$' && cnt[v->i])
+		v->i++;
+	v->e = v->i;
+	sub = ft_substr(cnt, v->s, (v->e - v->s));
+	v->r = ft_strjoin(v->r, sub);
+	free(sub);
 	// free(join);
 }
 

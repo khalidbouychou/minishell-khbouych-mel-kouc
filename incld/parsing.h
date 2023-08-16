@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/16 17:25:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/12 14:57:34 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int		alloc_arg(t_token *tmp);
 void	init_struct_parce(t_parse *new_p);
 void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok);
 t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag);
-// void	ft_herdoc(t_token *tmp, t_parse *new_p, t_env *env);
-int	ft_herdoc(t_token *tmp, t_parse *new_p, t_env *env);
+void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env);
 void	ft_putstr_fd(char *s, int fd);
 char	*generate_name(void);
 char	*ft_get_path(t_env *env, char *str);

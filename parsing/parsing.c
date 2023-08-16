@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/16 17:24:46 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/16 22:48:45 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,18 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 				|| tmp->type == VAR || tmp->type == SPC))
 		{
 			new_p->arg[++(*i)] = ft_strdup(tmp->content);
+			// printf("new -> |%s|\n", new_p->arg[1]);
 			if (*i == 0)
 				new_p->path = ft_get_path(env, new_p->arg[0]);
+			// printf("new -> %s\n", new_p->path);
 			if (!tmp->next || tmp->next->type == PIPE)
 				break ;
 			tmp = tmp->next;
 		}
+			// printf("after fet_path ->|%s| -> |%p|\n",new_p->path, new_p->arg[0]);
 		if (!tmp->next || (tmp->next && tmp->next->type == PIPE))
 			new_p->arg[++(*i)] = NULL;
-		if (tmp->type == HERDOC)
-		{
-			if (ft_herdoc(tmp, new_p, env) == -1)
-				return;
-		}
+		ft_searsh_herdoc(tmp, new_p, env);
 		if (!tmp || tmp->type == PIPE)
 			break ;
 		tmp = tmp->next;

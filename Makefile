@@ -6,10 +6,9 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/16 17:29:42 by khbouych         ###   ########.fr        #
+#    Updated: 2023/08/16 22:33:52 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 
 NAME = minishell
@@ -31,12 +30,12 @@ LIB = -L/Users/khbouych/.brew/opt/readline/lib
 INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
-CC = cc  -g3
-CFLAGS =   -Wall -Wextra -Werror -g3 -fsanitize=address
-#-fsanitize=address
+CC = cc
+CFLAGS =   -Wall -Wextra -Werror -g #-fsanitize=address
 
 all: $(NAME)
-
+# ${LIB}
+# ${INCLUDE}
 $(NAME) : $(OSRC) 
 	@$(CC) -lreadline  $(CFLAGS) $(OSRC)  ${LIB} -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
@@ -44,6 +43,7 @@ $(NAME) : $(OSRC)
 %.o: %.c ./incld/minishell.h ./incld/builtins.h ./incld/execution.h ./incld/lexer.h ./incld/parsing.h ./incld/token.h
 	@$(CC) $(CFLAGS) -c $< -o $@ ${INCLUDE}
 	@echo "*** {Compaling Files ...} ***"
+
 clean :
 	@rm -rf $(OSRC)
 	@echo "*** {remove objects files ...} ***"
