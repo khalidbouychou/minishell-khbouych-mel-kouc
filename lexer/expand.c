@@ -3,53 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 19:00:01 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:18:58 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	ptr_is_opr(t_token *ptr, t_env *env, t_token *dolar)
+// void	ptr_is_opr(t_token *ptr, t_env *env, t_token *dolar)
+// {
+// 	if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
+// 			|| ptr->type == APPND)
+// 		&& !ft_getenv_node(env, dolar->content))
+// 		g_stu.flag = 1;
+// }
+void	expand_redir(t_token *tmp, t_env *env)
 {
-	if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
-			|| ptr->type == APPND)
-		&& !ft_getenv_node(env, dolar->content))
-		g_stu.flag = 1;
+	t_token	*dolar;
+	t_token	*ptr;
+	if (tmp->type == VAR)
+	{
+		dolar = tmp;
+		ptr = tmp->prev;
+		while (ptr && (ptr->type == SPC || ptr->type == _TAB))
+			ptr = ptr->prev;
+		if ((ptr && (ptr->content[0] != '\0' && ptr->type != HERDOC))
+			|| !ptr)
+			tmp->content = ft_expandhelp(tmp->content, env);
+		if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
+				|| ptr->type == APPND)
+			&& !ft_getenv_node(env, dolar->content))
+			g_stu.flag = 1;
+	}
 }
 
 void	ft_expander(t_token *tok, t_env *env)
 {
-	char			*res;
-	t_token			*tmp;
-	t_token			*ptr;
-	t_token			*dolar;
+	t_token	*tmp;
 
 	tmp = tok;
-	res = NULL;
+	// res = NULL;
 	while (tmp)
 	{
-		if (tmp->type == VAR)
-		{
-			dolar = tmp;
-			ptr = tmp->prev;
-			while (ptr && (ptr->type == SPC || ptr->type == _TAB))
-				ptr = ptr->prev;
-			if ((ptr && (ptr->content[0] != '\0' && ptr->type != HERDOC))
-				|| !ptr)
-			{
-				res = ft_strjoin(res, ft_expandhelp(tmp->content, env));
-				tmp->content = res;
-			}
-			ptr_is_opr(ptr, env, dolar);
-			// if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
-			// 		|| ptr->type == APPND)
-			// 	&& !ft_getenv_node(env, dolar->content))
-			// 	g_stu.flag = 1;
-		}
+		expand_redir(tmp, env);
+		// if (tmp->type == VAR)
+		// {
+		// 	dolar = tmp;
+		// 	ptr = tmp->prev;
+		// 	while (ptr && (ptr->type == SPC || ptr->type == _TAB))
+		// 		ptr = ptr->prev;
+		// 	if ((ptr && (ptr->content[0] != '\0' && ptr->type != HERDOC))
+		// 		|| !ptr)
+		// 		tmp->content = ft_expandhelp(tmp->content, env);
+		// 	// ptr_is_opr(tmp, ptr, env, dolar);
+		// 	if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
+		// 			|| ptr->type == APPND)
+		// 		&& !ft_getenv_node(env, dolar->content))
+		// 		g_stu.flag = 1;
+		// }
 		tmp = tmp->next;
 	}
-	// free(res);
 }

@@ -6,25 +6,31 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 13:33:08 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/14 23:47:20 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	ft_strcpy(char *dest, char *src)
+void	help_lixer_list(char *str, t_token *tmp, t_token *ptr)
 {
-	int	i;
-
-	i = 0;
-	// if (dest == NULL || src == NULL)
-	// 	return NULL;
-	while (src[i])
+	while (ptr)
 	{
-		dest[i] = src[i];
-		i++;
+		if ((!tmp->operator && !ptr->operator))
+		{
+			str = tmp->content;
+			tmp->content = ft_strjoin(tmp->content, ptr->content);
+			tmp->next = ptr->next;
+			if (ptr->next)
+				ptr->next->prev = tmp;
+			free(ptr->content);
+			free(ptr);
+			free(str);
+		}
+		else
+			break ;
+		ptr = tmp->next;
 	}
-	dest[i] = '\0';
 }
 
 int	check_spases(t_token *tmp)

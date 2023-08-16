@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 18:19:21 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/16 00:00:16 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_strdup(char *s1)
 	int		i;
 
 	i = 0;
-	if (!s1)
+	if (s1 == NULL)
 		return (NULL);
 	len = ft_strlen(s1);
 	str = (char *)malloc(sizeof(char) * (len + 1));

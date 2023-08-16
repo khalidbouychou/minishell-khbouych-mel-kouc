@@ -584,4 +584,40 @@ not work
 minishell ~> echo "$'HOME'"
 Segmentation fault: 11
 
+in my minishell
+    minishell ~> echo "$'HOME'"
+    'HOME'
+
+in my bash
+    echo "$'HOME'"
+    $'HOME'
+
 echo $?
+
+
+export sa="effer"
+
+41 leaks for 656 total leaked bytes.
+
+2 leaks for 32 total leaked bytes
+
+
+
+env -i ./minishell
+
+    env
+    
+    1 leak -> "/Users/mel-kouc/Desktop/minishell-khbouych-mel-kouc"
+
+
+
+minishell ~> echo ew$uyg ioh$io ioug
+            ew ewioh ioug
+
+
+
+echo --->    echo $HOME CDSE$CDS cds$des
+
+///////////////////////
+not work
+    cat << a < f   OR   cat << a << b < f

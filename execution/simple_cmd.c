@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/15 17:38:23 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/16 12:32:20 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_fd_exec(t_parse *list_pars)
 	return (i);
 }
 
-int	simple_not_built(t_parse *list_pars, char **str)
+int	 simple_not_built(t_parse *list_pars, char **str)
 {
 	pid_t	id ;
 	int		status;
@@ -51,9 +51,9 @@ int	simple_not_built(t_parse *list_pars, char **str)
 	}
 	else if (id == 0)
 	{
-		check_fd_exec(list_pars);
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
+		check_fd_exec(list_pars);
 		if (execve(list_pars->path, list_pars->arg, str) == -1)
 			fealed_execve(list_pars);
 	}

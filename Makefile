@@ -6,9 +6,10 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/15 18:49:04 by khbouych         ###   ########.fr        #
+#    Updated: 2023/08/16 17:29:42 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 
 NAME = minishell
@@ -31,7 +32,7 @@ INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc  -g3
-CFLAGS =   -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS =   -Wall -Wextra -Werror -g3 -fsanitize=address
 #-fsanitize=address
 
 all: $(NAME)
@@ -43,7 +44,6 @@ $(NAME) : $(OSRC)
 %.o: %.c ./incld/minishell.h ./incld/builtins.h ./incld/execution.h ./incld/lexer.h ./incld/parsing.h ./incld/token.h
 	@$(CC) $(CFLAGS) -c $< -o $@ ${INCLUDE}
 	@echo "*** {Compaling Files ...} ***"
-
 clean :
 	@rm -rf $(OSRC)
 	@echo "*** {remove objects files ...} ***"

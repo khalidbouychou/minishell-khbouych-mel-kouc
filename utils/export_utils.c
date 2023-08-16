@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 09:56:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/02 22:41:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:30:20 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_strcmp(const char *str1, const char *str2)
 {
 	if (!str1 || !str2)
 		return (1);
-	while (*str1 && *str1 == *str2)
+	while (*str1 && *str2 && *str1 == *str2)
 	{
 		str1++;
 		str2++;
