@@ -616,3 +616,34 @@ echo --->    echo $HOME CDSE$CDS cds$des
 ///////////////////////
 not work
     cat << a < f   OR   cat << a << b < f
+
+
+
+////// expander work with 0 leaks
+
+
+minishell ~> echo $HOME$USER
+/Users/mel-koucmel-kouc
+minishell ~> echo $HOME$USER$FERWG
+/Users/mel-koucmel-kouc
+minishell ~> echo $HOME$USERCDESW$FERWG
+/Users/mel-kouc
+minishell ~> echo $HOME"$USER"$FERWG
+/Users/mel-koucmel-kouc
+minishell ~> echo $HOME"$USER"'$USER'$FERWG
+/Users/mel-koucmel-kouc$USER
+minishell ~> echo $HOME"$USER"'/$USER'$FERWG
+/Users/mel-koucmel-kouc/$USER
+
+
+
+echo $?
+echo $HOME$235
+
+
+
+
+lsof -p 64610
+
+
+export a=cluster

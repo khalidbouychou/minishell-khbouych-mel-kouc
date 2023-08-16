@@ -6,12 +6,14 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 23:48:40 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:31:22 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
+# include "../incld/minishell.h"
+# include "../incld/token.h"
 
 typedef struct s_env
 {

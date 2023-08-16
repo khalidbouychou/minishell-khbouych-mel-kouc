@@ -6,11 +6,12 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/15 21:47:56 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:16:38 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
+#include <signal.h>
 
 void	ft_putendl_fd(char *s, int fd)
 {
@@ -41,22 +42,28 @@ void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str)
 	free(tmp);
 	free(str);
 }
+// void	child_herdoc(t_parse *new_p)
+// {
+
+// }
+
 
 // void    write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 // {
-//     char	*str;
-//     char	*delim;
-//     char	*buffer;
+// 	char	*str;
+// 	char	*delim;
+// 	char	*buffer;
 
-//     delim = ptr->content;
-//     buffer = NULL;
-//     new_p->f_name = generate_name();
-//     int pid;
-//     pid = fork();
-//     if (pid == 0)
+// 	delim = ptr->content;
+// 	buffer = NULL;
+// 	new_p->f_name = generate_name();
+// 	int	pid;
+// 	pid = fork();
+// 	if (pid == 0)
 // 	{
 // 		signal(SIGINT, SIG_DFL);
-// 		signal(SIGQUIT, SIG_DFL);
+// 		// signal(SIGQUIT, SIG_DFL);
+// 		// rl_catch_signals = 1;
 // 		while (1)
 // 		{
 // 			str = readline("> ");
@@ -73,12 +80,16 @@ void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str)
 // 		new_p->fd_input = open(new_p->f_name, O_RDONLY | O_TRUNC, 0644);
 // 		unlink(new_p->f_name);
 // 		free(new_p->f_name);
+// 		kill(pid, SIGINT);
 // 	}
 // 	else
 // 	{
-// 		ft_signals();
 // 		waitpid(pid, NULL, 0);
+// 		g_stu.sig = 1;
+// 		ft_signals();
+// 		free(new_p->f_name);
 // 	}
+// 	// rl_catch_signals = 0;
 // }
 
 void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
@@ -116,6 +127,7 @@ void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)
 
 	if (tmp->type == HERDOC)
 	{
+		g_stu.sig = 0;
 		if (!tmp->prev)
 			g_stu.flag = 1;
 		ptr = tmp->next;

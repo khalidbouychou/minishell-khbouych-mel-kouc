@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:37:03 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 09:51:09 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 00:29:49 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_env	*ft_lstnew(char *env)
 		new_node->value = NULL;
 	}
 	new_node->next = NULL;
-	new_node->prev = NULL; 
+	new_node->prev = NULL;
 	return (new_node);
 }
 

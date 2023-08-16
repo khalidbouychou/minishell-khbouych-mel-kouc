@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/13 19:08:34 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 00:21:17 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ int	ft_check_ifkey_valid(t_env *node, int fd)
 
 void	ft_add_to_env(t_env *e, t_env *node)
 {
+	// char	*str;
+
+	// str = node->key;
+	// str = ft_get_key_without_plus(node->key);
+
 	node->key = ft_get_key_without_plus(node->key);
 	ft_lst_addback(&e, node);
 }
@@ -57,24 +62,28 @@ int	ft_help_export(char **export, t_env *env, int fd)
 	t_env	*node;
 
 	i = 1;
+	// node = NULL;
+	// (void)export;
+	(void)env;
+	(void)fd;
 	while (export[i])
 	{
 		node = ft_lstnew(export[i++]);
-		if (ft_check_ifkey_valid(node, fd))
-		{
-			if (node->key[ft_strlen(node->key) - 1] == '+'
-				&& ft_if_key_exist(env, node))
-				ft_join_value(env, node);
-			else if (ft_if_key_exist(env, node))
-				ft_getadress_node(env, node)->value = node->value;
-			else
-				ft_add_to_env(env, node);
-		}
-		else
-		{
-			ft_exit_output("", 1, false);
-			return (g_stu.ex_stu = 1);
-		}
+		// if (ft_check_ifkey_valid(node, fd))
+		// {
+		// 	if (node->key[ft_strlen(node->key) - 1] == '+'
+		// 		&& ft_if_key_exist(env, node))
+		// 		ft_join_value(env, node);
+		// 	else if (ft_if_key_exist(env, node))
+		// 		ft_getadress_node(env, node)->value = node->value;
+		// 	else
+		// 		ft_add_to_env(env, node);
+		// }
+		// else
+		// {
+		// 	ft_exit_output("", 1, false);
+		// 	return (g_stu.ex_stu = 1);
+		// }
 	}
 	return (g_stu.ex_stu = 0);
 }

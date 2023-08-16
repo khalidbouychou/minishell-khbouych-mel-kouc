@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/15 16:09:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:30:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../incld/lexer.h"
-# include "../incld/parsing.h"
 # include "../incld/token.h"
+# include "../incld/parsing.h"
 # include "../incld/builtins.h"
 # include "../incld/execution.h"
 # include <sys/wait.h>

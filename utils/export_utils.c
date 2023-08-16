@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 09:56:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/02 22:41:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/16 23:34:08 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,15 @@ void	ft_print_after_sort(t_env *ee)
 
 char	*ft_get_key_without_plus(char *key)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
 	while (key[i] && key[i] != '+')
 		i++;
-	return (ft_substr(key, 0, i));
+	str = ft_substr(key, 0, i);
+	return (str);
+	// return (ft_substr(key, 0, i));
 }
 
 char	*ft_get_old_value(t_env *e, char *key)

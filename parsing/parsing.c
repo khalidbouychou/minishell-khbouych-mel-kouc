@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 18:47:35 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:53:36 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 		while (tmp && tmp->type != PIPE && (tmp->type == WORD
 				|| tmp->type == VAR || tmp->type == SPC))
 		{
-			new_p->arg[++(*i)] = ft_strdup(tmp->content);
+			if (tmp->content && *tmp->content)
+				new_p->arg[++(*i)] = ft_strdup(tmp->content);
 			// printf("new -> |%s|\n", new_p->arg[1]);
 			if (*i == 0)
 				new_p->path = ft_get_path(env, new_p->arg[0]);

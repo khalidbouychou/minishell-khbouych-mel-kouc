@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 18:19:21 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:08:17 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	ft_help_join(&s1, &s2);
 	// add this code /////////
-	// if (!s1 || !s2)
+	if (!s1 || !s2)
+		puts("456 464");
 	// 	return (NULL);
 	//////////////
 	res_joined = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));

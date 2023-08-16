@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 18:49:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:40:17 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_get_path(t_env *env, char *str)
 	if (ft_strchr(str, '/') == -1)
 		return (ft_check_if_cmd_valid(ft_split(p, ':'), str));
 	else
-		return (str);
+		return (ft_strdup(str));
 }
 
 void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok)
