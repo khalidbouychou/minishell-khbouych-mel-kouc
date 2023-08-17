@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/12 15:05:04 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:53:24 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ void	check_herdoc_quotes(t_token *lst)
 				tmp = tmp->next;
 			if (tmp->next && tmp->next->type != SPC
 				&& tmp->next->type != _TAB
-				&& (!ft_strncmp(tmp->content, "''", 3)
-					|| !ft_strncmp(tmp->content, "\"\"", 3)))
+				&& (!ft_strcmp(tmp->content, "''")
+					|| !ft_strcmp(tmp->content, "\"\"")))
 				tmp->flag = 1;
 			else if (tmp->content[0] == '\'' || tmp->content[0] == '"')
 				tmp->flag = 1;
-			else if (tmp->next && (!ft_strncmp(tmp->next->content, "''", 3)
-					|| !ft_strncmp(tmp->next->content, "\"\"", 3)))
+			else if (tmp->next && (!ft_strcmp(tmp->next->content, "''")
+					|| !ft_strcmp(tmp->next->content, "\"\"")))
 				tmp->flag = 1;
 		}
 		tmp = tmp->next;

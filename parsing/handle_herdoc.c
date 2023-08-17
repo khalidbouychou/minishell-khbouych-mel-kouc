@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 11:57:39 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:14:44 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,43 +43,17 @@ void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str)
 	free(str);
 }
 
-
-int	ft_even_keyboard(void)
-{
-	return (0);
-}
-void	ftherdoc_signal(void (*f))
-{
-	signal(SIGINT, ft_herdoc_signal);
-	rl_event_hook = f;
-}
-
-void ft_unlink_close_free(t_parse *new_p)
-{
-	close(new_p->fd_input);
-	unlink(new_p->f_name);
-	free(new_p->f_name);
-}
-
-void	ft_init_var_herdoc(t_parse **new_p, char **buffer, char **delim, char *content_delim)
-{
-	ftherdoc_signal(&ft_even_keyboard);
-	(*delim) = content_delim;
-	(*buffer) = NULL;
-	(*new_p)->f_name = generate_name();
-	(*new_p)->fd_input = open((*new_p)->f_name, O_RDWR | O_CREAT | O_TRUNC, 777);
-}
 void    write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 {
     char	*str;
     char	*delim;
     char	*buffer;
 
-	ft_init_var_herdoc(&new_p, &buffer, &delim, ptr->content);
+	ft_init_herdoc(&new_p, &buffer, &delim, ptr->content);
 	while (1)
 	{
-		str = readline("> ");
-		if (!str || !ft_strncmp(delim, str, ft_strlen(str)))
+		str = readline("herdoc : ");
+		if (!str || !ft_strcmp(delim, str))
 		{
 			if (buffer)
 				write(new_p->fd_input, buffer, ft_strlen(buffer));
@@ -92,11 +66,8 @@ void    write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 			break ;
 		}
 	}
-	close(new_p->fd_input);
-	unlink(new_p->f_name);
-	free(new_p->f_name);
-	// ft_unlink_close_free(new_p);
-	new_p->fd_input = open(new_p->f_name, O_RDONLY | O_TRUNC , 0777);
+	ft_unlink_close_free((&new_p));
+	new_p->fd_input = open(new_p->f_name, O_RDONLY | O_TRUNC, 0777);
 	return ;
 }
 

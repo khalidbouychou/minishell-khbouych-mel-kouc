@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/12 14:57:34 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:54:10 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,9 @@ char	*generate_name(void);
 char	*ft_get_path(t_env *env, char *str);
 void	add_if_not_found(t_env **head, int i);
 char	*ft_expandhelp(char *cnt, t_env *env);
+/*************herdoc*************/
+void	ft_init_herdoc(t_parse **new_p, char **buf, char **del, char *cnt_d);
+void	ft_unlink_close_free(t_parse **new_p);
+void	ft_herdoc_signal(int sig);
+void	ftherdoc_signal(void (*f));
 #endif

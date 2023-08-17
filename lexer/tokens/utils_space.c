@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/13 22:18:44 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:00:02 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	util_between_oper(t_token *tmp, t_token	*right_op, t_token	*left_op)
 		left_op = tmp->prev;
 		if (left_op)
 		{
-			while (!ft_strncmp(left_op->content, " ", 2)
-				|| !ft_strncmp(left_op->content, "	", 2))
+			while (!ft_strcmp(left_op->content, " ")
+				|| !ft_strcmp(left_op->content, "	"))
 			{
 				left_op->prev->next = tmp;
 				tmp->prev = left_op->prev;
@@ -90,7 +90,7 @@ void	space_after_cmd(t_token **lst)
 t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space, int *flag)
 {
 	ft_tolower(tmp->content);
-	if (!ft_strncmp(tmp->content, "echo", 5))
+	if (!ft_strcmp(tmp->content, "echo"))
 	{
 		ptr = echo_and_n(ptr, space);
 		*flag = 1;

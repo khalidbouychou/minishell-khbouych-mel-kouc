@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 09:48:48 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:58:12 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ int	check_pipe(t_token	*list_tokens)
 	t_token	*tmp;
 
 	tmp = list_tokens;
-	if (!ft_strncmp((*tmp).content, "|", 2))
+	if (!ft_strcmp((*tmp).content, "|"))
 		return (0);
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->content, "|", 2))
+		if (!ft_strcmp(tmp->content, "|"))
 		{
-			if (tmp->next == NULL || !ft_strncmp(tmp->next->content, "|", 1))
+			if (tmp->next == NULL || !ft_strcmp(tmp->next->content, "|"))
 				return (0);
-			while (!ft_strncmp(tmp->next->content, " ", 2)
-				|| !ft_strncmp(tmp->next->content, "	", 2))
+			while (!ft_strcmp(tmp->next->content, " ")
+				|| !ft_strcmp(tmp->next->content, "	"))
 			{
 				tmp = tmp->next;
-				if (!ft_strncmp(tmp->next->content, "|", 2))
+				if (!ft_strcmp(tmp->next->content, "|"))
 					return (0);
 			}
 		}
@@ -77,8 +77,8 @@ int	oper_in_end(t_token	*list_tokens)
 		{
 			if (tmp->next == NULL)
 				return (0);
-			else if (!ft_strncmp(tmp->next->content, " ", 2)
-				|| !ft_strncmp(tmp->next->content, "	", 2))
+			else if (!ft_strcmp(tmp->next->content, " ")
+				|| !ft_strcmp(tmp->next->content, "	"))
 			{
 				if (!check_spases(tmp->next))
 					return (0);
@@ -99,8 +99,8 @@ int	util_successive_oper(t_token *tmp)
 	else if (tmp->operator == 1 && tmp->type != SPC && tmp->type != PIPE
 		&& tmp->type != _TAB)
 	{
-		while (!ft_strncmp(tmp->next->content, " ", 2)
-			|| !ft_strncmp(tmp->next->content, "	", 2))
+		while (!ft_strcmp(tmp->next->content, " ")
+			|| !ft_strcmp(tmp->next->content, "	"))
 		{
 			tmp = tmp->next;
 			if (tmp->next->operator == 1 && tmp->next->type != SPC

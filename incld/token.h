@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 23:48:40 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:56:45 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_token
 }t_token;
 
 /************************************************************/
-int		ft_strncmp(const char *str1, const char *str2, int n);
 void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok);
 int		ft_qoutes(char *cmd, int *i, int init);
 int		ft_word(char *cmd, int *i, int init);

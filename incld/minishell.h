@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 11:54:42 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:35:45 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef struct s_glbl
 	char	*current_pwd;
 	int		flag;
 	int		v_q;
-	int is_p;
+	bool		is_p;
+	bool		inside_m;
 }	t_glbl;
 
 t_glbl	g_v;
@@ -62,5 +63,5 @@ void	ft_putendl_fd(char *s, int fd);
 void	print(t_token *lst);
 void	free_parser_list(t_parse **list);
 void	env_not_exist(int i, char **key, char **value);
-
+int		ft_strcmp(const char *str1, const char *str2);
 #endif

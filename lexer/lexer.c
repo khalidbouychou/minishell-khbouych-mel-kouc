@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:22:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/14 23:47:20 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:57:31 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	help_lixer_list(char *str, t_token *tmp, t_token *ptr)
 
 int	check_spases(t_token *tmp)
 {
-	while (!ft_strncmp(tmp->content, " ", 2)
-		|| !ft_strncmp(tmp->content, "	", 2))
+	while (!ft_strcmp(tmp->content, " ")
+		|| !ft_strcmp(tmp->content, "	"))
 	{
 		tmp = tmp->next;
 		if (tmp == NULL)
@@ -63,7 +63,7 @@ void	add_node_space(t_token *ptr)
 	{
 		next_ptr = ptr->next;
 		if (next_ptr->next && next_ptr->type == FIL
-			&& ft_strncmp(ptr->prev->content, "echo", 5)
+			&& ft_strcmp(ptr->prev->content, "echo")
 			&& (next_ptr->next->type == VAR || next_ptr->next->type == WORD))
 		{
 			new = ft_init_token(" ", 0, 1);

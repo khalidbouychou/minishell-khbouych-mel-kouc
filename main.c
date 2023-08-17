@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/17 15:27:49 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,52 @@ void    help_main(char *cmd, t_env **env)
 	g_v.sig = 1;
 }
 
+// int	shlvl_env(void)
+// {
+// 	char	*value;
+
+// 	value = get_env("SHLVL");
+// 	if (value)
+// 	{
+// 		value = ft_itoa(ft_atoi(value) + 1);
+// 		if (!value || set_env("SHLVL", value))
+// 			return (free(value), -1);
+// 		free(value);
+// 	}
+// 	else
+// 		if (set_env("SHLVL", "1"))
+// 			return (-1);
+// 	return (0);
+// }
+
+// void ft_shlvl_variable(t_env **env)
+// {
+// 	char	*shl_value;
+	
+// 	shl_value = ft_get_env(env, "SHLVL");
+// 	if (!shl_value)
+// 	{
+// 		ft_add_env(env, "SHLVL", "1");
+// 	}
+// 	if (value)
+// 	{
+// 		value = ft_itoa(ft_atoi(value) + 1);
+// 		if (!value || set_env("SHLVL", value))
+// 			return (free(value), -1);
+// 		free(value);
+// 	}
+// 	else
+// 		if (set_env("SHLVL", "1"))
+// 			return (-1);
+// }
+
 void  ft_init_variables()
 {
     g_v.ex_stu = 0;
     g_v.v_q = 0;
 	g_v.flag = 0;
+	g_v.inside_m = 0;
+	// ft_shlvl_variable();
 }
 int    main(int argc, char **argv, char **envp)
 {
@@ -120,7 +161,11 @@ int    main(int argc, char **argv, char **envp)
 		cmd = readline("minishell ~> ");
 		add_history(cmd);
 		if (cmd)
+		{
+			if(!ft_strcmp(cmd, "./minishell"))
+				g_v.inside_m = 1;
 			help_main(cmd, &env);
+		}
 		else
 		{
 			write(1, "exit\n", 6);

@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 10:49:58 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:32:09 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 int			ft_isalpha(int c);
 int			ft_isalnum(int c);
-int			ft_strcmp(const char *str1, const char *str2);
+
 void		ft_sort_keys(t_env *e);
 void		ft_print_after_sort(t_env *e);
 char		*ft_get_key_without_plus(char *key);
@@ -50,5 +50,5 @@ void		ft_pwd(void);
 void        ft_cd_(t_env **env, char **ret, char *cmd);
 
 /*********herdoc***************/
-void	    ft_herdoc_signal(int sig);
+
 #endif

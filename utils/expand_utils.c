@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/15 23:59:29 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:59:20 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_v_k(char *key, t_env *env)
 {
 	while (env)
 	{
-		if (ft_strncmp(key, env->key, ft_strlen(env->key)) == 0)
+		if (ft_strcmp(key, env->key) == 0)
 			return (env->value);
 		env = env->next;
 	}
