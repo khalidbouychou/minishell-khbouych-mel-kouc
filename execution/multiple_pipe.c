@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multiple_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/14 08:37:16 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
 		{
 			lst_p->fd_output = 1;
 			cmd_in_built(lst_p, &env);
-			exit(g_stu.ex_stu);
+			exit(g_v.ex_stu);
 		}
 		else if (execve(lst_p->path, lst_p->arg, str) == -1)
 		{
 			fealed_execve(lst_p);
-			exit(g_stu.ex_stu);
+			exit(g_v.ex_stu);
 		}
 	}
 	else
@@ -100,9 +100,9 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 	i = 0;
 	while (i <= (size - 1))
 	{
-		// pid_t child_pid = waitpid(-1, &g_stu.ex_stu, 0);
-		waitpid(-1, &g_stu.ex_stu, 0);
-        // printf("GLOBAL = %d\n", g_stu.ex_stu);
+		// pid_t child_pid = waitpid(-1, &g_v.ex_stu, 0);
+		waitpid(-1, &g_v.ex_stu, 0);
+        // printf("GLOBAL = %d\n", g_v.ex_stu);
 		// if (child_pid > 0)
 		// {
         //     if (WIFEXITED(status))

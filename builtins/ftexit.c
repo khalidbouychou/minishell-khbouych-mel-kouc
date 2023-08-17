@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:45 by khbouych          #+#    #+#             */
-/*   Updated: 2023/07/30 18:34:28 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	ft_exit_output(char *msg, int exit_status, bool _bool)
 {
 	printf("%s", msg);
 	if (_bool)
-		exit(g_stu.ex_stu = exit_status);
+		exit(g_v.ex_stu = exit_status);
 	else
-		g_stu.ex_stu = exit_status;
+		g_v.ex_stu = exit_status;
 }
 
 void	ft_exit(char **arg)

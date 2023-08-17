@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/15 23:51:09 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	cmd_in_built(t_parse *list_pars, t_env **env)
 
 	tmp = list_pars;
 	ft_tolower(*tmp->arg);
-	if (tmp->fd_input == -1 || tmp->fd_output == -1 || g_stu.flag == 1)
-		g_stu.flag = 0;
+	if (tmp->fd_input == -1 || tmp->fd_output == -1 || g_v.flag == 1)
+		g_v.flag = 0;
 	else if (!ft_strcmp(tmp->arg[0], "echo"))
 		ft_echo(tmp->arg, tmp->fd_output);
 	else if (!ft_strcmp(tmp->arg[0], "env"))
@@ -49,8 +49,8 @@ void	execute_main(t_parse *list_pars, t_env **env)
 			cmd_in_built(list_pars, env);
 			close_fd(list_pars);
 		}
-		else if (g_stu.flag == 1)
-			g_stu.flag = 0;
+		else if (g_v.flag == 1)
+			g_v.flag = 0;
 		else
 			simple_not_built(list_pars, str);
 	}

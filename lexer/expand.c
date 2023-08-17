@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/16 00:02:42 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // 	if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
 // 			|| ptr->type == APPND)
 // 		&& !ft_getenv_node(env, dolar->content))
-// 		g_stu.flag = 1;
+// 		g_v.flag = 1;
 // }
 void	expand_redir(t_token *tmp, t_env *env)
 {
@@ -36,7 +36,7 @@ void	expand_redir(t_token *tmp, t_env *env)
 		if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
 				|| ptr->type == APPND)
 			&& !ft_getenv_node(env, dolar->content))
-			g_stu.flag = 1;
+			g_v.flag = 1;
 	}
 }
 
@@ -62,7 +62,7 @@ void	ft_expander(t_token *tok, t_env *env)
 		// 	if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
 		// 			|| ptr->type == APPND)
 		// 		&& !ft_getenv_node(env, dolar->content))
-		// 		g_stu.flag = 1;
+		// 		g_v.flag = 1;
 		// }
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/11 16:39:38 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_help_cd(t_env *home, t_env *pwd)
 	if (!home)
 	{
 		ft_putstr_fd("cd: HOME not set\n", 2);
-		g_stu.ex_stu = 1;
+		g_v.ex_stu = 1;
 	}
 	else
 		chdir(home->value);
@@ -47,7 +47,7 @@ void	ft_help__cd(t_env *home)
 		chdir("/Users/khbouych");
 	else
 		chdir(home->value);
-	g_stu.ex_stu = 0;
+	g_v.ex_stu = 0;
 }
 
 void	ft_cd(char **cmd, t_env *env)
@@ -67,7 +67,7 @@ void	ft_cd(char **cmd, t_env *env)
 	}
 	if (chdir(cmd[1]) == -1)
 	{
-		g_stu.ex_stu = 1;
+		g_v.ex_stu = 1;
 		ft_putstr_fd("No such file or directory \n", 2);
 		return ;
 	}
@@ -76,5 +76,5 @@ void	ft_cd(char **cmd, t_env *env)
 			pwd->value = getcwd(NULL, 0);
 	ret = getcwd(NULL, 0);
 	ft_cd_(&env, &ret, cmd[1]);
-	g_stu.ex_stu = 0;
+	g_v.ex_stu = 0;
 }

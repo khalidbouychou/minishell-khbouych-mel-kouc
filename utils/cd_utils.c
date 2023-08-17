@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:30:13 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/15 23:50:43 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	env_not_exist(int i, char **key, char **value)
 	if (i == 0)
 	{
 		*key = ft_strdup("PWD");
-		*value = ft_strdup(g_stu.current_pwd);
-		g_stu.current_pwd = *value;
+		*value = ft_strdup(g_v.current_pwd);
+		g_v.current_pwd = *value;
 	}
 	else if (i == 1)
 	{
@@ -100,14 +100,14 @@ void	ft_cd_(t_env **env, char **ret, char *cmd)
 		ft_putstr_fd("cd: error retrieving current directory: ", 1);
 		ft_putstr_fd("getcwd: cannot access parent directories: ", 1);
 		ft_putstr_fd("No such file or directory", 1);
-		ft_getenv_node((*env), "OLDPWD")->value = ft_strdup(g_stu.current_pwd);
+		ft_getenv_node((*env), "OLDPWD")->value = ft_strdup(g_v.current_pwd);
 		if (!ft_strcmp(cmd, "."))
-			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/.");
+			g_v.current_pwd = ft_strjoin(g_v.current_pwd, "/.");
 		else
-			g_stu.current_pwd = ft_strjoin(g_stu.current_pwd, "/..");
-		ft_getenv_node((*env), "PWD")->value = ft_strdup(g_stu.current_pwd);
+			g_v.current_pwd = ft_strjoin(g_v.current_pwd, "/..");
+		ft_getenv_node((*env), "PWD")->value = ft_strdup(g_v.current_pwd);
 		return ;
 	}
 	else
-		g_stu.current_pwd = (*ret);
+		g_v.current_pwd = (*ret);
 }

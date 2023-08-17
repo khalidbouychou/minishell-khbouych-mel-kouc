@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/16 22:43:18 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void    help_main(char *cmd, t_env **env)
 	list_tokens = NULL;
 	list_parser = NULL;
 	list_tokens = divide(cmd, *env);
-	// g_stu.sig = 0;
+	// g_v.sig = 0;
 	if (list_tokens)
 	{
 		// print(list_tokens);
@@ -92,16 +92,14 @@ void    help_main(char *cmd, t_env **env)
 	}
 	free_token_list(&list_tokens);
 	free_parser_list(&list_parser);
-	g_stu.sig = 1;
+	g_v.sig = 1;
 }
 
 void  ft_init_variables()
 {
-    g_stu.ex_stu = 0;
-    g_stu.v_q = 0;
-    g_stu.sig = 0;
-	// add
-	g_stu.flag = 0;
+    g_v.ex_stu = 0;
+    g_v.v_q = 0;
+	g_v.flag = 0;
 }
 int    main(int argc, char **argv, char **envp)
 {
@@ -115,21 +113,19 @@ int    main(int argc, char **argv, char **envp)
 	env = env_list(envp);
 	ft_init_variables();
 	ft_signals();
-	g_stu.sig = 1;
-	while (1337)
+	g_v.sig = 1;
+	rl_catch_signals = 0;
+	while (1997)
 	{
 		cmd = readline("minishell ~> ");
-		if (!cmd)
-			break ;
 		add_history(cmd);
 		if (cmd)
 			help_main(cmd, &env);
 		else
 		{
-			ft_putendl_fd("exit", 1);
+			write(1, "exit\n", 6);
 			break ;
 		}
-		g_stu.sig = 1;
 		free (cmd);
 	}
 }
@@ -145,7 +141,7 @@ int    main(int argc, char **argv, char **envp)
 // 	cmd = NULL;
 // 	env = env_list(envp);
 // 	ft_init_variables();
-// 	g_stu.sig = 1;
+// 	g_v.sig = 1;
 // 	ft_signals();
 // 	while (1)
 // 	{
@@ -160,7 +156,7 @@ int    main(int argc, char **argv, char **envp)
 // 			ft_putendl_fd("exit", 1);
 // 			break ;
 // 		}
-// 		g_stu.sig = 1;
+// 		g_v.sig = 1;
 // 		free (cmd);
 // 	}
 // }
@@ -190,10 +186,10 @@ int    main(int argc, char **argv, char **envp)
 
 // void  ft_init_variables()
 // {
-// 	g_stu.ex_stu = 0;
-// 	g_stu.v_q = 0;
-// 	g_stu.sig = 0;
-// 	g_stu.is_p = 0;
+// 	g_v.ex_stu = 0;
+// 	g_v.v_q = 0;
+// 	g_v.sig = 0;
+// 	g_v.is_p = 0;
 // }
 
 // int	main(int argc, char **argv, char **envp)
@@ -207,7 +203,7 @@ int    main(int argc, char **argv, char **envp)
 // 	cmd = NULL;
 // 	env = env_list(envp);
 // 	ft_init_variables();
-// 	g_stu.sig = 1;
+// 	g_v.sig = 1;
 // 	ft_signals();
 // 	while (1)
 // 	{
@@ -224,5 +220,5 @@ int    main(int argc, char **argv, char **envp)
 // 		}
 // 		free (cmd);
 // 	}
-// 	g_stu.sig = 1;
+// 	g_v.sig = 1;
 // }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:37:03 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/08 09:51:09 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ t_env	*add_env(char *key, char *value)
 // 		if (i == 0)
 // 		{
 // 			key = ft_strdup("PWD");
-// 			value = ft_strdup(g_stu.current_pwd);
-// 			g_stu.current_pwd = value;
+// 			value = ft_strdup(g_v.current_pwd);
+// 			g_v.current_pwd = value;
 // 		}
 // 		else if (i == 1)
 // 		{
@@ -116,7 +116,7 @@ t_env	*add_env(char *key, char *value)
 // 	head = NULL;
 // 	i = -1;
 // 	head = NULL;
-// 	g_stu.current_pwd = getcwd(NULL, 0);
+// 	g_v.current_pwd = getcwd(NULL, 0);
 // 	if (*env == NULL)
 // 		add_if_not_found(&head, i);
 // 	else

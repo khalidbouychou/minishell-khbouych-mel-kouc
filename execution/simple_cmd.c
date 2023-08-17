@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/12 11:50:53 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	simple_not_built(t_parse *list_pars, char **str)
 	if (id == -1)
 	{
 		perror("open");
-		exit(g_stu.ex_stu = 1);
+		exit(g_v.ex_stu = 1);
 	}
 	else if (id == 0)
 	{
@@ -60,7 +60,7 @@ int	simple_not_built(t_parse *list_pars, char **str)
 	close_fd(list_pars);
 	waitpid(id, &status, 0);
 	if (WIFEXITED(status))
-		g_stu.ex_stu = WEXITSTATUS(status);
+		g_v.ex_stu = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
 		if (WTERMSIG(status) == SIGQUIT)
 			ft_putendl_fd("Quit: 3", 2);

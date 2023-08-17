@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/10 21:57:22 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/17 10:49:58 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,7 @@ void		ft_cd(char **cd, t_env *e);
 t_env		*ft_getenv_node(t_env *env, char *key);
 void		ft_pwd(void);
 void        ft_cd_(t_env **env, char **ret, char *cmd);
+
+/*********herdoc***************/
+void	    ft_herdoc_signal(int sig);
 #endif
