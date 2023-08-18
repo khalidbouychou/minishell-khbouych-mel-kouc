@@ -682,3 +682,11 @@ done        cat b | ls < c
 
         ls < a | ls < a | cat b | echo hello
 
+
+
+        minishell ~> ls < a | ls < a | cat b
+test
+Makefile        builtins        incld           main.o          parsing
+a               correction.pdf  lexer           minishell       todo
+b               execution       main.c          minishell.tldr  utils
+
