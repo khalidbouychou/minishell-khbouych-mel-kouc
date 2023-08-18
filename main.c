@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 15:27:49 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 03:26:57 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void    help_main(char *cmd, t_env **env)
 void  ft_init_variables()
 {
     g_v.ex_stu = 0;
-    g_v.v_q = 0;
+    g_v.catch_cntrl = 0;
 	g_v.flag = 0;
 	g_v.inside_m = 0;
 	// ft_shlvl_variable();
@@ -232,7 +232,7 @@ int    main(int argc, char **argv, char **envp)
 // void  ft_init_variables()
 // {
 // 	g_v.ex_stu = 0;
-// 	g_v.v_q = 0;
+// 	g_v.catch_cntrl = 0;
 // 	g_v.sig = 0;
 // 	g_v.is_p = 0;
 // }

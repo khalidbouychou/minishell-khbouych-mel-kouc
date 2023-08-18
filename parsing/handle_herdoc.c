@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 17:14:44 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 03:31:52 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void    write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 			break;
 		}
 		fill_buffer(&ptr, &env, &buffer, str);
-		if (g_v.sig == -1 || new_p->fd_input == -1)
+		if ((g_v.catch_cntrl == true && g_v.sig == -1) || new_p->fd_input == -1)
 		{
 			break ;
 		}
@@ -79,6 +79,7 @@ void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)
 	if (tmp->type == HERDOC)
 	{
 		g_v.sig = 0;
+		g_v.catch_cntrl = false;
 		if (!tmp->prev)
 			g_v.flag = 1;
 		ptr = tmp->next;

@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 17:52:49 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 03:33:43 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_herdoc_signal(int sig)
 {
 	if (sig == SIGINT)
 	{
+		g_v.catch_cntrl = true;
 		g_v.sig = -1;
 		g_v.ex_stu = 1;
 		rl_done = 1;
