@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/12 14:14:52 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:57:00 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 		close(fd[1]);
 		if (check_fd_exec(lst_p) != 1 && check_fd_exec(lst_p) != 3)
 			dup2(fd[0], STDIN_FILENO);
+		if (lst_p->fd_output == 1 && lst_p->fd_input == -1)
+			dup2(fd[0], STDOUT_FILENO);
 		close(fd[0]);
 		if (compare_cmd(lst_p))
 		{
+			// printf("hhhh");
 			lst_p->fd_output = 1;
 			cmd_in_built(lst_p, &env);
 			exit(g_stu.ex_stu);
@@ -47,6 +50,8 @@ int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 	{
 		close(fd[0]);
 		if (check_fd_exec(lst_p) == 0)
+			dup2(fd[1], STDOUT_FILENO);
+		if (lst_p->fd_output == 1)
 			dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
 		if (compare_cmd(lst_p))

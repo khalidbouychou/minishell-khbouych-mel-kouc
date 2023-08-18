@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 18:13:59 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:46:36 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	parser_print(t_parse *lst)
 	}
 }
 
-void	l()
-{
-	system("leaks minishell");
-}
+// void	l()
+// {
+// 	system("leaks minishell");
+// }
 
 void    help_main(char *cmd, t_env **env)
 {
@@ -96,12 +96,11 @@ void    help_main(char *cmd, t_env **env)
 	g_stu.sig = 1;
 }
 
-void  ft_init_variables()
+void	ft_init_variables()
 {
-    g_stu.ex_stu = 0;
-    g_stu.v_q = 0;
-    g_stu.sig = 0;
-	// add
+	g_stu.ex_stu = 0;
+	g_stu.v_q = 0;
+	g_stu.sig = 0;
 	g_stu.flag = 0;
 }
 int    main(int argc, char **argv, char **envp)

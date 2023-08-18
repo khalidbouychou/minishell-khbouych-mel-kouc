@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 21:13:07 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:46:44 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	check_fd_exec(t_parse *list_pars)
 
 	i = 0;
 	j = 0;
-	if (list_pars->fd_input != 0)
+	if (list_pars->fd_input != 0 && list_pars->fd_input != -1)
 	{
 		dup2(list_pars->fd_input, STDIN_FILENO);
 		close(list_pars->fd_input);
 		j++;
 		i = 1;
 	}
-	if (list_pars->fd_output != 1)
+	if (list_pars->fd_output != 1 && list_pars->fd_output != -1)
 	{
 		j = j + 2;
 		dup2(list_pars->fd_output, STDOUT_FILENO);

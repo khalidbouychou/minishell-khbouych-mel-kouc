@@ -1,0 +1,20 @@
+fd = 2
+Makefile
+a
+b
+builtins
+correction.pdf
+execution
+fd_output
+incld
+lexer
+m
+main.c
+main.o
+minishell
+minishell.tldr
+parsing
+todo
+utils
+x
+z
