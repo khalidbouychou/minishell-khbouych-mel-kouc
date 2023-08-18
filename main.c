@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 15:27:49 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:02:18 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,6 @@ void	parser_print(t_parse *lst)
 	}
 }
 
-// void	l()
-// {
-// 	system("leaks minishell");
-// }
-
 void    help_main(char *cmd, t_env **env)
 {
 	t_token		*list_tokens;
@@ -121,6 +116,14 @@ void    help_main(char *cmd, t_env **env)
 // 	if (!shl_value)
 // 	{
 // 		ft_add_env(env, "SHLVL", "1");
+// 			return ;
+// 	}
+// 	else 
+// 	{
+// 		shl_value = ft_itoa(ft_atoi(shl_value) + 1);
+// 		ft_add_env(env, "SHLVL", shl_value);
+// 		free(shl_value);
+// 		return ;
 // 	}
 // 	if (value)
 // 	{
