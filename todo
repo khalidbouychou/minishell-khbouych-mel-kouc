@@ -667,7 +667,7 @@ fichier manque de function
 
 done        cat  << a | cat << b
 
-done        ls < a | cat b          file a existe or not ls work
+done        çç         file a existe or not ls work
                                 but its error shouldn't work
 done        cat b | ls < c
         
@@ -680,11 +680,13 @@ done        cat b | ls < c
 
         ls | cat b        it's work
 
-        ls < a | ls < a | cat b | echo hello
 
 
+        ls < a | ls < a | cat b | echo hello   not work
 
-        minishell ~> ls < a | ls < a | cat b
+     -->  a and b should be exist to test
+        minishell ~> ls < a | ls < a | cat b   not work  
+
 test
 Makefile        builtins        incld           main.o          parsing
 a               correction.pdf  lexer           minishell       todo
