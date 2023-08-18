@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftpwd.c                                            :+:      :+:    :+:   */
+/*   herdoc_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 17:45:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
+/*   Created: 2023/08/17 11:52:56 by khbouych          #+#    #+#             */
+/*   Updated: 2023/08/17 17:57:38 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	ft_pwd()
+int	ft_even_keyboard(void)
 {
-	char	*pw;
+	return (0);
+}
 
-	pw = getcwd(NULL, 0);
-	if (!pw)
-	{
-		ft_putstr_fd(g_v.current_pwd, 1);
-		g_v.ex_stu = 1;
-	}
-	else
-	{
-		ft_putstr_fd(pw, 1);
-		ft_putstr_fd("\n", 1);
-		g_v.ex_stu = 0;
-	}
-	free(pw);
+
+void ft_unlink_close_free(t_parse **new_p)
+{
+	close((*new_p)->fd_input);
+	unlink((*new_p)->f_name);
+	free((*new_p)->f_name);
+}
+
+void	ft_init_herdoc(t_parse **new_p, char **buf, char **del, char *cnt_d)
+{
+	ftherdoc_signal(&ft_even_keyboard);
+	(*del) = cnt_d;
+	(*buf) = NULL;
+	(*new_p)->f_name = generate_name();
+	(*new_p)->fd_input = open((*new_p)->f_name, O_RDWR
+			| O_CREAT | O_TRUNC, 777);
 }

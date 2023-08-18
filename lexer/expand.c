@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/16 21:24:11 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:35:22 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_v_k(char *key, t_env *env)
 {
 	while (env)
 	{
-		if (ft_strncmp(key, env->key, ft_strlen(env->key)) == 0)
+		if (ft_strcmp(key, env->key) == 0)
 			return (ft_strdup(env->value));
 		env = env->next;
 	}
@@ -69,7 +69,7 @@ void	expand_redir(t_token *tmp, t_env *env)
 		if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
 				|| ptr->type == APPND)
 			&& !ft_getenv_node(env, dolar->content))
-			g_stu.flag = 1;
+			g_v.flag = 1;
 	}
 }
 
@@ -78,6 +78,7 @@ void	ft_expander(t_token *tok, t_env *env)
 	t_token	*tmp;
 
 	tmp = tok;
+	// res = NULL;
 	while (tmp)
 	{
 		expand_redir(tmp, env);

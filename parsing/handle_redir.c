@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 18:25:10 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:36:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	type_er_env(t_token *tmp)
 	else if (ft_strchr(tmp->content, 32) != -1)
 	{
 		ft_putstr_fd("ambiguous redirect\n", 2);
-		g_stu.ex_stu = 1;
+		g_v.ex_stu = 1;
 		return (0);
 	}
 	return (1);
@@ -120,7 +120,7 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 	if ((!tmp->prev && !type_er_env(tmp->next)) || !type_er_env(tmp->next))
 	{
 		*flag = 1;
-		g_stu.flag = 1;
+		g_v.flag = 1;
 	}
 	else
 	{
@@ -128,11 +128,11 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 		{
 			*flag = 1;
 			ft_putstr_fd("ambiguous redirect\n", 2);
-			g_stu.ex_stu = 1;
+			g_v.ex_stu = 1;
 			return (tmp);
 		}
 		if (!tmp->prev && !tmp->next->next)
-			g_stu.flag = 1;
+			g_v.flag = 1;
 		if (tmp->type == INPUT)
 		{
 			if (new_p->fd_input != 0)
@@ -146,7 +146,7 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 		{
 			ft_putstr_fd("No such file or directory\n", 2);
 			*flag = 1;
-			g_stu.flag = 1;
+			g_v.flag = 1;
 		}
 	}
 	return (tmp);

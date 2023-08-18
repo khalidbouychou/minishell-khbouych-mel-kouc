@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 12:49:10 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:32:27 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_strdup(char *s1)
 	int		i;
 
 	i = 0;
-	if (!s1)
+	if (s1 == NULL)
 		return (NULL);
 	len = ft_strlen(s1);
 	str = (char *)malloc(sizeof(char) * (len + 1));
@@ -96,13 +96,13 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (str);
 }
 
-int	ft_strncmp(const char *str1, const char *str2, int n)
-{
-	while (*str1 && *str1 == *str2 && n)
-	{
-		str1++;
-		str2++;
-		n--;
-	}
-	return ((unsigned char)*str1 - (unsigned char)*str2);
-}
+// int	ft_strcmp(const char *str1, const char *str2, int n)
+// {
+// 	while (*str1 && *str1 == *str2 && n)
+// 	{
+// 		str1++;
+// 		str2++;
+// 		n--;
+// 	}
+// 	return ((unsigned char)*str1 - (unsigned char)*str2);
+// }

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:10:47 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:34:03 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ void    help_main(char *cmd, t_env **env)
 	list_tokens = NULL;
 	list_parser = NULL;
 	list_tokens = divide(cmd, *env);
-	// print(list_tokens);
-	g_stu.sig = 0;
+	// g_v.sig = 0;
 	if (list_tokens)
 	{
 		// print(list_tokens);
@@ -93,15 +92,55 @@ void    help_main(char *cmd, t_env **env)
 	}
 	free_token_list(&list_tokens);
 	free_parser_list(&list_parser);
-	g_stu.sig = 1;
+	g_v.sig = 1;
 }
 
-void	ft_init_variables()
+// int	shlvl_env(void)
+// {
+// 	char	*value;
+
+// 	value = get_env("SHLVL");
+// 	if (value)
+// 	{
+// 		value = ft_itoa(ft_atoi(value) + 1);
+// 		if (!value || set_env("SHLVL", value))
+// 			return (free(value), -1);
+// 		free(value);
+// 	}
+// 	else
+// 		if (set_env("SHLVL", "1"))
+// 			return (-1);
+// 	return (0);
+// }
+
+// void ft_shlvl_variable(t_env **env)
+// {
+// 	char	*shl_value;
+	
+// 	shl_value = ft_get_env(env, "SHLVL");
+// 	if (!shl_value)
+// 	{
+// 		ft_add_env(env, "SHLVL", "1");
+// 	}
+// 	if (value)
+// 	{
+// 		value = ft_itoa(ft_atoi(value) + 1);
+// 		if (!value || set_env("SHLVL", value))
+// 			return (free(value), -1);
+// 		free(value);
+// 	}
+// 	else
+// 		if (set_env("SHLVL", "1"))
+// 			return (-1);
+// }
+
+void  ft_init_variables()
 {
-	g_stu.ex_stu = 0;
-	g_stu.v_q = 0;
-	g_stu.sig = 0;
-	g_stu.flag = 0;
+    g_v.ex_stu = 0;
+    g_v.catch_cntrl = 0;
+	g_v.flag = 0;
+	g_v.inside_m = 0;
+	// ft_shlvl_variable();
 }
 int    main(int argc, char **argv, char **envp)
 {
@@ -115,22 +154,24 @@ int    main(int argc, char **argv, char **envp)
 	env = env_list(envp);
 	ft_init_variables();
 	ft_signals();
-	g_stu.sig = 1;
+	g_v.sig = 1;
+	rl_catch_signals = 0;
 	while (1997)
 	{
 		cmd = readline("minishell ~> ");
-		if (!cmd)
+		add_history(cmd);
+		if (cmd)
 		{
-			free_env_list(env);
-			// ft_putendl_fd("exit", 1);
-			write(1, "exit", 5); 
+			if(!ft_strcmp(cmd, "./minishell"))
+				g_v.inside_m = 1;
+			help_main(cmd, &env);
+		}
+		else
+		{
+			write(1, "exit\n", 6);
 			break ;
 		}
-		if (cmd)
-			help_main(cmd, &env);
-		add_history(cmd);
-		g_stu.sig = 1;
-		free(cmd);
+		free (cmd);
 	}
 }
 
@@ -145,7 +186,7 @@ int    main(int argc, char **argv, char **envp)
 // 	cmd = NULL;
 // 	env = env_list(envp);
 // 	ft_init_variables();
-// 	g_stu.sig = 1;
+// 	g_v.sig = 1;
 // 	ft_signals();
 // 	while (1)
 // 	{
@@ -160,7 +201,7 @@ int    main(int argc, char **argv, char **envp)
 // 			ft_putendl_fd("exit", 1);
 // 			break ;
 // 		}
-// 		g_stu.sig = 1;
+// 		g_v.sig = 1;
 // 		free (cmd);
 // 	}
 // }
@@ -190,10 +231,10 @@ int    main(int argc, char **argv, char **envp)
 
 // void  ft_init_variables()
 // {
-// 	g_stu.ex_stu = 0;
-// 	g_stu.v_q = 0;
-// 	g_stu.sig = 0;
-// 	g_stu.is_p = 0;
+// 	g_v.ex_stu = 0;
+// 	g_v.catch_cntrl = 0;
+// 	g_v.sig = 0;
+// 	g_v.is_p = 0;
 // }
 
 // int	main(int argc, char **argv, char **envp)
@@ -207,7 +248,7 @@ int    main(int argc, char **argv, char **envp)
 // 	cmd = NULL;
 // 	env = env_list(envp);
 // 	ft_init_variables();
-// 	g_stu.sig = 1;
+// 	g_v.sig = 1;
 // 	ft_signals();
 // 	while (1)
 // 	{
@@ -224,5 +265,5 @@ int    main(int argc, char **argv, char **envp)
 // 		}
 // 		free (cmd);
 // 	}
-// 	g_stu.sig = 1;
+// 	g_v.sig = 1;
 // }

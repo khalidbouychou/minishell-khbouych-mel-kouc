@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_parce.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/13 22:42:59 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:59:34 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	init_struct_parce(t_parse *new_p)
 void	operator_right(t_token *tmp, t_token *right_op)
 {
 	right_op = tmp->next;
-	while (!ft_strncmp(right_op->content, " ", 2)
-		|| !ft_strncmp(right_op->content, "	", 2))
+	while (!ft_strcmp(right_op->content, " ")
+		|| !ft_strcmp(right_op->content, "	"))
 	{
 		tmp->next = right_op->next;
 		right_op->next->prev = tmp;

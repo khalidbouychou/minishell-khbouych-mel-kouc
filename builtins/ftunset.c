@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 16:29:36 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:15:38 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ void	ft_unset(t_env **env, char **arg)
 			ft_delete_node(env, arg[i]);
 		i++;
 	}
-	g_stu.ex_stu = 0;
+	g_v.ex_stu = 0;
 }

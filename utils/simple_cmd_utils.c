@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:48:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 19:47:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:32:24 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,20 @@ void	ft_fok_xok(t_parse *lst)
 		if (access(lst->path, F_OK) == -1)
 		{
 			ft_putstr_fd("No such file or directory\n", 2);
-			g_stu.ex_stu = 127;
-			exit (127);
+			exit (g_v.ex_stu = 127);
 		}
 		else if (access(lst->path, X_OK) == -1)
 		{
 			ft_putstr_fd("Permission denied\n", 2);
-			g_stu.ex_stu = 126;
-			exit(126);
+			exit(g_v.ex_stu = 126);
 		}
 		else
 		{
 			ft_putstr_fd("is a directory\n", 2);
-			g_stu.ex_stu = 126;
-			exit(126);
+			exit(g_v.ex_stu = 126);
 		}
 	}
-	g_stu.ex_stu = 0;
-	exit(0);
+	exit (g_v.ex_stu = 0);
 }
 
 void	fealed_execve(t_parse *list_pars)
@@ -67,11 +63,10 @@ void	fealed_execve(t_parse *list_pars)
 				&& list_pars->fd_input == 0))
 		{
 			ft_putstr_fd("command not found\n", 2);
-			exit(127);
+			exit(g_v.ex_stu = 127);
 		}
 	}
-	g_stu.ex_stu = 0;
-	exit(0);
+	exit(g_v.ex_stu = 0);
 }
 
 char	**list_to_char(t_env *env, char **str)

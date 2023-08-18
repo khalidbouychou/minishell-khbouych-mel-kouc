@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/18 12:57:00 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:15:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,14 @@ int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 		close(fd[0]);
 		if (compare_cmd(lst_p))
 		{
-			// printf("hhhh");
 			lst_p->fd_output = 1;
 			cmd_in_built(lst_p, &env);
-			exit(g_stu.ex_stu);
+			exit(g_v.ex_stu);
 		}
 		else if (execve(lst_p->path, lst_p->arg, str) == -1)
 		{
 			fealed_execve(lst_p);
-			exit(g_stu.ex_stu);
+			exit(g_v.ex_stu);
 		}
 	}
 	return (1);
@@ -58,12 +57,12 @@ int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 		{
 			lst_p->fd_output = 1;
 			cmd_in_built(lst_p, &env);
-			exit(g_stu.ex_stu);
+			exit(g_v.ex_stu);
 		}
 		else if (execve(lst_p->path, lst_p->arg, str) == -1)
 		{
 			fealed_execve(lst_p);
-			exit(g_stu.ex_stu);
+			exit(g_v.ex_stu);
 		}
 	}
 	return (1);
@@ -90,9 +89,9 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 	waitpid(lst_p->pid0, &status, 0);
 	waitpid(lst_p->next->pid0, &status, 0);
 	if (status == 256)
-		g_stu.ex_stu = 1;
+		g_v.ex_stu = 1;
 	else if (status == 0)
-		g_stu.ex_stu = 0;
+		g_v.ex_stu = 0;
 	return (1);
 }
 
@@ -114,7 +113,7 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 // 		{
 // 			lst_p->fd_output = 1;
 // 			cmd_in_built(lst_p, &env);
-// 			exit(g_stu.ex_stu);
+// 			exit(g_v.ex_stu);
 // 		}
 // 		else
 // 			execve(lst_p->path, lst_p->arg, str);
@@ -139,7 +138,7 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 // 		{
 // 			lst_p->fd_output = 1;
 // 			cmd_in_built(lst_p, &env);
-// 			exit(g_stu.ex_stu);
+// 			exit(g_v.ex_stu);
 // 		}
 // 		else
 // 			execve(lst_p->path, lst_p->arg, str);
@@ -166,8 +165,8 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 // 	waitpid(pid0, &status, 0);
 // 	waitpid(pid1, &status, 0);
 // 	if (status == 256)
-// 		g_stu.ex_stu = 1;
+// 		g_v.ex_stu = 1;
 // 	else if (status == 0)
-// 		g_stu.ex_stu = 0;
+// 		g_v.ex_stu = 0;
 // 	return (1);
 // }
