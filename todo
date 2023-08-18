@@ -1,0 +1,618 @@
+token
+trim quotes
+expander 
+joiner
+parser
+
+
+
+testin bash    --->       > text ls
+
+
+test  bash     --->       ls > a | cat < a   -----> indefined behavier
+
+
+
+
+ls <> ls // i don't handel it
+ls <<< ls // i don't handel it
+<< 5< a  --------> syntax error near unexpected token `5'
+
+<< del cat  >l | echo hello asking for this case
+
+
+re"'$HOME'"   // don't remove double code befor expanding
+
+"'$HOME'" => variable -> exp
+
+re'"$HOME"' -> word without exp
+
+'"$HOME"'   ---> word
+
+export
+    ---->   alphabet or tiri8
+
+
+    ----->  export a=ls
+    ----->  echo $a           -> ls
+    ----->  export a+=last
+    ----->  echo $a           -> lslast
+
+
+    echo hello test | > test
+
+echo  test | ls -la  > txt   eeee$HOME < test     --> segvault ou rien 
+
+
+
+echo hello test > file dew
+
+
+EXPLIQUE     ---> echo hello test > file $home
+
+
+
+
+    echo  <  txt
+
+
+        ----------------PARSER_LIST---------------
+        √ cmd   --> (echo)
+        √ cmd   --> (hello)
+        √ cmd   --> ( )
+        √ cmd   --> ()
+
+
+cat << del ""
+        cat: : No such file or directory
+
+
+/***** bultins ******/
+    echo    √
+    export  √
+    env     √
+    exit    x
+    pwd     x
+    cd      x
+    unset   x
+
+
+
+/////////////////////  FIXED ///////////////////
+
+cat << del""
+
+we have error in space after echo ,we must remove it
+echo  <<'del' "test" hello 
+
+        parser count + 1 = | 6 |
+        new_p->arg[0] = |echo|
+        new_p->arg[1] = | |
+        new_p->arg[2] = |test|
+        new_p->arg[3] = | |
+        new_p->arg[4] = |hello|
+        new_p->arg[5] = |(null)|
+
+LS > -la | echo >> test     white space in last cmd -> segmentation fault
+
+
+me 
+    echo -nnnnn -nnnnn hello world
+    echo -nnnnn -nnnnna hello world
+
+khalid   
+        echo -nnnnn -nnnnn hello world
+        echo -nnnnn -nnnnna hello world
+
+ECHO -n   --------> segfault
+
+explique why spaces is nor remove after FILE LIKE IN EXAPLE  :
+
+    echo hello test > file khouribga    home < world   q            ll
+
+
+<< e'' << d'' segfault
+<< $USER   
+    mel-kouc
+    we shouldn't expand
+
+echo >>> test
+
+echo >>| test
+echo >|> test
+echo >>|> test
+
+bash-3.2$ ls > | ls
+
+ls >| txt seg fault
+
+ls >| txt hello
+
+        ----------------PARSER_LIST---------------
+        √ cmd   --> (ls)
+        √ 
+        ***** fd int = -4 *****
+        √ 
+        ***** fd out = 3 *****
+
+        ------------------------------------
+        √ cmd   --> (hello)
+        √ 
+        ***** fd int = -4 *****
+        √ 
+        ***** fd out = -5 *****
+
+
+bash-3.2$ ls >| ls
+        bash ---> open a file ls
+
+        my minishel open file |
+
+ls  > hay < file > txt
+
+
+the content of ls not in hay
+because if a file is not open the command don't pass au execut
+
+///////////////////////////////////////////////
+
+
+$$$$$$$$$$$$$$$         LLDB        $$$$$$$$$$$$$$$$
+
+        breakoint for lldb -----> breakpoint set --name main
+        move step by step  ------> s
+        move a big step    ------> n
+        view the comntent     ------> v cmd   (cmd (char *cmd)= is the variable that we want to view)
+        move a big step    ------> n
+
+
+/***** bultins ******/
+    echo    √ $$ --> pid
+    export  √
+    env     √
+    exit    x
+    pwd     x
+    cd      x
+    unset   x
+    /***go crazy***
+    ls >'|' | ls | echo hello --> filename '|' with content ls
+    ls >"|"
+    ls > '>' |ls | echo hello --> filename '|' with content ls
+
+$$$$$$$$$$$$$$$$                   $$$$$$$$$$$$$$$$
+
+
+problem
+
+    if a have a file txt the test of bash
+    ls >| txt hello
+
+            ls: hello: No such file or directory   
+
+    ls >| cat txt
+
+    ls >|  txt
+
+
+
+ls  > hay < file | ls > mmm
+
+mmmm  have a content of ls
+<< e'' << d'' segfault
+<< $USER   
+    mel-kouc
+    we shouldn't expand
+
+
+
+aplha && alpha alpha -- > 255 + exit
+alpha + number --> 255 + exit
+number_alpha --> 255 exit
+------
+number alpha --> 1 noexit too many arguments
+number number --> 1 noexit too many arguments
+-number --> oferflow + exit
+
+
+cat < test
+
+
+cat < test < test2 < test3 > out
+echo world  < test2 < test3 > out < test
+
+relink in all heder files
+
+Will we work whith env when we pout it in double pointer?
+
+
+///////////////////////////////
+
+-------> in normal case without env -i <------
+
+i should handel this
+    $HOME
+    bash: /Users/mel-kouc: is a directory
+
+    
+    is alredy handel
+    $USER
+    bash: mel-kouc: command not found
+    
+    $PATH
+    bash: /usr/local/bin:/usr/bin:/bin:/usr/sbin:
+    /sbin:/usr/local/munki:/Library/Apple/usr/bin:
+    /Applications/Visual: No such file or directory
+
+-------> in case  env -i ./minishell <----
+    is alredy handel
+
+
+in my minishell
+   command not found
+
+
+√    bash: $a: ambiguous redirect
+
+    BASH-3.2$ echo hello > $a
+    BASH: $a: ambiguous redirect
+
+
+√    segfault le mode : env -i ./minishell
+        minishell ~> unset PWD
+        minishell ~> cd
+        [1]    56671 segmentation fault  env -i ./minishell
+
+//////////////////////////////////
+
+my minishell
+ 
+√    minishell ~> echo hello world  > $a
+        ambiguous redirect
+        hello world
+
+
+in bash 
+√    ls > a | cat < a
+        ls | cat
+
+    ls > a | cat < a | cat | cat | cat | cat | cat a
+
+    i have to understand this example 
+    imagine too process work in the same time
+    when first try to push his content in a
+    the second (cat) try to red from a
+    finally it display nothing 
+
+
+inside ./minishell -->
+echo $SHLVL
+1
+minishell ~> ./minishell
+minishell ~> echo $SHLVL
+2
+
+
+inside ./minishell -> unset SHLVL
+    add  SHLVL IN ENV and encrement
+
+
+free
+
+        handel_herdoc
+
+
+ft_delete_node function in ftunset file
+    delete node in the first env 
+
+
+
+echo hello world > $HOME
+bash: /Users/mel-kouc: Is a directory
+
+bash-3.2$ echo hello world  > $PATH
+bash: $PATH: ambiguous redirect
+
+ls | cat
+echo hello | cat
+
+
+
+		// if (dup2(fd[0], STDIN_FILENO) == -1)
+		// 	printf("dup2 fealed in secode shild\n");
+        
+		// if (dup2(fd[1], STDOUT_FILENO) == -1)
+		// 	printf("dup2 fealed in first shild\n");
+
+
+    my minishell 
+        << ""$USER
+        command not found
+    
+    echo hello  > ""
+    ambiguous redirect
+    hello
+
+
+    minishell ~> > $TEST
+    ambiguous redirect
+    list_pars->path = (null)
+    command not found
+
+    minishell ~> > $HOME
+    is a directory
+    list_pars->path = |(null)|
+    command not found
+
+    minishell ~> << $ergh
+    > $ergh
+    list_pars->path = |(null)|
+    command not found
+    minishell ~> exit
+
+    minishell ~> > f
+    command not found
+try to handel this
+        > a ls
+        cat a
+    
+    --------- style not handled --------------
+
+√   echo  ls | cat 
+        write in pipe -> read from pipe
+
+√   echo  hello  |  cat < b
+        write in pipe -> read from a file   (first cmd should not execut)
+
+-   echo  rabat  |  cat > z
+    write in pipe -> read from paipe and put in file
+
+
+-   echo  hello > b | cat
+        write in file -> read from a pipe
+
+-   echo  hello > b | cat b > c
+        write in file -> read from a file
+
+        ---------------------------------
+
+-   echo  bengrir > b | cat b
+        write in a file -> read from a file
+
+-   echo  hello > b | cat < b
+        write in file -> read from a file
+
+
+env  > a | cat    work
+ls > b | cat     work 
+
+
+echo 111  > a | cat      
+cat a                  work
+
+
+env > a       work
+
+minishell ~> echo hello > q
+hello minishell ~>                      work
+
+echo hello > test                       work
+hello minishell ~>
+
+cat < b                   work
+
+
+
+    function not use
+        ft_strcpy
+        ft_get_env
+
+    
+    hello > b | cat
+
+
+
+minishell(70672,0x10ddefdc0) malloc: *** error for object 0x7ff10001141b: pointer being freed was not allocated
+minishell(70672,0x10ddefdc0) malloc: *** set a breakpoint in malloc_error_break to debug
+[1]    70672 abort      ./minishell
+
+
+
+-    updayt when we use echo like 
+
+    echo  hello > b
+    echo  world > b
+
+
+    env > a
+                 work
+
+
+
+simple_not_built        should not print commond not find
+
+    minishell ~> > ""
+    ambiguous redirect
+    command not found
+
+
+-fsanitize=address     ->expand
+        echo $ewfgew
+
+my
+
+    ls $ewvw
+    ls: : No such file or directory
+bash  : execut ls 
+    bash-3.2$ ls $ewvd
+
+
+
+
+    ----------------------
+
+    $hgh
+command not found
+Child exited with status: 13
+
+
+
+---------
+
+minishell ~> exit 1 | exit 2
+exit
+minishell ~> echo $?
+0 
+
+
+--- syntax error exit status == 258
+
+bash-3.2$ echo < a | ls | cat | | cat
+bash: syntax error near unexpected token |
+bash-3.2$ echo $?
+258
+
+
+------
+
+command for processe
+lsof -p 81889
+
+
+
+explain
+
+    echo hello > a
+    ls  | cat a
+
+try
+    ls | ls | cat
+
+
+
+
+work 
+
+    ls | grep a  | grep .c | wc -l
+    ls | grep a | wc
+
+
+
+error
+
+    fewf | vc | fwev
+    test :  ls > a | cat b | wc-l > x |<< a | wc -l > c
+
+
+    echo hello > a | cat a > kaka | cat kaka
+
+
+
+
+
+
+
+bash-3.2$ > $bgdr
+bash: $bgdr: ambiguous redirect
+
+
+i have  i differance output in 
+    ls | << q | ls
+
+
+one pipe 
+    echo world | cat  < b  > a    work
+
+    echo hello | cat  << q > a    work
+
+    cat  < b  > a      work
+
+
+    while infini for leaks
+    
+        while true; do leaks minishell; done
+
+while [ 1 ]; do leaks minishell | grep leaked && sleep 1 done
+
+
+control D in herdoc
+
+
+        minishell ~> << a
+        > 
+        [1]    22165 segmentation fault  ./minishell
+
+
+double free 
+
+    ls | << q
+
+
+when i commant free(tmp->path); the double free not existe 
+but her is a 1 leaks
+
+
+unset PATH
+minishell ~> ls
+[1]    91443 segmentation fault  ./minishell
+
+
+
+
+if not builtins
+
+bash-3.2$ unset PATH
+bash-3.2$ ls
+bash: ls: Permission denied
+
+
+////////////////////////////////////////////////////////
+
+
+strjoin -> dup
+
+not work
+
+    echo helo > e$erg 
+
+
+
+minishell ~> echo "$'HOME'"
+Segmentation fault: 11
+
+in my minishell
+    minishell ~> echo "$'HOME'"
+    'HOME'
+
+in my bash
+    echo "$'HOME'"
+    $'HOME'
+
+echo $?
+
+
+export sa="effer"
+
+41 leaks for 656 total leaked bytes.
+
+2 leaks for 32 total leaked bytes
+
+
+
+env -i ./minishell
+
+    env
+    
+    1 leak -> "/Users/mel-kouc/Desktop/minishell-khbouych-mel-kouc"
+
+
+
+minishell ~> echo ew$uyg ioh$io ioug
+            ew ewioh ioug
+
+
+
+echo --->    echo $HOME CDSE$CDS cds$des
+
+///////////////////////
+not work
+    cat << a < f   OR   cat << a << b < f
