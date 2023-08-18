@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 17:29:39 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 19:43:03 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	parser_print(t_parse *lst)
 		printf("√ \n***** fd out = %d *****\n", tmp->fd_output);
 		printf("√ path\t--> (%s)\n", tmp->path);
 		printf("\n------------------------------------\n");
- 		tmp = tmp->next;
+		tmp = tmp->next;
 	}
 }
 
@@ -111,7 +111,6 @@ void    help_main(char *cmd, t_env **env)
 // void ft_shlvl_variable(t_env **env)
 // {
 // 	char	*shl_value;
-	
 // 	shl_value = ft_get_env(env, "SHLVL");
 // 	if (!shl_value)
 // 	{
@@ -178,95 +177,3 @@ int    main(int argc, char **argv, char **envp)
 	}
 }
 
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	char	*cmd;
-// 	t_env	*env;
-
-// 	// atexit(l);
-// 	(void)argc;
-// 	(void)argv;
-// 	cmd = NULL;
-// 	env = env_list(envp);
-// 	ft_init_variables();
-// 	g_v.sig = 1;
-// 	ft_signals();
-// 	while (1)
-// 	{
-// 		cmd = readline("minishell ~> ");
-// 		if (!cmd)
-// 			break ;
-// 		add_history(cmd);
-// 		if (cmd)
-// 			help_main(cmd, &env);
-// 		else
-// 		{
-// 			ft_putendl_fd("exit", 1);
-// 			break ;
-// 		}
-// 		g_v.sig = 1;
-// 		free (cmd);
-// 	}
-// }
-
-// void	help_main(char *cmd, t_env **env)
-// {
-// 	t_token	*list_tokens;
-// 	t_parse	*list_parser;
-
-// 	list_tokens = NULL;
-// 	list_parser = NULL;
-// 	list_tokens = divide(cmd, *env);
-// 	// free_token_list(&list_tokens);
-// 	// print(list_tokens);
-// 	if (list_tokens)
-// 	{
-// 		// free_token_list(&list_tokens);
-// 		// print(list_tokens);
-// 		list_parser = parser(list_tokens, *env);
-// 		// parser_print(list_parser);
-// 		execute_main(list_parser, env);
-// 	// 	printf("\n*********************\n");
-// 	}
-// 	free_token_list(&list_tokens);
-// 	free_parser_list(&list_parser);
-// }
-
-// void  ft_init_variables()
-// {
-// 	g_v.ex_stu = 0;
-// 	g_v.v_q = 0;
-// 	g_v.sig = 0;
-// 	g_v.is_p = 0;
-// }
-
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	char	*cmd;
-// 	t_env	*env;
-
-// 	// atexit(l);
-// 	(void)argc;
-// 	(void)argv;
-// 	cmd = NULL;
-// 	env = env_list(envp);
-// 	ft_init_variables();
-// 	g_v.sig = 1;
-// 	ft_signals();
-// 	while (1)
-// 	{
-// 		cmd = readline("minishell ~> ");
-// 		if (!cmd)
-// 			break ;
-// 		add_history(cmd);
-// 		if (cmd)
-// 			help_main(cmd, &env);
-// 		else
-// 		{
-// 			ft_putendl_fd("exit", 1);
-// 			break ;
-// 		}
-// 		free (cmd);
-// 	}
-// 	g_v.sig = 1;
-// }

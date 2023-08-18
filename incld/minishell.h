@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/18 17:19:55 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:49:26 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct s_glbl
 	char	*current_pwd;
 	int		flag;
 	int		v_q;
-	bool		is_p;
-	bool		inside_m;
-	bool catch_cntrl ;
+	bool	is_p;
+	bool	inside_m;
+	bool	catch_cntrl ;
 }	t_glbl;
 
 t_glbl	g_v;

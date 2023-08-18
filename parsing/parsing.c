@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 16:10:04 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:50:22 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 {
-	while (tmp)
+	while (tmp && g_v.catch_cntrl == false)
 	{
 		while (tmp && tmp->type != PIPE && (tmp->type == WORD
 				|| tmp->type == VAR || tmp->type == SPC))
@@ -113,11 +113,5 @@ t_parse	*parser(t_token	*list_tokens, t_env *env)
 	is_alloc = 0;
 	list_pars = parser_list(list_tokens, &is_alloc, env);
 	redirection(list_tokens, list_pars);
-	// if (!redirection(list_tokens, list_pars))
-	// {
-		// free_token_list(&list_tokens);
-	// 	printf("\n THIS IS ERROR IN FD \n");
-	// }
-	// free_env_list(env);
 	return (list_pars);
 }
