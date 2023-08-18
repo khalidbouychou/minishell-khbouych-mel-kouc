@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/12 14:57:34 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 14:58:08 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,6 @@ char	*generate_name(void);
 char	*ft_get_path(t_env *env, char *str);
 void	add_if_not_found(t_env **head, int i);
 char	*ft_expandhelp(char *cnt, t_env *env);
+int		compare_path(char *tmp);
+
 #endif

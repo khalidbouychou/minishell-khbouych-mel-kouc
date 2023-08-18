@@ -669,7 +669,7 @@ done        cat  << a | cat << b
 
 done        ls < a | cat b          file a existe or not ls work
                                 but its error shouldn't work
-        cat b | ls < c
+done        cat b | ls < c
         
 
         minishell ~> ls  < test | cat  b       it's work in this case
@@ -682,7 +682,3 @@ done        ls < a | cat b          file a existe or not ls work
 
         ls < a | ls < a | cat b | echo hello
 
-
-        echo $weew
-
-            1 (16 bytes) ROOT LEAK: 0x7fe6a97040d0 [16]  length: 9  "/bin/echo"
