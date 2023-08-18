@@ -626,7 +626,7 @@ minishell ~> echo $HOME$USER
 /Users/mel-koucmel-kouc
 minishell ~> echo $HOME$USER$FERWG
 /Users/mel-koucmel-kouc
-minishell ~> echo $HOME$USERCDESW$FERWG
+minishell ~> ç
 /Users/mel-kouc
 minishell ~> echo $HOME"$USER"$FERWG
 /Users/mel-koucmel-kouc
@@ -647,3 +647,24 @@ lsof -p 64610
 
 
 export a=cluster
+
+
+detect leaks using atexit(l) when we press cntrl D
+        should free
+
+error for object 0x7ffd5a4083d0:
+pointer being freed was not allocated
+
+    export a=b
+    export a+=
+    minishell ~> export a=test
+
+fichier manque de function
+    ftenv.c
+
+
+
+
+    problem cat both of herdoc
+
+        cat  <<a | cat << b

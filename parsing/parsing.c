@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/16 15:53:36 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 19:10:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 		{
 			if (tmp->content && *tmp->content)
 				new_p->arg[++(*i)] = ft_strdup(tmp->content);
-			// printf("new -> |%s|\n", new_p->arg[1]);
 			if (*i == 0)
 				new_p->path = ft_get_path(env, new_p->arg[0]);
-			// printf("new -> %s\n", new_p->path);
 			if (!tmp->next || tmp->next->type == PIPE)
 				break ;
 			tmp = tmp->next;
 		}
-			// printf("after fet_path ->|%s| -> |%p|\n",new_p->path, new_p->arg[0]);
 		if (!tmp->next || (tmp->next && tmp->next->type == PIPE))
 			new_p->arg[++(*i)] = NULL;
 		ft_searsh_herdoc(tmp, new_p, env);
@@ -119,6 +116,5 @@ t_parse	*parser(t_token	*list_tokens, t_env *env)
 		// free_token_list(&list_tokens);
 	// 	printf("\n THIS IS ERROR IN FD \n");
 	// }
-	// free_env_list(env);
 	return (list_pars);
 }

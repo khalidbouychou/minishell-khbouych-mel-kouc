@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:02:36 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/14 13:34:17 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 18:11:25 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,22 @@ void	after_first_cmd(t_token **lst)
 	ptr = tmp->next;
 	if (ptr)
 	{
-		while (ptr)
+		while (ptr && (!ft_strcmp(ptr->content, " ")
+				|| !ft_strcmp(ptr->content, "	")))
 		{
-			if (!ft_strcmp(ptr->content, " ")
-				|| !ft_strcmp(ptr->content, "	"))
+			tmp->next = ptr->next;
+			if (ptr->next)
 			{
-				tmp->next = ptr->next;
-				if (ptr->next)
-				{
-					ptr->next->prev = tmp;
-					free(ptr->content);
-					free(ptr);
-				}
-				ptr = tmp->next;
+				ptr->next->prev = tmp;
+				free(ptr->content);
+				free(ptr);
 			}
 			else
-				break ;
+			{
+				free(ptr->content);
+				free(ptr);
+			}
+			ptr = tmp->next;
 		}
 	}
 }

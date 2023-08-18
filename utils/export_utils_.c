@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:44:30 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/16 23:41:29 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:52:40 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,32 +65,34 @@ int	ft_if_key_exist(t_env *e, t_env *node)
 	{
 		if (!ft_strcmp(str, tmp->key))
 		{
-			// free(str);
+			free(str);
 			return (1);
 		}
 		tmp = tmp->next;
 	}
-	// while (tmp)
-	// {
-	// 	if (!ft_strcmp(ft_get_key_without_plus(node->key), tmp->key))
-	// 		return (1);
-	// 	tmp = tmp->next;
-	// }
-	// free(str);
+	free(str);
 	return (0);
 }
 
 void	ft_join_value(t_env *e, t_env *node)
 {
 	t_env	*tmp;
+	char	*str;
+	char	*ptr;
 
+	str = ft_get_key_without_plus(node->key);
 	tmp = e;
 	while (tmp)
 	{
-		if (!ft_strcmp(ft_get_key_without_plus(node->key), tmp->key))
+		if (!ft_strcmp(str, tmp->key))
 		{
-			printf("hello");
-			tmp->value = ft_strjoin(tmp->value, node->value);
+			ptr = tmp->value;
+			tmp->value = ft_strjoin(ptr, node->value);
+			free(ptr);
+			free(str);
+			free(node->key);
+			free(node->value);
+			free(node);
 		}
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:40 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/08 16:27:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 16:23:18 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void    ft_env(t_parse *penv, t_env **env)
 {
-    t_env    *tmp;
+    t_env   *tmp;
 
     if (!penv->arg[1])
     {

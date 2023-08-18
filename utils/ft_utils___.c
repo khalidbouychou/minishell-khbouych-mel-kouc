@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 23:25:05 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/15 16:08:25 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 16:36:30 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,15 @@ t_env	*env_list(char **env)
 	t_env	*head;
 	t_env	*old;
 
+	(void)env;
 	head = NULL;
 	i = -1;
 	head = NULL;
 	g_stu.current_pwd = getcwd(NULL, 0);
 	if (*env == NULL)
+	{
 		add_if_not_found(&head, i);
+	}
 	else
 	{
 		i = 0;
@@ -65,8 +68,9 @@ t_env	*env_list(char **env)
 		}
 	}
 	old = ft_getenv_node(head, "OLDPWD");
-	if (!old)
-		ft_lst_addback(&head, ft_add_env("OLDPWD", NULL));
+		if (!old)
+			ft_lst_addback(&head,ft_add_env(ft_strdup("OLDPWD"),NULL));
+
 	return (head);
 }
 

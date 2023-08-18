@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/16 16:50:20 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 18:13:59 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	parser_print(t_parse *lst)
 	}
 }
 
-// void	l()
-// {
-// 	system("leaks minishell");
-// }
+void	l()
+{
+	system("leaks minishell");
+}
 
 void    help_main(char *cmd, t_env **env)
 {
@@ -81,6 +81,7 @@ void    help_main(char *cmd, t_env **env)
 	list_tokens = NULL;
 	list_parser = NULL;
 	list_tokens = divide(cmd, *env);
+	// print(list_tokens);
 	g_stu.sig = 0;
 	if (list_tokens)
 	{
@@ -116,21 +117,21 @@ int    main(int argc, char **argv, char **envp)
 	ft_init_variables();
 	ft_signals();
 	g_stu.sig = 1;
-	while (1337)
+	while (1997)
 	{
 		cmd = readline("minishell ~> ");
 		if (!cmd)
-			break ;
-		add_history(cmd);
-		if (cmd)
-			help_main(cmd, &env);
-		else
 		{
-			ft_putendl_fd("exit", 1);
+			free_env_list(env);
+			// ft_putendl_fd("exit", 1);
+			write(1, "exit", 5); 
 			break ;
 		}
+		if (cmd)
+			help_main(cmd, &env);
+		add_history(cmd);
 		g_stu.sig = 1;
-		free (cmd);
+		free(cmd);
 	}
 }
 
