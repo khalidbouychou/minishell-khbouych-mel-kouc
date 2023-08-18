@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redir.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:36:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 		{
 			ft_putstr_fd("No such file or directory\n", 2);
 			*flag = 1;
+			g_v.flag = 1;
 		}
 	}
 	return (tmp);

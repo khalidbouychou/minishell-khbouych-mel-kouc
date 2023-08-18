@@ -3,26 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:35:22 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-// void	ptr_is_opr(t_token *ptr, t_env *env, t_token *dolar)
-// {
-// 	if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
-// 			|| ptr->type == APPND)
-// 		&& !ft_getenv_node(env, dolar->content))
-// 		g_v.flag = 1;
-// }
+void	ft_init_var_expd(t_exp *var_expd)
+{
+	var_expd->i = -1;
+	var_expd->s = 0;
+	var_expd->e = 0;
+	var_expd->r = NULL;
+}
+
+char	*expand_sq(char *cnt, t_exp *v, char *r, char *join)
+{
+	char	*sub;
+
+	v->i++;
+	v->s = v->i;
+	while (cnt[v->i] != '\'')
+		v->i++;
+	v->e = v->i;
+	sub = ft_substr(cnt, v->s, (v->e - v->s));
+	r = ft_strjoin(r, sub);
+	free(sub);
+	free(join);
+	return (r);
+}
+
+char	*ft_v_k(char *key, t_env *env)
+{
+	while (env)
+	{
+		if (ft_strcmp(key, env->key) == 0)
+			return (ft_strdup(env->value));
+		env = env->next;
+	}
+	return (NULL);
+}
+
 void	expand_redir(t_token *tmp, t_env *env)
 {
 	t_token	*dolar;
 	t_token	*ptr;
+	char	*tmp1;
 
 	if (tmp->type == VAR)
 	{
@@ -32,7 +61,11 @@ void	expand_redir(t_token *tmp, t_env *env)
 			ptr = ptr->prev;
 		if ((ptr && (ptr->content[0] != '\0' && ptr->type != HERDOC))
 			|| !ptr)
-			tmp->content = ft_expandhelp(tmp->content, env);
+		{
+			tmp1 = tmp->content;
+			tmp->content = ft_expandhelp(tmp1, env);
+			free (tmp1);
+		}
 		if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
 				|| ptr->type == APPND)
 			&& !ft_getenv_node(env, dolar->content))
@@ -49,21 +82,6 @@ void	ft_expander(t_token *tok, t_env *env)
 	while (tmp)
 	{
 		expand_redir(tmp, env);
-		// if (tmp->type == VAR)
-		// {
-		// 	dolar = tmp;
-		// 	ptr = tmp->prev;
-		// 	while (ptr && (ptr->type == SPC || ptr->type == _TAB))
-		// 		ptr = ptr->prev;
-		// 	if ((ptr && (ptr->content[0] != '\0' && ptr->type != HERDOC))
-		// 		|| !ptr)
-		// 		tmp->content = ft_expandhelp(tmp->content, env);
-		// 	// ptr_is_opr(tmp, ptr, env, dolar);
-		// 	if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
-		// 			|| ptr->type == APPND)
-		// 		&& !ft_getenv_node(env, dolar->content))
-		// 		g_v.flag = 1;
-		// }
 		tmp = tmp->next;
 	}
 }

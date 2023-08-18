@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   one_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:15:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 		close(fd[1]);
 		if (check_fd_exec(lst_p) != 1 && check_fd_exec(lst_p) != 3)
 			dup2(fd[0], STDIN_FILENO);
+		if (lst_p->fd_output == 1 && lst_p->fd_input == -1)
+			dup2(fd[0], STDOUT_FILENO);
 		close(fd[0]);
 		if (compare_cmd(lst_p))
 		{
@@ -47,6 +49,8 @@ int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 	{
 		close(fd[0]);
 		if (check_fd_exec(lst_p) == 0)
+			dup2(fd[1], STDOUT_FILENO);
+		if (lst_p->fd_output == 1)
 			dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
 		if (compare_cmd(lst_p))

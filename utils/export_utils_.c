@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:44:30 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/13 19:05:27 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:52:40 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,43 @@ void	ft_sort_keys(t_env *e)
 int	ft_if_key_exist(t_env *e, t_env *node)
 {
 	t_env	*tmp;
+	char	*str;
 
 	tmp = e;
+	str = ft_get_key_without_plus(node->key);
 	while (tmp)
 	{
-		if (!ft_strcmp(ft_get_key_without_plus(node->key), tmp->key))
+		if (!ft_strcmp(str, tmp->key))
+		{
+			free(str);
 			return (1);
+		}
 		tmp = tmp->next;
 	}
+	free(str);
 	return (0);
 }
 
 void	ft_join_value(t_env *e, t_env *node)
 {
 	t_env	*tmp;
+	char	*str;
+	char	*ptr;
 
+	str = ft_get_key_without_plus(node->key);
 	tmp = e;
 	while (tmp)
 	{
-		if (!ft_strcmp(ft_get_key_without_plus(node->key), tmp->key))
-			tmp->value = ft_strjoin(tmp->value, node->value);
+		if (!ft_strcmp(str, tmp->key))
+		{
+			ptr = tmp->value;
+			tmp->value = ft_strjoin(ptr, node->value);
+			free(ptr);
+			free(str);
+			free(node->key);
+			free(node->value);
+			free(node);
+		}
 		tmp = tmp->next;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multiple_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:36:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,7 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 	{
 		// pid_t child_pid = waitpid(-1, &g_v.ex_stu, 0);
 		waitpid(-1, &g_v.ex_stu, 0);
-        // printf("GLOBAL = %d\n", g_v.ex_stu);
-		// if (child_pid > 0)
+        // printf("GLOBAL = %d\n", g_v.ex_stu);        // if (child_pid > 0)
 		// {
         //     if (WIFEXITED(status))
 		// 		printf("Child process %d (PID %d) exited with status: %d\n", i, child_pid, WEXITSTATUS(status));

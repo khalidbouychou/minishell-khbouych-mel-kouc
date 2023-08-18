@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:30:13 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:36:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ char	*ft_get_env(t_env *env, char *key)
 
 void	env_not_exist(int i, char **key, char **value)
 {
+	// char	*str;
 	if (i == 0)
 	{
 		*key = ft_strdup("PWD");
 		*value = ft_strdup(g_v.current_pwd);
-		g_v.current_pwd = *value;
+		// g_v.current_pwd = *value;
 	}
 	else if (i == 1)
 	{
@@ -87,7 +88,10 @@ t_env	*ft_add_env(char *key, char *value)
 	if (!new_node)
 		return (NULL);
 	new_node->key = key;
-	new_node->value = value;
+	// if (!ft_strcmp(value, ""))
+	// 	new_node->value = NULL;
+	// else
+		new_node->value = value;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);

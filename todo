@@ -616,3 +616,69 @@ echo --->    echo $HOME CDSE$CDS cds$des
 ///////////////////////
 not work
     cat << a < f   OR   cat << a << b < f
+
+
+
+////// expander work with 0 leaks
+
+
+minishell ~> echo $HOME$USER
+/Users/mel-koucmel-kouc
+minishell ~> echo $HOME$USER$FERWG
+/Users/mel-koucmel-kouc
+minishell ~> ç
+/Users/mel-kouc
+minishell ~> echo $HOME"$USER"$FERWG
+/Users/mel-koucmel-kouc
+minishell ~> echo $HOME"$USER"'$USER'$FERWG
+/Users/mel-koucmel-kouc$USER
+minishell ~> echo $HOME"$USER"'/$USER'$FERWG
+/Users/mel-koucmel-kouc/$USER
+
+
+
+echo $?
+echo $HOME$235
+
+
+
+
+lsof -p 64610
+
+
+export a=cluster
+
+
+detect leaks using atexit(l) when we press cntrl D
+        should free
+
+error for object 0x7ffd5a4083d0:
+pointer being freed was not allocated
+
+    export a=b
+    export a+=
+    minishell ~> export a=test
+
+fichier manque de function
+    ftenv.c
+
+
+    problem cat both of herdoc
+
+done        cat  << a | cat << b
+
+done        ls < a | cat b          file a existe or not ls work
+                                but its error shouldn't work
+done        cat b | ls < c
+        
+
+        minishell ~> ls  < test | cat  b       it's work in this case
+                                               because testt fle not exist
+        No such file or directory
+        hello
+        test
+
+        ls | cat b        it's work
+
+        ls < a | ls < a | cat b | echo hello
+

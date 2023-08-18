@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:36:35 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	check_fd_exec(t_parse *list_pars)
 
 	i = 0;
 	j = 0;
-	if (list_pars->fd_input != 0)
+	if (list_pars->fd_input != 0 && list_pars->fd_input != -1)
 	{
 		dup2(list_pars->fd_input, STDIN_FILENO);
 		close(list_pars->fd_input);
 		j++;
 		i = 1;
 	}
-	if (list_pars->fd_output != 1)
+	if (list_pars->fd_output != 1 && list_pars->fd_output != -1)
 	{
 		j = j + 2;
 		dup2(list_pars->fd_output, STDOUT_FILENO);
@@ -36,6 +36,41 @@ int	check_fd_exec(t_parse *list_pars)
 	if (j == 3)
 		return (j);
 	return (i);
+}
+
+void	fealed_s_n_exe(t_parse *list_pars)
+{
+
+	if (ft_strchr(list_pars->arg[0], '/') != -1)
+		ft_fok_xok(list_pars);
+	else
+	{
+		if ((!ft_strcmp(list_pars->arg[0], "") && list_pars->fd_input == 0)
+			|| (access(list_pars->path, F_OK) == -1))
+		{
+			ft_putstr_fd("command not found\n", 2);
+			exit(127);
+		}
+	}
+	g_v.ex_stu = 0;
+	exit(0);
+}
+
+void	child_simple(t_parse *list_pars, char **str)
+{
+	check_fd_exec(list_pars);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	if (g_v.flag == 1)
+	{
+		g_v.flag = 0;
+		exit(0);
+	}
+	else
+	{
+		if (execve(list_pars->path, list_pars->arg, str) == -1)
+			fealed_s_n_exe(list_pars);
+	}
 }
 
 int	simple_not_built(t_parse *list_pars, char **str)
@@ -57,6 +92,8 @@ int	simple_not_built(t_parse *list_pars, char **str)
 		if (execve(list_pars->path, list_pars->arg, str) == -1)
 			fealed_execve(list_pars);
 	}
+	else if (id == 0)
+		child_simple(list_pars, str);
 	close_fd(list_pars);
 	waitpid(id, &status, 0);
 	if (WIFEXITED(status))
