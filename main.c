@@ -6,11 +6,11 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:34:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:29:39 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incld/minishell.h"
+#include "./incld/minishell.h"
 // #include <sys/types.h>
 
 void	ft_print_env(t_env *env)
@@ -68,11 +68,6 @@ void	parser_print(t_parse *lst)
 	}
 }
 
-// void	l()
-// {
-// 	system("leaks minishell");
-// }
-
 void    help_main(char *cmd, t_env **env)
 {
 	t_token		*list_tokens;
@@ -121,6 +116,14 @@ void    help_main(char *cmd, t_env **env)
 // 	if (!shl_value)
 // 	{
 // 		ft_add_env(env, "SHLVL", "1");
+// 			return ;
+// 	}
+// 	else 
+// 	{
+// 		shl_value = ft_itoa(ft_atoi(shl_value) + 1);
+// 		ft_add_env(env, "SHLVL", shl_value);
+// 		free(shl_value);
+// 		return ;
 // 	}
 // 	if (value)
 // 	{
@@ -137,7 +140,7 @@ void    help_main(char *cmd, t_env **env)
 void  ft_init_variables()
 {
     g_v.ex_stu = 0;
-    g_v.catch_cntrl = 0;
+    g_v.v_q = 0;
 	g_v.flag = 0;
 	g_v.inside_m = 0;
 	// ft_shlvl_variable();
@@ -232,7 +235,7 @@ int    main(int argc, char **argv, char **envp)
 // void  ft_init_variables()
 // {
 // 	g_v.ex_stu = 0;
-// 	g_v.catch_cntrl = 0;
+// 	g_v.v_q = 0;
 // 	g_v.sig = 0;
 // 	g_v.is_p = 0;
 // }
