@@ -667,7 +667,7 @@ fichier manque de function
 
 done        cat  << a | cat << b
 
-done        ls < a | cat b          file a existe or not ls work
+done        çç         file a existe or not ls work
                                 but its error shouldn't work
 done        cat b | ls < c
         
