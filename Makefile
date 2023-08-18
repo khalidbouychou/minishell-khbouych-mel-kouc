@@ -6,7 +6,7 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/18 15:34:25 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/08/18 18:16:13 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,11 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./execution/signals.c ./utils/ft_utils___.c ./utils/simple_cmd_utils.c ./utils/expand_utils.c \
 		./utils/utl_multi_p.c ./utils/herdoc_utils.c
 
-LIB = -L/Users/mel-kouc/.brew/opt/readline/lib
-INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
+# LIB = -L/Users/mel-kouc/.brew/opt/readline/lib
+# INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
+
+LIB = -L/Users/khbouych/.brew/opt/readline/lib
+INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc
