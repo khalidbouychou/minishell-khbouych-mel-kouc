@@ -6,11 +6,11 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 16:02:18 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:29:39 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incld/minishell.h"
+#include "./incld/minishell.h"
 // #include <sys/types.h>
 
 void	ft_print_env(t_env *env)
