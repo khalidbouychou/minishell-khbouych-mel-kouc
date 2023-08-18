@@ -42,6 +42,7 @@ typedef struct s_glbl
 	bool		catch_cntrl;
 	bool		is_p;
 	bool		inside_m;
+	bool catch_cntrl ;
 }	t_glbl;
 
 t_glbl	g_v;
