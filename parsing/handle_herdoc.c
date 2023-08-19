@@ -6,13 +6,12 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/18 21:47:25 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 02:52:36 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 #include <signal.h>
-
 
 void	ft_putendl_fd(char *s, int fd)
 {
