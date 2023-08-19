@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/19 20:30:00 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 22:11:10 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	expand_redir(t_token *tmp, t_env *env)
 		ptr = tmp->prev;
 		while (ptr && (ptr->type == SPC || ptr->type == _TAB))
 			ptr = ptr->prev;
-		if ((ptr && (ptr->content[0] != '\0' && ptr->type != HERDOC))
+		if ((ptr && (ptr->type != HERDOC))
 			|| !ptr)
 		{
 			tmp1 = tmp->content;

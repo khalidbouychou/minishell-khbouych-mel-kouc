@@ -636,7 +636,6 @@ minishell ~> echo $HOME"$USER"'/$USER'$FERWG
 /Users/mel-koucmel-kouc/$USER
 
 
-
 echo $?
 echo $HOME$235
 
@@ -711,3 +710,31 @@ minishell ~> grep a
 
 ^C
 minishell ~> minishell ~> 
+
+
+
+echo $OLDPWD
+
+
+
+i cut this part from xpand_redir  : ptr->content[0] != '\0'
+
+if ((ptr && (ptr->content[0] != '\0' && ptr->type != HERDOC))
+			|| !ptr)
+
+
+
+
+
+nor work    ls < a | cat   if  file a nexisit pas
+
+
+echo hello |  ls < a | cat < a     if  file a nexisit pas
+
+
+ the problem
+
+work        ls | ls | cat 
+            ls | cat < b | cat       file b is exist
+
+work        ls < a | cat < b        a not exist b exist
