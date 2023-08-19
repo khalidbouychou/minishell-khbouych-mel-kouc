@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 17:32:09 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/19 19:47:34 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			ft_help_export(char **export, t_env *env, int fd);
 char		*ft_get_env(t_env *env, char *key);
 t_env		*ft_add_env(char *key, char *value);
 int			ft_check_by_key(t_env *env, char *key);
-void        ft_putnbr(int nb);
+void		ft_putnbr(int nb);
 /********builtines**************/
 void		ft_echo(char **arg, int fd);
 void		ft_export(char **export, t_env *env, int fd);
@@ -47,7 +47,7 @@ void		ft_env(t_parse *penv, t_env **env);
 void		ft_cd(char **cd, t_env *e);
 t_env		*ft_getenv_node(t_env *env, char *key);
 void		ft_pwd(void);
-void        ft_cd_(t_env **env, char **ret, char *cmd);
+void		ft_cd_(t_env **env, char **ret, char *cmd);
 
 /*********herdoc***************/
 

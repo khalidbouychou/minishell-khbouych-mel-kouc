@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:32:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 20:38:34 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,24 @@ void	expand_digit(char *cnt, t_exp *v)
 	free(sub);
 }
 
+// void	join_after_exp(char *cnt, t_exp *v)
+// {
+// 	char	*sub;
+// 	char	*tmp1;
+
+// 	++v->i;
+// 	v->s = v->i;
+// 	while (cnt[v->i] && cnt[v->i] != '$'
+// 		&& ft_isdigit(cnt[v->i]) && cnt[v->i] != '\'')
+// 		v->i++;
+// 	v->e = v->i;
+// 	sub = ft_substr(cnt, v->s, (v->e - v->s));
+// 	tmp1 = v->r;
+// 	v->r = ft_strjoin(tmp1, sub);
+// 	free (tmp1);
+// 	free(sub);
+// }
+
 void	substr_expand(char *cnt, t_exp *v, t_env *env)
 {
 	char	*sub;
@@ -98,12 +116,13 @@ void	substr_expand(char *cnt, t_exp *v, t_env *env)
 		free(sub);
 	}
 	not_isalnum(cnt, v);
+	// join_after_exp(cnt, v);
 }
 
 char	*ft_expandhelp(char *cnt, t_env *env)
 {
 	t_exp	v;
-	// (void)env;
+
 	ft_init_var_expd(&v);
 	v.r = ft_h_h_expand(cnt, &v);
 	while (cnt[++v.i])

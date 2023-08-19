@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:21:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 19:14:00 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ typedef struct s_env
 
 enum	e_token_enum
 {
-	VAR,//0
-	WORD,//1
-	PIPE,//2
-	DQ,//3
-	SQ,//4
-	APPND,//5
-	HERDOC,//6
-	LRED,//7
-	OUTPUT,//8
-	INPUT,//9
-	SPC,//10
-	_TAB,//11
-	FIL,//12
+	VAR,
+	WORD,
+	PIPE,
+	DQ,
+	SQ,
+	APPND,
+	HERDOC,
+	LRED,
+	OUTPUT,
+	INPUT,
+	SPC,
+	_TAB,
+	FIL,
 };
 /******************************************************************/
 typedef struct s_token

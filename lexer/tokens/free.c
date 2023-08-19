@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:40:26 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/16 16:19:22 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 19:48:44 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	free_char_double(char **str)
 		return ;
 	while (str[i])
 	{
-		// printf("%s , %p\n", str[i], str[i]);
 		free(str[i]);
 		i++;
 	}
@@ -71,7 +70,6 @@ void	free_parser_list(t_parse **list)
 	{
 		next = tmp->next;
 		free(tmp->path);
-		// free(tmp->f_name);
 		free_char_double(tmp->arg);
 		free (tmp);
 		tmp = next;

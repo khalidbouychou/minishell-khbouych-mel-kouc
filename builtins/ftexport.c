@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:15:25 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 19:00:05 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,15 @@ void	ft_getadress_node(t_env **env, t_env *node)
 	}
 }
 
+void	not_valid_key(t_env	**node)
+{
+	free((*node)->key);
+	if ((*node)->value)
+		free((*node)->value);
+	free((*node));
+	ft_exit_output("", 1, false);
+}
+
 int	ft_help_export(char **export, t_env *env, int fd)
 {
 	int		i;
@@ -90,11 +99,7 @@ int	ft_help_export(char **export, t_env *env, int fd)
 		}
 		else
 		{
-			free(node->key);
-			if (node->value)
-				free(node->value);
-			free(node);
-			ft_exit_output("", 1, false);
+			not_valid_key(&node);
 			return (g_v.ex_stu = 1);
 		}
 	}

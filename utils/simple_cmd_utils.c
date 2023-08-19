@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:48:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:32:24 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 19:17:37 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,6 @@ void	ft_fok_xok(t_parse *lst)
 
 void	fealed_execve(t_parse *list_pars)
 {
-	// in else 
-		// if ((!ft_strcmp(list_pars->arg[0], "") && list_pars->fd_input == 0)
-			// || !ft_strcmp(list_pars->arg[0], "")
-			// || access(list_pars->path, F_OK) == -1)
 	if (ft_strchr(list_pars->arg[0], '/') != -1)
 		ft_fok_xok(list_pars);
 	else
@@ -94,7 +90,6 @@ char	**list_to_char(t_env *env, char **str)
 		i++;
 	}
 	str[i] = NULL;
-	// free_env_list(env);
 	return (str);
 }
 

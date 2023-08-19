@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 12:58:12 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/19 19:14:49 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,35 +110,6 @@ int	util_successive_oper(t_token *tmp)
 	}
 	return (1);
 }
-// int	oper_error(t_token *tmp)
-// {
-// 	t_token	*ptr; 
-
-// 	ptr = tmp->next;
-// 	if ((tmp->type == INPUT || tmp->type == APPND
-// 			|| tmp->type == HERDOC) && (tmp->next->type == PIPE))
-// 		return (0);
-// 	if (ptr && ptr->next)
-// 	{
-// 		if (ptr->next && tmp->type == OUTPUT && ptr->type == PIPE
-// 			&& ptr->next->operator == 1 && ptr->next->type != SPC)
-// 			return (0);
-// 	}
-// 	return (1);
-// }
-
-// int	search_outp_pipe(t_token *tmp)
-// {
-// 	t_token	*ptr;
-
-// 	ptr = tmp->next;
-// 	while (ptr && tmp->type == OUTPUT
-// 		&& (ptr->type == SPC || ptr->type == _TAB))
-// 		ptr = ptr->next;
-// 	if (ptr && ptr->type == PIPE)
-// 		return (0);
-// 	return (1);
-// }
 
 int	successive_oper(t_token *list_tokens)
 {
@@ -151,7 +122,6 @@ int	successive_oper(t_token *list_tokens)
 		ptr = tmp->next;
 		if (!util_successive_oper(tmp))
 			return (0);
-		// ptr = tmp->next;
 		if ((tmp->type == INPUT || tmp->type == APPND
 				|| tmp->type == HERDOC) && (tmp->next->type == PIPE))
 			return (0);
@@ -161,8 +131,6 @@ int	successive_oper(t_token *list_tokens)
 				&& ptr->next->operator == 1 && ptr->next->type != SPC)
 				return (0);
 		}
-		// if (!search_outp_pipe(tmp))
-		// 	return (0);
 		tmp = tmp->next;
 	}
 	return (1);
