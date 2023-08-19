@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 21:47:32 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 16:52:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 {
-	while ( g_v.catch_cntrl == false && tmp)
+	while (g_v.catch_cntrl == false && tmp)
 	{
 		while (tmp && tmp->type != PIPE && (tmp->type == WORD
 				|| tmp->type == VAR || tmp->type == SPC))

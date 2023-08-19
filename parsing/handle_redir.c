@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/18 15:36:35 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 17:02:57 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,22 @@ int	type_er_env(t_token *tmp)
 	return (1);
 }
 
+t_token	*aplay_redire(t_token *tmp, t_parse *new_p)
+{
+	if (!tmp->prev && !tmp->next->next)
+		g_v.flag = 1;
+	if (tmp->type == INPUT)
+	{
+		if (new_p->fd_input != 0)
+			close(new_p->fd_input);
+		new_p->f_name = tmp->next->content;
+		new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
+	}
+	else if (tmp->type == OUTPUT || tmp->type == APPND)
+		tmp = output_append_function(tmp, new_p);
+	return (tmp);
+}
+
 t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 {
 	if ((!tmp->prev && !type_er_env(tmp->next)) || !type_er_env(tmp->next))
@@ -131,17 +147,18 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
 			g_v.ex_stu = 1;
 			return (tmp);
 		}
-		if (!tmp->prev && !tmp->next->next)
-			g_v.flag = 1;
-		if (tmp->type == INPUT)
-		{
-			if (new_p->fd_input != 0)
-				close(new_p->fd_input);
-			new_p->f_name = tmp->next->content;
-			new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
-		}
-		else if (tmp->type == OUTPUT || tmp->type == APPND)
-			tmp = output_append_function(tmp, new_p);
+		tmp = aplay_redire(tmp, new_p);
+		// if (!tmp->prev && !tmp->next->next)
+		// 	g_v.flag = 1;
+		// if (tmp->type == INPUT)
+		// {
+		// 	if (new_p->fd_input != 0)
+		// 		close(new_p->fd_input);
+		// 	new_p->f_name = tmp->next->content;
+		// 	new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
+		// }
+		// else if (tmp->type == OUTPUT || tmp->type == APPND)
+		// 	tmp = output_append_function(tmp, new_p);
 		if (new_p->fd_input == -1 || new_p->fd_output == -1)
 		{
 			ft_putstr_fd("No such file or directory\n", 2);

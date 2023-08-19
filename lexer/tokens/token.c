@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:21:44 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 16:44:12 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ char	*ft_check_if_cmd_valid(char **path, char *str)
 
 	p = NULL;
 	i = 0;
-	// printf("valid path -> |%s|\n", str);
-	// printf("valid path -> |%p|\n", str);
 	while (path && path[i])
 	{
 		p = ft_strjoin(path[i], "/");
@@ -49,7 +47,7 @@ char	*ft_get_path(t_env *env, char *str)
 	tmp = env;
 	while (tmp)
 	{
-		if (tmp->key && !ft_strcmp(tmp->key, "PATH"))     
+		if (tmp->key && !ft_strcmp(tmp->key, "PATH"))
 		{
 			p = tmp->value;
 			break ;

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:35:22 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 16:44:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	ft_expander(t_token *tok, t_env *env)
 	t_token	*tmp;
 
 	tmp = tok;
-	// res = NULL;
 	while (tmp)
 	{
 		expand_redir(tmp, env);

@@ -6,18 +6,15 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 21:47:15 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 11:31:17 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-/******/
 
 #include "../incld/minishell.h"
 
 void	ft_herdoc_signal(int sig)
 {
-	if (sig == SIGINT && g_v.catch_cntrl == false)
+	if (sig == SIGINT && g_v.sig == 0)
 	{
 		g_v.catch_cntrl = true;
 		// g_v.sig = -1;
