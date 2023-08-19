@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/18 15:36:35 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/19 03:32:44 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	befor_exec(t_pipe *tmp, t_parse *lst_p)
 	close(tmp->prev->fd_p[1]);
 	i = check_fd_exec(lst_p);
 	close(tmp->fd_p[0]);
-	close(tmp->prev->fd_p[1]);
+	// close(tmp->prev->fd_p[1]);
 	if (i != 1 && i != 3)
 	{
 		dup2(tmp->prev->fd_p[0], STDIN_FILENO);
