@@ -713,15 +713,11 @@ minishell ~> minishell ~>
 
 
 
-echo $OLDPWD
-
-
 
 i cut this part from xpand_redir  : ptr->content[0] != '\0'
 
 if ((ptr && (ptr->content[0] != '\0' && ptr->type != HERDOC))
 			|| !ptr)
-
 
 
 
@@ -738,3 +734,12 @@ work        ls | ls | cat
             ls | cat < b | cat       file b is exist
 
 work        ls < a | cat < b        a not exist b exist
+
+work        ls < a | cat < z       a 
+
+
+why z is empty in this case  :   ls < a | cat > z       file a not exist
+
+
+
+not work  ls < a | echo hello        file a not exist
