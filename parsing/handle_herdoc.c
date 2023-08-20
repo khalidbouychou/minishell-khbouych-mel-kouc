@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/19 11:31:08 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:11:15 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str)
 {
 	char	*tmp;
 
-	if (ft_strchr(str, '$') != -1 && (*ptr)->flag != 1)
+	if (ft_strchr(str, '$') != -1 && (*ptr)->_flag != 1)
 		str = ft_expandhelp(str, (*env));
 	tmp = *buffer;
 	*buffer = ft_strjoin(*buffer, str);
@@ -48,28 +48,48 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 	char	*str;
 	char	*delim;
 	char	*buffer;
+	pid_t	pid;
+	int		status;
 
 	delim = ptr->content;
 	buffer = ft_strdup("");
 	new_p->f_name = generate_name();
-	while (1)
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	new_p->fd_input = open(new_p->f_name, O_WRONLY | O_CREAT, 0644);
+	pid = fork();
+	if (pid == 0)
 	{
-		str = readline("> ");
-		if (!ft_strcmp(delim, str))
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+		while (1)
 		{
-			new_p->fd_input = open(new_p->f_name, O_WRONLY | O_CREAT, 0644);
-			if (*buffer)
-				write(new_p->fd_input, buffer, ft_strlen(buffer));
-			free(buffer);
-			free(str);
-			break ;
+			str = readline("herdoc> ");
+			if (!str || !ft_strncmp(delim, str, ft_strlen(str) + 1))
+			{
+				if (*buffer)
+					write(new_p->fd_input, buffer, ft_strlen(buffer));
+				free(buffer);
+				free(str);
+				break ;
+			}
+			fill_buffer(&ptr, &env, &buffer, str);
 		}
-		fill_buffer(&ptr, &env, &buffer, str);
+		exit(0);
+	}
+	else
+		waitpid(pid, &status, 0);
+	ft_signals();
+	if (status == 2)
+	{
+		write(1, "\n", 1);
+		g_v.sig = -1;
 	}
 	close(new_p->fd_input);
 	new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
 	unlink(new_p->f_name);
 	free(new_p->f_name);
+	return ;
 }
 
 void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)
@@ -78,9 +98,8 @@ void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)
 
 	if (tmp->type == HERDOC)
 	{
-		g_v.sig = 0;
 		if (!tmp->prev)
-			g_v.flag = 1;
+			g_v._flag = 1;
 		ptr = tmp->next;
 		if (new_p->fd_input != 0)
 			close(new_p->fd_input);

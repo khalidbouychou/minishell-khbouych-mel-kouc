@@ -6,13 +6,13 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:39:13 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	ft_pwd()
+void	ft_pwd(void)
 {
 	char	*pw;
 

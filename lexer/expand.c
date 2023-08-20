@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/19 22:11:10 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:46:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	expand_redir(t_token *tmp, t_env *env)
 		if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
 				|| ptr->type == APPND)
 			&& !ft_getenv_node(env, dolar->content))
-			g_v.flag = 1;
+			g_v._flag = 1;
 	}
 }
 

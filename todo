@@ -743,3 +743,10 @@ why z is empty in this case  :   ls < a | cat > z       file a not exist
 
 
 not work  ls < a | echo hello        file a not exist
+
+
+
+minishell ~> cat << a
+herdoc> ^C
+minishell(94111,0x103c14dc0) malloc: *** error for object 0xa000000000000000: pointer being freed was not allocated
+minishell(94111,0x103c14dc0) malloc: *** set a breakpoint in malloc_error_break to debug

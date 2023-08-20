@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 09:56:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 11:33:53 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:20:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_strcmp(const char *str1, const char *str2)
 {
 	if (!str1 || !str2)
 		return (1);
-	while (*str1 && *str1 == *str2)
+	while (*str1 && *str2 && *str1 == *str2)
 	{
 		str1++;
 		str2++;

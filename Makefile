@@ -6,7 +6,7 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/18 21:47:39 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/08/20 14:42:50 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,17 +34,17 @@ INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc
-CFLAGS =   -Wall -Wextra -Werror -g #-fsanitize=address
+C_flagS =   -Wall -Wextra -Werror -g #-fsanitize=address
 
 all: $(NAME)
 # ${LIB}
 # ${INCLUDE}
 $(NAME) : $(OSRC) 
-	@$(CC) -lreadline  $(CFLAGS) $(OSRC)  ${LIB} -o $(NAME)
+	@$(CC) -lreadline  $(C_flagS) $(OSRC)  ${LIB} -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 
 %.o: %.c ./incld/minishell.h ./incld/builtins.h ./incld/execution.h ./incld/lexer.h ./incld/parsing.h ./incld/token.h
-	@$(CC) $(CFLAGS) -c $< -o $@ ${INCLUDE}
+	@$(CC) $(C_flagS) -c $< -o $@ ${INCLUDE}
 	@echo "*** {Compaling Files ...} ***"
 
 clean :

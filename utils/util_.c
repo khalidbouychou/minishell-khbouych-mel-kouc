@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/19 19:16:06 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:34:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,3 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	str[i] = '\0';
 	return (str);
 }
-
-// int	ft_strcmp(const char *str1, const char *str2, int n)
-// {
-// 	while (*str1 && *str1 == *str2 && n)
-// 	{
-// 		str1++;
-// 		str2++;
-// 		n--;
-// 	}
-// 	return ((unsigned char)*str1 - (unsigned char)*str2);
-// }

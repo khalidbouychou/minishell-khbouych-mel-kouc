@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 12:53:24 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ void	check_herdoc_quotes(t_token *lst)
 				&& tmp->next->type != _TAB
 				&& (!ft_strcmp(tmp->content, "''")
 					|| !ft_strcmp(tmp->content, "\"\"")))
-				tmp->flag = 1;
+				tmp->_flag = 1;
 			else if (tmp->content[0] == '\'' || tmp->content[0] == '"')
-				tmp->flag = 1;
+				tmp->_flag = 1;
 			else if (tmp->next && (!ft_strcmp(tmp->next->content, "''")
 					|| !ft_strcmp(tmp->next->content, "\"\"")))
-				tmp->flag = 1;
+				tmp->_flag = 1;
 		}
 		tmp = tmp->next;
 	}
@@ -112,7 +112,7 @@ t_token	*ft_init_token(char *cmd, int i, int count)
 	tok->content = NULL;
 	tok->next = NULL;
 	tok->prev = NULL;
-	tok->flag = 0;
+	tok->_flag = 0;
 	tok->content = ft_substr(cmd, i, count);
 	ft_get_type(tok);
 	return (tok);

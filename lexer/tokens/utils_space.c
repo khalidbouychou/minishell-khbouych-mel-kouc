@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 12:00:02 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,17 @@ void	space_after_cmd(t_token **lst)
 	}
 }
 
-t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space, int *flag)
+t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space, int *_flag)
 {
 	ft_tolower(tmp->content);
 	if (!ft_strcmp(tmp->content, "echo"))
 	{
 		ptr = echo_and_n(ptr, space);
-		*flag = 1;
+		*_flag = 1;
 	}
 	else
 	{
-		while (ptr && ptr->operator == 0 && ptr->type != SPC && *flag == 0)
+		while (ptr && ptr->operator == 0 && ptr->type != SPC && *_flag == 0)
 		{
 			space = ptr->next;
 			if (space && space->type == SPC)
@@ -118,16 +118,16 @@ void	check_cmd(t_token **lst)
 	t_token	*tmp;
 	t_token	*ptr;
 	t_token	*space;
-	int		flag;
+	int		_flag;
 
-	flag = 0;
+	_flag = 0;
 	space = NULL;
 	tmp = *lst;
 	while (tmp)
 	{
 		ptr = tmp->next;
 		if (ptr)
-			ptr = check_echo(tmp, ptr, space, &flag);
+			ptr = check_echo(tmp, ptr, space, &_flag);
 		if (!ptr)
 			break ;
 		tmp = ptr->next;

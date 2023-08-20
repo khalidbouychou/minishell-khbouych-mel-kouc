@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/19 18:22:41 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:50:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	child_simple(t_parse *list_pars, char **str)
 	check_fd_exec(list_pars);
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	if (g_v.flag == 1)
+	if (g_v._flag == 1)
 	{
-		g_v.flag = 0;
+		g_v._flag = 0;
 		exit(0);
 	}
 	else

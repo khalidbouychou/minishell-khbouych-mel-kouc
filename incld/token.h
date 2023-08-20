@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/19 19:14:00 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:47:18 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_token
 	int					operator;
 	struct s_token		*next;
 	struct s_token		*prev;
-	int					flag;
+	int					_flag;
 }t_token;
 
 /************************************************************/
