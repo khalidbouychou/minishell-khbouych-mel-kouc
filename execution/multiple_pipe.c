@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multiple_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/19 18:19:23 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:40:23 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,13 @@ void	loop_cmd(t_pipe	*head, t_parse *lst_p, t_env *env, char **str)
 	{
 		if (lst_p->next)
 			tmp = creat_pipe(&head);
-		if (i == 0)
+		if (i == 0 && (lst_p->fd_input != -1 && lst_p->fd_output != -1))
 			first_child(tmp->fd_p, lst_p, env, str);
-		else if (lst_p->next)
+		else if (lst_p->next && (lst_p->fd_input != -1
+				&& lst_p->fd_output != -1))
 			middle_pipes(tmp, lst_p, env, str);
-		else if (!lst_p->next)
+		else if (!lst_p->next && (lst_p->fd_input != -1
+				&& lst_p->fd_output != -1))
 		{
 			second_child(tmp->fd_p, lst_p, env, str);
 			close(tmp->fd_p[0]);
@@ -91,7 +93,6 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 {
 	t_pipe	*head;
 	int		i;
-	// int		status;
 
 	i = 0;
 	head = NULL;
@@ -99,6 +100,7 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 	i = 0;
 	while (i <= (size - 1))
 	{
+		/*catch signal*/
 		// pid_t child_pid = waitpid(-1, &g_v.ex_stu, 0);
 		waitpid(-1, &g_v.ex_stu, 0);
         // printf("GLOBAL = %d\n", g_v.ex_stu);        // if (child_pid > 0)
@@ -110,7 +112,5 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 		// }
 		i++;
 	}
-	// while (waitpid(-1, NULL, 0) > 0);
-	// waitpid(lst_p->pid0, &status, 0);
 	return (1);
 }

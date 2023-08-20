@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   one_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/19 18:20:41 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:41:10 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 {
+	if (lst_p->fd_output == -1 || lst_p->fd_input == -1)
+		return (1);
 	lst_p->pid0 = fork();
 	if (lst_p->pid0 == -1)
 		return (-1);
@@ -42,6 +44,8 @@ int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 
 int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 {
+	if (lst_p->fd_output == -1 || lst_p->fd_input == -1)
+		return (1);
 	lst_p->pid0 = fork();
 	if (lst_p->pid0 == -1)
 		return (-1);

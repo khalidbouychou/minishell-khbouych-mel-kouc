@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/19 16:44:48 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	expand_redir(t_token *tmp, t_env *env)
 		if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
 				|| ptr->type == APPND)
 			&& !ft_getenv_node(env, dolar->content))
-			g_v.flag = 1;
+			g_v._flag = 1;
 	}
 }
 

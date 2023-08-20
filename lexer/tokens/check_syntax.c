@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:29:23 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/17 12:58:12 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,28 @@ int	check_pipe(t_token	*list_tokens)
 
 int	check_close_q(t_token *tmp)
 {
-	int		flag;
+	int		_flag;
 	char	c;
 	int		i;
 
-	flag = 0;
+	_flag = 0;
 	i = 0;
 	while (tmp->content[i])
 	{
-		if (!flag)
+		if (!_flag)
 		{
 			if (tmp->content[i] == '"' || tmp->content[i] == '\'')
 			{
 				c = tmp->content[i];
-				flag = 1;
+				_flag = 1;
 			}
 		}
 		else
 			if (tmp->content[i] == c)
-				flag += 1;
+				_flag += 1;
 		i++;
 	}
-	if (flag == 1)
+	if (_flag == 1)
 		return (0);
 	return (-1);
 }

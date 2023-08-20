@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 16:54:53 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/11 22:40:22 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:39:21 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	complex_cmd(t_parse *lst_p, t_env *env, char **str)
 	int	size;
 
 	size = size_parse_lst(lst_p);
-	// if (one_pipe(lst_p, env, str)) == -1
-	//	free lst_p and  str
-	// if (multiple_pipe(lst_p, env, str, size)) == -1
 	if (size == 2)
 		one_pipe(lst_p, env, str);
 	else

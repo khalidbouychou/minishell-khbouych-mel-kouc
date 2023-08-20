@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/18 21:47:09 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:43:46 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,10 @@
 // for exit status and signals
 typedef struct s_glbl
 {
+	int		_flag;
 	int		ex_stu;
 	int		sig;
 	char	*current_pwd;
-	int		flag;
-	int		v_q;
-	bool		is_p;
-	bool		inside_m;
-	bool catch_cntrl ;
 }	t_glbl;
 
 t_glbl	g_v;

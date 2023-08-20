@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:21:10 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_parse
 	char			**arg;
 	struct s_parse	*next;
 	char			*path;
-	int				flag_herd;
+	int				_flag_herd;
 	pid_t			pid0;
 }	t_parse;
 
@@ -32,7 +32,7 @@ t_parse	*ft_last_parser(t_parse *lst);
 int		alloc_arg(t_token *tmp);
 void	init_struct_parce(t_parse *new_p);
 void	add_to_list_parser(t_parse **lst_tok, t_parse *newtok);
-t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag);
+t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *_flag);
 void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env);
 void	ft_putstr_fd(char *s, int fd);
 char	*generate_name(void);
@@ -44,5 +44,5 @@ int		compare_path(char *tmp);
 void	ft_init_herdoc(t_parse **new_p, char **buf, char **del, char *cnt_d);
 void	ft_unlink_close_free(t_parse **new_p);
 void	ft_herdoc_signal(int sig);
-void	ftherdoc_signal(void (*f));
+int		ft_strncmp(const char *str1, const char *str2, size_t n);
 #endif

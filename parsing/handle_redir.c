@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redir.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/19 17:02:57 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	type_er_env(t_token *tmp)
 t_token	*aplay_redire(t_token *tmp, t_parse *new_p)
 {
 	if (!tmp->prev && !tmp->next->next)
-		g_v.flag = 1;
+		g_v._flag = 1;
 	if (tmp->type == INPUT)
 	{
 		if (new_p->fd_input != 0)
@@ -131,39 +131,28 @@ t_token	*aplay_redire(t_token *tmp, t_parse *new_p)
 	return (tmp);
 }
 
-t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *flag)
+t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *_flag)
 {
 	if ((!tmp->prev && !type_er_env(tmp->next)) || !type_er_env(tmp->next))
 	{
-		*flag = 1;
-		g_v.flag = 1;
+		*_flag = 1;
+		g_v._flag = 1;
 	}
 	else
 	{
 		if (*(tmp->next)->content == '\0')
 		{
-			*flag = 1;
+			*_flag = 1;
 			ft_putstr_fd("ambiguous redirect\n", 2);
 			g_v.ex_stu = 1;
 			return (tmp);
 		}
 		tmp = aplay_redire(tmp, new_p);
-		// if (!tmp->prev && !tmp->next->next)
-		// 	g_v.flag = 1;
-		// if (tmp->type == INPUT)
-		// {
-		// 	if (new_p->fd_input != 0)
-		// 		close(new_p->fd_input);
-		// 	new_p->f_name = tmp->next->content;
-		// 	new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
-		// }
-		// else if (tmp->type == OUTPUT || tmp->type == APPND)
-		// 	tmp = output_append_function(tmp, new_p);
 		if (new_p->fd_input == -1 || new_p->fd_output == -1)
 		{
-			ft_putstr_fd("No such file or directory\n", 2);
-			*flag = 1;
-			g_v.flag = 1;
+			perror(new_p->f_name);
+			*_flag = 1;
+			g_v._flag = 1;
 		}
 	}
 	return (tmp);

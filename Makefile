@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
+#    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/18 21:47:39 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,25 +26,25 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./execution/signals.c ./utils/ft_utils___.c ./utils/simple_cmd_utils.c ./utils/expand_utils.c \
 		./utils/utl_multi_p.c ./utils/herdoc_utils.c
 
-LIB = -L/Users/mel-kouc/.brew/opt/readline/lib
-INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
+# LIB = -L/Users/mel-kouc/.brew/opt/readline/lib
+# INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
 
-# LIB = -L/Users/khbouych/.brew/opt/readline/lib
-# INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
+LIB = -L/Users/khbouych/.brew/opt/readline/lib
+INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc
-CFLAGS =   -Wall -Wextra -Werror -g #-fsanitize=address
+C_flagS =   -Wall -Wextra -Werror -g #-fsanitize=address
 
 all: $(NAME)
 # ${LIB}
 # ${INCLUDE}
 $(NAME) : $(OSRC) 
-	@$(CC) -lreadline  $(CFLAGS) $(OSRC)  ${LIB} -o $(NAME)
+	@$(CC) -lreadline  $(C_flagS) $(OSRC)  ${LIB} -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 
 %.o: %.c ./incld/minishell.h ./incld/builtins.h ./incld/execution.h ./incld/lexer.h ./incld/parsing.h ./incld/token.h
-	@$(CC) $(CFLAGS) -c $< -o $@ ${INCLUDE}
+	@$(CC) $(C_flagS) -c $< -o $@ ${INCLUDE}
 	@echo "*** {Compaling Files ...} ***"
 
 clean :

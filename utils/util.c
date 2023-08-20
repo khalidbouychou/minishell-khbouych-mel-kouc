@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:40:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/14 10:13:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:47:03 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,17 @@ char	*ft_strncpy(char *dest, char *src, int len)
 	}
 	dest[i] = '\0';
 	return (dest);
+}
+
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
+{
+	while (*str1 && *str1 == *str2 && n)
+	{
+		str1++;
+		str2++;
+		n--;
+	}
+	if (n == 0)
+		return (0);
+	return ((unsigned char)*str1 - (unsigned char)*str2);
 }

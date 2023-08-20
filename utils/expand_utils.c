@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:32:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:45:56 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	substr_expand(char *cnt, t_exp *v, t_env *env)
 char	*ft_expandhelp(char *cnt, t_env *env)
 {
 	t_exp	v;
-	// (void)env;
+
 	ft_init_var_expd(&v);
 	v.r = ft_h_h_expand(cnt, &v);
 	while (cnt[++v.i])

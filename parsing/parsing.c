@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/19 16:52:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 {
-	while (g_v.catch_cntrl == false && tmp)
+	while (tmp)
 	{
 		while (tmp && tmp->type != PIPE && (tmp->type == WORD
 				|| tmp->type == VAR || tmp->type == SPC))
@@ -31,9 +31,15 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 			new_p->arg[++(*i)] = NULL;
 		ft_searsh_herdoc(tmp, new_p, env);
 		if (!tmp || tmp->type == PIPE)
+		{
+			g_v.sig = 1;
+			break ;
+		}
+		if (g_v.sig == -1)
 			break ;
 		tmp = tmp->next;
 	}
+	g_v.sig = 1;
 }
 
 t_parse	*ft_list_parser(t_token *tmp, int count, t_env *env)
@@ -57,18 +63,18 @@ int	redirection(t_token	*list_tokens, t_parse *list_pars)
 {
 	t_token	*tmp_tok;
 	t_parse	*tmp_pars;
-	int		flag;
+	int		_flag;
 
-	flag = 0;
+	_flag = 0;
 	tmp_tok = list_tokens;
 	tmp_pars = list_pars;
 	while (tmp_tok)
 	{
 		if (tmp_tok->type == PIPE)
-			flag = 0;
-		if (tmp_tok && flag == 0 && (tmp_tok->type == INPUT
+			_flag = 0;
+		if (tmp_tok && _flag == 0 && (tmp_tok->type == INPUT
 				|| tmp_tok->type == OUTPUT || tmp_tok->type == APPND))
-			tmp_tok = ft_handle_oper(tmp_tok, tmp_pars, &flag);
+			tmp_tok = ft_handle_oper(tmp_tok, tmp_pars, &_flag);
 		else if (tmp_tok->type == PIPE)
 			tmp_pars = tmp_pars->next;
 		if (tmp_tok)
@@ -111,10 +117,5 @@ t_parse	*parser(t_token	*list_tokens, t_env *env)
 	is_alloc = 0;
 	list_pars = parser_list(list_tokens, &is_alloc, env);
 	redirection(list_tokens, list_pars);
-	// if (!redirection(list_tokens, list_pars))
-	// {
-		// free_token_list(&list_tokens);
-	// 	printf("\n THIS IS ERROR IN FD \n");
-	// }
 	return (list_pars);
 }

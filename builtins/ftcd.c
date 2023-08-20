@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/17 11:34:36 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:25:57 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_cd(char **cmd, t_env *env)
 
 	ft_init_env(&home, &pwd, &old, env);
 	if ((!cmd[1]))
-		ft_help_cd(home, pwd);  
+		ft_help_cd(home, pwd);
 	else if ((!ft_strcmp(cmd[1], "~")))
 	{
 		ft_help__cd(home);

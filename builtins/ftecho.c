@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftecho.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:14:28 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 03:26:10 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_echo(char **arg, int fd)
 	{
 		if (ft_strcmp("?", arg[i]) == 0)
 			ft_putnbr(g_v.ex_stu);
-		else 
+		else
 			ft_putstr_fd(arg[i], fd);
 		i++;
 	}
