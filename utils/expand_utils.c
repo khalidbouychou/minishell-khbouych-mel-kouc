@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/19 20:51:53 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:48:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,32 +87,35 @@ void	join_after_exp(char *cnt, t_exp *v)
 	free(sub);
 }
 
-void	substr_expand(char *cnt, t_exp *v, t_env *env)
+void	sub_expand_value(char *cnt, t_exp *v, t_env *env)
 {
 	char	*sub;
 	char	*tmp;
 	char	*tmp1;
 
+	v->s = v->i;
+	while (cnt[v->i] && cnt[v->i] != '$'
+		&& ft_isalnum(cnt[v->i]) && cnt[v->i] != '\'')
+		v->i++;
+	v->e = v->i;
+	sub = ft_substr(cnt, v->s, (v->e - v->s));
+	tmp = ft_v_k(sub, env);
+	if (tmp)
+	{
+		tmp1 = v->r;
+		v->r = ft_strjoin(tmp1, tmp);
+		free (tmp1);
+		free (tmp);
+	}
+	free(sub);
+}
+
+void	substr_expand(char *cnt, t_exp *v, t_env *env)
+{
 	if (ft_isdigit(cnt[v->i]))
 		expand_digit(cnt, v);
 	else
-	{
-		v->s = v->i;
-		while (cnt[v->i] && cnt[v->i] != '$'
-			&& ft_isalnum(cnt[v->i]) && cnt[v->i] != '\'')
-			v->i++;
-		v->e = v->i;
-		sub = ft_substr(cnt, v->s, (v->e - v->s));
-		tmp = ft_v_k(sub, env);
-		if (tmp)
-		{
-			tmp1 = v->r;
-			v->r = ft_strjoin(tmp1, tmp);
-			free (tmp1);
-			free (tmp);
-		}
-		free(sub);
-	}
+		sub_expand_value(cnt, v, env);
 	not_isalnum(cnt, v);
 	join_after_exp(cnt, v);
 }
