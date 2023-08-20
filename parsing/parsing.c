@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/20 19:31:40 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 				break ;
 			tmp = tmp->next;
 		}
-		if (!tmp->next || (tmp->next && tmp->next->type == PIPE))
-			new_p->arg[++(*i)] = NULL;
+		// if (!tmp->next || (tmp->next && tmp->next->type == PIPE))
+		// 	new_p->arg[++(*i)] = NULL;
 		ft_searsh_herdoc(tmp, new_p, env);
 		if (!tmp || tmp->type == PIPE)
 		{
@@ -39,7 +39,7 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 			break ;
 		tmp = tmp->next;
 	}
-	g_v.sig = 1;
+	// g_v.sig = 1;
 }
 
 t_parse	*ft_list_parser(t_token *tmp, int count, t_env *env)
@@ -55,6 +55,8 @@ t_parse	*ft_list_parser(t_token *tmp, int count, t_env *env)
 		return (NULL);
 	new_p->path = NULL;
 	push_arg(tmp, new_p, &i, env);
+	i++;
+	new_p->arg[i] = NULL;
 	new_p->next = NULL;
 	return (new_p);
 }
@@ -102,7 +104,7 @@ t_parse	*parser_list(t_token *list_tokens, int *is_alloc, t_env *env)
 			add_to_list_parser(&lst, ft_list_parser(tmp, count, env));
 			*is_alloc = 1;
 		}
-		if (tmp->type == PIPE)
+		if (tmp->type == PIPE && g_v.sig == 1)
 			*is_alloc = 0;
 		tmp = tmp->next;
 	}
@@ -116,6 +118,8 @@ t_parse	*parser(t_token	*list_tokens, t_env *env)
 
 	is_alloc = 0;
 	list_pars = parser_list(list_tokens, &is_alloc, env);
-	redirection(list_tokens, list_pars);
+	if (g_v.sig == 1)
+		redirection(list_tokens, list_pars);
+	g_v.sig = 1;
 	return (list_pars);
 }

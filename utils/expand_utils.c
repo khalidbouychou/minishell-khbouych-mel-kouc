@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 03:45:56 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/20 19:44:02 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 
 	ft_init_var_expd(&v);
 	v.r = ft_h_h_expand(cnt, &v);
-	while (cnt[++v.i])
+	++v.i;
+	while (cnt[v.i])
 		substr_expand(cnt, &v, env);
 	return (v.r);
 }

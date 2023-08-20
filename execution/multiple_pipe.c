@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/20 03:40:23 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/20 19:38:47 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ void	befor_exec(t_pipe *tmp, t_parse *lst_p)
 
 int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
 {
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	lst_p->pid0 = fork();
 	if (lst_p->pid0 == -1)
 		return (-1);
 	else if (lst_p->pid0 == 0)
 	{
+		ft_signals();
 		befor_exec(tmp, lst_p);
 		if (compare_cmd(lst_p))
 		{
@@ -57,6 +60,7 @@ int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
 		close(tmp->prev->fd_p[0]);
 		close(tmp->prev->fd_p[1]);
 	}
+	ft_signals();
 	return (1);
 }
 
