@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:20:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/20 14:45:09 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:59:46 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 
 int	compare_cmd(t_parse *tmp)
 {
+	// printf("arg[0] = %s", tmp->arg[0]);
+	// if ( !tmp|| tmp->arg[0] == NULL)
+	// {
+	// 	puts("khaouiiii");
+	// 	return (0);
+	// }
+	// else
+	// 	printf("arg %s\n",tmp->arg[0]);
 	if (!ft_strcmp(tmp->arg[0], "echo") || !ft_strcmp(tmp->arg[0], "env")
 		|| !ft_strcmp(tmp->arg[0], "export") || !ft_strcmp(tmp->arg[0], "pwd")
 		|| !ft_strcmp(tmp->arg[0], "exit") || !ft_strcmp(tmp->arg[0], "unset")

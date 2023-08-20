@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:44:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/19 17:13:58 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:45:25 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	init_struct_parce(t_parse *new_p)
 	new_p->fd_output = 1;
 	new_p->f_name = NULL;
 	new_p->pid0 = -4;
-	new_p->arg = NULL;
+	// new_p->arg = NULL;
 }
 
 void	operator_right(t_token *tmp, t_token *right_op)

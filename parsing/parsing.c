@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 13:57:51 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:56:08 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 {
 	while (tmp)
 	{
-		while (tmp && tmp->type != PIPE && (tmp->type == WORD
+		while (tmp && tmp->content && tmp->content[0]	
+			&& tmp->type != PIPE && (tmp->type == WORD
 				|| tmp->type == VAR || tmp->type == SPC))
 		{
 			if (tmp->content && *tmp->content)
@@ -27,8 +28,6 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 				break ;
 			tmp = tmp->next;
 		}
-		if (!tmp->next || (tmp->next && tmp->next->type == PIPE))
-			new_p->arg[++(*i)] = NULL;
 		ft_searsh_herdoc(tmp, new_p, env);
 		if (!tmp || tmp->type == PIPE)
 		{
@@ -49,12 +48,16 @@ t_parse	*ft_list_parser(t_token *tmp, int count, t_env *env)
 
 	i = -1;
 	new_p = malloc(sizeof(t_parse));
+	if (!new_p)
+		return (NULL);
 	init_struct_parce(new_p);
 	new_p->arg = malloc(sizeof(char *) * (count + 1));
 	if (!new_p->arg)
 		return (NULL);
 	new_p->path = NULL;
 	push_arg(tmp, new_p, &i, env);
+	i++;
+	new_p->arg[i] = NULL;
 	new_p->next = NULL;
 	return (new_p);
 }

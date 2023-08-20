@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/20 15:11:15 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:06:28 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)
 {
 	t_token	*ptr;
 
+	(void)env;
 	if (tmp->type == HERDOC)
 	{
 		if (!tmp->prev)

@@ -6,11 +6,41 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 13:57:04 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:12:29 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./incld/minishell.h"
+
+void	parser_print(t_parse *lst)
+{
+	t_parse	*tmp;
+	int		i;
+	int		j;
+
+	i = 0;
+	tmp = lst;
+	printf("\n ----------------PARSER_LIST---------------\n");
+	while (tmp)
+	{
+		j = 0;
+		while (tmp->arg[j])
+		{
+			if(tmp->arg[j] == NULL)
+				puts("NULL");
+			else
+				printf("√ cmd\t--> (%s)\n", tmp->arg[j]);
+			j++;
+		}
+		if(tmp->arg[j] == NULL)
+				puts("NULL");
+		printf("√ ***** fd int = %d *****\n", tmp->fd_input);
+		printf("√ ***** fd out = %d *****\n", tmp->fd_output);
+		printf("√ path\t--> (%s)\n", tmp->path);
+		printf("------------------------------------\n");
+ 		tmp = tmp->next;
+	}
+}
 
 void	help_main(char *cmd, t_env **env)
 {
@@ -24,6 +54,7 @@ void	help_main(char *cmd, t_env **env)
 	if (list_tokens)
 	{
 		list_parser = parser(list_tokens, *env);
+		// parser_print(list_parser);
 		execute_main(list_parser, env);
 	}
 	free_token_list(&list_tokens);
