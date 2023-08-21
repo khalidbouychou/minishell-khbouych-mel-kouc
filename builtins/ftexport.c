@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 00:11:10 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/21 21:35:06 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ int	ft_check_ifkey_valid(t_env *node, int fd)
 	int	i;
 
 	i = 0;
-	if (node->key[ft_strlen(node->key) - 1] == '+' && node->value == NULL)
+	if (node->key[0] == '\0')
 		return (write(fd, "[export : key not valide ]\n", 28), 0);
-	if (!ft_isalpha(node->key[0]) && node->key[0] != '_')
+	else if (node->key[ft_strlen(node->key) - 1] == '+' && node->value == NULL)
 		return (write(fd, "[export : key not valide ]\n", 28), 0);
-	if (node->key[ft_strlen(node->key) - 1] != '_'
+	else if (!ft_isalpha(node->key[0]) && node->key[0] != '_')
+		return (write(fd, "[export : key not valide ]\n", 28), 0);
+	else if (node->key[ft_strlen(node->key) - 1] != '_'
 		&& !ft_isalnum(node->key[ft_strlen(node->key) - 1])
 		&& node->key[ft_strlen(node->key) - 1] != '+')
 		return (write(fd, "[export : key not valide ]\n", 28), 0);
@@ -58,13 +60,17 @@ void	ft_getadress_node(t_env **env, t_env *node)
 	{
 		if (!ft_strcmp(tmp->key, node->key))
 		{
-			str = tmp->key;
-			ptr = tmp->value;
-			tmp->key = node->key;
-			tmp->value = node->value;
-			free(str);
-			free(ptr);
-			free(node);
+			if (tmp->value)
+			{
+				str = tmp->key;
+				ptr = tmp->value;
+				tmp->key = node->key;
+				if(node->value)
+					tmp->value = node->value;
+			}
+			// free(str);
+			// free(ptr);
+			// free(node);
 		}
 		tmp = tmp->next;
 	}
@@ -75,6 +81,8 @@ int	ft_help_export(char **export, t_env *env, int fd)
 	int		i;
 	t_env	*node;
 
+	(void)env;
+	(void)fd;
 	i = 1;
 	while (export[i])
 	{
@@ -83,10 +91,10 @@ int	ft_help_export(char **export, t_env *env, int fd)
 		{
 			if (node->key[ft_strlen(node->key) - 1] == '+'
 				&& ft_if_key_exist(env, node))
-				ft_join_value(env, node);
+					ft_join_value(env, node);
 			else if (ft_if_key_exist(env, node))
 				ft_getadress_node(&env, node);
-			else
+			else if (!ft_if_key_exist(env, node))
 				ft_add_to_env(env, node);
 		}
 		else

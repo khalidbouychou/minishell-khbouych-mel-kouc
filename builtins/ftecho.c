@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 03:39:29 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 00:15:07 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int	ft_check_n(char *arg)
 	i = 0;
 	if (arg[0] != '-')
 		return (0);
-	while (arg[++i])
+	while (arg[i])
 	{
 		if (arg[i] != 'n')
 			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -41,9 +42,10 @@ void	ft_echo(char **arg, int fd)
 	}
 	while (arg[i])
 	{
-		if (ft_strcmp("?", arg[i]) == 0)
-			ft_putnbr(g_v.ex_stu);
-		else
+
+		// if (ft_strcmp("?", arg[i]) == 0)
+		// 	ft_putnbr(g_v.ex_stu);
+		// else
 			ft_putstr_fd(arg[i], fd);
 		i++;
 	}

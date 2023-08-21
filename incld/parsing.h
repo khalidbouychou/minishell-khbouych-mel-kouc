@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 02:32:37 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:23:58 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ void	ft_unlink_close_free(t_parse **new_p);
 void	ft_herdoc_signal(int sig);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 void 	ft_child_sig_handler(int sig);
+char	*ft_itoa(int nbr);
 #endif

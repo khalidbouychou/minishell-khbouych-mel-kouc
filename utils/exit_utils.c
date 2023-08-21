@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:45:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/07 15:09:52 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:47:37 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static void	ft_skipp(int *i, const char *p_str, int *sign)
 	}
 }
 
-int	ft_atoi(const char *str)
+long long int	ft_atoi(const char *str)
 {
-	int			res;
-	int			sign;
-	int			i;
-	char		*p_str;
-	long long	prev_res;
+	long long int			res;
+	int					sign;
+	int					i;
+	char				*p_str;
+	long long int		prev_res;
 
 	p_str = (char *)str;
 	i = 0;
@@ -40,7 +40,8 @@ int	ft_atoi(const char *str)
 	while (ft_isdigit(p_str[i]))
 	{
 		prev_res = res;
-		res = res * 10 + p_str[i] - '0';
+		res *= 10;
+		res += p_str[i] - '0';
 		if ((res / 10) != prev_res)
 		{
 			if (sign == 1)

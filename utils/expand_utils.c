@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 01:53:40 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 00:29:45 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,14 +216,41 @@ void	sub_expand_value(char *cnt, t_exp *v, t_env *env)
 	free(sub);
 }
 
-void	substr_expand(char *cnt, t_exp *v, t_env *env)
+char *fttest(char *str)
 {
+	int i = 0;
+	int len = ft_strlen(str);
+	char *tmp = malloc(sizeof(char) * (len + 2));
+	
+	tmp[0] = '0';
+	while(str[i])
+	{
+		tmp[i + 1] = str[i];
+		i++;
+	}
+	tmp[i + 1] = '\0';
+	return (tmp);
+}
+char	*substr_expand(char *cnt, t_exp *v, t_env *env)
+{
+	char *str;
 	if (ft_isdigit(cnt[v->i]))
 		expand_digit(cnt, v);
+	else if (cnt[v->i] == '?')
+	{
+		printf("g_v.ex_stu = %d\n", g_v.ex_stu);
+		str = ft_itoa(g_v.ex_stu);
+		free(cnt);
+		cnt = fttest(str);
+		// printf("cnt -- %s\n", cnt);
+		printf("str -- %s\n", str);
+		free(str);
+	}
 	else
 		sub_expand_value(cnt, v, env);
 	not_isalnum(cnt, v);
 	join_after_exp(cnt, v);
+	return (cnt);
 }
 
 char	*ft_expandhelp(char *cnt, t_env *env)
@@ -234,10 +261,11 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 
 	ft_init_var_expd(&v);
 	v.r = ft_h_h_expand(cnt, &v);
+	//$
 	++v.i;
 	while (v.i < (int)ft_strlen(cnt))
 	{
-		substr_expand(cnt, &v, env);
+		cnt = substr_expand(cnt, &v, env);
 		v.i++;
 	}
 	return (v.r);

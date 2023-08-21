@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 04:03:18 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 00:45:02 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 		if (compare_cmd(lst_p))
 		{
 			lst_p->fd_output = 1;
-			cmd_in_built(lst_p, &env);
+			cmd_in_built(lst_p, &env, 1);
 			exit(g_v.ex_stu);
 		}
 		else if (execve(lst_p->path, lst_p->arg, str) == -1)
@@ -51,7 +51,7 @@ int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 {
 	// ft_defaultsig();
-		signal(SIGINT, SIG_IGN);
+	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	if (lst_p->fd_output == -1 || lst_p->fd_input == -1)
 		return (1);
@@ -72,7 +72,7 @@ int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 		if (compare_cmd(lst_p))
 		{
 			lst_p->fd_output = 1;
-			cmd_in_built(lst_p, &env);
+			cmd_in_built(lst_p, &env, 1);
 			exit(g_v.ex_stu);
 		}
 		else if (execve(lst_p->path, lst_p->arg, str) == -1)
@@ -104,9 +104,11 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 	close(fd[1]);
 	waitpid(lst_p->pid0, &status, 0);
 	waitpid(lst_p->next->pid0, &status, 0);
-	if (status == 256)
-		g_v.ex_stu = 1;
-	else if (status == 0)
-		g_v.ex_stu = 0;
+	ft_signals();
+	if (WIFEXITED(status))
+		g_v.ex_stu = WEXITSTATUS(status);
+	else if (WIFSIGNALED(status))
+			if (WTERMSIG(status) == SIGQUIT)
+				ft_putendl_fd("Quit: 3", 2);
 	return (1);
 }

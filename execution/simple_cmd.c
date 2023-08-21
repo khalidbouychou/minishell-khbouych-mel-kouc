@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 04:05:52 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/21 23:42:45 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	child_simple(t_parse *list_pars, char **str)
 	if (ft_strchr(list_pars->arg[0], 32) != -1)
 		cmd = ft_split(list_pars->arg[0], 32);
 	check_fd_exec(list_pars);
-	// ft_defaultsig();
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	if (g_v._flag == 1)
@@ -85,6 +84,42 @@ void	child_simple(t_parse *list_pars, char **str)
 		free_char_double(cmd);
 }
 
+int ft_find_shellvl (char **str)
+{
+	int  i = 0;
+	while (str[i])
+	{
+		if (!ft_strncmp(str[i], "SHLVL", 4))
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+char **ft_set_shlvl(char **str)
+{
+	int i;
+	int j;
+	char 	*res;
+	int 	val;
+
+	i = ft_find_shellvl(str);
+	j = 0;
+	if (i == -1)
+		return (str);
+	while (str[i][j])
+	{
+		if (str[i][j] == '=')
+		{
+			val = ft_atoi(&str[i][j + 1]);
+			res = ft_itoa(val + 1);
+			str[i][j + 1] = res[0];
+		}
+		j++;
+	}
+	return (free(res), str);
+}
+
 int	simple_not_built(t_parse *list_pars, char **str)
 {
 	pid_t	id ;
@@ -100,9 +135,9 @@ int	simple_not_built(t_parse *list_pars, char **str)
 	}
 	else if (id == 0)
 	{
-		// ft_defaultsig();
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+		str = ft_set_shlvl(str);
 		child_simple(list_pars, str);
 	}
 	close_fd(list_pars);

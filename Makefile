@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/21 02:18:49 by khbouych         ###   ########.fr        #
+#    Updated: 2023/08/21 23:59:17 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ C_flagS =   -Wall -Wextra -Werror
 all: $(NAME)
 # ${LIB}
 # ${INCLUDE}
-$(NAME) : $(OSRC) 
+$(NAME) : $(OSRC)
 	@$(CC) -lreadline  $(C_flagS) $(OSRC)  ${LIB} -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 

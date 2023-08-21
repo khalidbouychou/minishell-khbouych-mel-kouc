@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 01:45:39 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 00:52:39 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 		while (tmp && tmp->type != PIPE && (tmp->type == WORD
 				|| tmp->type == VAR || tmp->type == SPC))
 		{
-			if (tmp->content && *tmp->content)
+			if (tmp->content)
+			{
+				printf("tmp->content = %s\n", tmp->content);
 				new_p->arg[++(*i)] = ft_strdup(tmp->content);
+			}
 			if (*i == 0 && !compare_path(tmp->content))
 				new_p->path = ft_get_path(env, new_p->arg[0]);
 			if (!tmp->next || tmp->next->type == PIPE)
@@ -115,7 +118,7 @@ t_parse	*parser(t_token	*list_tokens, t_env *env)
 
 	is_alloc = 0;
 	list_pars = parser_list(list_tokens, &is_alloc, env);
-	if (g_v.sig == 1)
+	if (g_v.sig == 1 || g_v.sig == 0)
 		redirection(list_tokens, list_pars);
 	g_v.sig = 1;
 	return (list_pars);

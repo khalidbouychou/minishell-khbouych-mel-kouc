@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/20 19:14:32 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 00:10:10 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 	char	*str;
 	char	*delim;
 	char	*buffer;
+	pid_t	pid;
+	int		status;
 
 	delim = ptr->content;
-	buffer = ft_strdup("");
+	buffer = NULL;
 	new_p->f_name = generate_name();
-	pid_t	pid;
-	int status;
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	new_p->fd_input = open(new_p->f_name, O_WRONLY | O_CREAT, 0644);

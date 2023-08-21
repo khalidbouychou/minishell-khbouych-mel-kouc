@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 03:25:57 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:28:09 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	ft_help_cd(t_env *home, t_env *pwd)
 		chdir(home->value);
 	if (pwd)
 		pwd->value = getcwd(NULL, 0);
-	return ;
 }
 
 void	ft_help__cd(t_env *home)
@@ -58,8 +57,13 @@ void	ft_cd(char **cmd, t_env *env)
 	char	*ret;
 
 	ft_init_env(&home, &pwd, &old, env);
+	if (cmd[1] && !*cmd[1])
+		return ;
 	if ((!cmd[1]))
+	{
 		ft_help_cd(home, pwd);
+		return;
+	}
 	else if ((!ft_strcmp(cmd[1], "~")))
 	{
 		ft_help__cd(home);

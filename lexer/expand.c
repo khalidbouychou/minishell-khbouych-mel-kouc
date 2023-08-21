@@ -6,9 +6,10 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 21:33:41 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/21 22:48:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../incld/minishell.h"
 
@@ -59,7 +60,7 @@ void	expand_redir(t_token *tmp, t_env *env)
 		ptr = tmp->prev;
 		while (ptr && (ptr->type == SPC || ptr->type == _TAB))
 			ptr = ptr->prev;
-		if ((ptr && (ptr->content[0] != '\0' && ptr->type != HERDOC))
+		if ((ptr && (ptr->type != HERDOC))
 			|| !ptr)
 		{
 			tmp1 = tmp->content;
@@ -76,8 +77,10 @@ void	expand_redir(t_token *tmp, t_env *env)
 void	ft_expander(t_token *tok, t_env *env)
 {
 	t_token	*tmp;
-	
+
 	tmp = tok;
+	// printf("%s",tok->content);
+	// exit(0);
 	while (tmp)
 	{
 		expand_redir(tmp, env);
