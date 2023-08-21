@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:40 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 11:21:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:50:53 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	ft_env(t_parse *penv, t_env **env)
 		g_v.ex_stu = 0;
 	}
 	else
-		ft_exit_output("--> No such file or directory\n", 1, false);
+		ft_exit_output("--> illegal option \n", 1, false);
 }

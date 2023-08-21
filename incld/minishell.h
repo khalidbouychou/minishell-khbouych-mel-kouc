@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/20 13:48:14 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:27:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_glbl
 
 t_glbl	g_v;
 
+void check_leaks();
 //----------------------* struct env *----------------------//
 t_env	*ft_lstnew(char *env);
 void	ft_lst_addback(t_env **head, t_env *new);
@@ -61,4 +62,6 @@ void	print(t_token *lst);
 void	free_parser_list(t_parse **list);
 void	env_not_exist(int i, char **key, char **value);
 int		ft_strcmp(const char *str1, const char *str2);
+void	ft_ignoresig(void);
+void	ft_defaultsig(void);
 #endif

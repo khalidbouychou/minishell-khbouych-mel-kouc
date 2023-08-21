@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/18 15:15:38 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:27:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_unset(t_env **env, char **arg)
 	while (arg[i])
 	{
 		if (!ft_key_syntax(arg[i]))
-			ft_putendl_fd("not a valid key", 2);
+			ft_putendl_fd("-->not a valid key", 2);
 		else
 			ft_delete_node(env, arg[i]);
 		i++;

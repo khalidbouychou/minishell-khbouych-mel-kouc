@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 18:56:08 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/21 23:04:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 {
 	while (tmp)
 	{
-		while (tmp && tmp->content && tmp->content[0]	
-			&& tmp->type != PIPE && (tmp->type == WORD
+		while (tmp && tmp->content && tmp->type != PIPE && (tmp->type == WORD
 				|| tmp->type == VAR || tmp->type == SPC))
 		{
-			if (tmp->content && *tmp->content)
+			if (tmp->content)
 				new_p->arg[++(*i)] = ft_strdup(tmp->content);
 			if (*i == 0 && !compare_path(tmp->content))
 				new_p->path = ft_get_path(env, new_p->arg[0]);
@@ -38,7 +37,6 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 			break ;
 		tmp = tmp->next;
 	}
-	g_v.sig = 1;
 }
 
 t_parse	*ft_list_parser(t_token *tmp, int count, t_env *env)
@@ -105,7 +103,7 @@ t_parse	*parser_list(t_token *list_tokens, int *is_alloc, t_env *env)
 			add_to_list_parser(&lst, ft_list_parser(tmp, count, env));
 			*is_alloc = 1;
 		}
-		if (tmp->type == PIPE)
+		if (tmp->type == PIPE && g_v.sig == 1)
 			*is_alloc = 0;
 		tmp = tmp->next;
 	}
@@ -119,6 +117,8 @@ t_parse	*parser(t_token	*list_tokens, t_env *env)
 
 	is_alloc = 0;
 	list_pars = parser_list(list_tokens, &is_alloc, env);
-	redirection(list_tokens, list_pars);
+	if (g_v.sig == 1 || g_v.sig == 0)
+		redirection(list_tokens, list_pars);
+	g_v.sig = 1;
 	return (list_pars);
 }

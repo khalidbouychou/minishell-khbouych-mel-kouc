@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:48:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/19 19:17:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:27:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	fealed_execve(t_parse *list_pars)
 			|| (access(list_pars->path, F_OK) == -1
 				&& list_pars->fd_input == 0))
 		{
-			ft_putstr_fd("command not found\n", 2);
+			// ft_putstr_fd("command not found\n", 2);
+			perror(list_pars->arg[0]);
 			exit(g_v.ex_stu = 127);
 		}
 	}

@@ -764,3 +764,11 @@ export s+="===="
  exit | exit 100
 
  echo $? = 100
+
+
+
+
+
+
+makhdamch
+    echo hello test > a

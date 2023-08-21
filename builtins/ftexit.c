@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:45 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 13:54:35 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:50:59 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_exit_output(char *msg, int exit_status, bool _bool)
 {
-	printf("%s", msg);
+	ft_putstr_fd(msg, 2);
 	if (_bool)
 		exit(g_v.ex_stu = exit_status);
 	else

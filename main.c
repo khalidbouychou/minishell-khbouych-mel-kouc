@@ -6,11 +6,28 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 03:47:04 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/21 21:21:38 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./incld/minishell.h"
+
+void	tokens_print(t_token *lst)
+{
+	t_token	*tmp;
+	tmp = lst;
+	printf("\n ----------------TOKENS_LIST---------------\n");
+	while (tmp)
+	{
+		printf("√ cmd\t--> (%s)\n", tmp->content);
+		printf("√ ***** type = %d *****\n", tmp->type);
+		printf("√ ***** operator = %d *****\n", tmp->operator);
+		printf("√ ***** _flag = %d *****\n", tmp->_flag);
+		printf("------------------------------------\n");
+ 		tmp = tmp->next;
+	}
+}
+
 
 void	parser_print(t_parse *lst)
 {
@@ -21,6 +38,7 @@ void	parser_print(t_parse *lst)
 	i = 0;
 	tmp = lst;
 	printf("\n ----------------PARSER_LIST---------------\n");
+	printf("%p\n",tmp);
 	while (tmp)
 	{
 		j = 0;
@@ -53,6 +71,7 @@ void	help_main(char *cmd, t_env **env)
 	g_v.sig = 0;
 	if (list_tokens)
 	{
+		//  tokens_print(list_tokens);
 		list_parser = parser(list_tokens, *env);
 		// parser_print(list_parser);
 		execute_main(list_parser, env);
@@ -69,6 +88,10 @@ void	ft_init_variables(void)
 	g_v.sig = 0;
 }
 
+// void l()
+// {
+// 	system("leaks minishell");
+// }
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
@@ -81,17 +104,22 @@ int	main(int argc, char **argv, char **envp)
 	ft_init_variables();
 	ft_signals();
 	g_v.sig = 1;
+	// atexit(l);
 	while (1997)
 	{
 		cmd = readline("minishell ~> ");
+		// if (ft_strcmp(cmd, "./minishell") == 0)
+		// 	g_v._flag = 1;
 		add_history(cmd);
 		if (cmd)
 			help_main(cmd, &env);
 		else
 		{
 			write(1, "exit\n", 6);
+			free_env_list(env);
 			break ;
 		}
 		free (cmd);
 	}
+	return (0);
 }

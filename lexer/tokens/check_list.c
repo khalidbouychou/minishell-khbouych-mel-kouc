@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/19 22:04:38 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:27:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	lixer_list(t_token **list)
 
 	tmp = *list;
 	str = NULL;
-	ptr = NULL;
 	while (tmp)
 	{
+		ptr = tmp->next;
 		help_lixer_list(str, tmp, ptr);
 		tmp = tmp->next;
 	}
@@ -87,7 +87,7 @@ int	check_list(t_token **lst, t_env *env)
 {
 	if (!check_operator(lst) || !check_quotes(lst))
 	{
-		ft_putstr_fd("syntax error near unexpected token \n", 2);
+		ft_putstr_fd("-->syntax error near unexpected token \n", 2);
 		g_v.ex_stu = 258;
 		free_token_list(lst);
 		return (0);

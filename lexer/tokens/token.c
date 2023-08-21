@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/19 16:44:12 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:27:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,14 @@ char	*ft_get_path(t_env *env, char *str)
 {
 	char	*p;
 	t_env	*tmp;
+	char	**cmd;
+	char *ret;
 
 	p = NULL;
+	cmd = NULL;
 	tmp = env;
+	if (ft_strchr(str, 32) != -1)
+		cmd = ft_split(str, 32);
 	while (tmp)
 	{
 		if (tmp->key && !ft_strcmp(tmp->key, "PATH"))
@@ -54,6 +59,13 @@ char	*ft_get_path(t_env *env, char *str)
 		}
 		tmp = tmp->next;
 	}
+	if (cmd)
+		if (ft_strchr(cmd[0], '/') == -1)
+		{
+			ret = ft_check_if_cmd_valid(ft_split(p, ':'), cmd[0]);
+			free_char_double(cmd);
+			return (ret);
+		}
 	if (ft_strchr(str, '/') == -1)
 		return (ft_check_if_cmd_valid(ft_split(p, ':'), str));
 	else
