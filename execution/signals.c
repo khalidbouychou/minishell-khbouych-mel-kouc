@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 11:05:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 03:34:55 by khbouych         ###   ########.fr       */
+/*   Created: 2023/08/21 04:00:34 by khbouych          #+#    #+#             */
+/*   Updated: 2023/08/21 04:04:26 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-
 void	ft_herdoc_signal(int sig)
 {
 	if (sig == SIGINT)
@@ -44,16 +43,16 @@ void ft_child_sig_handler(int sig)
 		g_v.ex_stu = 1;
 	}
 }
-ft_defaultsig(void)
-{
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
-}
-ft_ignoresig(void)
-{
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-}
+// void ft_defaultsig(void)
+// {
+// 	signal(SIGINT, SIG_DFL);
+// 	signal(SIGQUIT, SIG_DFL);
+// }
+// void ft_ignoresig(void)
+// {
+// 	signal(SIGINT, SIG_IGN);
+// 	signal(SIGQUIT, SIG_IGN);
+// }
 
 void	ft_signals(void)
 {

@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 03:46:33 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/21 04:05:52 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ void	child_simple(t_parse *list_pars, char **str)
 	if (ft_strchr(list_pars->arg[0], 32) != -1)
 		cmd = ft_split(list_pars->arg[0], 32);
 	check_fd_exec(list_pars);
-	ft_defaultsig();
+	// ft_defaultsig();
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (g_v._flag == 1)
 	{
 		g_v._flag = 0;
@@ -98,7 +100,9 @@ int	simple_not_built(t_parse *list_pars, char **str)
 	}
 	else if (id == 0)
 	{
-		ft_defaultsig();
+		// ft_defaultsig();
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
 		child_simple(list_pars, str);
 	}
 	close_fd(list_pars);
