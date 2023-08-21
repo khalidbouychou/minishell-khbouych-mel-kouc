@@ -6,14 +6,11 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/20 15:46:11 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/21 03:47:13 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-
-
-///////////////////add /////////////////
 
 void	execut_in_child(t_parse *lst_p, t_env *env, char **str)
 {
@@ -29,7 +26,6 @@ void	execut_in_child(t_parse *lst_p, t_env *env, char **str)
 		exit(g_v.ex_stu);
 	}
 }
-
 
 int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 {

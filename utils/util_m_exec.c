@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:20:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/20 16:59:46 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/21 03:37:46 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 
 int	compare_cmd(t_parse *tmp)
 {
-	// printf("arg[0] = %s", tmp->arg[0]);
-	// if ( !tmp|| tmp->arg[0] == NULL)
-	// {
-	// 	puts("khaouiiii");
-	// 	return (0);
-	// }
-	// else
-	// 	printf("arg %s\n",tmp->arg[0]);
 	if (!ft_strcmp(tmp->arg[0], "echo") || !ft_strcmp(tmp->arg[0], "env")
 		|| !ft_strcmp(tmp->arg[0], "export") || !ft_strcmp(tmp->arg[0], "pwd")
 		|| !ft_strcmp(tmp->arg[0], "exit") || !ft_strcmp(tmp->arg[0], "unset")
@@ -40,24 +32,3 @@ int	compare_path(char *tmp)
 	return (0);
 }
 
-/////////////////
-
-// int	compare_cmd(t_parse *tmp)
-// {
-// 	if (!ft_strncmp(tmp->arg[0], "echo", ft_strlen(tmp->arg[0])) || !ft_strncmp(tmp->arg[0], "env", ft_strlen(tmp->arg[0]))
-// 		|| !ft_strncmp(tmp->arg[0], "export", ft_strlen(tmp->arg[0])) || !ft_strncmp(tmp->arg[0], "pwd", ft_strlen(tmp->arg[0]))
-// 		|| !ft_strncmp(tmp->arg[0], "exit", ft_strlen(tmp->arg[0])) || !ft_strncmp(tmp->arg[0], "unset", ft_strlen(tmp->arg[0]))
-// 		|| !ft_strncmp(tmp->arg[0], "cd", ft_strlen(tmp->arg[0])))
-// 		return (1);
-// 	return (0);
-// }
-
-// int	compare_path(char *tmp)
-// {
-// 	if (!ft_strncmp(tmp, "echo", ft_strlen(tmp)) || !ft_strncmp(tmp, "env", ft_strlen(tmp))
-// 		|| !ft_strncmp(tmp, "export", ft_strlen(tmp)) || !ft_strncmp(tmp, "pwd", ft_strlen(tmp))
-// 		|| !ft_strncmp(tmp, "exit", ft_strlen(tmp)) || !ft_strncmp(tmp, "unset", ft_strlen(tmp))
-// 		|| !ft_strncmp(tmp, "cd", ft_strlen(tmp)))
-// 		return (1);
-// 	return (0);
-// }

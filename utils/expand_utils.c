@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 18:52:11 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:46:29 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,11 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 
 	ft_init_var_expd(&v);
 	v.r = ft_h_h_expand(cnt, &v);
-	printf("v.i = %d\n", v.i);
-	while (cnt[++v.i])
+	++v.i;
+	while (cnt[v.i])
+	{
 		substr_expand(cnt, &v, env);
+		++v.i;
+	}
 	return (v.r);
 }
