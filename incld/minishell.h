@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 02:18:17 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:49:23 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@
 # include "../incld/parsing.h"
 # include "../incld/builtins.h"
 # include "../incld/execution.h"
-
-// for exit status and signals
 typedef struct s_glbl
 {
 	int		_flag;
@@ -43,7 +41,6 @@ typedef struct s_glbl
 
 t_glbl	g_v;
 
-void check_leaks();
 //----------------------* struct env *----------------------//
 t_env	*ft_lstnew(char *env);
 void	ft_lst_addback(t_env **head, t_env *new);

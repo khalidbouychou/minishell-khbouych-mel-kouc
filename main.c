@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 01:56:36 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 10:20:24 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	tokens_print(t_token *lst)
  		tmp = tmp->next;
 	}
 }
-
 
 void	parser_print(t_parse *lst)
 {

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 20:28:41 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 11:44:02 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ void	add_if_not_found(t_env **head, int i);
 char	*ft_expandhelp(char *cnt, t_env *env);
 int		compare_path(char *tmp);
 /*************herdoc*************/
-void	ft_init_herdoc(t_parse **new_p, char **buf, char **del, char *cnt_d);
+void	ft_init_herdoc(t_parse **new_p, char **buf, char **del, t_token **ptr);
 void	ft_unlink_close_free(t_parse **new_p);
-void	ft_herdoc_signal(int sig);
+// void	ft_herdoc_signal(int sig);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 void	ft_child_sig_handler(int sig);
+void	parent_herdoc(t_parse *new_p, int status, pid_t pid);
+void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str);
 
 #endif

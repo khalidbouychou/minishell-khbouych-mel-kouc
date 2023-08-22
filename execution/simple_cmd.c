@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 01:56:07 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 12:03:56 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,8 @@ void	child_simple(t_parse *list_pars, char **str)
 
 	cmd = NULL;
 	if (ft_strchr(list_pars->arg[0], 32) != -1)
-	{
 		cmd = ft_split(list_pars->arg[0], 32);
-	}
 	check_fd_exec(list_pars);
-	//ft_defaultsig();
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
 	if (g_v._flag == 1)
 	{
 		g_v._flag = 0;
@@ -84,7 +79,7 @@ void	child_simple(t_parse *list_pars, char **str)
 			fealed_s_n_exe(list_pars);
 	}
 	if (cmd)
-		 free_char_double(cmd);
+		free_char_double(cmd);
 }
 
 int	simple_not_built(t_parse *list_pars, char **str)
@@ -92,8 +87,7 @@ int	simple_not_built(t_parse *list_pars, char **str)
 	pid_t	id ;
 	int		status;
 
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
+	ft_ignoresig();
 	id = fork();
 	if (id == -1)
 	{
@@ -102,9 +96,7 @@ int	simple_not_built(t_parse *list_pars, char **str)
 	}
 	else if (id == 0)
 	{
-		// ft_defaultsig();
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+		ft_defaultsig();
 		child_simple(list_pars, str);
 	}
 	close_fd(list_pars);

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 20:27:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 11:52:53 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,13 @@ void	befor_exec(t_pipe *tmp, t_parse *lst_p)
 
 int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
 {
-	// ft_ignoresig();
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
+	ft_ignoresig();
 	lst_p->pid0 = fork();
 	if (lst_p->pid0 == -1)
 		return (-1);
 	else if (lst_p->pid0 == 0)
 	{
-		// ft_defaultsig();
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+		ft_defaultsig();
 		befor_exec(tmp, lst_p);
 		if (compare_cmd(lst_p))
 		{
@@ -99,23 +95,21 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 {
 	t_pipe	*head;
 	int		i;
+	int		status;
 
 	i = 0;
+	status = 0;
 	head = NULL;
 	loop_cmd(head, lst_p, env, str);
 	i = 0;
 	while (i <= (size - 1))
 	{
-		/*catch signal*/
-		// pid_t child_pid = waitpid(-1, &g_v.ex_stu, 0);
 		waitpid(-1, &g_v.ex_stu, 0);
-        // printf("GLOBAL = %d\n", g_v.ex_stu);        // if (child_pid > 0)
-		// {
-        //     if (WIFEXITED(status))
-		// 		printf("Child process %d (PID %d) exited with status: %d\n", i, child_pid, WEXITSTATUS(status));
-		// 	else
-		// 		printf("Child process %d (PID %d) terminated abnormally\n", i, child_pid);
-		// }
+		if (WIFEXITED(status))
+			g_v.ex_stu = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
+			if (WTERMSIG(status) == SIGQUIT)
+				ft_putendl_fd("Quit: 3", 2);
 		i++;
 	}
 	ft_signals();
