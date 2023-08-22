@@ -772,3 +772,20 @@ export s+="===="
 add code in 
 
         simple_cmd.c   file   -> shel livel
+
+
+
+
+minishell ~> unset PWD
+minishell ~> mkdir -p  1/2/3/4
+minishell ~> cd 1/2/3/4
+minishell ~> pwd
+/Users/mel-kouc/Desktop/minishell-khbouych-mel-kouc/1/2/3/4
+minishell ~> rm -rf /Users/mel-kouc/Desktop/minishell-khbouych-mel-kouc/1
+minishell ~> cd ..
+cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+[1]    18414 segmentation fault  ./minishell
+
+
+minishell ~> echo - nnnnnnn
+nnnnnnnminishell ~> 

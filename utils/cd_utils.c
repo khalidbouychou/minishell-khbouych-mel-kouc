@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:30:13 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 18:31:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 23:13:30 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ t_env	*ft_add_env(char *key, char *value)
 	return (new_node);
 }
 
-void	check_point(char *cmd)
+void	check_point(char **cmd)
 {
 	char	*tmp;
 
 	tmp = NULL;
-	if (!ft_strcmp(cmd, "."))
+	if (!ft_strcmp(*cmd, "."))
 	{
 		tmp = g_v.current_pwd;
 		g_v.current_pwd = ft_strjoin(g_v.current_pwd, "/.");
@@ -90,53 +90,48 @@ void	check_point(char *cmd)
 void	ft_cd_(t_env **env, char **ret, char *cmd)
 {
 	char	*tmp;
+	t_env	*ptr;
+	t_env	*str;
 
 	tmp = NULL;
+	ptr = NULL;
+	str = NULL;
 	if (!(*ret))
 	{
 		ft_putstr_fd("cd: error retrieving current directory: ", 1);
 		ft_putstr_fd("getcwd: cannot access parent directories: ", 1);
-		ft_putstr_fd("No such file or directory\n", 1);
-		ft_getenv_node((*env), "OLDPWD")->value = ft_strdup(g_v.current_pwd);
-		check_point(cmd);
-		// if (!ft_strcmp(cmd, "."))
-		// {
-		// 	tmp = g_v.current_pwd;
-		// 	g_v.current_pwd = ft_strjoin(g_v.current_pwd, "/.");
-		// 	free(tmp);
-		// }
-		// else
-		// {
-		// 	tmp = g_v.current_pwd;
-		// 	g_v.current_pwd = ft_strjoin(g_v.current_pwd, "/..");
-		// 	free(tmp);
-		// }
-		ft_getenv_node((*env), "PWD")->value = ft_strdup(g_v.current_pwd);
+		ft_putstr_fd("No such file or directory", 1);
+		ptr = ft_getenv_node((*env), "OLDPWD");
+		if (ptr)
+			ptr->value = ft_strdup(g_v.current_pwd);
+		// ft_getenv_node((*env), "OLDPWD")->value = ft_strdup(g_v.current_pwd);
+		if (!ft_strcmp(cmd, "."))
+			g_v.current_pwd = ft_strjoin(g_v.current_pwd, "/.");
+		else
+			g_v.current_pwd = ft_strjoin(g_v.current_pwd, "/..");
+		str = ft_getenv_node((*env), "PWD");
+		if (str)
+			str->value = ft_strdup(g_v.current_pwd);
+		// ft_getenv_node((*env), "PWD")->value = ft_strdup(g_v.current_pwd);
 		return ;
 	}
 	else
-	{
-		tmp = g_v.current_pwd;
 		g_v.current_pwd = (*ret);
-		free(tmp);
-	}
+	// if (!(*ret))
+	// {
+	// 	ft_putstr_fd("cd: error retrieving current directory: ", 1);
+	// 	ft_putstr_fd("getcwd: cannot access parent directories: ", 1);
+	// 	ft_putstr_fd("No such file or directory\n", 1);
+	// 	ft_getenv_node((*env), "OLDPWD")->value = ft_strdup(g_v.current_pwd);
+	// 	check_point(&cmd);
+	// 	ft_getenv_node((*env), "PWD")->value = ft_strdup(g_v.current_pwd);
+	// 	return ;
+	// }
+	// else
+	// {
+	// 	tmp = g_v.current_pwd;
+	// 	g_v.current_pwd = (*ret);
+	// 	free(tmp);
+	// }
 }
 
-// void	ft_cd_(t_env **env, char **ret, char *cmd)
-// {
-// 	if (!(*ret))
-// 	{
-// 		ft_putstr_fd("cd: error retrieving current directory: ", 1);
-// 		ft_putstr_fd("getcwd: cannot access parent directories: ", 1);
-// 		ft_putstr_fd("No such file or directory\n", 1);
-// 		ft_getenv_node((*env), "OLDPWD")->value = ft_strdup(g_v.current_pwd);
-// 		if (!ft_strcmp(cmd, "."))
-// 			g_v.current_pwd = ft_strjoin(g_v.current_pwd, "/.");
-// 		else
-// 			g_v.current_pwd = ft_strjoin(g_v.current_pwd, "/..");
-// 		ft_getenv_node((*env), "PWD")->value = ft_strdup(g_v.current_pwd);
-// 		return ;
-// 	}
-// 	else
-// 		g_v.current_pwd = (*ret);
-// }
