@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 20:27:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:14:27 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_pwd(void)
 	if (!pw)
 	{
 		ft_putstr_fd(g_v.current_pwd, 1);
+		ft_putstr_fd("\n", 1);
 		g_v.ex_stu = 1;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 13:42:40 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:18:57 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void		ft_cd(char **cd, t_env *e);
 t_env		*ft_getenv_node(t_env *env, char *key);
 void		ft_pwd(void);
 void		ft_cd_(t_env **env, char **ret, char *cmd);
+void		ft_init_env(t_env **home, t_env **pwd, t_env **old, t_env *env);
+void		update_oldpwd(t_env *env, t_env *old);
+void		ft_help_cd(t_env *home, t_env *pwd);
 
 /*********herdoc***************/
 

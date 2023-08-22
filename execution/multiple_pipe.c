@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 11:52:53 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:19:16 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ void	befor_exec(t_pipe *tmp, t_parse *lst_p)
 	}
 }
 
+void	close_middle_pipes(t_pipe *tmp)
+{
+	close(tmp->prev->fd_p[0]);
+	close(tmp->prev->fd_p[1]);
+}
+
 int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
 {
 	ft_ignoresig();
@@ -55,10 +61,7 @@ int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
 		}
 	}
 	else
-	{
-		close(tmp->prev->fd_p[0]);
-		close(tmp->prev->fd_p[1]);
-	}
+		close_middle_pipes(tmp);
 	return (1);
 }
 
@@ -104,7 +107,7 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 	i = 0;
 	while (i <= (size - 1))
 	{
-		waitpid(-1, &g_v.ex_stu, 0);
+		waitpid(-1, &status, 0);
 		if (WIFEXITED(status))
 			g_v.ex_stu = WEXITSTATUS(status);
 		else if (WIFSIGNALED(status))
