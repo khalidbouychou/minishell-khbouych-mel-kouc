@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 00:10:10 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:59:40 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 		while (1)
 		{
 			str = readline("herdoc> ");
-			if (!str || !ft_strncmp(delim, str, ft_strlen(str)))
+			if (!str || !ft_strncmp(delim, str, ft_strlen(str) + 1))
 			{
 				if (*buffer)
 					write(new_p->fd_input, buffer, ft_strlen(buffer));
@@ -78,6 +78,7 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 		exit(0);
 	}
 	else
+	{
 		waitpid(pid, &status, 0);
 		ft_signals();
 		if (status == 2)
@@ -85,6 +86,7 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 			write(1, "\n", 1);
 			g_v.sig = -1;
 		}
+	}
 	close(new_p->fd_input);
 	new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
 	unlink(new_p->f_name);

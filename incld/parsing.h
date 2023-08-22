@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 16:23:58 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:38:38 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,9 @@ void	ft_herdoc_signal(int sig);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 void 	ft_child_sig_handler(int sig);
 char	*ft_itoa(int nbr);
+char	*substr_expand(char *cnt, t_exp *v, t_env *env);
+void	expand_digit(char *cnt, t_exp *v);
+void	sub_expand_value(char *cnt, t_exp *v, t_env *env);
+void	not_isalnum(char *cnt, t_exp *v);
+void	join_after_exp(char *cnt, t_exp *v);
 #endif

@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:12:06 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ int	type_er_env(t_token *tmp)
 	{
 		if (S_ISDIR(file_stat.st_mode))
 		{
-			ft_putstr_fd("is a directory\n", 2);
+			// ft_putstr_fd("is a directory\n", 2);
+			perror(tmp->content);
 			return (0);
 		}
 	}

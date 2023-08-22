@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 23:50:29 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:39:30 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ t_env           *ft_getenv_node(t_env *env, char *key);
 void            ft_pwd(void);
 void            ft_cd_(t_env **env, char **ret, char *cmd);
 
+char            *fttest(char *str);
+void            ft_init_env(t_env **home, t_env **pwd, t_env **old, t_env *env);
+void            ft_help_cd(t_env *home, t_env *pwd);
+void            env_not_exist(int i, char **key, char **value);
 /*********herdoc***************/
 
 #endif

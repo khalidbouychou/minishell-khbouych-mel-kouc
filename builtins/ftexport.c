@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 02:46:41 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:21:18 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,24 @@ void	ft_getadress_node(t_env **env, t_env *node)
 				str = tmp->key;
 				ptr = tmp->value;
 				tmp->key = node->key;
-				if(node->value)
+				if (node->value)
 					tmp->value = node->value;
 			}
-			// free(str);
-			// free(ptr);
-			// free(node);
+			free(str);
+			free(ptr);
+			free(node);
 		}
 		tmp = tmp->next;
 	}
 }
+
+// void	ft_free_export()
 
 int	ft_help_export(char **export, t_env *env, int fd)
 {
 	int		i;
 	t_env	*node;
 
-	(void)env;
-	(void)fd;
 	i = 1;
 	while (export[i])
 	{
@@ -90,7 +90,7 @@ int	ft_help_export(char **export, t_env *env, int fd)
 		{
 			if (node->key[ft_strlen(node->key) - 1] == '+'
 				&& ft_if_key_exist(env, node))
-					ft_join_value(env, node);
+				ft_join_value(env, node);
 			else if (ft_if_key_exist(env, node))
 				ft_getadress_node(&env, node);
 			else if (!ft_if_key_exist(env, node))

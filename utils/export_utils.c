@@ -6,23 +6,11 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 09:56:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 02:51:11 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:56:36 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-
-int	ft_strcmp(const char *str1, const char *str2)
-{
-	if (!str1 || !str2)
-		return (1);
-	while (*str1 && *str1 == *str2)
-	{
-		str1++;
-		str2++;
-	}
-	return ((unsigned char)*str1 - (unsigned char)*str2);
-}
 
 void	ft_print_after_sort(t_env *ee)
 {

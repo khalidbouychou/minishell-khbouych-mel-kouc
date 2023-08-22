@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 02:22:06 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:09:39 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	fealed_s_n_exe(t_parse *list_pars)
 		if ((!ft_strcmp(list_pars->arg[0], "") && list_pars->fd_input == 0)
 			|| (access(list_pars->path, F_OK) == -1))
 		{
-			ft_putstr_fd("Minishell : Command not found\n", 2);
+			perror(list_pars->arg[0]);
 			exit(127);
 		}
 	}
@@ -147,8 +147,10 @@ int	simple_not_built(t_parse *list_pars, char **str)
 	if (WIFEXITED(status))
 		g_v.ex_stu = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
+	{
 		if (WTERMSIG(status) == SIGQUIT)
 			ft_putendl_fd("Quit: 3", 2);
+	}
 	ft_signals();
 	return (1);
 }

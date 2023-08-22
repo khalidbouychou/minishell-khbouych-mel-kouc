@@ -6,14 +6,13 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:52:56 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 00:01:33 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:29:34 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-
-void ft_unlink_close_free(t_parse **new_p)
+void	ft_unlink_close_free(t_parse **new_p)
 {
 	close((*new_p)->fd_input);
 	unlink((*new_p)->f_name);

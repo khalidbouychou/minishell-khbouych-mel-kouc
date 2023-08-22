@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 02:34:52 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:31:15 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,81 +36,7 @@ char	*ft_h_h_expand(char *cnt, t_exp *v)
 	return (r);
 }
 
-void	not_isalnum(char *cnt, t_exp *v)
-{
-	char	*sub;
-	char	*tmp1;
-
-	v->s = v->i;
-	while (cnt[v->i] != '$' && cnt[v->i]
-		&& !ft_isalnum(cnt[v->i]) && cnt[v->i] != '\'')
-		v->i++;
-	v->e = v->i;
-	sub = ft_substr(cnt, v->s, (v->e - v->s));
-	tmp1 = v->r;
-	v->r = ft_strjoin(v->r, sub);
-	free (tmp1);
-	free(sub);
-}
-
-void	expand_digit(char *cnt, t_exp *v)
-{
-	char	*sub;
-	char	*tmp1;
-
-	++v->i;
-	v->s = v->i;
-	while (cnt[v->i] && cnt[v->i] != '$'
-		&& ft_isdigit(cnt[v->i]) && cnt[v->i] != '\'')
-		v->i++;
-	v->e = v->i;
-	sub = ft_substr(cnt, v->s, (v->e - v->s));
-	tmp1 = v->r;
-	v->r = ft_strjoin(tmp1, sub);
-	free (tmp1);
-	free(sub);
-}
-
-void	join_after_exp(char *cnt, t_exp *v)
-{
-	char	*sub;
-	char	*tmp1;
-
-	v->s = v->i;
-	while (cnt[v->i] != '$' && cnt[v->i])
-		v->i++;
-	v->e = v->i;
-	sub = ft_substr(cnt, v->s, (v->e - v->s));
-	tmp1 = v->r;
-	v->r = ft_strjoin(tmp1, sub);
-	free (tmp1);
-	free(sub);
-}
-
-void	sub_expand_value(char *cnt, t_exp *v, t_env *env)
-{
-	char	*sub;
-	char	*tmp;
-	char	*tmp1;
-
-	v->s = v->i;
-	while (cnt[v->i] && cnt[v->i] != '$'
-		&& ft_isalnum(cnt[v->i]) && cnt[v->i] != '\'')
-		v->i++;
-	v->e = v->i;
-	sub = ft_substr(cnt, v->s, (v->e - v->s));
-	tmp = ft_v_k(sub, env);
-	if (tmp)
-	{
-		tmp1 = v->r;
-		v->r = ft_strjoin(tmp1, tmp);
-		free (tmp1);
-		free (tmp);
-	}
-	free(sub);
-}
-
-char *fttest(char *str)
+char	*fttest(char *str)
 {
 	int		i;
 	int		len;
@@ -129,6 +55,7 @@ char *fttest(char *str)
 	tmp[i + 1] = '\0';
 	return (tmp);
 }
+
 char	*substr_expand(char *cnt, t_exp *v, t_env *env)
 {
 	char	*str;
@@ -160,6 +87,12 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 	{
 		cnt = substr_expand(cnt, &v, env);
 		v.i++;
+	}
+	if (ft_strcmp(cnt, "0") == 0)
+	{
+		free(v.r);
+		v.r = ft_strdup("0");
+		return (v.r);
 	}
 	return (v.r);
 }
