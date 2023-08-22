@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 20:27:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 02:20:10 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,47 @@ void	trim_list(t_token **list)
 		}
 		tmp = tmp->next;
 	}
+}
+void	trim_space(t_token **lst)
+{
+	t_token	*tmp;
+	t_token	*ptr;
+	int		i;
+
+	tmp = *lst;
+	while (tmp)
+	{
+		printf("|%s|\n", tmp->content);
+		i = 0;
+		ptr = tmp;
+		if (!tmp)
+		{
+			tmp = tmp->next;
+			printf("|%s|\n", tmp->content);
+			free(ptr->content);
+			free(ptr);
+			i = 1;
+		}
+		else if (tmp->content && !ft_strcmp(tmp->content, " "))
+		{
+			tmp = tmp->next;
+			printf("|%s|\n", tmp->content);
+			free(ptr->content);
+			free(ptr);
+			i = 1;
+		}
+		// else if (tmp->content && !ft_strcmp(tmp->content, " "))
+		// {
+		// 	tmp = tmp->next;
+		// 	printf("|%s|\n", tmp->content);
+		// 	free(ptr->content);
+		// 	free(ptr);
+		// 	i = 1;
+		// }
+		if (i == 0)
+			tmp = tmp->next;
+	}
+	puts("HHH\n");
 }
 
 int	check_list(t_token **lst, t_env *env)

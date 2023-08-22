@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 20:43:01 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 01:56:07 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,11 @@ void	fealed_s_n_exe(t_parse *list_pars)
 void	child_simple(t_parse *list_pars, char **str)
 {
 	char	**cmd;
-	// char	**tmp;
 
 	cmd = NULL;
-	// return;
 	if (ft_strchr(list_pars->arg[0], 32) != -1)
 	{
 		cmd = ft_split(list_pars->arg[0], 32);
-		// free_char_double(tmp);
 	}
 	check_fd_exec(list_pars);
 	//ft_defaultsig();

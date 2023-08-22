@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 21:21:38 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 01:56:36 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ int	main(int argc, char **argv, char **envp)
 	while (1997)
 	{
 		cmd = readline("minishell ~> ");
-		// if (ft_strcmp(cmd, "./minishell") == 0)
-		// 	g_v._flag = 1;
 		add_history(cmd);
 		if (cmd)
 			help_main(cmd, &env);

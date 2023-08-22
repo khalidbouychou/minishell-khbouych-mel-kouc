@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 11:53:52 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 00:59:32 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 	else if (lst_p->pid0 == 0)
 	{
 		// ft_defaultsig();
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		close(fd[0]);
 		if (check_fd_exec(lst_p) == 0)
 			dup2(fd[1], STDOUT_FILENO);
@@ -99,6 +99,7 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 	close(fd[1]);
 	waitpid(lst_p->pid0, &status, 0);
 	waitpid(lst_p->next->pid0, &status, 0);
+	ft_signals();
 	if (status == 256)
 		g_v.ex_stu = 1;
 	else if (status == 0)

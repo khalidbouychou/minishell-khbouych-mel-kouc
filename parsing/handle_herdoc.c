@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 23:35:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/22 02:19:44 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,35 +42,33 @@ void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str)
 	free(tmp);
 	free(str);
 }
-// void	parent_herdoc(t_parse *new_p, int *status, pid_t	pid)
-// {
-// 	waitpid(pid, status, 0);
-// 	ft_signals();
-// 	if (*status == 2)
-// 	{
-// 		write(1, "\n", 1);
-// 		g_v.sig = -1;
-// 	}
-// 	close(new_p->fd_input);
-// 	new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
-// 	unlink(new_p->f_name);
-// 	free(new_p->f_name);
-// }
-
-// int	check_is_delim(char	**str, char *delim, char *buffer, t_parse *new_p)
-// {
-// 	*str = readline("herdoc> ");
-// 	if (!*str || !ft_strncmp(delim, *str, ft_strlen(*str) + 1))
-// 	{
-// 		if (*buffer)
-// 			write(new_p->fd_input, buffer, ft_strlen(buffer));
-// 		free(*str);
-// 		free(buffer);
-// 		return (0);
-// 		// break ;
-// 	}
-// 	return (1);
-// }
+void	parent_herdoc(t_parse *new_p, int status)
+{
+	// waitpid(*pid, status, 0);
+	ft_signals();
+	if (status == 2)
+	{
+		write(1, "\n", 1);
+		g_v.sig = -1;
+	}
+	close(new_p->fd_input);
+	new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
+	unlink(new_p->f_name);
+	free(new_p->f_name);
+}
+int	check_is_delim(char	**str, char *delim, char *buffer, t_parse *new_p)
+{
+	*str = readline("herdoc> ");
+	if (!*str || !ft_strncmp(delim, *str, ft_strlen(*str) + 1))
+	{
+		if (*buffer)
+			write(new_p->fd_input, buffer, ft_strlen(buffer));
+		free(*str);
+		free(buffer);
+		return (0);
+	}
+	return (1);
+}
 
 void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 {
@@ -93,34 +91,15 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 		signal(SIGQUIT, SIG_DFL);
 		while (1)
 		{
-			// if (!check_is_delim(&str, delim, buffer, new_p))
-			// 	break ;
-			str = readline("herdoc> ");
-			if (!str || !ft_strncmp(delim, str, ft_strlen(str) + 1))
-			{
-				if (*buffer)
-					write(new_p->fd_input, buffer, ft_strlen(buffer));
-				free(str);
-				free(buffer);
+			if (!check_is_delim(&str, delim, buffer, new_p))
 				break ;
-			}
 			fill_buffer(&ptr, &env, &buffer, str);
 		}
 		exit(0);
 	}
 	else
-		// parent_herdoc(new_p, &status, pid);
 		waitpid(pid, &status, 0);
-	ft_signals();
-	if (status == 2)
-	{
-		write(1, "\n", 1);
-		g_v.sig = -1;
-	}
-	close(new_p->fd_input);
-	new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
-	unlink(new_p->f_name);
-	free(new_p->f_name);
+	parent_herdoc(new_p, status);
 }
 
 void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)
