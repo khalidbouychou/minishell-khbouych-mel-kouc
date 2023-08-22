@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 16:21:18 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:20:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,13 @@ void	ft_getadress_node(t_env **env, t_env *node)
 	}
 }
 
-// void	ft_free_export()
+void	ft_free_export_node(t_env *node)
+{
+	if (node->key)
+		free(node->key);
+	if (node->value)
+		free(node->value);
+}
 
 int	ft_help_export(char **export, t_env *env, int fd)
 {
@@ -98,10 +104,7 @@ int	ft_help_export(char **export, t_env *env, int fd)
 		}
 		else
 		{
-			free(node->key);
-			if (node->value)
-				free(node->value);
-			free(node);
+			ft_free_export_node(node);
 			ft_exit_output("", 1, false);
 			return (g_v.ex_stu = 1);
 		}

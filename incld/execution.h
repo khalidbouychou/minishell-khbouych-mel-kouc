@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:22:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 23:58:09 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:31:05 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,10 @@ void	add_lst_addback(t_pipe **head, t_pipe *new);
 t_pipe	*creat_pipe(t_pipe **head);
 void	free_pipe(t_pipe *pipe);
 void	ft_fok_xok(t_parse *lst);
-
+void	ft_ignore_signals(void);
+void	ft_default_signals(void);
+void	ftstatus(int *status);
+char	*generate_name(void);
+void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str);
+void	parent_herdoc(t_parse *new_p, int status, pid_t pid);
 #endif

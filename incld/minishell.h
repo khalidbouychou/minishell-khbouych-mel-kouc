@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 22:42:25 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:43:48 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void	print(t_token *lst);
 void	free_parser_list(t_parse **list);
 void	env_not_exist(int i, char **key, char **value);
 int		ft_strcmp(const char *str1, const char *str2);
-void	ft_ignoresig(void);
-void	ft_defaultsig(void);
+void	ft_ignore_signals(void);
+void	ft_default_signals(void);
 #endif

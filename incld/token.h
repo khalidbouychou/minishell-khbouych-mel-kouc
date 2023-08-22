@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:09:16 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ typedef struct s_env
 
 enum	e_token_enum
 {
-	VAR,//0
-	WORD,//1
-	PIPE,//2
-	DQ,//3
-	SQ,//4
-	APPND,//5
-	HERDOC,//6
-	LRED,//7
-	OUTPUT,//8
-	INPUT,//9
-	SPC,//10
-	_TAB,//11
-	FIL,//12
+	VAR,
+	WORD,
+	PIPE,
+	DQ,
+	SQ,
+	APPND,
+	HERDOC,
+	LRED,
+	OUTPUT,
+	INPUT,
+	SPC,
+	_TAB,
+	FIL,
 };
-/******************************************************************/
+
 typedef struct s_token
 {
 	char				*content;
@@ -51,7 +51,6 @@ typedef struct s_token
 	int					_flag;
 }t_token;
 
-/************************************************************/
 void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok);
 int		ft_qoutes(char *cmd, int *i, int init);
 int		ft_word(char *cmd, int *i, int init);

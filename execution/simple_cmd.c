@@ -6,37 +6,11 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 18:09:39 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:48:31 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-
-int	check_fd_exec(t_parse *list_pars)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (list_pars->fd_input != 0 && list_pars->fd_input != -1)
-	{
-		dup2(list_pars->fd_input, STDIN_FILENO);
-		close(list_pars->fd_input);
-		j++;
-		i = 1;
-	}
-	if (list_pars->fd_output != 1 && list_pars->fd_output != -1)
-	{
-		j = j + 2;
-		dup2(list_pars->fd_output, STDOUT_FILENO);
-		close(list_pars->fd_output);
-		i = 2;
-	}
-	if (j == 3)
-		return (j);
-	return (i);
-}
 
 void	fealed_s_n_exe(t_parse *list_pars)
 {
@@ -51,8 +25,7 @@ void	fealed_s_n_exe(t_parse *list_pars)
 			exit(127);
 		}
 	}
-	g_v.ex_stu = 0;
-	exit(0);
+	exit(g_v.ex_stu = 0);
 }
 
 void	child_simple(t_parse *list_pars, char **str)
@@ -127,8 +100,7 @@ int	simple_not_built(t_parse *list_pars, char **str)
 	pid_t	id ;
 	int		status;
 
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
+	ft_ignore_signals();
 	id = fork();
 	if (id == -1)
 	{
@@ -137,20 +109,13 @@ int	simple_not_built(t_parse *list_pars, char **str)
 	}
 	else if (id == 0)
 	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+		ft_default_signals();
 		str = ft_set_shlvl(str);
 		child_simple(list_pars, str);
 	}
 	close_fd(list_pars);
 	waitpid(id, &status, 0);
-	if (WIFEXITED(status))
-		g_v.ex_stu = WEXITSTATUS(status);
-	else if (WIFSIGNALED(status))
-	{
-		if (WTERMSIG(status) == SIGQUIT)
-			ft_putendl_fd("Quit: 3", 2);
-	}
+	ftstatus(&status);
 	ft_signals();
 	return (1);
 }

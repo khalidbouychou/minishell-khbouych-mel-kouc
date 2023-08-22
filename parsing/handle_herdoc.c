@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 17:59:40 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:44:04 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,18 @@ void	ft_putendl_fd(char *s, int fd)
 	write(fd, "\n", 1);
 }
 
-void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str)
+int	check_is_delim(char	**str, char *delim, char *buffer, t_parse *new_p)
 {
-	char	*tmp;
-
-	if (ft_strchr(str, '$') != -1 && (*ptr)->_flag != 1)
-		str = ft_expandhelp(str, (*env));
-	tmp = *buffer;
-	*buffer = ft_strjoin(*buffer, str);
-	free(tmp);
-	tmp = *buffer;
-	*buffer = ft_strjoin(*buffer, "\n");
-	free(tmp);
-	free(str);
+	*str = readline("herdoc> ");
+	if (!*str || !ft_strncmp(delim, *str, ft_strlen(*str) + 1))
+	{
+		if (*buffer)
+			write(new_p->fd_input, buffer, ft_strlen(buffer));
+		free(*str);
+		free(buffer);
+		return (0);
+	}
+	return (1);
 }
 
 void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
@@ -51,47 +50,23 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 	pid_t	pid;
 	int		status;
 
-	delim = ptr->content;
-	buffer = NULL;
-	new_p->f_name = generate_name();
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-	new_p->fd_input = open(new_p->f_name, O_WRONLY | O_CREAT, 0644);
+	status = 0;
+	ft_init_herdoc(&new_p, &buffer, &delim, &ptr);
+	ft_ignore_signals();
 	pid = fork();
 	if (pid == 0)
 	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+		ft_default_signals();
 		while (1)
 		{
-			str = readline("herdoc> ");
-			if (!str || !ft_strncmp(delim, str, ft_strlen(str) + 1))
-			{
-				if (*buffer)
-					write(new_p->fd_input, buffer, ft_strlen(buffer));
-				free(buffer);
-				free(str);
+			if (!check_is_delim(&str, delim, buffer, new_p))
 				break ;
-			}
 			fill_buffer(&ptr, &env, &buffer, str);
 		}
 		exit(0);
 	}
 	else
-	{
-		waitpid(pid, &status, 0);
-		ft_signals();
-		if (status == 2)
-		{
-			write(1, "\n", 1);
-			g_v.sig = -1;
-		}
-	}
-	close(new_p->fd_input);
-	new_p->fd_input = open(new_p->f_name, O_RDONLY, 0644);
-	unlink(new_p->f_name);
-	free(new_p->f_name);
-	return;
+		parent_herdoc(new_p, status, pid);
 }
 
 void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)

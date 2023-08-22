@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 15:42:30 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:49:05 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,13 @@ void	befor_exec(t_pipe *tmp, t_parse *lst_p)
 
 int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
 {
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
+	ft_ignore_signals();
 	lst_p->pid0 = fork();
 	if (lst_p->pid0 == -1)
 		return (-1);
 	else if (lst_p->pid0 == 0)
 	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+		ft_default_signals();
 		befor_exec(tmp, lst_p);
 		if (compare_cmd(lst_p))
 		{
@@ -106,11 +104,7 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 	while (i <= (size - 1))
 	{
 		waitpid(-1, &status, 0);
-		if (WIFEXITED(status))
-			g_v.ex_stu = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
-			if (WTERMSIG(status) == SIGQUIT)
-				ft_putendl_fd("Quit: 3", 2);
+		ftstatus(&status);
 		i++;
 	}
 	ft_signals();

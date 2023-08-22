@@ -6,70 +6,11 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 17:12:06 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:07:13 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-
-char	*tr_str(int len, char *str, int n)
-{
-	str[len] = '\0';
-	len--;
-	if (n < 0)
-	{
-		str[0] = '-';
-		n = -n;
-	}
-	if (n == 0)
-	{
-		str[0] = 0;
-		return (str);
-	}
-	while (n)
-	{
-		str[len] = n % 10 + '0';
-		n = n / 10;
-		len--;
-	}
-	return (str);
-}
-
-char	*ft_itoa(int nbr)
-{
-	int		len;
-	char	*str;
-	int		n;
-
-	n = nbr;
-	len = 0;
-	if (nbr <= 0)
-		len++;
-	while (nbr)
-	{
-		nbr = nbr / 10;
-		len++;
-	}
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	str = tr_str(len, str, n);
-	return (str);
-}
-
-char	*generate_name(void)
-{
-	char		*str;
-	char		*count;
-	int static	i;
-
-	i++;
-	str = "herdoc";
-	count = ft_itoa(i);
-	str = ft_strjoin(str, count);
-	free(count);
-	return (str);
-}
 
 t_token	*output_append_function(t_token *tmp, t_parse *new_p)
 {
@@ -102,8 +43,7 @@ int	type_er_env(t_token *tmp)
 	{
 		if (S_ISDIR(file_stat.st_mode))
 		{
-			// ft_putstr_fd("is a directory\n", 2);
-			perror(tmp->content);
+			ft_putstr_fd("is a directory\n", 2);
 			return (0);
 		}
 	}
