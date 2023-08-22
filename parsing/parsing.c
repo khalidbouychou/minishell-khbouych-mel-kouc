@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 00:52:39 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 01:46:29 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 				|| tmp->type == VAR || tmp->type == SPC))
 		{
 			if (tmp->content)
-			{
-				printf("tmp->content = %s\n", tmp->content);
 				new_p->arg[++(*i)] = ft_strdup(tmp->content);
-			}
 			if (*i == 0 && !compare_path(tmp->content))
 				new_p->path = ft_get_path(env, new_p->arg[0]);
 			if (!tmp->next || tmp->next->type == PIPE)

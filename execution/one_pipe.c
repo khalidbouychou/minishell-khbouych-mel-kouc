@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 00:45:02 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 02:48:15 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 {
-	// ft_defaultsig();
 		signal(SIGINT, SIG_IGN);
 		signal(SIGQUIT, SIG_IGN);
 	if (lst_p->fd_output == -1 || lst_p->fd_input == -1)
@@ -24,9 +23,8 @@ int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 		return (-1);
 	else if (lst_p->pid0 == 0)
 	{
-		// ft_defaultsig();
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		close(fd[1]);
 		if (check_fd_exec(lst_p) != 1 && check_fd_exec(lst_p) != 3)
 			dup2(fd[0], STDIN_FILENO);
@@ -50,7 +48,6 @@ int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 
 int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 {
-	// ft_defaultsig();
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	if (lst_p->fd_output == -1 || lst_p->fd_input == -1)
@@ -60,9 +57,8 @@ int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 		return (-1);
 	else if (lst_p->pid0 == 0)
 	{
-		// ft_defaultsig();
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		close(fd[0]);
 		if (check_fd_exec(lst_p) == 0)
 			dup2(fd[1], STDOUT_FILENO);
@@ -108,7 +104,7 @@ int	one_pipe(t_parse *lst_p, t_env *env, char **str)
 	if (WIFEXITED(status))
 		g_v.ex_stu = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
-			if (WTERMSIG(status) == SIGQUIT)
-				ft_putendl_fd("Quit: 3", 2);
+		if (WTERMSIG(status) == SIGQUIT)
+			ft_putendl_fd("Quit: 3", 2);
 	return (1);
 }

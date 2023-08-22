@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 23:42:45 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 02:22:06 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	fealed_s_n_exe(t_parse *list_pars)
 		if ((!ft_strcmp(list_pars->arg[0], "") && list_pars->fd_input == 0)
 			|| (access(list_pars->path, F_OK) == -1))
 		{
-			ft_putstr_fd("-->command not found\n", 2);
+			ft_putstr_fd("Minishell : Command not found\n", 2);
 			exit(127);
 		}
 	}
@@ -84,9 +84,11 @@ void	child_simple(t_parse *list_pars, char **str)
 		free_char_double(cmd);
 }
 
-int ft_find_shellvl (char **str)
+int	ft_find_shellvl(char **str)
 {
-	int  i = 0;
+	int	i;
+
+	i = 0;
 	while (str[i])
 	{
 		if (!ft_strncmp(str[i], "SHLVL", 4))
@@ -96,12 +98,12 @@ int ft_find_shellvl (char **str)
 	return (-1);
 }
 
-char **ft_set_shlvl(char **str)
+char	**ft_set_shlvl(char **str)
 {
-	int i;
-	int j;
-	char 	*res;
-	int 	val;
+	char	*res;
+	int		val;
+	int		i;
+	int		j;
 
 	i = ft_find_shellvl(str);
 	j = 0;

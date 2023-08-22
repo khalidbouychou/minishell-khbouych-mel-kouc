@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 00:15:07 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 01:43:23 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,7 @@ void	ft_echo(char **arg, int fd)
 	}
 	while (arg[i])
 	{
-
-		// if (ft_strcmp("?", arg[i]) == 0)
-		// 	ft_putnbr(g_v.ex_stu);
-		// else
-			ft_putstr_fd(arg[i], fd);
+		ft_putstr_fd(arg[i], fd);
 		i++;
 	}
 	if (!x)

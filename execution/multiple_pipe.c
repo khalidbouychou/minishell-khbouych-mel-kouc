@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 00:39:52 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 02:47:35 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	befor_exec(t_pipe *tmp, t_parse *lst_p)
 
 int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
 {
-	// ft_ignoresig();
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	lst_p->pid0 = fork();
@@ -42,7 +41,6 @@ int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
 		return (-1);
 	else if (lst_p->pid0 == 0)
 	{
-		// ft_defaultsig();
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		befor_exec(tmp, lst_p);
@@ -99,21 +97,20 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 {
 	t_pipe	*head;
 	int		i;
-	int status;
+	int		status;
+
 	i = 0;
 	head = NULL;
 	loop_cmd(head, lst_p, env, str);
 	i = 0;
 	while (i <= (size - 1))
 	{
-		/*catch signal*/
-		// pid_t child_pid = waitpid(-1, &g_v.ex_stu, 0);
-		waitpid(-1,&status, 0);
+		waitpid(-1, &status, 0);
 		if (WIFEXITED(status))
 			g_v.ex_stu = WEXITSTATUS(status);
 		else if (WIFSIGNALED(status))
-				if (WTERMSIG(status) == SIGQUIT)
-					ft_putendl_fd("Quit: 3", 2);
+			if (WTERMSIG(status) == SIGQUIT)
+				ft_putendl_fd("Quit: 3", 2);
 		i++;
 	}
 	ft_signals();

@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 22:48:00 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 01:46:39 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ void	ft_expander(t_token *tok, t_env *env)
 	t_token	*tmp;
 
 	tmp = tok;
-	// printf("%s",tok->content);
-	// exit(0);
 	while (tmp)
 	{
 		expand_redir(tmp, env);

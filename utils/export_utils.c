@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 09:56:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 13:54:11 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 02:51:11 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,16 @@ char	*ft_get_old_value(t_env *e, char *key)
 	return (NULL);
 }
 
-int ft_size_export(char **export)
+int	ft_size_export(char **export)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	while (export[size])
 		size++;
 	return (size);
 }
+
 void	ft_export(char **export, t_env *env, int fd)
 {
 	if (export[1] == NULL)

@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 23:25:05 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 22:55:03 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 02:51:24 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_env	*env_list(char **env)
 	}
 	old = ft_getenv_node(head, "OLDPWD");
 		if (!old)
-			ft_lst_addback(&head,ft_add_env(ft_strdup("OLDPWD"),NULL));
+			ft_lst_addback(&head, ft_add_env(ft_strdup("OLDPWD"),NULL));
 
 	return (head);
 }

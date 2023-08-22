@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:45 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 00:06:49 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/22 02:45:00 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ void	ft_exit(char **arg, int pipe)
 		close(STDERR_FILENO);
 	}
 	if (!ft_strcmp(arg[0], "exit") && arg[1] == NULL)
-		ft_exit_output("exit\n",0, true);
-	else if (ft_atoi(arg[1]) == -1 || ft_atoi(arg[1]) == 0 || !ft_arg_digit(arg[1]))
+		ft_exit_output("exit\n", 0, true);
+	else if (ft_atoi(arg[1]) == -1
+		|| ft_atoi(arg[1]) == 0 || !ft_arg_digit(arg[1]))
 		ft_exit_output("exit : numeric argument required\n", 255, true);
 	else if (ft_arg_digit(arg[1]) && arg[2] == NULL)
 		ft_exit_output("exit\n", ft_atoi((arg[1])), true);
