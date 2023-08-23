@@ -1,0 +1,13 @@
+Makefile
+a
+b
+builtins
+c
+execution
+incld
+lexer
+main.c
+main.o
+minishell
+parsing
+utils
