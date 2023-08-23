@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/23 03:47:43 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:31:32 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,5 @@ int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
 		i++;
 	}
 	ft_signals();
-	write(1, "\n", 1);
 	return (1);
 }

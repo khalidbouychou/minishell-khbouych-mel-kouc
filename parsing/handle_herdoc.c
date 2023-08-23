@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 11:36:21 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:57:25 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	write_in_herdoc(t_token *ptr, t_parse *new_p, t_env *env)
 	pid = fork();
 	if (pid == 0)
 	{
+		buffer = ft_strdup("");
 		ft_defaultsig();
 		while (1)
 		{

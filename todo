@@ -834,3 +834,32 @@ void	ft_echo(char **arg, int fd)
 		ft_putstr_fd("\n", fd);
 	g_v.ex_stu = 0;
 }
+
+
+work
+
+    echo - nnnn -nnnnnnnnsnn "n ::: "
+
+-    in herdok
+    $?
+
+
+-    \n
+
+export s="ls"
+
+cat << sa
+herdoc> $?
+herdoc> sa
+
+cat << sa
+herdoc> $ewr
+herdoc> $ewr
+herdoc> sa
+    leaks
+
+cat << sa
+herdoc> huf
+herdoc> erwg
+herdoc> sa
+    leaks

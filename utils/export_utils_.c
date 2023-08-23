@@ -6,25 +6,26 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:44:30 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 20:27:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:02:45 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-int	ft_is_key_exist(char *key, char **tkeys)
-{
-	int	i;
+// int	ft_is_key_exist(char *key, char **tkeys)
+// {
+// 	int	i;
 
-	i = 0;
-	while (tkeys[i])
-	{
-		if (ft_strcmp(tkeys[i], key) != 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
+// 	i = 0;
+// 	while (tkeys[i])
+// 	{
+// 		if (ft_strcmp(tkeys[i], key) != 0)
+// 			return (0);
+// 		i++;
+// 	}
+// 	return (1);
+// }
+
 
 void	ft_sort_keys(t_env *e)
 {

@@ -6,11 +6,49 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/23 03:19:56 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:47:47 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./incld/minishell.h"
+
+int	ft_find_shellvl(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_strncmp(str[i], "SHLVL", 4))
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+char	**ft_set_shlvl(char **str)
+{
+	char	*res;
+	int		val;
+	int		i;
+	int		j;
+
+	i = ft_find_shellvl(str);
+	j = 0;
+	if (i == -1)
+		return (str);
+	while (str[i][j])
+	{
+		if (str[i][j] == '=')
+		{
+			val = ft_atoi(&str[i][j + 1]);
+			res = ft_itoa(val + 1);
+			str[i][j + 1] = res[0];
+		}
+		j++;
+	}
+	return (free(res), str);
+}
 
 void	help_main(char *cmd, t_env **env)
 {
@@ -47,11 +85,17 @@ void	ft_track_shlvl(t_env *env)
 		ft_lst_addback(&(env), ft_add_env("SHLVL", "1"));
 }
 
+void	l(void)
+{
+	system("leaks minishell");
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
 	t_env	*env;
 
+	// atexit(l);
 	(void)argc;
 	(void)argv;
 	cmd = NULL;
@@ -72,7 +116,7 @@ int	main(int argc, char **argv, char **envp)
 			free_env_list(env);
 			break ;
 		}
-		free (cmd);
+		free(cmd);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 19:28:51 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:53:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ char	*fttest(char *str)
 	i = 0;
 	len = 0;
 	tmp = malloc(sizeof(char) * (len + 2));
+	if (!tmp)
+		return (NULL);
 	len = ft_strlen(str);
 	tmp[0] = '0';
 	while (str[i])

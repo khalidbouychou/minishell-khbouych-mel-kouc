@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:52:56 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 11:38:56 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:02:14 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_init_herdoc(t_parse **new_p, char **buf, char **del, t_token **ptr)
 {
+	(void)buf;
 	(*del) = (*ptr)->content;
-	(*buf) = NULL;
 	(*new_p)->f_name = generate_name();
 	(*new_p)->fd_input = open((*new_p)->f_name, O_CREAT | O_WRONLY, 0644);
 }
@@ -26,7 +26,7 @@ void	parent_herdoc(t_parse *new_p, int status, pid_t pid)
 	ft_signals();
 	if (status == 2)
 	{
-		write(1, "\n", 1);
+		write1, "\n", 1);
 		g_v.sig = -1;
 	}
 	close(new_p->fd_input);

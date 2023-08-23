@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 12:03:56 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:54:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	simple_not_built(t_parse *list_pars, char **str)
 	else if (id == 0)
 	{
 		ft_defaultsig();
+		str = ft_set_shlvl(str);
 		child_simple(list_pars, str);
 	}
 	close_fd(list_pars);

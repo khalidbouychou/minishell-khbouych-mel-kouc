@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/23 03:59:55 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:35:20 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_check_n(char *arg)
 
 	i = 0;
 	if (arg[0] != '-')
+		return (0);
+	if (arg[0] == '-' && arg[++i] != 'n')
 		return (0);
 	while (arg[++i])
 	{
@@ -31,7 +33,6 @@ void	ft_echo(char **arg, int fd)
 {
 	int	i;
 	int	x;
-
 
 	i = 1;
 	x = 0;
