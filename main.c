@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 19:41:51 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 03:19:56 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,15 @@ void	ft_init_variables(void)
 	g_v.sig = 0;
 }
 
-// void l()
-// {
-// 	system("leaks minishell");
-// }
+void	ft_track_shlvl(t_env *env)
+{
+	t_env	*isexist;
+
+	isexist = ft_getenv_node((env), "SHLVL");
+	if (!isexist)
+		ft_lst_addback(&(env), ft_add_env("SHLVL", "1"));
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
@@ -53,8 +58,8 @@ int	main(int argc, char **argv, char **envp)
 	env = env_list(envp);
 	ft_init_variables();
 	ft_signals();
+	ft_track_shlvl(env);
 	g_v.sig = 1;
-	// atexit(l);
 	while (1997)
 	{
 		cmd = readline("minishell ~> ");

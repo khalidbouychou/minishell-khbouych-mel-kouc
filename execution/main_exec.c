@@ -6,13 +6,13 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 20:27:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 03:45:27 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	cmd_in_built(t_parse *list_pars, t_env **env)
+void	cmd_in_built(t_parse *list_pars, t_env **env, int pipe)
 {
 	t_parse	*tmp;
 
@@ -27,7 +27,7 @@ void	cmd_in_built(t_parse *list_pars, t_env **env)
 	else if (!ft_strcmp(tmp->arg[0], "pwd"))
 		ft_pwd();
 	else if (!ft_strcmp(tmp->arg[0], "exit"))
-		ft_exit(tmp->arg);
+		ft_exit(tmp->arg, pipe);
 	else if (!ft_strcmp(tmp->arg[0], "unset"))
 		ft_unset(env, tmp->arg);
 	else if (!ft_strcmp(tmp->arg[0], "cd"))
@@ -44,7 +44,7 @@ void	execute_main(t_parse *list_pars, t_env **env)
 	{
 		if (compare_cmd(list_pars))
 		{
-			cmd_in_built(list_pars, env);
+			cmd_in_built(list_pars, env, 0);
 			close_fd(list_pars);
 		}
 		else if (g_v._flag == 1)

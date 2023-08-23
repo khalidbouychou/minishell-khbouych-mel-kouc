@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 11:58:25 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 03:48:18 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	execut_in_child(t_parse *lst_p, t_env *env, char **str)
 	if (compare_cmd(lst_p))
 	{
 		lst_p->fd_output = 1;
-		cmd_in_built(lst_p, &env);
+		cmd_in_built(lst_p, &env, 1);
 		exit(g_v.ex_stu);
 	}
 	else if (execve(lst_p->path, lst_p->arg, str) == -1)

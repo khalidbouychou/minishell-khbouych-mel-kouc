@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/21 20:27:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 04:10:23 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,9 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *_flag)
 		if (new_p->fd_input == -1 || new_p->fd_output == -1)
 		{
 			perror(new_p->f_name);
-			*_flag = 1;
 			g_v._flag = 1;
+			g_v.ex_stu = 1;
+			*_flag = 1;
 		}
 	}
 	return (tmp);
