@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:52:56 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/23 18:02:14 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:07:53 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	parent_herdoc(t_parse *new_p, int status, pid_t pid)
 	ft_signals();
 	if (status == 2)
 	{
-		write1, "\n", 1);
+		write(1, "\n", 1);
 		g_v.sig = -1;
 	}
 	close(new_p->fd_input);
