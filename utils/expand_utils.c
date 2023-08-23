@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/23 14:53:54 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:06:39 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,12 +164,25 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 {
 	t_exp	v;
 
+	int dollar = 0;
 	ft_init_var_expd(&v);
 	v.r = ft_h_h_expand(cnt, &v);
-	++v.i;
+	// ++v.i;
 	while (v.i < (int)ft_strlen(cnt))
-	{
-		substr_expand(cnt, &v, env);
+	{	
+		if (cnt[v.i] == '$')
+			dollar++;
+		else
+		{
+			if (dollar % 2 != 0)
+				cnt = substr_expand(cnt, &v, env);
+			else
+			{
+				free(v.r);
+				v.r = ft_strdup(cnt);
+				return (v.r);
+			}
+		}
 		v.i++;
 	}
 	if (ft_strcmp(cnt, "0") == 0)

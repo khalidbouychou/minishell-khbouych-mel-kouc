@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/23 17:47:47 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 19:09:32 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,6 @@ void	ft_track_shlvl(t_env *env)
 	isexist = ft_getenv_node((env), "SHLVL");
 	if (!isexist)
 		ft_lst_addback(&(env), ft_add_env("SHLVL", "1"));
-}
-
-void	l(void)
-{
-	system("leaks minishell");
 }
 
 int	main(int argc, char **argv, char **envp)
