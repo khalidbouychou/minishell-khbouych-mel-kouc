@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:53:29 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 01:42:24 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:25:08 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-void			ft_print_env(t_env *env);
-void			ft_putchar_fd(char c, int fd);
+void			norm_check_echo(t_token *ptr, t_token *space);
 void			ft_putstr_fd(char *s, int fd);
 int				ft_isalpha(int c);
 int				ft_isalnum(int c);
@@ -43,9 +42,11 @@ void			ft_exit(char **arg, int pipe);
 void			ft_env(t_parse *penv, t_env **env);
 void			ft_cd(char **cd, t_env *e);
 t_env			*ft_getenv_node(t_env *env, char *key);
-void			ft_pwd(void);
+void			ft_pwd(int fd);
 void			ft_cd_(t_env **env, char **ret, char *cmd);
 void			ft_init_env(t_env **home, t_env **pwd, t_env **old, t_env *env);
 void			update_oldpwd(t_env *env, t_env *old);
 void			ft_help_cd(t_env *home, t_env *pwd);
+t_token			*check_echo(t_token *tmp, t_token *ptr,
+					t_token *space, int *_flag);
 #endif

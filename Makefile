@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
+#    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/24 01:52:28 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/08/24 15:36:01 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,13 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./execution/complex_cmd.c ./execution/one_pipe.c ./execution/multiple_pipe.c \
 		./execution/signals.c ./utils/ft_utils___.c ./utils/simple_cmd_utils.c ./utils/expand_utils.c \
 		./utils/utl_multi_p.c ./utils/herdoc_utils.c ./utils/cd_utils_.c ./utils/expand_utils_.c \
-		./utils/handle_redir_utils.c
+		./utils/handle_redir_utils.c ./utils/echo_utils.c
 
-LIB = -L/Users/mel-kouc/.brew/opt/readline/lib
-INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
+# LIB = -L/Users/mel-kouc/.brew/opt/readline/lib
+# INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
 
-# LIB = -L/Users/khbouych/.brew/opt/readline/lib
-# INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
+LIB = -L/Users/khbouych/.brew/opt/readline/lib
+INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc

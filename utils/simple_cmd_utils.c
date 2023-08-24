@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:48:50 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/23 04:02:43 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:13:52 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ void	ft_fok_xok(t_parse *lst)
 	{
 		if (access(lst->path, F_OK) == -1)
 		{
-			ft_putstr_fd("No such file or directory\n", 2);
+			perror(lst->arg[0]);
 			exit (g_v.ex_stu = 127);
 		}
 		else if (access(lst->path, X_OK) == -1)
 		{
-			ft_putstr_fd("Permission denied\n", 2);
+			perror(lst->arg[0]);
 			exit(g_v.ex_stu = 126);
 		}
 		else
 		{
-			ft_putstr_fd("is a directory\n", 2);
+			perror(lst->arg[0]);
 			exit(g_v.ex_stu = 126);
 		}
 	}
@@ -58,7 +58,7 @@ void	fealed_execve(t_parse *list_pars)
 			|| (access(list_pars->path, F_OK) == -1
 				&& list_pars->fd_input == 0))
 		{
-			ft_putstr_fd("command not found\n", 2);
+			perror(list_pars->arg[0]);
 			exit(g_v.ex_stu = 127);
 		}
 	}

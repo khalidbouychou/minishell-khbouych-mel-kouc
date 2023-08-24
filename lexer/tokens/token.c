@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/23 02:56:04 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:19:07 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,7 @@ char	*ft_get_path(t_env *env, char *str)
 	tmp = env;
 	if (ft_strchr(str, 32) != -1)
 		cmd = ft_split(str, 32);
-	while (tmp)
-	{
-		if (tmp->key && !ft_strcmp(tmp->key, "PATH"))
-		{
-			p = tmp->value;
-			break ;
-		}
-		tmp = tmp->next;
-	}
+	p = findpathvalue(env);
 	if (cmd)
 	{
 		if (ft_strchr(cmd[0], '/') == -1)

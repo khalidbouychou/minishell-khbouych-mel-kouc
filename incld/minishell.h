@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/24 01:40:56 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:18:55 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ typedef struct s_glbl
 
 t_glbl	g_v;
 
+char	*findpathvalue(t_env *head);
+void	ft_track_shlvl(t_env *env);
+void	ft_init_variables(void);
+void	ft_main_norm(t_env *env);
 t_env	*ft_lstnew(char *env);
 void	ft_lst_addback(t_env **head, t_env *new);
 t_env	*env_list(char **env);

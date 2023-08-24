@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 00:22:27 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:07:52 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,23 @@ char	*substr_expand(char *cnt, t_exp *v, t_env *env)
 	return (cnt);
 }
 
+char	*ft_norm_expand(char *cnt, t_exp v)
+{
+	if (ft_strcmp(cnt, "0") == 0)
+	{
+		free(v.r);
+		v.r = ft_strdup("0");
+		return (v.r);
+	}
+	return (NULL);
+}
+
 char	*ft_expandhelp(char *cnt, t_env *env)
 {
 	t_exp	v;
 	int		dollar;
 
-	dollar = 0;
-	ft_init_var_expd(&v);
+	ft_init_var_expd(&v, &dollar);
 	v.r = ft_h_h_expand(cnt, &v);
 	while (v.i < (int)ft_strlen(cnt))
 	{
@@ -103,11 +113,7 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 		}
 		v.i++;
 	}
-	if (ft_strcmp(cnt, "0") == 0)
-	{
-		free(v.r);
-		v.r = ft_strdup("0");
-		return (v.r);
-	}
+	if (ft_norm_expand(cnt, v) != NULL)
+		return (ft_norm_expand(cnt, v));
 	return (v.r);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 02:17:51 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:50:25 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ char	**ft_set_shlvl(char **str)
 	return (free(res), str);
 }
 
+void	ft_track_shlvl(t_env *env)
+{
+	t_env	*isexist;
+
+	isexist = ft_getenv_node((env), "SHLVL");
+	if (!isexist)
+		ft_lst_addback(&(env), ft_add_env("SHLVL", "1"));
+}
+
 void	help_main(char *cmd, t_env **env)
 {
 	t_token		*list_tokens;
@@ -54,45 +63,25 @@ void	help_main(char *cmd, t_env **env)
 	free_token_list(&list_tokens);
 	free_parser_list(&list_parser);
 }
-
-void	ft_init_variables(void)
-{
-	g_v.ex_stu = 0;
-	g_v._flag = 0;
-	g_v.sig = 0;
-}
-
-void	ft_track_shlvl(t_env *env)
-{
-	t_env	*isexist;
-
-	isexist = ft_getenv_node((env), "SHLVL");
-	if (!isexist)
-		ft_lst_addback(&(env), ft_add_env("SHLVL", "1"));
-}
-void	l()
+void f(void)
 {
 	system("leaks minishell");
 }
-
 
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
 	t_env	*env;
 
-	atexit(l);
+	atexit(f);
 	(void)argc;
 	(void)argv;
 	cmd = NULL;
 	env = env_list(envp);
-	ft_init_variables();
-	ft_signals();
-	ft_track_shlvl(env);
-	g_v.sig = 1;
+	ft_main_norm(env);
 	while (1997)
 	{
-		cmd = readline("minishell ~> ");
+		cmd = readline("minishell-> ");
 		add_history(cmd);
 		if (!cmd)
 		{
