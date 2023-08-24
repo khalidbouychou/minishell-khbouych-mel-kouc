@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:09:35 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 00:44:20 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 01:39:46 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,11 @@ void	push_arg(t_token *tmp, t_parse *new_p, int *i, t_env *env)
 				break ;
 			tmp = tmp->next;
 		}
-		ft_searsh_herdoc(tmp, new_p, env);
 		if (!tmp || tmp->type == PIPE)
 		{
 			g_v.sig = 1;
 			break ;
 		}
-		if (g_v.sig == -1)
-			break ;
 		tmp = tmp->next;
 	}
 }
@@ -60,7 +57,7 @@ t_parse	*ft_list_parser(t_token *tmp, int count, t_env *env)
 	return (new_p);
 }
 
-int	redirection(t_token	*list_tokens, t_parse *list_pars)
+int	redirection(t_token	*list_tokens, t_parse *list_pars, t_env *env)
 {
 	t_token	*tmp_tok;
 	t_parse	*tmp_pars;
@@ -74,10 +71,13 @@ int	redirection(t_token	*list_tokens, t_parse *list_pars)
 		if (tmp_tok->type == PIPE)
 			_flag = 0;
 		if (tmp_tok && _flag == 0 && (tmp_tok->type == INPUT
-				|| tmp_tok->type == OUTPUT || tmp_tok->type == APPND))
-			tmp_tok = ft_handle_oper(tmp_tok, tmp_pars, &_flag);
+				|| tmp_tok->type == OUTPUT
+				|| tmp_tok->type == APPND || tmp_tok->type == HERDOC))
+			tmp_tok = ft_handle_oper(tmp_tok, tmp_pars, env, &_flag);
 		else if (tmp_tok->type == PIPE)
 			tmp_pars = tmp_pars->next;
+		if (g_v.sig == -1)
+			break ;
 		if (tmp_tok)
 			tmp_tok = tmp_tok->next;
 	}
@@ -118,7 +118,6 @@ t_parse	*parser(t_token	*list_tokens, t_env *env)
 	is_alloc = 0;
 	list_pars = parser_list(list_tokens, &is_alloc, env);
 	if (g_v.sig == 1 || g_v.sig == 0)
-		redirection(list_tokens, list_pars);
-	g_v.sig = 1;
+		redirection(list_tokens, list_pars, env);
 	return (list_pars);
 }

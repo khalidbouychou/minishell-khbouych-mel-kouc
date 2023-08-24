@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:22:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/23 03:46:42 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 02:43:18 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,15 @@ typedef struct s_pipe
 void	execute_main(t_parse *list_pars, t_env **env);
 int		compare_cmd(t_parse *tmp);
 char	**list_to_char(t_env *env, char **str);
-int		simple_not_built(t_parse *list_pars, char **str);
+int	simple_not_built(t_parse *list_pars, char **str);
 void	complex_cmd(t_parse *lst_p, t_env *env, char **str);
 void	free_char_double(char **str);
-// void	cmd_in_built(t_parse *list_pars, t_env **env);
 void	cmd_in_built(t_parse *list_pars, t_env **env, int pipe);
 int		one_pipe(t_parse *lst_p, t_env *env, char **str);
 int		check_fd_exec(t_parse *list_pars);
-int		second_child(int fd[2], t_parse *lst_p, t_env *env, char **str);
-int		first_child(int fd[2], t_parse *lst_p, t_env *env, char **str);
-int		multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size);
-
+pid_t	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str);
+pid_t	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str);
+int		multiple_pipe(t_parse *lst_p, t_env *env, char **str);
 void	ft_signals(void);
 t_env	*add_env(char *key, char *value);
 void	fealed_execve(t_parse *list_pars);
@@ -46,5 +44,5 @@ void	add_lst_addback(t_pipe **head, t_pipe *new);
 t_pipe	*creat_pipe(t_pipe **head);
 void	free_pipe(t_pipe *pipe);
 void	ft_fok_xok(t_parse *lst);
-
+void	ftstatus(int *status);
 #endif

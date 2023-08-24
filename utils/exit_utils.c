@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:45:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/23 03:35:10 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 01:42:42 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,34 +52,6 @@ long long int	ft_atoi(const char *str)
 	}
 	return (sign * res);
 }
-
-// int	ft_atoi(const char *str)
-// {
-// 	int			res;
-// 	int			sign;
-// 	int			i;
-// 	char		*p_str;
-// 	long long	prev_res;
-
-// 	p_str = (char *)str;
-// 	i = 0;
-// 	res = 0;
-// 	sign = 1;
-// 	ft_skipp(&i, &str[i], &sign);
-// 	while (ft_isdigit(p_str[i]))
-// 	{
-// 		prev_res = res;
-// 		res = res * 10 + p_str[i] - '0';
-// 		if ((res / 10) != prev_res)
-// 		{
-// 			if (sign == 1)
-// 				return (-1);
-// 			return (0);
-// 		}
-// 		i++;
-// 	}
-// 	return (sign * res);
-// }
 
 int	ft_arg_digit(char *arg)
 {

@@ -6,56 +6,11 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:20:43 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/23 04:10:23 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 01:53:00 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
-
-char	*tr_str(int len, char *str, int n)
-{
-	str[len] = '\0';
-	len--;
-	if (n < 0)
-	{
-		str[0] = '-';
-		n = -n;
-	}
-	if (n == 0)
-	{
-		str[0] = 0;
-		return (str);
-	}
-	while (n)
-	{
-		str[len] = n % 10 + '0';
-		n = n / 10;
-		len--;
-	}
-	return (str);
-}
-
-char	*ft_itoa(int nbr)
-{
-	int		len;
-	char	*str;
-	int		n;
-
-	n = nbr;
-	len = 0;
-	if (nbr <= 0)
-		len++;
-	while (nbr)
-	{
-		nbr = nbr / 10;
-		len++;
-	}
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	str = tr_str(len, str, n);
-	return (str);
-}
 
 char	*generate_name(void)
 {
@@ -115,7 +70,7 @@ int	type_er_env(t_token *tmp)
 	return (1);
 }
 
-t_token	*aplay_redire(t_token *tmp, t_parse *new_p)
+t_token	*aplay_redire(t_token *tmp, t_parse *new_p, t_env *env)
 {
 	if (!tmp->prev && !tmp->next->next)
 		g_v._flag = 1;
@@ -128,10 +83,12 @@ t_token	*aplay_redire(t_token *tmp, t_parse *new_p)
 	}
 	else if (tmp->type == OUTPUT || tmp->type == APPND)
 		tmp = output_append_function(tmp, new_p);
+	else if (tmp->type == HERDOC)
+		ft_searsh_herdoc(tmp, new_p, env);
 	return (tmp);
 }
 
-t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *_flag)
+t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, t_env *env, int *_flag)
 {
 	if ((!tmp->prev && !type_er_env(tmp->next)) || !type_er_env(tmp->next))
 	{
@@ -140,14 +97,7 @@ t_token	*ft_handle_oper(t_token *tmp, t_parse *new_p, int *_flag)
 	}
 	else
 	{
-		if (*(tmp->next)->content == '\0')
-		{
-			*_flag = 1;
-			ft_putstr_fd("ambiguous redirect\n", 2);
-			g_v.ex_stu = 1;
-			return (tmp);
-		}
-		tmp = aplay_redire(tmp, new_p);
+		tmp = aplay_redire(tmp, new_p, env);
 		if (new_p->fd_input == -1 || new_p->fd_output == -1)
 		{
 			perror(new_p->f_name);

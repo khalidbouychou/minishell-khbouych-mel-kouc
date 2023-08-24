@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 09:56:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/20 17:00:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 01:55:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_strcmp(const char *str1, const char *str2)
 	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
 }
 
-void	ft_print_after_sort(t_env *ee)
+void	ft_print_after_sort(t_env *ee, int fd)
 {
 	t_env	*e;
 
@@ -35,9 +35,18 @@ void	ft_print_after_sort(t_env *ee)
 	while (e)
 	{
 		if (!e->value)
-			printf("declare -x %s\n", e->key);
+		{
+			ft_putstr_fd("declare -x ", fd);
+			ft_putstr_fd(e->key, fd);
+		}
 		else
-			printf("declare -x %s=\"%s\"\n", e->key, e->value);
+		{
+			ft_putstr_fd("declare -x ", fd);
+			ft_putstr_fd(e->key, fd);
+			ft_putstr_fd("=", fd);
+			ft_putstr_fd(e->value, fd);
+			ft_putstr_fd("\n", fd);
+		}
 		e = e->next;
 	}
 }
@@ -73,7 +82,7 @@ void	ft_export(char **export, t_env *env, int fd)
 	if (export[1] == NULL)
 	{
 		ft_sort_keys(env);
-		ft_print_after_sort(env);
+		ft_print_after_sort(env, fd);
 		return ;
 	}
 	ft_help_export(export, env, fd);

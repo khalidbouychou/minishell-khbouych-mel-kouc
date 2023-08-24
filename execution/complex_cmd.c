@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 16:54:53 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/20 13:54:10 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 23:04:29 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void	complex_cmd(t_parse *lst_p, t_env *env, char **str)
 	if (size == 2)
 		one_pipe(lst_p, env, str);
 	else
-		multiple_pipe(lst_p, env, str, size);
+		multiple_pipe(lst_p, env, str);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:50:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/23 03:48:18 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/23 23:16:56 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	execut_in_child(t_parse *lst_p, t_env *env, char **str)
 	}
 }
 
-int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
+pid_t	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 {
 	ft_ignoresig();
 	if (lst_p->fd_output == -1 || lst_p->fd_input == -1)
@@ -46,10 +46,10 @@ int	second_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 		close(fd[0]);
 		execut_in_child(lst_p, env, str);
 	}
-	return (1);
+	return (lst_p->pid0);
 }
 
-int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
+pid_t	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 {
 	ft_ignoresig();
 	if (lst_p->fd_output == -1 || lst_p->fd_input == -1)
@@ -68,7 +68,7 @@ int	first_child(int fd[2], t_parse *lst_p, t_env *env, char **str)
 		close(fd[1]);
 		execut_in_child(lst_p, env, str);
 	}
-	return (1);
+	return (lst_p->pid0);
 }
 
 int	one_pipe(t_parse *lst_p, t_env *env, char **str)

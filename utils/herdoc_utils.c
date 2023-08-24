@@ -6,15 +6,14 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:52:56 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/23 18:07:53 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 01:35:34 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	ft_init_herdoc(t_parse **new_p, char **buf, char **del, t_token **ptr)
+void	ft_init_herdoc(t_parse **new_p, char **del, t_token **ptr)
 {
-	(void)buf;
 	(*del) = (*ptr)->content;
 	(*new_p)->f_name = generate_name();
 	(*new_p)->fd_input = open((*new_p)->f_name, O_CREAT | O_WRONLY, 0644);
