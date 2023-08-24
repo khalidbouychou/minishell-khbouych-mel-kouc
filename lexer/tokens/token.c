@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 03:48:01 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/23 02:56:04 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char	*ft_get_path(t_env *env, char *str)
 	char	*p;
 	t_env	*tmp;
 	char	**cmd;
+	char	*ret;
 
 	p = NULL;
 	cmd = NULL;
@@ -59,8 +60,14 @@ char	*ft_get_path(t_env *env, char *str)
 		tmp = tmp->next;
 	}
 	if (cmd)
+	{
 		if (ft_strchr(cmd[0], '/') == -1)
-			return (ft_check_if_cmd_valid(ft_split(p, ':'), cmd[0]));
+		{
+			ret = ft_check_if_cmd_valid(ft_split(p, ':'), cmd[0]);
+			free_char_double(cmd);
+			return (ret);
+		}
+	}
 	if (ft_strchr(str, '/') == -1)
 		return (ft_check_if_cmd_valid(ft_split(p, ':'), str));
 	else

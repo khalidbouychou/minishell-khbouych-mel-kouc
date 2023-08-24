@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftexport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:47 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 19:20:00 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/24 01:24:54 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,37 +50,37 @@ void	ft_add_to_env(t_env *e, t_env *node)
 
 void	ft_getadress_node(t_env **env, t_env *node)
 {
-	char	*str;
 	char	*ptr;
 	t_env	*tmp;
 
 	tmp = *env;
+	ptr = NULL;
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->key, node->key))
 		{
-			if (tmp->value)
+			if (node->value)
 			{
-				str = tmp->key;
 				ptr = tmp->value;
-				tmp->key = node->key;
-				if (node->value)
-					tmp->value = node->value;
+				tmp->value = ft_strdup(node->value);
+				free(node->value);
+				free(ptr);
 			}
-			free(str);
-			free(ptr);
-			free(node);
 		}
 		tmp = tmp->next;
 	}
+	free(node->key);
+	free(node);
 }
 
-void	ft_free_export_node(t_env *node)
+void	not_valid_key(t_env	**node)
 {
-	if (node->key)
-		free(node->key);
-	if (node->value)
-		free(node->value);
+	if ((*node)->key)
+		free((*node)->key);
+	if ((*node)->value)
+		free((*node)->value);
+	free((*node));
+	ft_exit_output("", 1, false);
 }
 
 int	ft_help_export(char **export, t_env *env, int fd)
@@ -99,13 +99,12 @@ int	ft_help_export(char **export, t_env *env, int fd)
 				ft_join_value(env, node);
 			else if (ft_if_key_exist(env, node))
 				ft_getadress_node(&env, node);
-			else if (!ft_if_key_exist(env, node))
+			else
 				ft_add_to_env(env, node);
 		}
 		else
 		{
-			ft_free_export_node(node);
-			ft_exit_output("", 1, false);
+			not_valid_key(&node);
 			return (g_v.ex_stu = 1);
 		}
 	}

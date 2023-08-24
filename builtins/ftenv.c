@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftenv.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:40 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 02:44:40 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:50:53 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ void	ft_env(t_parse *penv, t_env **env)
 {
 	t_env	*tmp;
 
-	if (!ft_strncmp(penv->arg[0], "env", ft_strlen(penv->arg[0]))
-		&& penv->arg[1] != NULL)
-		ft_exit_output("env: No such file or directory\n", 17, false);
-	else
+	if (!penv->arg[1])
 	{
 		tmp = *env;
 		while (tmp)
@@ -33,6 +30,8 @@ void	ft_env(t_parse *penv, t_env **env)
 			}
 			tmp = tmp->next;
 		}
+		g_v.ex_stu = 0;
 	}
-	g_v.ex_stu = 0;
+	else
+		ft_exit_output("--> illegal option \n", 1, false);
 }

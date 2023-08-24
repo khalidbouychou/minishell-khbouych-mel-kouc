@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:03:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/21 00:18:20 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:51:43 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ t_token	*ft_init_token(char *cmd, int i, int count)
 	t_token	*tok;
 
 	tok = malloc(sizeof(t_token));
+	if (!tok)
+		tok = NULL;
 	tok->content = NULL;
 	tok->next = NULL;
 	tok->prev = NULL;

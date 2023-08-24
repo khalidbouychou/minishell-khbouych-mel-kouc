@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:07:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 18:12:25 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/24 02:17:51 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./incld/minishell.h"
+
+char	**ft_set_shlvl(char **str)
+{
+	char	*res;
+	int		val;
+	int		i;
+	int		j;
+
+	i = ft_find_shellvl(str);
+	j = 0;
+	if (i == -1)
+		return (str);
+	while (str[i][j])
+	{
+		if (str[i][j] == '=')
+		{
+			val = ft_atoi(&str[i][j + 1]);
+			res = ft_itoa(val + 1);
+			str[i][j + 1] = res[0];
+		}
+		j++;
+	}
+	return (free(res), str);
+}
 
 void	help_main(char *cmd, t_env **env)
 {
@@ -24,11 +48,11 @@ void	help_main(char *cmd, t_env **env)
 	if (list_tokens)
 	{
 		list_parser = parser(list_tokens, *env);
-		execute_main(list_parser, env);
+		if (g_v.sig != -1)
+			execute_main(list_parser, env);
 	}
 	free_token_list(&list_tokens);
 	free_parser_list(&list_parser);
-	g_v.sig = 1;
 }
 
 void	ft_init_variables(void)
@@ -38,7 +62,7 @@ void	ft_init_variables(void)
 	g_v.sig = 0;
 }
 
-void	ft_track_shlvl (t_env *env)
+void	ft_track_shlvl(t_env *env)
 {
 	t_env	*isexist;
 
@@ -46,12 +70,18 @@ void	ft_track_shlvl (t_env *env)
 	if (!isexist)
 		ft_lst_addback(&(env), ft_add_env("SHLVL", "1"));
 }
+void	l()
+{
+	system("leaks minishell");
+}
+
 
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
 	t_env	*env;
 
+	atexit(l);
 	(void)argc;
 	(void)argv;
 	cmd = NULL;
@@ -67,10 +97,14 @@ int	main(int argc, char **argv, char **envp)
 		if (!cmd)
 		{
 			write(1, "exit\n", 6);
+			free_env_list(env);
 			break ;
 		}
 		else
 			help_main(cmd, &env);
-		free (cmd);
+		g_v.sig = 0;
+		g_v._flag = 0;
+		free(cmd);
 	}
+	return (0);
 }

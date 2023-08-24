@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   herdoc_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:52:56 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 19:27:20 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/24 01:35:34 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	ft_init_herdoc(t_parse **new_p, char **buf, char **del, t_token **ptr)
+void	ft_init_herdoc(t_parse **new_p, char **del, t_token **ptr)
 {
 	(*del) = (*ptr)->content;
-	(*buf) = NULL;
 	(*new_p)->f_name = generate_name();
 	(*new_p)->fd_input = open((*new_p)->f_name, O_CREAT | O_WRONLY, 0644);
 }

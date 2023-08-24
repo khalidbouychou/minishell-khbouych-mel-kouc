@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 19:31:20 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/24 02:43:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	execute_main(t_parse *list_pars, t_env **env)
 	char	**str;
 
 	str = NULL;
-	str = list_to_char((*env), str);
-	if (!list_pars->next)
+	str = list_to_char(*env, str);
+	if (list_pars && !list_pars->next)
 	{
 		if (compare_cmd(list_pars))
 		{
@@ -54,5 +54,6 @@ void	execute_main(t_parse *list_pars, t_env **env)
 	}
 	else
 		complex_cmd(list_pars, *env, str);
+	close_fd(list_pars);
 	free_char_double(str);
 }

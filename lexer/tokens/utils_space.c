@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/20 03:44:00 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/23 22:36:21 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ void	space_after_cmd(t_token **lst)
 
 t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space, int *_flag)
 {
-	ft_tolower(tmp->content);
+	char	*str;
+
+	str = ft_strdup(tmp->content);
+	ft_tolower(str);
 	if (!ft_strcmp(tmp->content, "echo"))
 	{
 		ptr = echo_and_n(ptr, space);
@@ -110,6 +113,7 @@ t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space, int *_flag)
 			ptr = ptr->next;
 		}
 	}
+	free(str);
 	return (ptr);
 }
 

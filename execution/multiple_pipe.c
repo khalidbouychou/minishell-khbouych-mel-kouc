@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multiple_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 19:49:05 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/24 01:49:03 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,21 @@ void	befor_exec(t_pipe *tmp, t_parse *lst_p)
 	}
 }
 
-int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
+void	close_middle_pipes(t_pipe *tmp)
 {
-	ft_ignore_signals();
+	close(tmp->prev->fd_p[0]);
+	close(tmp->prev->fd_p[1]);
+}
+
+pid_t	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
+{
+	ft_ignoresig();
 	lst_p->pid0 = fork();
 	if (lst_p->pid0 == -1)
 		return (-1);
 	else if (lst_p->pid0 == 0)
 	{
-		ft_default_signals();
+		ft_defaultsig();
 		befor_exec(tmp, lst_p);
 		if (compare_cmd(lst_p))
 		{
@@ -55,10 +61,7 @@ int	middle_pipes(t_pipe *tmp, t_parse *lst_p, t_env *env, char **str)
 		}
 	}
 	else
-	{
-		close(tmp->prev->fd_p[0]);
-		close(tmp->prev->fd_p[1]);
-	}
+		close_middle_pipes(tmp);
 	return (1);
 }
 
@@ -66,6 +69,8 @@ void	loop_cmd(t_pipe	*head, t_parse *lst_p, t_env *env, char **str)
 {
 	int		i;
 	t_pipe	*tmp;
+	int		status;
+	pid_t	pid[3];
 
 	i = 0;
 	while (lst_p)
@@ -73,14 +78,14 @@ void	loop_cmd(t_pipe	*head, t_parse *lst_p, t_env *env, char **str)
 		if (lst_p->next)
 			tmp = creat_pipe(&head);
 		if (i == 0 && (lst_p->fd_input != -1 && lst_p->fd_output != -1))
-			first_child(tmp->fd_p, lst_p, env, str);
+			pid[0] = first_child(tmp->fd_p, lst_p, env, str);
 		else if (lst_p->next && (lst_p->fd_input != -1
 				&& lst_p->fd_output != -1))
-			middle_pipes(tmp, lst_p, env, str);
+			pid[1] = middle_pipes(tmp, lst_p, env, str);
 		else if (!lst_p->next && (lst_p->fd_input != -1
 				&& lst_p->fd_output != -1))
 		{
-			second_child(tmp->fd_p, lst_p, env, str);
+			pid[2] = second_child(tmp->fd_p, lst_p, env, str);
 			close(tmp->fd_p[0]);
 			close(tmp->fd_p[1]);
 		}
@@ -88,26 +93,19 @@ void	loop_cmd(t_pipe	*head, t_parse *lst_p, t_env *env, char **str)
 		lst_p = lst_p->next;
 		i = 1;
 	}
+	waitpid(pid[0], &status, 0);
+	waitpid(pid[1], &status, 0);
+	waitpid(pid[2], &status, 0);
+	ftstatus(&status);
 	free_pipe(head);
 }
 
-int	multiple_pipe(t_parse *lst_p, t_env *env, char **str, int size)
+int	multiple_pipe(t_parse *lst_p, t_env *env, char **str)
 {
 	t_pipe	*head;
-	int		i;
-	int		status;
 
-	i = 0;
 	head = NULL;
 	loop_cmd(head, lst_p, env, str);
-	i = 0;
-	while (i <= (size - 1))
-	{
-		waitpid(-1, &status, 0);
-		ftstatus(&status);
-		i++;
-	}
 	ft_signals();
-	write(1, "\n", 1);
 	return (1);
 }

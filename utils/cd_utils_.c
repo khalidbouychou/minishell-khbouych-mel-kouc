@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils_.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 15:10:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 16:47:13 by khbouych         ###   ########.fr       */
+/*   Created: 2023/08/22 16:12:53 by mel-kouc          #+#    #+#             */
+/*   Updated: 2023/08/24 01:56:57 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@ void	update_oldpwd(t_env *env, t_env *old)
 		free(old->value);
 		old->value = getcwd(NULL, 0);
 	}
-}
-
-void	ft_init_env(t_env **home, t_env **pwd, t_env **old, t_env *env)
-{
-	(*home) = ft_getenv_node(env, "HOME");
-	(*old) = ft_getenv_node(env, "OLDPWD");
-	(*pwd) = ft_getenv_node(env, "PWD");
-	update_oldpwd(env, (*old));
 }
 
 void	ft_help_cd(t_env *home, t_env *pwd)
@@ -44,6 +36,15 @@ void	ft_help_cd(t_env *home, t_env *pwd)
 		free(pwd->value);
 		pwd->value = getcwd(NULL, 0);
 	}
+	return ;
+}
+
+void	ft_init_env(t_env **home, t_env **pwd, t_env **old, t_env *env)
+{
+	(*home) = ft_getenv_node(env, "HOME");
+	(*old) = ft_getenv_node(env, "OLDPWD");
+	(*pwd) = ft_getenv_node(env, "PWD");
+	update_oldpwd(env, (*old));
 }
 
 void	env_not_exist(int i, char **key, char **value)

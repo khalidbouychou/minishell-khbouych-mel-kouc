@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:35:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/22 19:43:48 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/24 01:40:56 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # include "../incld/builtins.h"
 # include "../incld/execution.h"
 
-// for exit status and signals
 typedef struct s_glbl
 {
 	int		_flag;
@@ -43,24 +42,21 @@ typedef struct s_glbl
 
 t_glbl	g_v;
 
-//----------------------* struct env *----------------------//
 t_env	*ft_lstnew(char *env);
 void	ft_lst_addback(t_env **head, t_env *new);
 t_env	*env_list(char **env);
-/**************************************************************/
 char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*ft_strdup(char *s1);
 int		ft_strchr(char *s, char c);
 size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
-/**************************************************************/
-void	ft_print_env(t_env *env);
 void	ft_putendl_fd(char *s, int fd);
-void	print(t_token *lst);
 void	free_parser_list(t_parse **list);
 void	env_not_exist(int i, char **key, char **value);
 int		ft_strcmp(const char *str1, const char *str2);
-void	ft_ignore_signals(void);
-void	ft_default_signals(void);
+void	ft_ignoresig(void);
+void	ft_defaultsig(void);
+char	**ft_set_shlvl(char **str);
+int		ft_find_shellvl(char **str);
 #endif

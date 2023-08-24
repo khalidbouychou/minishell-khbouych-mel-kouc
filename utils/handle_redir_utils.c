@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   handle_redir_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 19:07:00 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 19:48:01 by khbouych         ###   ########.fr       */
+/*   Created: 2023/08/24 01:51:30 by mel-kouc          #+#    #+#             */
+/*   Updated: 2023/08/24 01:57:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,43 @@ char	*ft_itoa(int nbr)
 	return (str);
 }
 
-int	check_fd_exec(t_parse *list_pars)
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
+{
+	while (*str1 && *str1 == *str2 && n)
+	{
+		str1++;
+		str2++;
+		n--;
+	}
+	if (n == 0)
+		return (0);
+	return ((unsigned char)*str1 - (unsigned char)*str2);
+}
+
+int	ft_check_by_key(t_env *env, char *key)
+{
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->key, key))
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	ft_find_shellvl(char **str)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	if (list_pars->fd_input != 0 && list_pars->fd_input != -1)
+	while (str[i])
 	{
-		dup2(list_pars->fd_input, STDIN_FILENO);
-		close(list_pars->fd_input);
-		j++;
-		i = 1;
+		if (!ft_strncmp(str[i], "SHLVL", 4))
+			return (i);
+		i++;
 	}
-	if (list_pars->fd_output != 1 && list_pars->fd_output != -1)
-	{
-		j = j + 2;
-		dup2(list_pars->fd_output, STDOUT_FILENO);
-		close(list_pars->fd_output);
-		i = 2;
-	}
-	if (j == 3)
-		return (j);
-	return (i);
+	return (-1);
 }

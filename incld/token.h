@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 19:09:16 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:28:06 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ enum	e_token_enum
 	_TAB,
 	FIL,
 };
-
+/******************************************************************/
 typedef struct s_token
 {
 	char				*content;
@@ -51,6 +51,7 @@ typedef struct s_token
 	int					_flag;
 }t_token;
 
+/************************************************************/
 void	ft_add_to_list_tokens(t_token **lst_tok, t_token *newtok);
 int		ft_qoutes(char *cmd, int *i, int init);
 int		ft_word(char *cmd, int *i, int init);

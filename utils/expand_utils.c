@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 18:31:15 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/24 00:22:27 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char	*fttest(char *str)
 	i = 0;
 	len = 0;
 	tmp = malloc(sizeof(char) * (len + 2));
+	if (!tmp)
+		return (NULL);
 	len = ft_strlen(str);
 	tmp[0] = '0';
 	while (str[i])
@@ -79,13 +81,26 @@ char	*substr_expand(char *cnt, t_exp *v, t_env *env)
 char	*ft_expandhelp(char *cnt, t_env *env)
 {
 	t_exp	v;
+	int		dollar;
 
+	dollar = 0;
 	ft_init_var_expd(&v);
 	v.r = ft_h_h_expand(cnt, &v);
-	++v.i;
 	while (v.i < (int)ft_strlen(cnt))
 	{
-		cnt = substr_expand(cnt, &v, env);
+		if (cnt[v.i] == '$')
+			dollar++;
+		else
+		{
+			if (dollar % 2 != 0)
+				cnt = substr_expand(cnt, &v, env);
+			else
+			{
+				free(v.r);
+				v.r = ft_strdup(cnt);
+				return (v.r);
+			}
+		}
 		v.i++;
 	}
 	if (ft_strcmp(cnt, "0") == 0)
