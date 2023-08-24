@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:47:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/24 01:49:03 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:25:23 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	loop_cmd(t_pipe	*head, t_parse *lst_p, t_env *env, char **str)
 	int		status;
 	pid_t	pid[3];
 
+	status = 0;
 	i = 0;
 	while (lst_p)
 	{
@@ -84,19 +85,12 @@ void	loop_cmd(t_pipe	*head, t_parse *lst_p, t_env *env, char **str)
 			pid[1] = middle_pipes(tmp, lst_p, env, str);
 		else if (!lst_p->next && (lst_p->fd_input != -1
 				&& lst_p->fd_output != -1))
-		{
-			pid[2] = second_child(tmp->fd_p, lst_p, env, str);
-			close(tmp->fd_p[0]);
-			close(tmp->fd_p[1]);
-		}
+			pid[2] = pid_second_child(tmp, lst_p, env, str);
 		close_fd(lst_p);
 		lst_p = lst_p->next;
 		i = 1;
 	}
-	waitpid(pid[0], &status, 0);
-	waitpid(pid[1], &status, 0);
-	waitpid(pid[2], &status, 0);
-	ftstatus(&status);
+	wait_id(pid, &status);
 	free_pipe(head);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 16:23:57 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/24 02:43:57 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:20:51 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ void	fealed_s_n_exe(t_parse *list_pars)
 	else
 	{
 		if ((!ft_strcmp(list_pars->arg[0], "") && list_pars->fd_input == 0)
-			|| (access(list_pars->path, F_OK) == -1))
+			|| (access(list_pars->path, F_OK) == -1
+				&& ft_strcmp(list_pars->arg[0], "")
+				&& list_pars->fd_input == 0))
 		{
 			if (list_pars)
 				write(2, list_pars->arg[0], ft_strlen(list_pars->arg[0]));

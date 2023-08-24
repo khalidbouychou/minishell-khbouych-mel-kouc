@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 00:22:27 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:43:04 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char	*substr_expand(char *cnt, t_exp *v, t_env *env)
 {
 	char	*str;
 
+	(void)env;
 	if (ft_isdigit(cnt[v->i]))
 		expand_digit(cnt, v);
 	else if (cnt[v->i] == '?')
