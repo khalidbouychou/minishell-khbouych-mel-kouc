@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:34:45 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/24 01:38:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:33:11 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,12 @@ void	ft_searsh_herdoc(t_token *tmp, t_parse *new_p, t_env *env)
 			close(new_p->fd_input);
 		write_in_herdoc(ptr, new_p, env);
 	}
+}
+
+void	ft_main_norm(t_env *env)
+{
+	ft_init_variables();
+	ft_signals();
+	ft_track_shlvl(env);
+	g_v.sig = 1;
 }

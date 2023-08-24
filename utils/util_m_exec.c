@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:20:06 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/24 01:54:21 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:38:49 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,23 @@ int	compare_path(char *tmp)
 		|| !ft_strcmp(tmp, "cd"))
 		return (1);
 	return (0);
+}
+
+char	*findpathvalue(t_env *head)
+{
+	t_env	*tmp;
+	char	*p;
+
+	p = NULL;
+	tmp = head;
+	while (tmp)
+	{
+		if (tmp->key && !ft_strcmp(tmp->key, "PATH"))
+		{
+			p = tmp->value;
+			break ;
+		}
+		tmp = tmp->next;
+	}
+	return (p);
 }

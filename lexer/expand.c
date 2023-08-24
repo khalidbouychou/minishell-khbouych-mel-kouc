@@ -6,18 +6,19 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 16:25:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:33:32 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-void	ft_init_var_expd(t_exp *var_expd)
+void	ft_init_var_expd(t_exp *var_expd, int *dollar)
 {
 	var_expd->i = -1;
 	var_expd->s = 0;
 	var_expd->e = 0;
 	var_expd->r = NULL;
+	*dollar = 0;
 }
 
 char	*expand_sq(char *cnt, t_exp *v, char *r, char *join)

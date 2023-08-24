@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:22:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/24 13:27:48 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:32:08 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_pipe
 	struct s_pipe	*prev;
 }	t_pipe;
 
+void	ft_putchar(char c);
 void	execute_main(t_parse *list_pars, t_env **env);
 int		compare_cmd(t_parse *tmp);
 char	**list_to_char(t_env *env, char **str);

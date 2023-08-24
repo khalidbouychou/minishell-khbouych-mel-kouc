@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:44:27 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/24 13:28:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:30:49 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	cmd_in_built(t_parse *list_pars, t_env **env, int pipe)
 	else if (!ft_strcmp(tmp->arg[0], "export"))
 		ft_export(tmp->arg, *env, tmp->fd_output);
 	else if (!ft_strcmp(tmp->arg[0], "pwd"))
-		ft_pwd();
+		ft_pwd(tmp->fd_output);
 	else if (!ft_strcmp(tmp->arg[0], "exit"))
 		ft_exit(tmp->arg, pipe);
 	else if (!ft_strcmp(tmp->arg[0], "unset"))
 		ft_unset(env, tmp->arg);
 	else if (!ft_strcmp(tmp->arg[0], "cd"))
 		ft_cd(tmp->arg, *env);
-	if (tmp->fd_input == -1)
+	if (list_pars->fd_input == -1)
 		g_v.ex_stu = 1;
 }
 

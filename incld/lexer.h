@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:09:11 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/22 19:33:52 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:32:12 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_variable
 }t_exp;
 
 void	ft_expander(t_token *tok, t_env *env);
-void	ft_init_var_expd(t_exp *var_expd);
+void	ft_init_var_expd(t_exp *var_expd, int *dollar);
 char	*expand_sq(char *cnt, t_exp *v, char *r, char *join);
 char	*ft_v_k(char *key, t_env *env);
 char	*ft_expandhelp(char *cnt, t_env *env);

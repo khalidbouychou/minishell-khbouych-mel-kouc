@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:37 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 13:36:01 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:28:40 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ void	ft_echo(char **arg, int fd)
 		i++;
 	}
 	while (arg[i])
-	{
-		ft_putstr_fd(arg[i], fd);
-		i++;
-	}
+		ft_putstr_fd(arg[i++], fd);
 	if (!x)
 		ft_putstr_fd("\n", fd);
 	g_v.ex_stu = 0;

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:05:12 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/24 01:45:49 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:34:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,25 @@ void	join_after_exp(char *cnt, t_exp *v)
 	v->r = ft_strjoin(tmp1, sub);
 	free (tmp1);
 	free(sub);
+}
+
+void	check_cmd(t_token **lst)
+{
+	t_token	*tmp;
+	t_token	*ptr;
+	t_token	*space;
+	int		_flag;
+
+	_flag = 0;
+	space = NULL;
+	tmp = *lst;
+	while (tmp)
+	{
+		ptr = tmp->next;
+		if (ptr)
+			ptr = check_echo(tmp, ptr, space, &_flag);
+		if (!ptr)
+			break ;
+		tmp = ptr->next;
+	}
 }

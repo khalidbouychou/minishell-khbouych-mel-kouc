@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 09:25:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/23 22:36:21 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:41:36 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,17 @@ void	space_after_cmd(t_token **lst)
 	}
 }
 
+void	norm_check_echo(t_token *ptr, t_token *space)
+{
+	if (space && space->type == SPC)
+	{
+		ptr->next = space->next;
+		space->next->prev = ptr;
+		free(space->content);
+		free(space);
+	}
+}
+
 t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space, int *_flag)
 {
 	char	*str;
@@ -103,37 +114,10 @@ t_token	*check_echo(t_token *tmp, t_token *ptr, t_token *space, int *_flag)
 		while (ptr && ptr->operator == 0 && ptr->type != SPC && *_flag == 0)
 		{
 			space = ptr->next;
-			if (space && space->type == SPC)
-			{
-				ptr->next = space->next;
-				space->next->prev = ptr;
-				free(space->content);
-				free(space);
-			}
+			norm_check_echo(ptr, space);
 			ptr = ptr->next;
 		}
 	}
 	free(str);
 	return (ptr);
-}
-
-void	check_cmd(t_token **lst)
-{
-	t_token	*tmp;
-	t_token	*ptr;
-	t_token	*space;
-	int		_flag;
-
-	_flag = 0;
-	space = NULL;
-	tmp = *lst;
-	while (tmp)
-	{
-		ptr = tmp->next;
-		if (ptr)
-			ptr = check_echo(tmp, ptr, space, &_flag);
-		if (!ptr)
-			break ;
-		tmp = ptr->next;
-	}
 }
