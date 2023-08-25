@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/25 15:09:22 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 15:57:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ char	*ft_expandhelp(char *cnt, t_env *env, int *echo_flag)
 		}
 		v.i++;
 	}
-	printf("cnt = |%s|\n", cnt);
-	printf("v.r = |%s|\n", v.r);
 	if (ft_norm_expand(cnt, v) != NULL)
 		return (ft_norm_expand(cnt, v));
 	return (v.r);
