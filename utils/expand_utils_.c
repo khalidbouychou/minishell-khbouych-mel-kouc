@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:05:12 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/25 02:00:38 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 02:51:18 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,6 @@ void	expand_digit(char *cnt, t_exp *v)
 	v->r = ft_strjoin(tmp1, sub);
 	free (tmp1);
 	free(sub);
-}
-
-//khalid
-
-char	*ft_trim_spaces_echo(char *tmp)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < ft_strlen(tmp))
-	{
-		if (tmp[i] == 32)
-		{
-			i++;
-			while (tmp && tmp[i] == 32)
-			{
-				tmp[i] = 31;
-				i++;
-			}
-		}
-		i++;
-	}
-	return (tmp);
 }
 
 void	sub_expand_value(char *cnt, t_exp *v, t_env *env, int *echo_flag)
