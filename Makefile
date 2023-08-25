@@ -6,14 +6,14 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/25 18:40:49 by khbouych         ###   ########.fr        #
+#    Updated: 2023/08/25 18:43:25 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = minishell
 
-SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
+SRC = 	./minishell.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./lexer/lexer.c  ./lexer/tokens/token.c  ./lexer/tokens/white_space.c \
 		./lexer/tokens/utils_space.c utils/ft_split.c ./lexer/tokens/util_token.c \
 		./lexer/tokens/check_list.c utils/util_.c utils/util__.c ./lexer/tokens/free.c ./lexer/tokens/check_syntax.c \
