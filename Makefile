@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/25 10:34:48 by khbouych         ###   ########.fr        #
+#    Updated: 2023/08/25 15:37:05 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,10 @@ INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc
-C_flagS =   -Wall -Wextra -Werror 
+C_flagS =   -Wall -Wextra -Werror
 
 all: $(NAME)
-$(NAME) : $(OSRC) 
+$(NAME) : $(OSRC)
 	@$(CC) -lreadline  $(C_flagS) $(OSRC)  ${LIB} -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 

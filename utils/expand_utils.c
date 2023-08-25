@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/25 15:13:02 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/25 17:24:13 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*fttest(char *str, char *cnt)
 	len1 = ft_strlen(cnt) - 2;
 	tmp = malloc(sizeof(char) * (len1 + len + 2));
 	if (!tmp)
-		return (NULL);
+		return (free(tmp), NULL);
 	tmp[0] = 31;
 	while (i < ft_strlen(cnt))
 	{
@@ -74,7 +74,7 @@ char	*fttest(char *str, char *cnt)
 			i++;
 		}
 	}
-	tmp[i + 1] = '\0';
+	tmp[i] = '\0';
 	return (tmp);
 }
 
@@ -111,7 +111,7 @@ char	*ft_expandhelp(char *cnt, t_env *env, int *echo_flag)
 		else
 		{
 			if (dollar % 2 != 0)
-				substr_expand(cnt, &v, env, echo_flag);
+				cnt = substr_expand(cnt, &v, env, echo_flag);
 			else
 				return (return_v_r(&v, cnt));
 		}

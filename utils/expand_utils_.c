@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:05:12 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/25 14:06:13 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/25 17:07:31 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ void	sub_expand_value(char *cnt, t_exp *v, t_env *env, int *echo_flag)
 	sub = ft_substr(cnt, v->s, (v->e - v->s));
 	tmp = ft_v_k(sub, env);
 	if (*echo_flag == 1)
-	{
 		tmp = ft_trim_spaces_echo(tmp);
-	}
 	if (tmp)
 	{
 		tmp1 = v->r;
