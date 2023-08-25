@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 02:48:02 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/25 11:23:43 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/08/25 13:19:56 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,14 @@ char	*ft_process_command(char **cmd)
 	get_cmd = ft_strdup(cmd[0]);
 	free_char_double(cmd);
 	return (get_cmd);
+}
+
+char	*ft_norm_expand(char *cnt, t_exp v)
+{
+	if (ft_strcmp(cnt, "0") == 0)
+	{
+		v.r = ft_strdup("0");
+		return (v.r);
+	}
+	return (NULL);
 }
