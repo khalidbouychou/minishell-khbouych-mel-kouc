@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 01:51:30 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/25 00:31:56 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:02:43 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,51 +57,6 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-
-// char	*tr_str(int len, char *str, int n)
-// {
-// 	str[len] = '\0';
-// 	len--;
-// 	if (n < 0)
-// 	{
-// 		str[0] = '-';
-// 		n = -n;
-// 	}
-// 	if (n == 0)
-// 	{
-// 		str[0] = 0;
-// 		return (str);
-// 	}
-// 	while (n)
-// 	{
-// 		str[len] = n % 10 + '0';
-// 		n = n / 10;
-// 		len--;
-// 	}
-// 	return (str);
-// }
-
-// char	*ft_itoa(int nbr)
-// {
-// 	int		len;
-// 	char	*str;
-// 	int		n;
-
-// 	n = nbr;
-// 	len = 0;
-// 	if (nbr <= 0)
-// 		len++;
-// 	while (nbr)
-// 	{
-// 		nbr = nbr / 10;
-// 		len++;
-// 	}
-// 	str = (char *)malloc(sizeof(char) * (len + 1));
-// 	if (!str)
-// 		return (NULL);
-// 	str = tr_str(len, str, n);
-// 	return (str);
-// }
 
 int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {

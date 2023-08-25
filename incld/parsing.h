@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 23:44:56 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:02:32 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_putstr_fd(char *s, int fd);
 char	*generate_name(void);
 char	*ft_get_path(t_env *env, char *str);
 void	add_if_not_found(t_env **head, int i);
-// char	*ft_expandhelp(char *cnt, t_env *env);
 int		compare_path(char *tmp);
 void	ft_init_herdoc(t_parse **new_p, char **del, t_token **ptr);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
