@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:02:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/25 16:02:32 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:25:53 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,4 @@ int		ft_strncmp(const char *str1, const char *str2, size_t n);
 void	ft_child_sig_handler(int sig);
 void	parent_herdoc(t_parse *new_p, int status, pid_t pid);
 void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str);
-void	check_cmd(t_token **lst);
 #endif

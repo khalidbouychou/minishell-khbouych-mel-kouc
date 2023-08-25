@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/25 02:49:29 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:10:33 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	*ft_h_h_expand(char *cnt, t_exp *v)
 char	*fttest(char *str, char *cnt)
 {
 	size_t		i;
-	size_t		j;
 	int			len;
 	int			len1;
 	char		*tmp;
@@ -52,28 +51,7 @@ char	*fttest(char *str, char *cnt)
 		return (NULL);
 	tmp[0] = 31;
 	while (i < ft_strlen(cnt))
-	{
-		if (i + 1 < ft_strlen(cnt) && cnt[i] == '$' && cnt[i + 1] == '?')
-		{
-			j = 0;
-			while (str[j])
-			{
-				tmp[i + 1] = str[j];
-				j++;
-				i++;
-			}
-			if (j == 1)
-			{
-				tmp[i + 1] = 31;
-				i++;
-			}
-		}
-		else
-		{
-			tmp[i + 1] = cnt[i];
-			i++;
-		}
-	}
+		help_ft_test(tmp, cnt, &i, str);
 	tmp[i + 1] = '\0';
 	return (tmp);
 }
@@ -123,7 +101,7 @@ char	*ft_expandhelp(char *cnt, t_env *env, int *echo_flag)
 			if (dollar % 2 != 0)
 				cnt = substr_expand(cnt, &v, env, echo_flag);
 			else
-				return (return_v_r(&v, cnt));
+				return (return_v_r(cnt, &v));
 		}
 		v.i++;
 	}

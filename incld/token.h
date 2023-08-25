@@ -6,14 +6,14 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/25 16:04:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:23:45 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
-# include "../incld/minishell.h"
-# include "../incld/token.h"
+# include "minishell.h"
+# include "lexer.h"
 
 typedef struct s_env
 {
@@ -85,5 +85,8 @@ void	check_herdoc_quotes(t_token *lst);
 char	*ft_expandhelp(char *cnt, t_env *env, int *echo_flag);
 void	operator_right(t_token *tmp, t_token *right_op);
 void	help_lixer_list(char *str, t_token *tmp, t_token *ptr);
+char	*ft_trim_spaces_echo(char *tmp);
+char	*ft_return_ret(char **cmd, char *ret, char *p);
+char	*ft_process_command(char **cmd);
 
 #endif

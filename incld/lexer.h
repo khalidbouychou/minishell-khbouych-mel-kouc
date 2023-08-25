@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:09:11 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/25 16:05:39 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:23:59 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ char	*ft_itoa(int nbr);
 void	sub_expand_value(char *cnt, t_exp *v, t_env *env, int *echo_flag);
 void	not_isalnum(char *cnt, t_exp *v);
 void	join_after_exp(char *cnt, t_exp *v);
-char	*return_v_r(t_exp *v, char *cnt);
+char	*return_v_r(char *cnt, t_exp *v);
 char	*ft_trim_spaces_echo(char *tmp);
+void	help_ft_test(char	*tmp, char *cnt, size_t *i, char *str);
+char	*ft_norm_expand(char *cnt, t_exp v);
 
 #endif
