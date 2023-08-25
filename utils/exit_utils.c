@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:45:22 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 01:42:42 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 21:59:52 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ int	ft_arg_digit(char *arg)
 	int	i;
 
 	i = 0;
+	
+	if (!arg)
+		return (1);
 	if (arg[0] == '-')
 		i++;
 	while (arg[i])

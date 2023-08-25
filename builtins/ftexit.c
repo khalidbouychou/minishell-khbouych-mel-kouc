@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftexit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:45 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/25 01:48:58 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 22:11:19 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,21 @@ void	ft_exit(char **arg, int pipe)
 	}
 	if (!ft_strcmp(arg[0], "exit") && arg[1] == NULL)
 		ft_exit_output("exit\n", 0, true);
-	if (ft_atoi(arg[1]) == -1
-		|| ft_atoi(arg[1]) == 0 || !ft_arg_digit(arg[1]))
+	else if (!ft_arg_digit(arg[1]) || ( arg[1] && ft_strlen(arg[1]) >
+		ft_strlen("-9223372036854775808"))
+		|| (ft_atoi(arg[1]) < 0 && arg[1][0] != '-')
+		|| (ft_atoi(arg[1]) > 0 && arg[1][0] == '-') || !ft_strcmp(arg[1], ""))
 	{
 		dup2(stdout_backup, STDERR_FILENO);
 		ft_exit_output("exit : numeric argument required\n", 255, true);
 	}
-	if (ft_arg_digit(arg[1]) && arg[2] == NULL)
-		ft_exit_output("exit\n", ft_atoi((arg[1])), true);
-	if ((ft_arg_digit(arg[1]) && ft_arg_digit(arg[2]))
-		|| (ft_arg_digit(arg[1]) && !ft_arg_digit(arg[2])))
+	else if (arg[2])
+	{
+		dup2(stdout_backup, STDERR_FILENO);
 		ft_exit_output("exit : too many arguments\n", 1, false);
-	if (ft_isdigit(arg[1][ft_strlen(arg[1]) - 1])
-		&& ((ft_atoi(arg[1]) < 0 || ft_atoi(arg[1]) > 256)))
+	}
+	else if (ft_arg_digit(arg[1]) && arg[2] == NULL)
+		ft_exit_output("exit\n", ft_atoi((arg[1])), true);
+	else if (ft_isdigit(arg[1][ft_strlen(arg[1]) - 1]))
 		ft_exit_output("exit\n", ft_atoi(arg[1]) % 256, true);
 }
