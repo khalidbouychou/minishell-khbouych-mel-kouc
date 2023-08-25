@@ -6,14 +6,14 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/25 02:50:36 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 10:34:32 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
-# include "../incld/minishell.h"
-# include "../incld/token.h"
+# include "minishell.h"
+# include "lexer.h"
 
 typedef struct s_env
 {
@@ -74,6 +74,7 @@ t_token	*echo_and_n(t_token *ptr, t_token *space);
 void	util_between_oper(t_token *tmp, t_token	*right_op, t_token	*left_op);
 int		check_spases(t_token *tmp);
 void	space_after_cmd(t_token **lst);
+// char	*return_v_r(char *cnt, t_exp *v);
 void	free_token_list(t_token **lst);
 void	free_env_list(t_env *env);
 int		check_operator(t_token	**list_tokens);
@@ -85,6 +86,6 @@ void	check_herdoc_quotes(t_token *lst);
 char	*ft_expandhelp(char *cnt, t_env *env, int *echo_flag);
 void	operator_right(t_token *tmp, t_token *right_op);
 void	help_lixer_list(char *str, t_token *tmp, t_token *ptr);
-char	*return_v_r(t_exp *v, char *cnt);
+char	*ft_trim_spaces_echo(char *tmp);
 
 #endif
