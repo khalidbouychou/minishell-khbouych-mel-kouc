@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:14 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 18:41:18 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:23:19 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,40 +44,25 @@ char	*ft_get_path(t_env *env, char *str)
 	t_env	*tmp;
 	char	**cmd;
 	char	*ret;
-	char	*get_cmd;
 
 	p = NULL;
 	cmd = NULL;
 	tmp = env;
+	ret = NULL;
 	if (ft_strchr(str, 32) != -1)
 		cmd = ft_split(str, 32);
-	p = findpathvalue(env);
+	if (cmd)
+		if (ft_strchr(cmd[0], '/') == -1)
+			return (ft_return_ret(cmd, ret, findpathvalue(env)));
 	if (cmd)
 	{
 		if (ft_strchr(cmd[0], '/') == -1)
-		{
-			ret = ft_check_if_cmd_valid(ft_split(p, ':'), cmd[0]);
-			free_char_double(cmd);
-			return (ret);
-		}
-	}
-	if (cmd)
-	{
-		if (ft_strchr(cmd[0], '/') == -1)
-		{
-			ret = ft_check_if_cmd_valid(ft_split(p, ':'), cmd[0]);
-			free_char_double(cmd);
-			return (ret);
-		}
+			return (ft_return_ret(cmd, ret, findpathvalue(env)));
 		else
-		{
-			get_cmd = ft_strdup(cmd[0]);
-			free_char_double(cmd);
-			return (get_cmd);
-		}
+			return (ft_process_command(cmd));
 	}
 	if (ft_strchr(str, '/') == -1)
-		return (ft_check_if_cmd_valid(ft_split(p, ':'), str));
+		return (ft_check_if_cmd_valid(ft_split(findpathvalue(env), ':'), str));
 	else
 		return (ft_strdup(str));
 }

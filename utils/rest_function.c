@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rest_function.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 02:48:02 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/25 02:51:24 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:23:43 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,21 @@ char	*ft_trim_spaces_echo(char *tmp)
 		i++;
 	}
 	return (tmp);
+}
+
+char	*ft_return_ret(char **cmd, char *ret, char *p)
+{
+	ret = ft_check_if_cmd_valid(ft_split(p, ':'), cmd[0]);
+	free_char_double(cmd);
+	return (ret);
+}
+
+char	*ft_process_command(char **cmd)
+{
+	char	*get_cmd;
+
+	get_cmd = NULL;
+	get_cmd = ft_strdup(cmd[0]);
+	free_char_double(cmd);
+	return (get_cmd);
 }

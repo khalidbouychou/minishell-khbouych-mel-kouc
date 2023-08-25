@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/25 02:50:36 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:24:08 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ void	check_herdoc_quotes(t_token *lst);
 char	*ft_expandhelp(char *cnt, t_env *env, int *echo_flag);
 void	operator_right(t_token *tmp, t_token *right_op);
 void	help_lixer_list(char *str, t_token *tmp, t_token *ptr);
-char	*return_v_r(t_exp *v, char *cnt);
-
+char	*ft_process_command(char **cmd);
+char	*ft_return_ret(char **cmd, char *ret, char *p);
 #endif

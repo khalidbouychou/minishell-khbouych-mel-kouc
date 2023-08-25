@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:09:11 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 23:46:07 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 10:33:45 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_variable
 	char	*r;
 }t_exp;
 
+char	*return_v_r(t_exp *v, char *cnt);
 void	ft_expander(t_token *tok, t_env *env);
 void	ft_init_var_expd(t_exp *var_expd, int *dollar);
 char	*expand_sq(char *cnt, t_exp *v, char *r, char *join);
