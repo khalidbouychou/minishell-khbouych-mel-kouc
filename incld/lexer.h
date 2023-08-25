@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:09:11 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 18:32:12 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/24 23:46:07 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	ft_expander(t_token *tok, t_env *env);
 void	ft_init_var_expd(t_exp *var_expd, int *dollar);
 char	*expand_sq(char *cnt, t_exp *v, char *r, char *join);
 char	*ft_v_k(char *key, t_env *env);
-char	*ft_expandhelp(char *cnt, t_env *env);
+// char	*ft_expandhelp(char *cnt, t_env *env);
 void	expand_digit(char *cnt, t_exp *v);
 char	*ft_itoa(int nbr);
-void	sub_expand_value(char *cnt, t_exp *v, t_env *env);
+void	sub_expand_value(char *cnt, t_exp *v, t_env *env, int *echo_flag);
 void	not_isalnum(char *cnt, t_exp *v);
 void	join_after_exp(char *cnt, t_exp *v);
 

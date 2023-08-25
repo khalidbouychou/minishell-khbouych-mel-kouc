@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:12:32 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 18:33:32 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 01:54:48 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ void	expand_redir(t_token *tmp, t_env *env)
 			|| !ptr)
 		{
 			tmp1 = tmp->content;
-			tmp->content = ft_expandhelp(tmp1, env);
-			free (tmp1);
+			tmp->content = ft_expandhelp(tmp1, env, &tmp->echo_flag);
+			if (tmp1 != NULL)
+				free(tmp1);
 		}
 		if (ptr && (ptr->type == OUTPUT || ptr->type == INPUT
 				|| ptr->type == APPND)

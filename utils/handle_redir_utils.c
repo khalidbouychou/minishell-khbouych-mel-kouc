@@ -6,56 +6,102 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 01:51:30 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/24 18:38:09 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 00:31:56 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/minishell.h"
 
-char	*tr_str(int len, char *str, int n)
+static	int	ft_power(long n)
 {
-	str[len] = '\0';
-	len--;
-	if (n < 0)
+	int	power;
+
+	power = 0;
+	if (n <= 0)
+	{
+		n = -n;
+		power++;
+	}
+	while (n > 0)
+	{
+		n = n / 10;
+		power++;
+	}
+	return (power);
+}
+
+char	*ft_itoa(int n)
+{
+	int		power;
+	char	*str;
+	long	nb;
+
+	nb = n;
+	power = ft_power(nb);
+	str = (char *)malloc(sizeof (char) * (power + 1));
+	if (!str)
+		return (0);
+	str[power] = '\0';
+	if (nb == 0)
+		str[0] = 48;
+	if (nb < 0)
 	{
 		str[0] = '-';
-		n = -n;
+		nb = -nb;
 	}
-	if (n == 0)
+	while (nb > 0)
 	{
-		str[0] = 0;
-		return (str);
-	}
-	while (n)
-	{
-		str[len] = n % 10 + '0';
-		n = n / 10;
-		len--;
+		str[power - 1] = nb % 10 + 48;
+		nb = nb / 10;
+		power--;
 	}
 	return (str);
 }
 
-char	*ft_itoa(int nbr)
-{
-	int		len;
-	char	*str;
-	int		n;
+// char	*tr_str(int len, char *str, int n)
+// {
+// 	str[len] = '\0';
+// 	len--;
+// 	if (n < 0)
+// 	{
+// 		str[0] = '-';
+// 		n = -n;
+// 	}
+// 	if (n == 0)
+// 	{
+// 		str[0] = 0;
+// 		return (str);
+// 	}
+// 	while (n)
+// 	{
+// 		str[len] = n % 10 + '0';
+// 		n = n / 10;
+// 		len--;
+// 	}
+// 	return (str);
+// }
 
-	n = nbr;
-	len = 0;
-	if (nbr <= 0)
-		len++;
-	while (nbr)
-	{
-		nbr = nbr / 10;
-		len++;
-	}
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	str = tr_str(len, str, n);
-	return (str);
-}
+// char	*ft_itoa(int nbr)
+// {
+// 	int		len;
+// 	char	*str;
+// 	int		n;
+
+// 	n = nbr;
+// 	len = 0;
+// 	if (nbr <= 0)
+// 		len++;
+// 	while (nbr)
+// 	{
+// 		nbr = nbr / 10;
+// 		len++;
+// 	}
+// 	str = (char *)malloc(sizeof(char) * (len + 1));
+// 	if (!str)
+// 		return (NULL);
+// 	str = tr_str(len, str, n);
+// 	return (str);
+// }
 
 int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {

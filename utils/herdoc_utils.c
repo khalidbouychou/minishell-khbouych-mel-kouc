@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:52:56 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 01:35:34 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 02:01:16 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ void	parent_herdoc(t_parse *new_p, int status, pid_t pid)
 void	fill_buffer(t_token **ptr, t_env **env, char **buffer, char *str)
 {
 	char	*tmp;
+	int		echo_flag;
 
+	echo_flag = 0;
 	if (ft_strchr(str, '$') != -1 && (*ptr)->_flag != 1)
-		str = ft_expandhelp(str, (*env));
+		str = ft_expandhelp(str, (*env), &echo_flag);
 	tmp = *buffer;
 	*buffer = ft_strjoin(*buffer, str);
 	free(tmp);

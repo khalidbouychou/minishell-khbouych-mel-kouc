@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:05:32 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/08/24 18:41:42 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 01:55:41 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	trim_list(t_token **list)
 	while (tmp)
 	{
 		ptr = tmp->content;
+		tmp->echo_flag = 1;
 		if (tmp->content[i] == '\'')
 		{
 			tmp->content = ft_strtrim(tmp->content, "'");
@@ -76,6 +77,7 @@ void	trim_list(t_token **list)
 		}
 		else if (tmp->content[i] == '"')
 		{
+			tmp->echo_flag = 0;
 			tmp->content = ft_strtrim(tmp->content, "\"");
 			free(ptr);
 		}

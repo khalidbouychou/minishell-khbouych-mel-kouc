@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 18:37:43 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 01:35:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,49 @@ char	*ft_h_h_expand(char *cnt, t_exp *v)
 	return (r);
 }
 
-char	*fttest(char *str)
+char	*fttest(char *str, char *cnt)
 {
-	int		i;
-	int		len;
-	char	*tmp;
+	size_t		i;
+	size_t		j;
+	int			len;
+	int			len1;
+	char		*tmp;
 
 	i = 0;
-	len = 0;
-	tmp = malloc(sizeof(char) * (len + 2));
+	len = ft_strlen(str);
+	len1 = ft_strlen(cnt) - 2;
+	tmp = malloc(sizeof(char) * (len1 + len + 2));
 	if (!tmp)
 		return (NULL);
-	len = ft_strlen(str);
-	tmp[0] = '0';
-	while (str[i])
+	tmp[0] = 31;
+	while (i < ft_strlen(cnt))
 	{
-		tmp[i + 1] = str[i];
-		i++;
+		if (i + 1 < ft_strlen(cnt) && cnt[i] == '$' && cnt[i + 1] == '?')
+		{
+			j = 0;
+			while (str[j])
+			{
+				tmp[i + 1] = str[j];
+				j++;
+				i++;
+			}
+			if (j == 1)
+			{
+				tmp[i + 1] = 31;
+				i++;
+			}
+		}
+		else
+		{
+			tmp[i + 1] = cnt[i];
+			i++;
+		}
 	}
 	tmp[i + 1] = '\0';
 	return (tmp);
 }
 
-char	*substr_expand(char *cnt, t_exp *v, t_env *env)
+char	*substr_expand(char *cnt, t_exp *v, t_env *env, int *echo_flag)
 {
 	char	*str;
 
@@ -67,12 +87,11 @@ char	*substr_expand(char *cnt, t_exp *v, t_env *env)
 	else if (cnt[v->i] == '?')
 	{
 		str = ft_itoa(g_v.ex_stu);
-		free(cnt);
-		cnt = fttest(str);
+		cnt = fttest(str, cnt);
 		free(str);
 	}
 	else
-		sub_expand_value(cnt, v, env);
+		sub_expand_value(cnt, v, env, echo_flag);
 	not_isalnum(cnt, v);
 	join_after_exp(cnt, v);
 	return (cnt);
@@ -82,14 +101,13 @@ char	*ft_norm_expand(char *cnt, t_exp v)
 {
 	if (ft_strcmp(cnt, "0") == 0)
 	{
-		free(v.r);
 		v.r = ft_strdup("0");
 		return (v.r);
 	}
 	return (NULL);
 }
 
-char	*ft_expandhelp(char *cnt, t_env *env)
+char	*ft_expandhelp(char *cnt, t_env *env, int *echo_flag)
 {
 	t_exp	v;
 	int		dollar;
@@ -103,10 +121,11 @@ char	*ft_expandhelp(char *cnt, t_env *env)
 		else
 		{
 			if (dollar % 2 != 0)
-				cnt = substr_expand(cnt, &v, env);
+				cnt = substr_expand(cnt, &v, env, echo_flag);
 			else
 			{
-				free(v.r);
+				if (v.r != NULL)
+					free(v.r);
 				v.r = ft_strdup(cnt);
 				return (v.r);
 			}

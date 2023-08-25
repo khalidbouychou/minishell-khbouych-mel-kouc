@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:10:21 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 18:32:50 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 02:00:06 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_token
 	struct s_token		*next;
 	struct s_token		*prev;
 	int					_flag;
+	int					echo_flag;
 }t_token;
 
 /************************************************************/
@@ -81,7 +82,7 @@ t_token	*divide(char *cmd, t_env *env);
 t_token	*ft_listlast(t_token *lst);
 void	ft_set_oper(t_token *tok);
 void	check_herdoc_quotes(t_token *lst);
-char	*ft_expandhelp(char *cnt, t_env *env);
+char	*ft_expandhelp(char *cnt, t_env *env, int *echo_flag);
 void	operator_right(t_token *tmp, t_token *right_op);
 void	help_lixer_list(char *str, t_token *tmp, t_token *ptr);
 

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:45:45 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/24 18:29:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 01:48:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	ft_exit_output(char *msg, int exit_status, bool _bool)
 
 void	ft_exit(char **arg, int pipe)
 {
+	int	stdout_backup;
+
+	stdout_backup = dup(STDERR_FILENO);
 	if (pipe == 1)
 	{
 		close(STDOUT_FILENO);
@@ -32,7 +35,10 @@ void	ft_exit(char **arg, int pipe)
 		ft_exit_output("exit\n", 0, true);
 	if (ft_atoi(arg[1]) == -1
 		|| ft_atoi(arg[1]) == 0 || !ft_arg_digit(arg[1]))
+	{
+		dup2(stdout_backup, STDERR_FILENO);
 		ft_exit_output("exit : numeric argument required\n", 255, true);
+	}
 	if (ft_arg_digit(arg[1]) && arg[2] == NULL)
 		ft_exit_output("exit\n", ft_atoi((arg[1])), true);
 	if ((ft_arg_digit(arg[1]) && ft_arg_digit(arg[2]))
