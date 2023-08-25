@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
+#    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/28 16:03:28 by khbouych          #+#    #+#              #
-#    Updated: 2023/08/25 16:12:56 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/08/25 18:40:49 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,18 +27,18 @@ SRC = 	./main.c lexer/expand.c ./utils/util.c ./utils/util_list.c \
 		./utils/utl_multi_p.c ./utils/herdoc_utils.c ./utils/cd_utils_.c ./utils/expand_utils_.c \
 		./utils/handle_redir_utils.c ./utils/echo_utils.c ./utils/rest_function.c
 
-LIB = -L/Users/mel-kouc/.brew/opt/readline/lib
-INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
+# LIB = -L/Users/mel-kouc/.brew/opt/readline/lib
+# INCLUDE = -I/Users/mel-kouc/.brew/opt/readline/include
 
-# LIB = -L/Users/khbouych/.brew/opt/readline/lib
-# INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
+LIB = -L/Users/khbouych/.brew/opt/readline/lib
+INCLUDE = -I/Users/khbouych/.brew/opt/readline/include
 
 OSRC = $(SRC:.c=.o)
 CC = cc
-C_flagS =   -Wall -Wextra -Werror 
+C_flagS =   -Wall -Wextra -Werror
 
 all: $(NAME)
-$(NAME) : $(OSRC) 
+$(NAME) : $(OSRC)
 	@$(CC) -lreadline  $(C_flagS) $(OSRC)  ${LIB} -o $(NAME)
 	@echo "*** {Compaling Mandatory ...} ***"
 

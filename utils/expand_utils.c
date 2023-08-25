@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 14:58:03 by khbouych          #+#    #+#             */
-/*   Updated: 2023/08/25 16:10:33 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/08/25 18:27:33 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,17 @@ char	*fttest(char *str, char *cnt)
 char	*substr_expand(char *cnt, t_exp *v, t_env *env, int *echo_flag)
 {
 	char	*str;
+	char	*stok;
 
 	if (ft_isdigit(cnt[v->i]))
 		expand_digit(cnt, v);
 	else if (cnt[v->i] == '?')
 	{
 		str = ft_itoa(g_v.ex_stu);
-		cnt = fttest(str, cnt);
+		stok = fttest(str, cnt);
+		free(cnt);
+		cnt = ft_strdup(stok);
+		free(stok);
 		free(str);
 	}
 	else
